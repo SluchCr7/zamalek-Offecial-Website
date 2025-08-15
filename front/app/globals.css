@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@tailwind utilities;
+
+.matchLine::-webkit-scrollbar{
+    display: none;
+}
+
+::selection{
+    @apply bg-red-600 text-white;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.scroll-animation {
+  animation: scroll 20s linear infinite;
+}
+
+.scroll-animation:hover {
+  animation-play-state: paused;
+}

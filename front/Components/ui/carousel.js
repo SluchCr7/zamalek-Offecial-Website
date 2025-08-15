@@ -31,6 +31,7 @@ const SlideCard = ({ slide }) => {
   );
 };
 
+
 export default function Carousel({ slides }) {
   const [current, setCurrent] = useState(0);
   const containerRef = useRef(null);

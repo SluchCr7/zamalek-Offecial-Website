@@ -1,16 +1,11 @@
-"use client";;
-import { IconArrowNarrowRight } from "@tabler/icons-react";
+"use client";
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import Image from "next/image";
 import { useState, useRef, useId, useEffect } from "react";
 import { motion } from "framer-motion";
-const Slide = ({
-  slide,
-  index,
-  current,
-  handleSlideClick
-}) => {
-  const slideRef = useRef(null);
 
+const Slide = ({ slide, index, current, handleSlideClick }) => {
+  const slideRef = useRef(null);
   const xRef = useRef(0);
   const yRef = useRef(0);
   const frameRef = useRef();
@@ -18,29 +13,21 @@ const Slide = ({
   useEffect(() => {
     const animate = () => {
       if (!slideRef.current) return;
-
       const x = xRef.current;
       const y = yRef.current;
-
       slideRef.current.style.setProperty("--x", `${x}px`);
       slideRef.current.style.setProperty("--y", `${y}px`);
-
       frameRef.current = requestAnimationFrame(animate);
     };
-
     frameRef.current = requestAnimationFrame(animate);
-
     return () => {
-      if (frameRef.current) {
-        cancelAnimationFrame(frameRef.current);
-      }
+      if (frameRef.current) cancelAnimationFrame(frameRef.current);
     };
   }, []);
 
   const handleMouseMove = (event) => {
     const el = slideRef.current;
     if (!el) return;
-
     const r = el.getBoundingClientRect();
     xRef.current = event.clientX - (r.left + Math.floor(r.width / 2));
     yRef.current = event.clientY - (r.top + Math.floor(r.height / 2));
@@ -51,13 +38,9 @@ const Slide = ({
     yRef.current = 0;
   };
 
-  const imageLoaded = (event) => {
-    event.currentTarget.style.opacity = "1";
-  };
+  const { name, img } = slide;
 
-  const { name , img } = slide;
-
-return (
+  return (
     <motion.li
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{
@@ -89,42 +72,35 @@ return (
   );
 };
 
-const CarouselControl = ({
-  type,
-  title,
-  handleClick
-}) => {
+const CarouselControl = ({ type, title, handleClick }) => {
   return (
     <button
-      className={`w-10 h-10 flex items-center mx-2 justify-center bg-neutral-200 dark:bg-neutral-800 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${
-        type === "previous" ? "rotate-180" : ""
-      }`}
+      className={`w-10 h-10 flex items-center justify-center mx-2 bg-neutral-200 dark:bg-neutral-800 rounded-full hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200`}
       title={title}
-      onClick={handleClick}>
-      <IconArrowNarrowRight className="text-neutral-600 dark:text-neutral-200" />
+      onClick={handleClick}
+    >
+      {type === "previous" ? (
+        <FaArrowLeft className="text-neutral-600 dark:text-neutral-200" />
+      ) : (
+        <FaArrowRight className="text-neutral-600 dark:text-neutral-200" />
+      )}
     </button>
   );
 };
 
-export function Carousel({
-  slides
-}) {
+export function Carousel({ slides }) {
   const [current, setCurrent] = useState(0);
 
   const handlePreviousClick = () => {
-    const previous = current - 1;
-    setCurrent(previous < 0 ? slides.length - 1 : previous);
+    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
   const handleNextClick = () => {
-    const next = current + 1;
-    setCurrent(next === slides.length ? 0 : next);
+    setCurrent((prev) => (prev + 1) % slides.length);
   };
 
   const handleSlideClick = (index) => {
-    if (current !== index) {
-      setCurrent(index);
-    }
+    if (current !== index) setCurrent(index);
   };
 
   const id = useId();
@@ -132,28 +108,35 @@ export function Carousel({
   return (
     <div
       className="relative w-[70vmin] h-[70vmin] mx-auto"
-      aria-labelledby={`carousel-heading-${id}`}>
+      aria-labelledby={`carousel-heading-${id}`}
+    >
       <ul
         className="absolute flex mx-[-4vmin] transition-transform duration-1000 ease-in-out"
         style={{
           transform: `translateX(-${current * (100 / slides.length)}%)`,
-        }}>
+        }}
+      >
         {slides.map((slide, index) => (
           <Slide
             key={index}
             slide={slide}
             index={index}
             current={current}
-            handleSlideClick={handleSlideClick} />
+            handleSlideClick={handleSlideClick}
+          />
         ))}
       </ul>
       <div className="absolute flex justify-center w-full top-[calc(100%+1rem)]">
         <CarouselControl
           type="previous"
           title="Go to previous slide"
-          handleClick={handlePreviousClick} />
-
-        <CarouselControl type="next" title="Go to next slide" handleClick={handleNextClick} />
+          handleClick={handlePreviousClick}
+        />
+        <CarouselControl
+          type="next"
+          title="Go to next slide"
+          handleClick={handleNextClick}
+        />
       </div>
     </div>
   );

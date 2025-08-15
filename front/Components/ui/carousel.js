@@ -48,7 +48,7 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
     <div className="[perspective:1200px] [transform-style:preserve-3d]">
       <li
         ref={slideRef}
-        className="flex flex-col items-center justify-center relative text-center w-full h-100 mx-[4vmin] z-10 rounded-xl overflow-hidden shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-300"
+        className="flex flex-col items-center justify-center relative text-center w-[300px] mx-[4vmin] z-10 rounded-xl overflow-hidden shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-300"
         onClick={() => handleSlideClick(index)}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -62,7 +62,7 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
         }}
       >
         <div
-          className="absolute top-0 left-0 w-full h-full bg-black rounded-xl overflow-hidden"
+          className="relative w-full"
           style={{
             transform:
               current === index
@@ -71,25 +71,17 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
           }}
         >
           <Image
-            className="absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-500"
-            style={{
-              opacity: current === index ? 1 : 0.6,
-            }}
+            className="w-full h-auto object-contain transition-opacity duration-500"
             alt={title}
             src={src}
+            width={600} // أو أي عرض مناسب
+            height={0} // نخليه 0 عشان auto height
             onLoad={imageLoaded}
             loading="eager"
             decoding="sync"
-            // fill
-            width={1000}
-            height={1000}
           />
 
-
-          {/* تدرج لوني لأسفل الكارت */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-
-          {/* محتوى الكارت */}
           <div className="absolute bottom-0 left-0 w-full p-4 text-white flex flex-col items-center">
             <h2 className="text-xl md:text-2xl font-bold mb-2">{title}</h2>
             <button className="px-4 py-2 bg-gradient-to-r from-red-600 to-red-700 rounded-lg shadow hover:opacity-90 transition">

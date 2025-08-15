@@ -5,7 +5,7 @@ import React from 'react'
 import { zscTeams } from '@/utils/data'
 import TitleSection from './TitleSection'
 import { InfiniteMovingCards } from './ui/infinite-moving-cards'
-import Carousel from './ui/carousel'
+import { Carousel } from './ui/carousel'
 export default function TeamsSlider() {
   const slideDataTeams = [
 

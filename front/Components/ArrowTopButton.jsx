@@ -24,7 +24,7 @@ const ArrowTopButton = () => {
   return (
     isVisible && (
       <button
-        className="fixed bottom-6 w-14 h-14 left-16 bg-red-600 text-white p-3 rounded-full shadow-lg hover:bg-red-700 transition"
+        className="fixed bottom-6 w-8 h-8 md:w-12 md:h-12 flex items-center justify-center left-20 bg-red-600 text-white p-3 rounded-full shadow-lg hover:bg-red-700 transition"
         onClick={handleScroll}
       >
         <FaArrowUp size={18} />

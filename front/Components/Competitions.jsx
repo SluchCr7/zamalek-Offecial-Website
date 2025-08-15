@@ -125,10 +125,10 @@ export default function ZamalekAchievements() {
                 <div className="flex-1">
                   <h3 className="text-2xl font-extrabold text-gray-900">{selected.Title}</h3>
                   <p className="mt-2 text-gray-600">عدد المرات: <span className="font-bold text-red-600">{selected.num}</span></p>
-                  <div className='grid grid-cols-3 md:grid-cols-6 w-full'>
+                  <div className='grid grid-cols-3 md:grid-cols-6 w-full gap-3'>
                     {
                       selected.years.map((year, index) => (
-                        <p key={index} className="text-white p-3 rounded-xl bg-red-400 text-center">{year}</p>
+                        <p key={index} className="text-white p-2 rounded-xl bg-red-400 text-center">{year}</p>
                       ))
                     }
                   </div>

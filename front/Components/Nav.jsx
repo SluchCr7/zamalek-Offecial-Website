@@ -50,7 +50,7 @@ export default function Nav() {
       {/* الصف العلوي */}
       <div className="bg-gray-50 text-gray-700 border-b border-gray-200">
         <div className="container mx-auto flex justify-between items-center px-6 py-2 text-sm">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
             <Image src="/nike.png" alt="Nike" width={26} height={26} />
             <div className='flex gap-4 items-center'>
               {topLinks.map(link => (

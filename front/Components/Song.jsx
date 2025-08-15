@@ -28,7 +28,7 @@ export default function ZamalekSongButton() {
       
       <motion.button
         onClick={togglePlay}
-        className={`w-14 h-14 flex items-center justify-center rounded-full shadow-lg border-2 
+        className={`w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-full shadow-lg border-2 
           ${isPlaying ? 'bg-red-600 border-white' : 'bg-white border-red-600'}
           text-white`}
         animate={isPlaying ? { scale: [1, 1.1, 1] } : { scale: 1 }}

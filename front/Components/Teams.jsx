@@ -7,18 +7,19 @@ import TitleSection from './TitleSection'
 import { InfiniteMovingCards } from './ui/infinite-moving-cards'
 import Carousel from './ui/carousel'
 export default function TeamsSlider() {
+  const slideDataTeams = [
+
+    {title : "Football Men" , src : "/squads/foot-min.png"  , open : true },
+    { title: "Football Women", src: "/squads/football-min.png" , open : false},
+    { title: "Basketball Men", src: "/squads/basket-min.png" , open : false},
+    { title: "Volleyball Men", src: "/squads/volly-min.png", open : false},
+    { title: "Volleyball Women", src: "/squads/vollyzsc.png", open : false},
+    { title: "Handball Men", src: "/squads/hand-min.png", open : false},
+    { title: "Handball Women", src: "/squads/handball-min.png", open : false },
+  ];
   return (
-    <section className="py-16 text-black" dir="rtl">
-      <div className="max-w-7xl mx-auto px-6">
-        <TitleSection title="فرق نادي الزمالك الرياضية" subtitle="اكتشف جميع الفرق الرياضية التابعة للنادي عبر معرض الصور" />
-        {/* <InfiniteMovingCards
-          items={zscTeams}
-          direction="left"
-          // speed="fast"
-          pauseOnHover={true}
-        /> */}
-        <Carousel slides={zscTeams} />
-      </div>
-    </section>
+    <div classtitle="relative overflow-hidden w-full h-full py-20">
+      <Carousel slides={slideDataTeams} />
+    </div>
   )
 }

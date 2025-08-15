@@ -48,7 +48,7 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
     <div className="[perspective:1200px] [transform-style:preserve-3d]">
       <li
         ref={slideRef}
-        className="flex flex-col items-center justify-center relative text-center w-[70vmin] h-[70vmin] mx-[4vmin] z-10 rounded-xl overflow-hidden shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-300"
+        className="flex flex-col items-center justify-center relative text-center w-full h-100 mx-[4vmin] z-10 rounded-xl overflow-hidden shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-300"
         onClick={() => handleSlideClick(index)}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -80,7 +80,9 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
             onLoad={imageLoaded}
             loading="eager"
             decoding="sync"
-            fill
+            // fill
+            width={1000}
+            height={1000}
           />
 
 

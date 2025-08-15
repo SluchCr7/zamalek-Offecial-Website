@@ -32,19 +32,28 @@ const page = () => {
             key={idx}
             className="bg-white rounded-2xl shadow-lg overflow-hidden border border-red-600 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
           >
-            <div className="relative h-64 w-full">
-              <Image
-                src={branch.img}
-                alt={branch.name}
-                fill
-                className="object-cover"
-              />
-              {branch.status && (
-                <span className="absolute top-4 left-4 bg-red-600 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-md">
-                  {branch.status}
-                </span>
-              )}
-            </div>
+            {
+              branch.img ?     
+              <div className="relative h-64 w-full">
+                <Image
+                  src={branch.img}
+                  alt={branch.name}
+                  fill
+                  className="object-cover"
+                />
+                {branch.status && (
+                  <span className="absolute top-4 left-4 bg-red-600 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-md">
+                    {branch.status}
+                  </span>
+                )}
+              </div>
+                : 
+                <div className="relative h-64 w-full bg-gray-200 flex items-center justify-center">
+                  <span className="absolute top-4 left-4 bg-red-600 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-md">
+                    {branch.status}
+                  </span>
+                </div>
+            }
 
             <div className="p-6 flex flex-col gap-3">
               <h2 className="text-2xl font-bold text-gray-800 border-b-2 border-red-600 pb-2">

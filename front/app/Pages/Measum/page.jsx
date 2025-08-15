@@ -9,7 +9,7 @@ import { mesaumSections } from '@/utils/data'
 
 export default function MuseumPage() {
   return (
-    <div dir="rtl" className="min-h-screen flex items-center flex-col max-w-7xl mx-auto w-full bg-gradient-to-b from-white via-gray-100 to-gray-200 text-gray-900 px-6 py-12">
+    <div dir="rtl" className="min-h-screen flex items-center flex-col max-w-7xl mx-auto w-full px-6 py-12">
 
       {/* العنوان */}
       <div className="mb-8 text-center">

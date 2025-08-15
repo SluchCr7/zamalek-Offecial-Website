@@ -46,15 +46,6 @@ export default function PlayerPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
         </div>
 
-        {/* صورة اللاعب الرئيسية */}
-        <div className="relative z-10 w-[260px] h-[400px] rounded-2xl overflow-hidden shadow-2xl border-4 border-red-600">
-          <Image 
-            src={player.img} 
-            alt={player.name} 
-            fill 
-            className="object-cover"
-          />
-        </div>
       </div>
 
       {/* بيانات اللاعب */}

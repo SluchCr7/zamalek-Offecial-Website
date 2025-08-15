@@ -52,7 +52,7 @@ const Page = () => {
       </div>
 
       {/* أعضاء المجلس */}
-      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
         {members.map(member => (
           <div key={member.id} className="flex flex-col items-center">
             <div className="w-[300px] h-[400px] relative rounded-lg overflow-hidden shadow-md border border-red-500">

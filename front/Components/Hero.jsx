@@ -57,7 +57,7 @@ import { motion } from 'framer-motion'
 
 const HeroNews = () => {
   return (
-    <section className="relative w-full h-[80vh] md:h-screen overflow-hidden">
+    <section dir='rtl' className="relative w-full h-[80vh] md:h-screen overflow-hidden">
       
       {/* الخلفية: صورة الخبر */}
       <Image

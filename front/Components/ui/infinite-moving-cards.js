@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils"; // يمكنك حذف هذا واستبداله
 import Link from "next/link";
 import Image from "next/image";
 import { Lock } from "lucide-react";
+import "./infinite.css";
 export const InfiniteMovingCards = ({
   items,
   direction = "left",

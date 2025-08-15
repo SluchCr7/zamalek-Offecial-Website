@@ -32,7 +32,7 @@ const NewsPage = ({ params }) => {
       <div className="flex-1">
         
         {/* صورة الخبر */}
-        <div className="w-full h-[350px] md:h-[500px] relative rounded-lg overflow-hidden shadow-md border border-gray-200">
+        <div className="w-full max-h-56 relative rounded-lg overflow-hidden shadow-md border border-gray-200">
           <Image
             src={newSelected.image}
             alt={newSelected.title}
@@ -58,7 +58,7 @@ const NewsPage = ({ params }) => {
 
         {/* نص الخبر */}
         <div className="mt-6 text-lg leading-loose text-gray-800 whitespace-pre-line">
-          {newSelected.content}
+          {newSelected.content || 'lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda id quo tempora neque, esse quod repudiandae ipsum ab expedita itaque distinctio veritatis dolorum eius pariatur adipisci eligendi minima sint nisi?'}
         </div>
       </div>
 

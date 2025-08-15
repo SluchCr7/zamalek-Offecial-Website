@@ -81,7 +81,7 @@ const News = () => {
         {/* الصورة */}
         <div className="md:w-1/2 w-full relative group">
           <img
-            src={latestNews.image}
+            src={latestNews.image || '/new.jpg'}
             alt={latestNews.title}
             className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
           />

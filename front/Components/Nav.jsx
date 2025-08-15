@@ -21,10 +21,8 @@ export default function Nav() {
   const links = [
     { id: 1, title: 'الرئيسية', url: '/' },
     { id: 2, title: 'الأخبار', url: '/Pages/News' },
-    { id: 3, title: 'المباريات', url: '/Pages/Fixtures' },
-    { id: 4, title: 'جدول الترتيب', url: '/Pages/Table' },
     {
-      id: 5, title: 'الفرق', url: '/team', sublinks: [
+      id: 3, title: 'الفرق', url: '/team', sublinks: [
         { id: 51, title: 'فريق كرة القدم', url: '/Pages/Players/Football' },
         { id: 52, title: 'فريق كرة السلة', url: '/Pages/Players/basketball' },
         { id: 53, title: 'فريق الكرة الطائرة', url: '/Pages/Players/volleyball' },
@@ -33,11 +31,13 @@ export default function Nav() {
       ]
     },
     {
-      id: 6, title: 'الوسائط', url: '/media', sublinks: [
+      id: 4, title: 'الوسائط', url: '/media', sublinks: [
         { id: 61, title: 'الصور', url: '/Pages/Photos' },
         { id: 62, title: 'الفيديوهات', url: '/Pages/Videos' },
       ]
     },
+    { id: 5, title: 'المباريات', url: '/Pages/Fixtures' },
+    { id: 6, title: 'جدول الترتيب', url: '/Pages/Table' },
   ]
 
   const toggleDropdown = (id) => {
@@ -52,11 +52,13 @@ export default function Nav() {
         <div className="container mx-auto flex justify-between items-center px-6 py-2 text-sm">
           <div className="flex items-center gap-2">
             <Image src="/nike.png" alt="Nike" width={26} height={26} />
-            {topLinks.map(link => (
-              <Link key={link.id} href={link.url} className="hover:text-red-600 transition">
-                {link.title}
-              </Link>
-            ))}
+            <div className='flex gap-4 items-center'>
+              {topLinks.map(link => (
+                <Link key={link.id} href={link.url} className="hover:text-red-600 transition">
+                  {link.title}
+                </Link>
+              ))}
+            </div>
           </div>
           <div className="flex items-center gap-3">
             <Search size={18} className="cursor-pointer hover:text-red-600" />
@@ -71,7 +73,7 @@ export default function Nav() {
       <div className="relative bg-white border-b border-gray-200">
         {/* خلفية شفافة */}
         <div
-          className="absolute inset-0 bg-center bg-no-repeat bg-cover opacity-5 pointer-events-none"
+          className="absolute inset-0 bg-center bg-no-repeat bg-cover opacity-60 pointer-events-none"
           style={{ backgroundImage: "url('/head.png')" }}
         />
 

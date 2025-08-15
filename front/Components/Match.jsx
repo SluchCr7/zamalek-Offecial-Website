@@ -169,22 +169,6 @@ const Match = ({ match }) => {
           <span>{match.stadium}</span>
         </div>
 
-        {/* نوع المباراة */}
-        {match.matchType && (
-          <div className="flex items-center justify-center gap-1 text-xs text-gray-600">
-            {match.matchType === 'Home' ? (
-              <>
-                <Home size={14} className="text-green-600" />
-                <span>Home</span>
-              </>
-            ) : (
-              <>
-                <Plane size={14} className="text-blue-600" />
-                <span>Away</span>
-              </>
-            )}
-          </div>
-        )}
 
         {/* البطولة */}
         {match.competition && (

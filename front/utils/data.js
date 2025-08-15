@@ -1367,7 +1367,20 @@ export const zamalekStats = {
   mostHatrickScore : { player: "علاء الحامولي", num : 5},
   mostSuperHatrickScore: { player: "علي خليل", num: 2 },
   highWin: { team: "اتحاد السويس", score: "11-1" },
-  mostYoungPlay : {name : "شيكابالا" , age : "16 years" , img : ""} ,
+  mostYoungPlayersScore :[ 
+    { name: "شيكابالا", age: "16 سنة", months : "10 شهور", img: "" },
+    { name: "احمد حسام ميدو", age: "17 سنة", months : "3 شهور", img: "" },
+    { name: "عبد الكريم الجوهري", age: "17 سنة", months : "10 شهور", img: "" },
+    { name: "جو اوكري", age: "17 سنة", months : "11 شهور", img: "" },
+    { name: "محمد حلمي", age: "18 سنة", months : "1 شهور", img: "" }
+  ],
+  mostCountriesPlayInZamalek: [
+    {country : "غانا" , num : "13" , totalGoals : "41"},
+    {country : "المغرب" , num : "10" , totalGoals : "58"},
+    {country : "تونس" , num : "7" , totalGoals : "66"},
+    {country : "نيجيريا" , num : "7" , totalGoals : "38"},
+    {country : "السودان" , num : "5" , totalGoals : "20"}
+  ],
   topScorerSeason: [
     { season: "2003/2004", player: "عبد الحليم علي", goals: 21 },
     { season: "2001/2002", player: "حسام حسن", goals: 18 },
@@ -1377,7 +1390,14 @@ export const zamalekStats = {
     { season: "2010/2011", player: "شيكابالا", goals: 13 },
     { season: "2000/2001", player: "طارق السعيد", goals: 13 },
   ],
-  topPlayMatches : [
+  mostMatchesattendance: [
+    {against : "الرجاء المغربي" , num : "95000" , year : "2002"},
+    {against : "الترجي" , num : "95000", year : "1994"},
+    {against : "الاهلي" , num : "95000", year : "1998"},
+    {against : "انبي" , num : "95000", year : "2008"},
+    {against : "مازيمبي" , num : "95000", year : "2002"},
+  ],
+   topPlayMatches : [
     {name : "شيكابالا" , num : "396" , img : ""},
     {name : "عبد الواحد السيد" , num : "365" , img :""  },
     {name : "حازم محمد امام" , num : "285" , img :""},

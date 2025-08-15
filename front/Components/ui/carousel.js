@@ -80,9 +80,9 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
             onLoad={imageLoaded}
             loading="eager"
             decoding="sync"
-            width={1000}
-            height={1000}
+            fill
           />
+
 
           {/* تدرج لوني لأسفل الكارت */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />

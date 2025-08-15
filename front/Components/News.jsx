@@ -76,7 +76,7 @@ const News = () => {
     <div className="w-full flex flex-col gap-16" dir="rtl">
       
       {/* الخبر الرئيسي */}
-      <div className="relative flex flex-col md:flex-row rounded-xl shadow-2xl overflow-hidden max-w-7xl mx-auto">
+      <div className="relative flex flex-col md:flex-row rounded-xl shadow-2xl overflow-hidden max-w-7xl mx-auto w-full">
         
         {/* الصورة */}
         <div className="md:w-1/2 w-full relative group">
@@ -101,11 +101,11 @@ const News = () => {
       </div>
 
       {/* الأخبار الثانوية */}
-      <div className="max-w-7xl mx-auto p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {newsList.map((news) => (
           <div
             key={news.id}
-            className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-300 group"
+            className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-all w-full duration-300 group"
           >
             <div className="relative w-full h-56 overflow-hidden">
               <img

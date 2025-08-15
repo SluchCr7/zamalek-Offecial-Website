@@ -91,8 +91,8 @@ const Page = () => {
               <Link href={`/Players/Football/${encodeURIComponent(player.name)}`}  className="relative w-full h-[380px]">
                 <Image 
                   // src={player.img}
-                  src={player.img}
-                  alt={'/no_img.jpg'}
+                  src={'/no_img.jpg'}
+                  alt={player.name || 'Player'}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />

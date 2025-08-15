@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { placeholderImage, zamalekPlayers } from '@/utils/data'
 import Image from 'next/image'
 import TitleSection from './TitleSection'
+import Link from 'next/link'
 
 const FirstTeam = () => {
   const [randomPlayers, setRandomPlayers] = useState([])
@@ -49,12 +50,14 @@ const FirstTeam = () => {
 
       {/* View All Button */}
       <div className="mt-10 text-center">
-        <button
+        <Link
+          href="/Pages/Players/Football"
           className="inline-block bg-red-700 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-red-800 hover:scale-105 transition-all duration-300"
           aria-label="View all first team players"
         >
+          
           View All First Team Players
-        </button>
+        </;>
       </div>
     </section>
   )

@@ -37,9 +37,9 @@ export default function MatchesSection() {
       <div className="px-4">
 
         {/* عنوان */}
-        <h2 className="text-3xl font-bold text-[#b30000] mb-8 text-center">
+        {/* <h2 className="text-3xl font-bold text-[#b30000] mb-8 text-center">
           مباريات الزمالك
-        </h2>
+        </h2> */}
 
         {/* شريط أفقي متحرك */}
         <div className="relative overflow-hidden w-full mb-10">
@@ -55,7 +55,7 @@ export default function MatchesSection() {
             {[...zamalekMatches, ...zamalekMatches].map((match, index) => (
               <div
                 key={index}
-                className="min-w-[250px] bg-white rounded-xl shadow-md hover:shadow-lg transition p-4"
+                className="min-w-[250px] transition p-4"
               >
                 <Match match={match} />
               </div>

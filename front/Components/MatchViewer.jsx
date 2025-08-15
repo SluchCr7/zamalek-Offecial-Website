@@ -46,7 +46,7 @@ const MatchViewer = () => {
           >
             {/* خلفية شفافة */}
             <div
-              className="absolute inset-0 bg-center bg-no-repeat bg-cover opacity-60 pointer-events-none"
+              className="absolute inset-0 bg-center rounded-3xl bg-no-repeat bg-cover opacity-40 pointer-events-none"
               style={{ backgroundImage: "url('/head.png')" }}
             />
             {/* زر الإغلاق */}

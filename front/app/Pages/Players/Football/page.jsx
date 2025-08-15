@@ -92,9 +92,10 @@ const Page = () => {
                 <Image 
                   // src={player.img}
                   src={'/no_img.jpg'}
-                  alt={player.name || 'Player'}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  alt={'Player'}
+                  width={500}
+                  height={500}
+                  className="object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer"
                 />
               </Link>
 
@@ -117,7 +118,7 @@ const Page = () => {
         }
       </div>
 
-      {filteredPlayers.length === 0 && (
+      {filteredPlayers.length  === 0 && position !== "Staff" && (
         <p className="text-center text-gray-500 mt-10">لا يوجد لاعبين في هذا المركز.</p>
       )}
     </div>

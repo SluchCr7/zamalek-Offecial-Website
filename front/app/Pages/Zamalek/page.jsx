@@ -23,9 +23,9 @@ const page = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-gray-100 py-10 px-4">
+    <div dir='rtl' className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-gray-100 py-10 px-4">
 
-        <TitleSection title={"فروع نادي الزمالك"} subtitle={"مباني النادي"}/>
+      <TitleSection title={"فروع نادي الزمالك"} subtitle={"مباني النادي"}/>
       <div className="grid gap-8 md:grid-cols-2 max-w-7xl mx-auto">
         {zamalekBildings.map((branch, idx) => (
           <div

@@ -57,7 +57,7 @@ const FirstTeam = () => {
         >
           
           View All First Team Players
-        </;>
+        </Link>
       </div>
     </section>
   )

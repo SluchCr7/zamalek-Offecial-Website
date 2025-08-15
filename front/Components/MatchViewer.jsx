@@ -44,6 +44,11 @@ const MatchViewer = () => {
             exit="exit"
             onClick={e => e.stopPropagation()}
           >
+            {/* خلفية شفافة */}
+            <div
+              className="absolute inset-0 bg-center bg-no-repeat bg-cover opacity-60 pointer-events-none"
+              style={{ backgroundImage: "url('/head.png')" }}
+            />
             {/* زر الإغلاق */}
             <button
               onClick={() => setMatchSelected({})}

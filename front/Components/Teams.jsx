@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { zscTeams } from '@/utils/data'
-import TitleSection from './titleSection'
+import TitleSection from './TitleSection'
 import { InfiniteMovingCards } from './ui/infinite-moving-cards'
 export default function TeamsSlider() {
   return (

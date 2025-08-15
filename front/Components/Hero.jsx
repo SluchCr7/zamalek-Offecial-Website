@@ -61,7 +61,7 @@ const HeroNews = () => {
       
       {/* الخلفية: صورة الخبر */}
       <Image
-        src="/Fan2zsc.jpg" // صورة الخبر
+        src="/naserHead.jpg" // صورة الخبر
         alt="خبر حصري الزمالك"
         className="object-cover w-full h-full"
         priority
@@ -73,7 +73,7 @@ const HeroNews = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/30" />
 
       {/* المحتوى النصي */}
-      <div className="absolute inset-0 flex flex-col justify-end md:justify-center items-start md:items-center p-6 md:p-12 text-white">
+      <div className="absolute inset-0 flex flex-col justify-end items-start p-6 md:p-12 text-white">
         
         {/* فئة الخبر */}
         <motion.span

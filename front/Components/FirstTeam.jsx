@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { placeholderImage, zamalekPlayers } from '@/utils/data'
 import Image from 'next/image'
-import TitleSection from './titleSection'
+import TitleSection from './TitleSection'
 
 const FirstTeam = () => {
   const [randomPlayers, setRandomPlayers] = useState([])

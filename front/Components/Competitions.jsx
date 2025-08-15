@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import CountUp from 'react-countup'
 import { zamalekTitles } from '@/utils/data'
-import TitleSection from './titleSection'
+import TitleSection from './TitleSection'
 
 export default function ZamalekAchievements() {
   const [selected, setSelected] = useState(null)

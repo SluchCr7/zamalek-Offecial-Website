@@ -1,6 +1,7 @@
 import React from 'react'
 import { zamalekDirectors } from '@/utils/data'
 import Image from 'next/image'
+import TitleSection from '@/Components/TitleSection'
 
 const Page = () => {
   // نفترض أن بيانات الأعضاء بهذا الشكل في zamalekDirectors:
@@ -14,10 +15,7 @@ const Page = () => {
 
   return (
     <div className='w-full max-w-7xl mx-auto py-10 px-6 flex flex-col items-center'>
-      <div className="mb-10 text-center">
-        <h2 className="text-4xl font-extrabold text-gray-900 mb-2">مجلس إدارة نادي الزمالك</h2>
-        <div className="mx-auto h-1 w-28 bg-red-700 rounded"></div>
-      </div>
+      <TitleSection title="مجلس ادارة الزمالك" subtitle="احنا الملوك احنا الزمالك" />
 
       {/* رئيس النادي */}
       <div className="flex flex-col items-center mb-14">

@@ -45,7 +45,7 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
   const { src, title } = slide;
 
   return (
-    <div className="[perspective:1200px] [transform-style:preserve-3d]">
+    <div className="[perspective:1200px] [transform-style:preserve-3d] ">
       <li
         ref={slideRef}
         className="flex flex-col items-center justify-center relative text-center w-[300px] mx-[4vmin] z-10 rounded-xl overflow-hidden shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-300"
@@ -82,12 +82,6 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
           />
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full p-4 text-white flex flex-col items-center">
-            <h2 className="text-xl md:text-2xl font-bold mb-2">{title}</h2>
-            <button className="px-4 py-2 bg-gradient-to-r from-red-600 to-red-700 rounded-lg shadow hover:opacity-90 transition">
-              View Squad
-            </button>
-          </div>
         </div>
       </li>
     </div>

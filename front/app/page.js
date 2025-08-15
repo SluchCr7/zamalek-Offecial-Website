@@ -17,7 +17,7 @@ export default function Home() {
     <div className="overflow-hidden min-h-screen w-full">
       <HeroNews />
       <MatchesLine />
-      <div className="w-full max-w-7xl mx-auto flex items-center flex-col gap-8">
+      <div className="w-full max-w-7xl mx-auto">
         <News/>
         <Table />
         <TeamsSlider/>

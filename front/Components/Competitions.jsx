@@ -13,7 +13,7 @@ export default function ZamalekAchievements() {
   const items = [...zamalekTitles].sort((a, b) => b.num - a.num).slice(0, 6)
 
   return (
-    <section className="w-full min-h-screen bg-white py-16 px-6 md:px-12">
+    <section className="w-full min-h-screen bg-white py-24 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
         <TitleSection title="إنجازات نادي الزمالك" subtitle="ألقاب وبطولات عبر التاريخ" />
         {/* Grid */}

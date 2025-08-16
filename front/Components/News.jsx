@@ -101,11 +101,11 @@ const News = () => {
       </div>
 
       {/* الأخبار الثانوية */}
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto w-[90%] md:w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {newsList.map((news) => (
           <div
             key={news.id}
-            className="bg-white  rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-all w-[90%] md:w-full duration-300 group"
+            className="bg-white  rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-all w-[90%] mx-auto md:w-full duration-300 group"
           >
             <div className="relative w-full max-h-56 overflow-hidden">
               <img

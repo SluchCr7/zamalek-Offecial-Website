@@ -32,7 +32,7 @@ export default function ZamalekTitlesPage() {
   ];
 
   return (
-    <section className="w-full min-h-screen bg-gray-50">
+    <section dir="rtl" className="w-full min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div className="relative w-full h-[50vh] bg-gradient-to-r from-red-700 to-red-500 flex items-center justify-center text-center text-white">
         <div className="absolute inset-0">

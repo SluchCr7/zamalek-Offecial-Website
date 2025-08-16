@@ -10,7 +10,7 @@ export default function ZamalekAchievements() {
   const [selected, setSelected] = useState(null)
 
   // sort descending by num for display
-  const items = [...zamalekTitles].sort((a, b) => b.num - a.num).slice(0, 6)
+  const items = [...zamalekTitles].sort((a, b) => b.num - a.num).slice(0, 3)
 
   return (
     <section className="w-full min-h-screen bg-white py-24 px-6 md:px-12">
@@ -64,38 +64,6 @@ export default function ZamalekAchievements() {
             </motion.button>
           ))}
         </motion.div>
-        {/* Section: إجمالي البطولات */}
-        <div className="mt-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="relative bg-gradient-to-r from-red-600 to-red-500 rounded-3xl shadow-lg overflow-hidden px-6 py-10 text-center text-white"
-          >
-            {/* شريط زخرفي علوي */}
-            <div className="absolute top-0 left-0 w-full h-2 bg-white/20"></div>
-
-            {/* الرقم الكبير */}
-            <motion.div
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="mx-auto w-32 h-32 flex items-center justify-center rounded-full bg-white text-red-600 font-extrabold text-5xl shadow-xl border-4 border-red-200"
-            >
-              <CountUp end={80} duration={2} />
-            </motion.div>
-
-            {/* النص */}
-            <h3 className="mt-6 text-2xl font-bold">إجمالي البطولات</h3>
-            <p className="mt-2 text-white/90 max-w-xl mx-auto leading-relaxed">
-              فاز نادي الزمالك عبر تاريخه العريق بـ <span className="font-semibold">80 بطولة</span> 
-              بين محلية وقارية وإقليمية، ليبقى أحد أكثر الأندية فوزاً بالبطولات في الوطن العربي.
-            </p>
-
-            {/* خط زخرفي سفلي */}
-            <div className="absolute bottom-0 left-0 w-full h-2 bg-white/20"></div>
-          </motion.div>
-        </div>
 
         {/* Modal for details */}
         {selected && (

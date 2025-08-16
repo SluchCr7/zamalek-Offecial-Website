@@ -365,76 +365,70 @@ export const zamalekTitles = [
     img: '/awardes/award-1.png',
     num: 14,
     years: ["1959-60","1963-64","1964-65","1977-78","1983-84","1987-88","1991-92","1992-93","2000-01","2002-03","2003-04","2014-15","2020-21","2021-22"],
-    category : "محلية"
+    category: "local"
   },
   {
     Title: "Egypt Cup",
     img: '/awardes/cup.png',
     num: 29,
-    years: ["1921-22","1931-32","1934-35","1937-38","1940-41","1942-43","1943-44","1951-52","1954-55","1956-57","1957-58","1958-59","1959-60","1961-62","1974-75","1976-77","1978-79","1987-88","1998-99","2001-02","2007-08","2012-13","2013-14","2014-15","2015-16","2017-18","2018-19","2020-21","2024-25"]
-    ,category : "محلية"
+    years: ["1921-22","1931-32","1934-35","1937-38","1940-41","1942-43","1943-44","1951-52","1954-55","1956-57","1957-58","1958-59","1959-60","1961-62","1974-75","1976-77","1978-79","1987-88","1998-99","2001-02","2007-08","2012-13","2013-14","2014-15","2015-16","2017-18","2018-19","2020-21","2024-25"],
+    category: "local"
   },
   {
     Title: "Egyptian Super Cup",
     img: '/awardes/super.png',
     num: 4,
     years: ["2001-02", "2002-03", "2016-17", "2019-20"],
-    category : "محلية"
+    category: "local"
   },
   {
     Title: "CAF Champions League",
     img: '/awardes/caf champions.png',
     num: 5,
-    years: ["1984", "1986", "1993", "1996", "2002"]
-    ,category : "قارية"
+    years: ["1984", "1986", "1993", "1996", "2002"],
+    category: "continental"
   },
   {
     Title: "CAF Confederation Cup",
     img: '/awardes/confidration.png',
     num: 2,
-    years: ["2019", "2024"]
-    ,category : "قارية"
+    years: ["2019", "2024"],
+    category: "continental"
   },
   {
     Title: "CAF Super Cup",
     img: '/awardes/caf super cup.png',
     num: 5,
-    years: ["1994", "1997", "2003", "2020", "2024"]
-    ,category : "قارية"
+    years: ["1994", "1997", "2003", "2020", "2024"],
+    category: "continental"
   },
   {
     Title: "African Cup Winners' Cup",
     img: '/awardes/افريقيا ابطال الكوؤس.webp',
     num: 1,
-    years: ["2000"]
-    ,category : "قارية"
+    years: ["2000"],
+    category: "continental"
   },
   {
     Title: "Afro-Asian Club Championship",
     img: '/awardes/كاس الافرواسيوية.webp',
     num: 2,
-    years: ["1987", "1997"]
-    ,category : "إقليمية"
+    years: ["1987", "1997"],
+    category: "regional"
   },
   {
     Title: "Arab Champions Cup",
     img: '/awardes/البطولة العربية.webp',
     num: 1,
-    years: ["2003"]
-    ,category : "إقليمية"
+    years: ["2003"],
+    category: "regional"
   },
-  // {
-  //   Title: "Saudi-Egyptian Super Cup",
-  //   img: '/awardes/saudi_egypt_super.png',
-  //   num: 2,
-  //   years: ["2003","2018"]
-  // },
   {
     Title: "Sultan Hussein Cup",
     img: '/awardes/كاس السلطان حسين.webp',
     num: 2,
-    years: ["1920-21", "1921-22"]
-    ,category : "محلية"
+    years: ["1920-21", "1921-22"],
+    category: "local"
   },
   {
     Title: "Cairo League",
@@ -443,10 +437,9 @@ export const zamalekTitles = [
     years: [
       "1922-23","1929-30","1931-32","1939-40","1940-41","1943-44","1944-45","1945-46","1946-47","1948-49","1950-51","1951-52","1952-53","1955-56"
     ],
-    categoy : "محلية"
+    category: "local"
   }
 ];
-
 export const zamalekPlayers = [
   {
     number: 16,

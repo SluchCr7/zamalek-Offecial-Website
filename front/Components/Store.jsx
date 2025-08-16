@@ -55,7 +55,8 @@ export default function ZamalekKitShowcase() {
               <Image
                 src={kit.img}
                 alt={kit.name}
-                fill
+                width={500}
+                height={500}
                 className="object-cover h-auto w-full"
               />
             </div>

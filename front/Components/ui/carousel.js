@@ -45,7 +45,7 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
   const { src, title } = slide;
 
   return (
-    <div className="[perspective:1200px] [transform-style:preserve-3d] ">
+    <div className="[perspective:1200px] [transform-style:preserve-3d]">
       <li
         ref={slideRef}
         className="flex flex-col items-center justify-center relative text-center w-[300px] mx-[4vmin] z-10 rounded-xl overflow-hidden shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-300"
@@ -92,7 +92,7 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
 const CarouselControl = ({ type, title, handleClick }) => {
   return (
     <button
-      className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center bg-neutral-200 dark:bg-neutral-800 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200"
+      className={`w-10 h-10 flex items-center mx-2 justify-center bg-neutral-200 dark:bg-neutral-800 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200`}
       title={title}
       onClick={handleClick}
     >
@@ -128,7 +128,7 @@ export function Carousel({ slides }) {
 
   return (
     <div
-      className="relative py-10 w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] mx-auto"
+      className="relative w-[70vmin] h-[70vmin] mx-auto"
       aria-labelledby={`carousel-heading-${id}`}
     >
       <ul
@@ -147,9 +147,7 @@ export function Carousel({ slides }) {
           />
         ))}
       </ul>
-
-      {/* أزرار التحكم */}
-      <div className="absolute inset-0 flex items-center justify-between px-2">
+      <div className="absolute flex justify-center w-full top-[calc(100%+1rem)]">
         <CarouselControl
           type="previous"
           title="Go to previous slide"
@@ -162,6 +160,5 @@ export function Carousel({ slides }) {
         />
       </div>
     </div>
-
   );
 }

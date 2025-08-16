@@ -14,8 +14,9 @@ export default function Nav() {
     { id: 2, title: 'المتجر', url: '/Pages/Store' },
     { id: 3, title: 'اتصل بنا', url: '/Pages/CallUs' },
     { id: 4, title: 'تاريخ النادي', url: '/Pages/About' },
-    { id: 5, title: 'رؤساء النادي', url: '/Pages/Presidents' },
-    { id: 6, title: 'متحف النادي', url: '/Pages/Measum' },
+    { id: 5, title: 'الرؤساء', url: '/Pages/Presidents' },
+    { id: 6, title: 'المتحف', url: '/Pages/Measum' },
+    { id: 7, title: 'بطولات النادي', url: '/Pages/Champions' },
   ]
 
   const links = [

@@ -10,7 +10,7 @@ const NewsPage = ({ params }) => {
   const [newSelected, setNewSelected] = useState(null)
 
   useEffect(() => {
-    const selected = newsList.find((n) => String(n.id) === String(id))
+    const selected = newsList.find((n) => n.id === id)
     setNewSelected(selected)
   }, [id])
 
@@ -67,7 +67,7 @@ const NewsPage = ({ params }) => {
         <h2 className="text-xl font-bold text-red-700 mb-4">أحدث الأخبار</h2>
         <div className="space-y-5">
           {relatedNews.map((news) => (
-            <Link key={news.id} href={`/news/${news.id}`} className="group block">
+            <Link key={news.id} href={`/Pages/New/${news.id}`} className="group block">
               <div className="flex gap-4 items-center">
                 <div className="w-20 h-16 relative rounded overflow-hidden">
                   <Image

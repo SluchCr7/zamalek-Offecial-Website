@@ -16,7 +16,7 @@ export default function NewsPage() {
 
       {/* Hero News */}
       {newsList[0] && (
-        <Link href={`/New/${newsList[0].id}`} className="mb-10 relative w-full h-[420px] rounded-3xl overflow-hidden shadow-2xl">
+        <Link href={`/Pages/New/${newsList[0].id}`} className="mb-10 relative w-full h-[420px] rounded-3xl overflow-hidden shadow-2xl">
           <Image src={newsList[0].image} alt={newsList[0].title} fill className="object-cover hover:scale-105 transition-transform duration-500"/>
           <div className="absolute inset-0 bg-black bg-opacity-40 p-8 flex flex-col justify-end">
             <h3 className="text-4xl md:text-5xl font-bold text-white">{newsList[0].title}</h3>
@@ -28,7 +28,7 @@ export default function NewsPage() {
       {/* Two Columns */}
       <div className="grid md:grid-cols-2 gap-6 mb-10">
         {newsList.slice(1, 3).map((news, idx) => (
-          <Link href={`/New/${news.id}`} key={idx} className="relative w-full h-[260px] rounded-2xl overflow-hidden shadow-lg">
+          <Link href={`/Pages/New/${news.id}`} key={idx} className="relative w-full h-[260px] rounded-2xl overflow-hidden shadow-lg">
             <Image src={news.image} alt={news.title} fill className="object-cover hover:scale-105 transition-transform duration-500"/>
             <div className="absolute inset-0 bg-black bg-opacity-30 p-4 flex items-end">
               <h4 className="text-white text-2xl font-semibold">{news.title}</h4>
@@ -40,8 +40,8 @@ export default function NewsPage() {
       {/* Grid News */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {newsList.slice(3, 8).map((news, idx) => (
-            <Link href={`/New/${news.id}`} key={idx} className="bg-white rounded-2xl shadow-md hover:shadow-lg transition p-4">
-                <div className="relative w-full h-[180px] mb-4">
+            <Link href={`/Pages/New/${news.id}`} key={idx} className="bg-white rounded-2xl shadow-md hover:shadow-lg transition p-4">
+                <div className="relative w-full max-h-56 mb-4">
                     <Image src={news.image} alt={news.title} fill className="object-cover rounded-xl"/>
                 </div>
                 <h5 className="font-bold text-gray-900">{news.title}</h5>

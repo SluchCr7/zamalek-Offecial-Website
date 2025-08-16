@@ -6,7 +6,9 @@ export default function ZamalekKitShowcase() {
   const kits = [
     { id: 'home', name: 'القميص الأساسي', img: '/zamalekHomeNike.jpg' },
     { id: 'away', name: 'القميص الاحتياطي', img: '/zamalekAwayNike.jpg' },
-    // { id: 'third', name: 'القميص الثالث', img: '/zamalekThirdNike.jpg' },
+    { id: 'third', name: 'القميص الثالث', img: '' },
+    { id: 'GK', name: 'قميص الحارس', img: '' },
+    { id: 'Training', name: 'قميص التدريب', img: '' },
   ]
 
   return (
@@ -52,13 +54,19 @@ export default function ZamalekKitShowcase() {
             className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 cursor-pointer"
           >
             <div className="relative w-full">
-              <Image
-                src={kit.img}
-                alt={kit.name}
-                width={500}
-                height={500}
-                className="object-cover h-auto w-full"
-              />
+              {
+                kit.img ?
+                  <Image
+                    src={kit.img}
+                    alt={kit.name}
+                    width={500}
+                    height={500}
+                    className="object-cover h-auto w-full"
+                  />:
+                  <div className="h-64 bg-gray-200 flex items-center justify-center">
+                    <span className="text-gray-500">لا يوجد صورة</span>
+                  </div>
+              }
             </div>
             <div className="p-4 text-center">
               <h3 className="text-lg font-bold text-gray-900">{kit.name}</h3>

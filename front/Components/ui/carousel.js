@@ -84,6 +84,7 @@ const Slide = ({ slide, index, current, handleSlideClick, itemRef }) => {
           onLoad={imageLoaded}
           loading="eager"
           decoding="sync"
+          quality={100}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
       </div>

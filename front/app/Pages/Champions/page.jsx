@@ -37,7 +37,7 @@ export default function ZamalekTrophiesPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-Black-100 py-10 px-4 md:px-8">
+    <div dir="rtl" className="min-h-screen bg-gray-50 dark:bg-Black-100 py-10 px-4 md:px-8">
       {/* Hero */}
       <section className="text-center mb-10">
         <motion.h1

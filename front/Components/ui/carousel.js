@@ -48,7 +48,9 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
     <div className="[perspective:1200px] [transform-style:preserve-3d]">
       <li
         ref={slideRef}
-        className="flex flex-col items-center justify-center relative text-center w-[300px] mx-[4vmin] z-10 rounded-xl overflow-hidden shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-300"
+        className="flex flex-col items-center justify-center relative text-center 
+                   w-[280px] md:w-[320px] mx-4 z-10 rounded-xl overflow-hidden 
+                   shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-300"
         onClick={() => handleSlideClick(index)}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -74,13 +76,12 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
             className="w-full h-auto object-contain transition-opacity duration-500"
             alt={title}
             src={src}
-            width={600} // أو أي عرض مناسب
-            height={0} // نخليه 0 عشان auto height
+            width={600}
+            height={400}
             onLoad={imageLoaded}
             loading="eager"
             decoding="sync"
           />
-
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
         </div>
       </li>
@@ -88,11 +89,12 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
   );
 };
 
-
 const CarouselControl = ({ type, title, handleClick }) => {
   return (
     <button
-      className={`w-10 h-10 flex items-center mx-2 justify-center bg-neutral-200 dark:bg-neutral-800 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200`}
+      className="w-10 h-10 flex items-center justify-center bg-neutral-200 dark:bg-neutral-800 
+                 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none 
+                 hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200"
       title={title}
       onClick={handleClick}
     >
@@ -128,11 +130,12 @@ export function Carousel({ slides }) {
 
   return (
     <div
-      className="relative w-[70vmin] h-[70vmin] mx-auto"
+      className="relative w-full max-w-5xl mx-auto flex flex-col items-center"
       aria-labelledby={`carousel-heading-${id}`}
     >
+      {/* الكروت */}
       <ul
-        className="absolute flex mx-[-4vmin] transition-transform duration-1000 ease-in-out"
+        className="flex transition-transform duration-1000 ease-in-out"
         style={{
           transform: `translateX(-${current * (100 / slides.length)}%)`,
         }}
@@ -147,7 +150,9 @@ export function Carousel({ slides }) {
           />
         ))}
       </ul>
-      <div className="absolute flex justify-center w-full top-[calc(100%+1rem)]">
+
+      {/* الـ Arrows تحت الكروت */}
+      <div className="flex justify-center items-center gap-4 mt-6">
         <CarouselControl
           type="previous"
           title="Go to previous slide"

@@ -109,6 +109,8 @@ const CarouselControl = ({ type, title, handleClick }) => {
 
 export function Carousel({ slides }) {
   const [current, setCurrent] = useState(0);
+  const listRef = useRef(null);
+  const cardRef = useRef(null); // نجيب منه العرض الفعلي للكارت
 
   const handlePreviousClick = () => {
     const previous = current - 1;
@@ -128,6 +130,18 @@ export function Carousel({ slides }) {
 
   const id = useId();
 
+  // نحسب العرض الفعلي للكارت (مرة واحدة بعد الـ render)
+  const [cardWidth, setCardWidth] = useState(0);
+  useEffect(() => {
+    if (cardRef.current) {
+      const style = window.getComputedStyle(cardRef.current);
+      const width = cardRef.current.offsetWidth;
+      const margin =
+        parseFloat(style.marginLeft) + parseFloat(style.marginRight);
+      setCardWidth(width + margin);
+    }
+  }, []);
+
   return (
     <div
       className="relative w-full max-w-5xl mx-auto flex flex-col items-center"
@@ -135,23 +149,25 @@ export function Carousel({ slides }) {
     >
       {/* الكروت */}
       <ul
-        className="flex transition-transform duration-1000 ease-in-out"
+        ref={listRef}
+        className="flex transition-transform duration-700 ease-in-out"
         style={{
-          transform: `translateX(-${current * (100 / slides.length)}%)`,
+          transform: `translateX(-${current * cardWidth}px)`,
         }}
       >
         {slides.map((slide, index) => (
-          <Slide
-            key={index}
-            slide={slide}
-            index={index}
-            current={current}
-            handleSlideClick={handleSlideClick}
-          />
+          <div ref={index === 0 ? cardRef : null} key={index}>
+            <Slide
+              slide={slide}
+              index={index}
+              current={current}
+              handleSlideClick={handleSlideClick}
+            />
+          </div>
         ))}
       </ul>
 
-      {/* الـ Arrows تحت الكروت */}
+      {/* الـ Arrows تحت */}
       <div className="flex justify-center items-center gap-4 mt-6">
         <CarouselControl
           type="previous"
@@ -167,3 +183,4 @@ export function Carousel({ slides }) {
     </div>
   );
 }
+

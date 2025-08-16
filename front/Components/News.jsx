@@ -69,7 +69,7 @@ const News = () => {
   const latestNews = {
     title: "الزمالك يتعاقد مع شيكو بينزا",
     description: "أعلن نادي الزمالك اليوم عن تعاقده الرسمي مع المهاجم الدولي شيكو بينزا لتعزيز صفوف الفريق في الموسم القادم.",
-    image: "/images/latest.jpg"
+    image: ""
   }
 
   return (
@@ -101,13 +101,13 @@ const News = () => {
       </div>
 
       {/* الأخبار الثانوية */}
-      <div className="max-w-7xl mx-auto w-full p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {newsList.map((news) => (
           <div
             key={news.id}
             className="bg-white  rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-all w-full duration-300 group"
           >
-            <div className="relative w-full h-56 overflow-hidden">
+            <div className="relative w-full max-h-56 overflow-hidden">
               <img
                 src={news.image || '/new.jpg'}
                 alt={news.title}

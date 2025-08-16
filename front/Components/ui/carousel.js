@@ -1,9 +1,15 @@
 "use client";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
-import { useState, useRef, useId, useEffect } from "react";
+import { useState, useRef, useId, useEffect, useLayoutEffect } from "react";
 import Image from "next/image";
 
-const Slide = ({ slide, index, current, handleSlideClick }) => {
+// دمج ref المحلي مع Ref القياس من الأب
+const mergeRefs = (localRef, parentRef) => (el) => {
+  localRef.current = el;
+  if (parentRef) parentRef.current = el;
+};
+
+const Slide = ({ slide, index, current, handleSlideClick, itemRef }) => {
   const slideRef = useRef(null);
 
   const xRef = useRef(0);
@@ -44,48 +50,44 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
 
   const { src, title } = slide;
 
+  // خلي الـ <li> هو العنصر الجذري (بدون wrapper div) عشان يبقى ابن مباشر لـ <ul>
   return (
-    <div className="[perspective:1200px] [transform-style:preserve-3d]">
-      <li
-        ref={slideRef}
-        className="flex flex-col items-center justify-center relative text-center 
-                   w-[280px] md:w-[320px] mx-4 z-10 rounded-xl overflow-hidden 
-                   shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-300"
-        onClick={() => handleSlideClick(index)}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
+    <li
+      ref={mergeRefs(slideRef, itemRef)}
+      className="flex-none basis-[280px] md:basis-[320px] relative text-center z-10 rounded-xl overflow-hidden shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-300
+                 [perspective:1200px] [transform-style:preserve-3d]"
+      onClick={() => handleSlideClick(index)}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transform:
+          current !== index ? "scale(0.96) rotateX(8deg)" : "scale(1) rotateX(0deg)",
+        transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+        transformOrigin: "bottom",
+      }}
+    >
+      <div
+        className="relative w-full"
         style={{
           transform:
-            current !== index
-              ? "scale(0.96) rotateX(8deg)"
-              : "scale(1) rotateX(0deg)",
-          transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-          transformOrigin: "bottom",
+            current === index
+              ? "translate3d(calc(var(--x) / 30), calc(var(--y) / 30), 0)"
+              : "none",
         }}
       >
-        <div
-          className="relative w-full"
-          style={{
-            transform:
-              current === index
-                ? "translate3d(calc(var(--x) / 30), calc(var(--y) / 30), 0)"
-                : "none",
-          }}
-        >
-          <Image
-            className="w-full h-auto object-contain transition-opacity duration-500"
-            alt={title}
-            src={src}
-            width={600}
-            height={400}
-            onLoad={imageLoaded}
-            loading="eager"
-            decoding="sync"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-        </div>
-      </li>
-    </div>
+        <Image
+          className="w-full h-auto object-contain transition-opacity duration-500"
+          alt={title}
+          src={src}
+          width={600}
+          height={400}
+          onLoad={imageLoaded}
+          loading="eager"
+          decoding="sync"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+      </div>
+    </li>
   );
 };
 
@@ -109,65 +111,81 @@ const CarouselControl = ({ type, title, handleClick }) => {
 
 export function Carousel({ slides }) {
   const [current, setCurrent] = useState(0);
-  const listRef = useRef(null);
-  const cardRef = useRef(null); // نجيب منه العرض الفعلي للكارت
+  const id = useId();
+
+  // refs للقياس
+  const trackRef = useRef(null);
+  const firstCardRef = useRef(null);
+
+  // مقدار الخطوة (عرض الكارت + الفجوة)
+  const [step, setStep] = useState(0);
+
+  // احسب step بدقة مع دعم تغيير المقاسات
+  useLayoutEffect(() => {
+    const computeStep = () => {
+      if (!firstCardRef.current || !trackRef.current) return;
+      const cardWidth = firstCardRef.current.offsetWidth;
+      const styles = window.getComputedStyle(trackRef.current);
+      const gap = parseFloat(styles.columnGap || "0") || 0;
+      setStep(cardWidth + gap);
+    };
+
+    computeStep();
+
+    // راقب تغيّر أحجام العناصر
+    const ro = new ResizeObserver(computeStep);
+    if (trackRef.current) ro.observe(trackRef.current);
+    if (firstCardRef.current) ro.observe(firstCardRef.current);
+
+    window.addEventListener("resize", computeStep);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", computeStep);
+    };
+  }, []);
 
   const handlePreviousClick = () => {
-    const previous = current - 1;
-    setCurrent(previous < 0 ? slides.length - 1 : previous);
+    setCurrent((c) => (c - 1 < 0 ? slides.length - 1 : c - 1));
   };
 
   const handleNextClick = () => {
-    const next = current + 1;
-    setCurrent(next === slides.length ? 0 : next);
+    setCurrent((c) => (c + 1 === slides.length ? 0 : c + 1));
   };
 
   const handleSlideClick = (index) => {
-    if (current !== index) {
-      setCurrent(index);
-    }
+    if (current !== index) setCurrent(index);
   };
-
-  const id = useId();
-
-  // نحسب العرض الفعلي للكارت (مرة واحدة بعد الـ render)
-  const [cardWidth, setCardWidth] = useState(0);
-  useEffect(() => {
-    if (cardRef.current) {
-      const style = window.getComputedStyle(cardRef.current);
-      const width = cardRef.current.offsetWidth;
-      const margin =
-        parseFloat(style.marginLeft) + parseFloat(style.marginRight);
-      setCardWidth(width + margin);
-    }
-  }, []);
 
   return (
     <div
       className="relative w-full max-w-5xl mx-auto flex flex-col items-center"
       aria-labelledby={`carousel-heading-${id}`}
     >
-      {/* الكروت */}
-      <ul
-        ref={listRef}
-        className="flex transition-transform duration-700 ease-in-out"
-        style={{
-          transform: `translateX(-${current * cardWidth}px)`,
-        }}
-      >
-        {slides.map((slide, index) => (
-          <div ref={index === 0 ? cardRef : null} key={index}>
+      {/* Viewport */}
+      <div className="w-full overflow-hidden">
+        {/* Track */}
+        <ul
+          ref={trackRef}
+          className="flex gap-4 md:gap-6 will-change-transform transition-transform duration-700 ease-out"
+          style={{
+            transform: `translateX(-${current * step}px)`,
+          }}
+        >
+          {slides.map((slide, index) => (
             <Slide
+              key={index}
               slide={slide}
               index={index}
               current={current}
               handleSlideClick={handleSlideClick}
+              // مرر ref للعنصر الأول فقط للقياس
+              itemRef={index === 0 ? firstCardRef : undefined}
             />
-          </div>
-        ))}
-      </ul>
+          ))}
+        </ul>
+      </div>
 
-      {/* الـ Arrows تحت */}
+      {/* الأسهم تحت الكروت */}
       <div className="flex justify-center items-center gap-4 mt-6">
         <CarouselControl
           type="previous"
@@ -183,4 +201,3 @@ export function Carousel({ slides }) {
     </div>
   );
 }
-

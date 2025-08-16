@@ -36,7 +36,8 @@ const NewsPage = ({ params }) => {
           <Image
             src={newSelected.image}
             alt={newSelected.title}
-            fill
+            width={500}
+            height={500}
             className="object-cover hover:scale-105 transition-transform duration-500"
           />
         </div>

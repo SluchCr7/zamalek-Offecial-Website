@@ -48,7 +48,7 @@ export default function Nav() {
     <nav dir="rtl" className="w-full font-[Cairo] relative z-50 shadow">
       
       {/* الصف العلوي */}
-      <div className="bg-gray-50 text-gray-700 border-b border-gray-200">
+      <div className="bg-gray-50 text-gray-700 border-b border-gray-200 hidden md:block">
         <div className="container mx-auto flex justify-between items-center px-6 py-2 text-sm">
           <div className="flex items-center gap-4">
             <Image src="/nike.png" alt="Nike" width={26} height={26} />
@@ -134,7 +134,8 @@ export default function Nav() {
           </ul>
 
           {/* زر الموبايل */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-3">
+            <Search size={18} className="cursor-pointer hover:text-red-600" />
             <button onClick={() => setOpen(!open)}>
               {open ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -191,6 +192,14 @@ export default function Nav() {
                 )}
               </div>
             ))}
+            {topLinks.map(link => (
+              <Link key={link.id} href={link.url} className="hover:text-red-600 transition">
+                {link.title}
+              </Link>
+            ))}
+            <button className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition">
+              دخول
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { zamalekTitles } from "@/data/zamalekTitles"; // مكان ملف الداتا عندك
+import { zamalekTitles } from "@/utils/data"; // مكان ملف الداتا عندك
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { motion } from "framer-motion";
 import Image from "next/image";

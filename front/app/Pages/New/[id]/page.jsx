@@ -10,7 +10,7 @@ const NewsPage = ({ params }) => {
   const [newSelected, setNewSelected] = useState(null)
 
   useEffect(() => {
-    const selected = newsList.find((n) => n.id === id)
+    const selected = newsList.find((n) => n.id === Number(id))
     setNewSelected(selected)
   }, [id])
 

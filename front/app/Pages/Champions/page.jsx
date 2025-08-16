@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
-import { PieChart, Pie, Tooltip, ResponsiveContainer, Cell } from "recharts";
+import { PieChart, Pie, Tooltip, ResponsiveContainer, Cell, Legend } from "recharts";
 import { zamalekTitles } from "@/utils/data";
 import TitleSection from "@/Components/TitleSection";
 

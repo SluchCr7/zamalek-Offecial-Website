@@ -1,6 +1,6 @@
 import Image from "next/image";
 // import Hero from '../Components/Hero'
-import MatchesLine from "@/Components/MatchesLine";
+// import MatchesLine from "@/Components/MatchesLine";
 import News from "@/Components/News";
 import Table from "@/Components/Table";
 import ZamalekAchievements from "@/Components/Competitions";
@@ -12,12 +12,13 @@ import ArrowTopButton from "@/Components/ArrowTopButton";
 import TeamsSlider from "@/Components/Teams";
 import HeroNews from "../Components/Hero";
 import { cn } from "@/lib/utils";
+import MatchesSlider from "@/Components/MatchesLine";
 
 export default function Home() {
   return (
     <div className="overflow-hidden min-h-screen w-full">
       <HeroNews />
-      <MatchesLine />
+      <MatchesSlider />
       <div className="w-full max-w-7xl mx-auto relative">
         <News/>
         <Table />

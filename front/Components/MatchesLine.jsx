@@ -36,11 +36,6 @@ export default function MatchesSection() {
     <section className="bg-gray-50 py-10">
       <div className="px-4">
 
-        {/* عنوان */}
-        {/* <h2 className="text-3xl font-bold text-[#b30000] mb-8 text-center">
-          مباريات الزمالك
-        </h2> */}
-
         {/* شريط أفقي متحرك */}
         <div className="relative overflow-hidden w-full mb-10">
           <motion.div

@@ -32,13 +32,13 @@ const NewsPage = ({ params }) => {
       <div className="flex-1">
         
         {/* صورة الخبر */}
-        <div className="w-full max-h-56 relative rounded-lg overflow-hidden shadow-md border border-gray-200">
+        <div className="w-full h-full relative rounded-lg overflow-hidden shadow-md border border-gray-200">
           <Image
             src={newSelected.image}
             alt={newSelected.title}
             width={500}
             height={500}
-            className="object-cover hover:scale-105 transition-transform duration-500"
+            className="object-cover w-full h-auto hover:scale-105 transition-transform duration-500"
           />
         </div>
 

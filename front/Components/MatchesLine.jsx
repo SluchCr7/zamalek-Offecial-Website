@@ -3,6 +3,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { zamalekMatches } from "@/utils/data"
 import Match from "./Match"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 export default function MatchesSlider() {
   const [current, setCurrent] = useState(0)
@@ -32,8 +33,8 @@ export default function MatchesSlider() {
                 className="absolute"
                 animate={{
                   scale: offset === 0 ? 1 : 0.8,
-                  opacity: Math.abs(offset) > 2 ? 0 : 0.5,
-                  x: offset * 300, // كل كارت يتحرك بمقدار ثابت
+                  opacity: offset === 0 ? 1 : Math.abs(offset) === 1 ? 0.5 : 0,
+                  x: offset * 300,
                   zIndex: offset === 0 ? 10 : 5,
                 }}
                 transition={{ duration: 0.5 }}
@@ -47,20 +48,33 @@ export default function MatchesSlider() {
         </div>
 
         {/* أزرار التنقل */}
-        <div className="flex justify-between px-6 absolute inset-0 items-center">
-          <button
-            onClick={prevSlide}
-            className="bg-white shadow-md rounded-full p-2 hover:bg-gray-200"
-          >
-            ◀
-          </button>
-          <button
-            onClick={nextSlide}
-            className="bg-white shadow-md rounded-full p-2 hover:bg-gray-200"
-          >
-            ▶
-          </button>
-        </div>
+        <motion.button
+          whileHover={{ scale: 1.15 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={prevSlide}
+          className="absolute top-1/2 left-4 -translate-y-1/2 
+                     w-12 h-12 flex items-center justify-center
+                     rounded-full backdrop-blur-md bg-white/40 
+                     shadow-lg border border-white/20
+                     hover:bg-red-600 hover:text-white
+                     transition-colors duration-300"
+        >
+          <ChevronLeft size={28} strokeWidth={2.5} />
+        </motion.button>
+
+        <motion.button
+          whileHover={{ scale: 1.15 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={nextSlide}
+          className="absolute top-1/2 right-4 -translate-y-1/2 
+                     w-12 h-12 flex items-center justify-center
+                     rounded-full backdrop-blur-md bg-white/40 
+                     shadow-lg border border-white/20
+                     hover:bg-red-600 hover:text-white
+                     transition-colors duration-300"
+        >
+          <ChevronRight size={28} strokeWidth={2.5} />
+        </motion.button>
 
         {/* Pagination Dots */}
         <div className="flex justify-center gap-2 mt-4">

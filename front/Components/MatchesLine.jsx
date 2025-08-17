@@ -22,21 +22,18 @@ export default function MatchesSlider() {
       <div className="relative max-w-5xl mx-auto">
         
         {/* السلايدر */}
-        <div className="flex items-center justify-center overflow-hidden">
+        <div className="relative flex items-center justify-center h-[420px] overflow-hidden">
           {zamalekMatches.map((match, index) => {
-            // حساب الفرق بين الكارت الحالي والكارت اللي بنعرضه
-            let offset = index - current
-            if (offset < 0) offset += zamalekMatches.length
+            const offset = index - current
 
             return (
               <motion.div
                 key={index}
-                className="absolute flex justify-center items-center"
-                initial={false}
+                className="absolute"
                 animate={{
                   scale: offset === 0 ? 1 : 0.8,
-                  opacity: offset === 0 ? 1 : 0.5,
-                  x: offset * 320 - (offset > 0 ? 160 : 0), // تباعد الكروت
+                  opacity: Math.abs(offset) > 2 ? 0 : 0.5,
+                  x: offset * 300, // كل كارت يتحرك بمقدار ثابت
                   zIndex: offset === 0 ? 10 : 5,
                 }}
                 transition={{ duration: 0.5 }}
@@ -66,7 +63,7 @@ export default function MatchesSlider() {
         </div>
 
         {/* Pagination Dots */}
-        <div className="flex justify-center gap-2 mt-64">
+        <div className="flex justify-center gap-2 mt-4">
           {zamalekMatches.map((_, i) => (
             <button
               key={i}

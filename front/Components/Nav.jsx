@@ -226,7 +226,7 @@ export default function Nav() {
               <input
                 type="text"
                 placeholder="ابحث هنا..."
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600"
+                className="w-full border border-gray-300 rounded-lg px-4 pt-6 pb-3 focus:outline-none focus:ring-2 focus:ring-red-600"
               />
               <div className="mt-4 max-h-60 overflow-y-auto">
                 {/* مكان عرض النتائج (live search) */}

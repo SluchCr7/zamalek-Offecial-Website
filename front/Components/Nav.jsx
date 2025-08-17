@@ -64,7 +64,7 @@ export default function Nav() {
           <div className="flex items-center gap-3">
             <Search size={18} className="cursor-pointer hover:text-red-600" />
             <button className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition">
-              دخول
+              <Link href="/Pages/Login">تسجيل الدخول</Link>
             </button>
           </div>
         </div>
@@ -199,7 +199,7 @@ export default function Nav() {
               </Link>
             ))}
             <button className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition">
-              دخول
+              <Link href="/Pages/Login">تسجيل الدخول</Link>
             </button>
           </motion.div>
         )}

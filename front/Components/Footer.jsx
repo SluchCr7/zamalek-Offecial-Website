@@ -30,7 +30,7 @@ const Footer = () => {
             </p>
 
             {/* CTA */}
-            <a href="/membership" className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-md hover:shadow-red-500/30 transition-all">
+            <a href="/Pages/Membership" className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-md hover:shadow-red-500/30 transition-all">
               اشترك في العضوية
             </a>
 
@@ -50,29 +50,31 @@ const Footer = () => {
           {/* الروابط */}
           <FooterColumn title="استكشف النادي" links={[
             { name: 'الرئيسية', href: '/' },
-            { name: 'الأخبار', href: '/news' },
-            { name: 'المباريات', href: '/matches' },
-            { name: 'الترتيب', href: '/table' },
-            { name: 'مجلس الإدارة', href: '/Directors' },
-            { name: 'تاريخ النادي', href: '/History' },
+            { name: 'الأخبار', href: '/Pages/News' },
+            { name: 'المباريات', href: '/Pages/Fixtures' },
+            { name: 'الترتيب', href: '/Pages/Table' },
+            { name: 'مجلس الإدارة', href: '/Pages/Directors' },
+            { name: 'تاريخ النادي', href: '/Pages/About' },
           ]} />
 
           {/* الفرق */}
           <FooterColumn title="الفرق الرياضية" links={[
-            { name: 'كرة القدم', href: '/team/football' },
-            { name: 'كرة السلة', href: '/team/basketball' },
-            { name: 'الكرة الطائرة', href: '/team/volleyball' },
-            { name: 'كرة اليد', href: '/team/handball' },
-            { name: 'فرق السيدات', href: '/team/women' },
+            { name: 'كرة القدم', href: '/Pages/Players/Football' },
+            { name: 'كرة السلة', href: '/Pages/Players/Basketball' },
+            { name: 'الكرة الطائرة', href: '/Pages/Players/Volleyball' },
+            { name: 'كرة اليد', href: '/Pages/Players/Handball' },
+            { name: 'فرق السيدات', href: '/Pages/Players/Women' },
           ]} />
 
           {/* الخدمات */}
           <FooterColumn title="خدمات ومعلومات" links={[
-            { name: 'الوسائط', href: '/media' },
-            { name: 'المتجر', href: '/store' },
-            { name: 'اتصل بنا', href: '/contact' },
-            { name: 'العضوية', href: '/membership' },
-            { name: 'الأسئلة الشائعة', href: '/faq' },
+            { name: 'فيديوهات', href: '/Pages/Video' },
+            { name: 'صور', href: '/Pages/Photo' },
+            { name: 'المتجر', href: '/Pages/Store' },
+            { name: 'اتصل بنا', href: '/Pages/CallUs' },
+            { name: 'العضوية', href: '/Pages/Membership' },
+            { name: 'الأسئلة الشائعة', href: '/Pages/FAQ' },
+            { name: 'الفروع', href: '/Pages/Branches' },
           ]} />
         </div>
 

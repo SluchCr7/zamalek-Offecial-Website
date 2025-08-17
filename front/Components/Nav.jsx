@@ -220,7 +220,7 @@ export default function Nav() {
               exit={{ y: -50, opacity: 0 }}
               className="bg-white w-full max-w-2xl rounded-lg shadow-lg p-6 relative"
             >
-              <button onClick={() => setSearchOpen(false)} className="absolute top-4 left-4 text-gray-500 hover:text-red-600">
+              <button onClick={() => setSearchOpen(false)} className="absolute top-2 p-1 left-2 text-gray-500 hover:text-red-600">
                 <X size={24} />
               </button>
               <input

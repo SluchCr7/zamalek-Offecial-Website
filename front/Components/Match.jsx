@@ -2,6 +2,8 @@
 import { motion } from "framer-motion"
 import { CalendarDays, MapPin, Plane, Home, Timer } from "lucide-react"
 import { useEffect, useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
 
 export default function Match({ match }) {
   const [timeLeft, setTimeLeft] = useState("")

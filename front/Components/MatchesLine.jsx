@@ -6,7 +6,7 @@ import Match from "./Match"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 export default function MatchesSlider() {
-  const [current, setCurrent] = useState(1)
+  const [current, setCurrent] = useState(0)
 
   const nextSlide = () => {
     setCurrent((prev) => (prev + 1) % zamalekMatches.length)
@@ -39,7 +39,7 @@ export default function MatchesSlider() {
                 }}
                 transition={{ duration: 0.5 }}
               >
-                <div className="w-72">
+                <div className="w-80">
                   <Match match={match} />
                 </div>
               </motion.div>

@@ -8,7 +8,7 @@ import {AnimatePresence , motion} from 'framer-motion'
 export default function Nav() {
   const [open, setOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(null)
-
+  const [searchOpen, setSearchOpen] = useState(false)
   const topLinks = [
     { id: 1, title: 'مجلس الإدارة', url: '/Pages/Directors' },
     { id: 2, title: 'المتجر', url: '/Pages/Store' },
@@ -62,7 +62,7 @@ export default function Nav() {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <Search size={18} className="cursor-pointer hover:text-red-600" />
+            <Search onClick={() => setSearchOpen(!searchOpen)} size={18} className="cursor-pointer hover:text-red-600" />
             <button className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition">
               <Link href="/Pages/Login">تسجيل الدخول</Link>
             </button>
@@ -136,7 +136,7 @@ export default function Nav() {
 
           {/* زر الموبايل */}
           <div className="md:hidden flex items-center gap-3">
-            <Search size={18} className="cursor-pointer hover:text-red-600" />
+            <Search onClick={() => setSearchOpen(true)} size={18} className="cursor-pointer hover:text-red-600" />
             <button onClick={() => setOpen(!open)}>
               {open ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -204,6 +204,39 @@ export default function Nav() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Search Overlay */}
+      <AnimatePresence>
+        {searchOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 z-[100] flex justify-center items-start pt-32"
+          >
+            <motion.div
+              initial={{ y: -50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -50, opacity: 0 }}
+              className="bg-white w-full max-w-2xl rounded-lg shadow-lg p-6 relative"
+            >
+              <button onClick={() => setSearchOpen(false)} className="absolute top-4 left-4 text-gray-500 hover:text-red-600">
+                <X size={24} />
+              </button>
+              <input
+                type="text"
+                placeholder="ابحث هنا..."
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600"
+              />
+              <div className="mt-4 max-h-60 overflow-y-auto">
+                {/* مكان عرض النتائج (live search) */}
+                <p className="text-gray-500">اكتب للبحث...</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </nav>
   )
 }

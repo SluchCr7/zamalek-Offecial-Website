@@ -6,7 +6,7 @@ import Match from "./Match"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 export default function MatchesSlider() {
-  const [current, setCurrent] = useState(0)
+  const [current, setCurrent] = useState(1)
 
   const nextSlide = () => {
     setCurrent((prev) => (prev + 1) % zamalekMatches.length)
@@ -20,7 +20,7 @@ export default function MatchesSlider() {
 
   return (
     <section className="bg-gray-50 py-10">
-      <div className="relative max-w-5xl mx-auto">
+      <div className="relative max-w-7xl mx-auto">
         
         {/* السلايدر */}
         <div className="relative flex items-center justify-center h-[420px] overflow-hidden">

@@ -74,7 +74,7 @@ export default function Match({ match }) {
         {/* النتيجة */}
         <div className="flex flex-col items-center">
           <p className="text-2xl font-bold text-gray-800 tracking-wide">
-            {match.score || "- : -"}
+            {match.result || "- : -"}
           </p>
           <span
             className={`mt-1 px-3 py-0.5 rounded-full text-xs font-semibold ${statusColors[match.status]}`}

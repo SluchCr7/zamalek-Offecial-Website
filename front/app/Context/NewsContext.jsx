@@ -14,7 +14,7 @@ export const NewsContextProvider = ({ children }) => {
     const { showAlert } = useAlert();
     useEffect(() => {
         getData('news' , setNews)
-    },[news])
+    },[])
     const addNews = async(title , content) => {
         await axios.post(`${process.env.NEXT_PUBLIC_BACK_URL}/api/news/add` , {title , content})
         .then((res) => {
@@ -28,7 +28,7 @@ export const NewsContextProvider = ({ children }) => {
     const deleteNews = async (id) => {
         await axios.delete(`${process.env.NEXT_PUBLIC_BACK_URL}/api/news/delete/${id}`)
             .then((res) => {
-                showAlert(res.message || "Added removed Successfully")
+                showAlert(res.message || "New removed Successfully")
             })
             .catch((err) => {
                 console.log(err);

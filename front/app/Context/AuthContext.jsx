@@ -122,7 +122,7 @@ export const AuthContextProvider = ({ children }) => {
         profilePhoto: res.data?.profilePhoto || res.data,
       };
 
-      localStorage.setItem('ZscUser', JSON.stringify(updatedUser));
+      localStorage.setItem('zscUser', JSON.stringify(updatedUser));
       setUser(updatedUser);
     } catch (err) {
       console.error(err);

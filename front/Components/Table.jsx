@@ -87,7 +87,7 @@ const Table = () => {
   );
 
   return (
-    <section className="bg-gray-50 py-14 flex flex-col gap-8 items-center w-full">
+    <section className="py-14 flex flex-col gap-8 items-center w-full">
       <TitleSection title="جدول الترتيب" subtitle="جدول ترتيب الدوري والبطولة الافريقية" />
       <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row gap-8 px-4">
         <TableComponent title="Egyptian Premier League - Top 5" data={topFive} />

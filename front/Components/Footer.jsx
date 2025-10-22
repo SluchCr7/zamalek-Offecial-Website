@@ -68,8 +68,8 @@ const Footer = () => {
 
           {/* الخدمات */}
           <FooterColumn title="خدمات ومعلومات" links={[
-            { name: 'فيديوهات', href: '/Pages/Video' },
-            { name: 'صور', href: '/Pages/Photo' },
+            { name: 'فيديوهات', href: '/Pages/Videos' },
+            { name: 'صور', href: '/Pages/Photos' },
             { name: 'المتجر', href: '/Pages/Store' },
             { name: 'اتصل بنا', href: '/Pages/CallUs' },
             { name: 'العضوية', href: '/Pages/Membership' },

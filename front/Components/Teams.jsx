@@ -18,7 +18,7 @@ export default function TeamsSlider() {
     { title: "Handball Women", src: "/squads/handball-min.png", open : false },
   ];
   return (
-    <div classtitle="relative overflow-hidden w-full min-h-screen py-20">
+    <div id='teams' classtitle="relative overflow-hidden w-full min-h-screen py-20">
       <TitleSection title="الفرق الرياضيه" subtitle="فرق نادي الزمالك الرياضيه" />
       <Carousel slides={slideDataTeams} />
     </div>

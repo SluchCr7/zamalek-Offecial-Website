@@ -25,7 +25,7 @@ export default function Nav() {
     { id: 1, title: 'الرئيسية', url: '/' },
     { id: 2, title: 'الأخبار', url: '/Pages/News' },
     {
-      id: 3, title: 'الفرق', url: '/team', sublinks: [
+      id: 3, title: 'الفرق', url: '#team', sublinks: [
         { id: 51, title: 'فريق كرة القدم', url: '/Pages/Players/Football' },
         { id: 52, title: 'فريق كرة السلة', url: '/Pages/Players/basketball' },
         { id: 53, title: 'فريق الكرة الطائرة', url: '/Pages/Players/volleyball' },
@@ -34,7 +34,7 @@ export default function Nav() {
       ]
     },
     {
-      id: 4, title: 'الوسائط', url: '/media', sublinks: [
+      id: 4, title: 'الوسائط', url: '/', sublinks: [
         { id: 61, title: 'الصور', url: '/Pages/Photos' },
         { id: 62, title: 'الفيديوهات', url: '/Pages/Videos' },
       ]

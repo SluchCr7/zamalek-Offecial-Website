@@ -13,8 +13,10 @@ import TeamsSlider from "@/Components/Teams";
 import HeroNews from "../Components/Hero";
 import { cn } from "@/lib/utils";
 import MatchesSlider from "@/Components/MatchesLine";
+import AddMenuModalAll from "@/Components/MenuAdd";
 
 export default function Home() {
+  const [openMenuAll , setOpenMenuAll] = useState(false)
   return (
     <div className="overflow-hidden min-h-screen w-full">
       <HeroNews />
@@ -27,6 +29,7 @@ export default function Home() {
         <FirstTeam/>
         <ZamalekKitShowcase/>
         {/* <ZamalekStoreBanner/> */}
+      
       </div>
       <ArrowTopButton/>
     </div>

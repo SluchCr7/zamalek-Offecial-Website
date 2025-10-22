@@ -5,8 +5,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Menu, X, ChevronDown, Search } from 'lucide-react'
 import {AnimatePresence , motion} from 'framer-motion'
+import { MdEdit } from "react-icons/md";
 import { useAuth } from '@/app/Context/AuthContext'
-export default function Nav() {
+import { useNews } from '@/app/Context/NewsContext'
+export default function Nav({opneModalAll , setOpenModalAll}) {
   const [open, setOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(null)
   const [searchOpen, setSearchOpen] = useState(false)
@@ -66,14 +68,22 @@ export default function Nav() {
           <div className="flex items-center gap-3">
             <Search onClick={() => setSearchOpen(!searchOpen)} size={18} className="cursor-pointer hover:text-red-600" />
             {
-              user ? 
-                <Image
-                  src={user?.profilePhoto?.url}
-                  alt='profile_photo' 
-                  width={500}
-                  height={500}
-                  className='w-8 h-8 rounded-full border border-red-600'
-                />
+              user ? (
+                <div className="flex items-center gap-2">
+                  <Image
+                    src={user?.profilePhoto?.url}
+                    alt='profile_photo' 
+                    width={500}
+                    height={500}
+                    className='w-8 h-8 rounded-full border border-red-600'
+                  />
+                  {user?.isAdmin && (
+                    <span onClick={() => setOpenModalAll(true)}>
+                      <MdEdit size={18} className="cursor-pointer hover:text-red-600" />
+                    </span>
+                  )}
+                </div>
+              )
                 :
               <button className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition">
                 <Link href="/Pages/Login">تسجيل الدخول</Link>

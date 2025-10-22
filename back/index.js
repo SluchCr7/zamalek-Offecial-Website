@@ -43,6 +43,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', require("./routes/UserRoute"))
 app.use('/api/news', require("./routes/NewsRoute"))
+app.use('/api/photo', require("./routes/PhotoRoute"))
 app.use(errorhandler)
 
 // Listen

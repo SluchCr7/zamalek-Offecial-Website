@@ -7,6 +7,8 @@ import Song from "@/Components/Song";
 import { NewsContextProvider } from "./Context/NewsContext";
 import { AlertContextProvider } from "./Context/AlertContext";
 import { AuthContextProvider } from "./Context/AuthContext";
+import AddNewsModal from "@/Components/ModalNewAdd";
+import LayoutComponent from "@/Components/LayoutComponent";
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"]
   , weight: ["100", "200"]
@@ -33,10 +35,7 @@ export default function RootLayout({ children }) {
         <AlertContextProvider>
           <AuthContextProvider>
             <NewsContextProvider>
-              <Nav />
-              {children}
-              <Song/>
-              <Footer/>
+              <LayoutComponent>{children}</LayoutComponent>
             </NewsContextProvider>
           </AuthContextProvider>
         </AlertContextProvider>

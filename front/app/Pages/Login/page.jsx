@@ -3,10 +3,22 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { useAuth } from '@/app/Context/AuthContext'
 
 const LoginPage = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const [Email, setEmail] = useState('');
+  const [Password, setPassword] = useState('');
+  const { login } = useAuth()
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      if (Password != "" || Email != "") login(Email, Password)
+    }, 1500);
+  };
   return (
     <div dir='rtl' className="min-h-screen flex flex-col lg:flex-row bg-gradient-to-br from-white via-gray-50 to-gray-200">
       
@@ -53,6 +65,7 @@ const LoginPage = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg"
+          onSubmit={(e)=> handleLogin(e)}
         >
           <h2 className="text-2xl font-bold mb-6 text-gray-800">تسجيل الدخول</h2>
 
@@ -62,7 +75,7 @@ const LoginPage = () => {
               type="email"
               placeholder="example@email.com"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500"
-            value={email}
+            value={Email}
             onChange={(e) => setEmail(e.target.value)}
         />
           </div>
@@ -73,14 +86,25 @@ const LoginPage = () => {
               type="password"
               placeholder="********"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500"
-            value={password}
+            value={Password}
             onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
-          <button className="w-full py-3 bg-red-700 hover:bg-red-800 text-white rounded-lg">
-            تسجيل الدخول
-          </button>
+          <motion.button
+            whileTap={{ scale: 0.97 }}
+            disabled={loading}
+            className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition disabled:opacity-50 flex items-center justify-center gap-2"
+          >
+            {loading && (
+              <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a12 12 0 100 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"></path>
+              </svg>
+            )}
+            {loading ? 'جاري تسجيل الدخول' : 'تسجيل الدخول'}
+          </motion.button>
+          
 
           <p className="mt-4 text-sm text-gray-500">
             ليس لديك حساب؟ <a href="/Pages/Register" className="text-red-600 hover:underline">سجّل الآن</a>

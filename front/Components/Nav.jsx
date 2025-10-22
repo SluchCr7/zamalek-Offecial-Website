@@ -5,10 +5,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Menu, X, ChevronDown, Search } from 'lucide-react'
 import {AnimatePresence , motion} from 'framer-motion'
+import { useAuth } from '@/app/Context/AuthContext'
 export default function Nav() {
   const [open, setOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(null)
   const [searchOpen, setSearchOpen] = useState(false)
+  const {user} = useAuth()
   const topLinks = [
     { id: 1, title: 'مجلس الإدارة', url: '/Pages/Directors' },
     { id: 2, title: 'المتجر', url: '/Pages/Store' },
@@ -63,9 +65,20 @@ export default function Nav() {
           </div>
           <div className="flex items-center gap-3">
             <Search onClick={() => setSearchOpen(!searchOpen)} size={18} className="cursor-pointer hover:text-red-600" />
-            <button className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition">
-              <Link href="/Pages/Login">تسجيل الدخول</Link>
-            </button>
+            {
+              user ? 
+                <Image
+                  src={user?.profilePhoto?.url}
+                  alt='profile_photo' 
+                  width={500}
+                  height={500}
+                  className='w-8 h-8 rounded-full border border-red-600'
+                />
+                :
+              <button className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition">
+                <Link href="/Pages/Login">تسجيل الدخول</Link>
+              </button>
+            }
           </div>
         </div>
       </div>

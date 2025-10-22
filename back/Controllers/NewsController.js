@@ -38,9 +38,9 @@ const getNewById = asyncHandler(async (req, res) => {
 })
 
 const deleteNews = asyncHandler(async (req, res) => {
-    const New = await News.findById()
+    const New = await News.findById(req.params.id)
     if (!New) return res.status(404).json({ message: "New is Not found" })
-    await News.findByIdAndDelete()
+    await News.findByIdAndDelete(req.params.id)
     res.status(200).json({ message: "New Deleted Successfully" })
 })
 

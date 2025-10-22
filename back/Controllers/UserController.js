@@ -6,53 +6,87 @@ const path = require('path')
 const { cloudUpload, cloudRemove } = require('../Config/cloudUpload')
 const fs = require('fs')
 
-// ================== Login ==================
-const loginUser = asyncHandler(async (req, res) => {
-    const { error } = LoginValidate(req.body)
-    if (error) return res.status(400).json({ error: error.details[0].message })
 
-    const user = await User.findOne({ Email: req.body.Email })
-    if (!user) return res.status(400).json({ error: "Email or Password are not Correct" })
+/**
+ * @desc Register New User
+ * @route POST /api/auth/register
+ * @access Public
+ */
 
-    const validPassword = await bcrypt.compare(req.body.Password, user.Password)
-    if (!validPassword) return res.status(400).json({ error: "Email or Password are not Correct" })
 
-    const token = jwt.sign(
-        { id: user._id, isAdmin: user.isAdmin },
-        process.env.TOKEN_SECRET,
-        { expiresIn: '7d' }
-    )
+const RegisterNewUser = async (req, res) => {
+  try {
+    // ✅ Validate user input
+    const { error } = ValidateUser(req.body);
+    if (error) {
+      return res.status(400).json({ message: error.details[0].message });
+    }
 
-    const { Password, ...others } = user._doc
+    // ✅ Check if user exists
+    const userExist = await User.findOne({ Email: req.body.Email });
+    if (userExist) {
+      return res.status(400).json({ message: "User already exists" });
+    }
 
-    // Save token in cookie
-    res.cookie("token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production", 
-        sameSite: "strict",
-        maxAge: 7 * 24 * 60 * 60 * 1000 
-    })
+    // ✅ Hash password
+    const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(req.body.Password, salt);
 
-    res.status(200).json({ ...others })
-})
-
-// ================== Register ==================
-const register = asyncHandler(async (req, res) => {
-    const { error } = ValidateUser(req.body)
-    if (error) return res.status(400).json({ error: error.details[0].message })
-
-    const salt = await bcrypt.genSalt(10)
-    const hash = await bcrypt.hash(req.body.Password, salt)
-    req.body.Password = hash
-
+    // ✅ Create user
     const user = new User({
-        Name: req.body.Name,
-        Email: req.body.Email,
-        Password: req.body.Password,
-    })
-    await user.save()
-    res.status(201).json({ message: "User Created Successfully" })
-})
+      Name: req.body.Name,
+      Email: req.body.Email,
+      Password: hashPassword,
+    });
+
+    await user.save();
+    return res.status(201).json({
+    message:
+        "User Created Successfully and we sent an email now, go to verify your email",
+    });
+  } catch (error) {
+    console.error("Register Error:", error);
+    return res.status(500).json({ message: error.message || "Server Error" });
+  }
+};
+
+
+const LoginUser = asyncHandler(async (req, res) => {
+  const { error } = LoginValidate(req.body);
+  if (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
+
+  const user = await User.findOne({ Email: req.body.Email })
+
+  if (!user) {
+    return res.status(400).json({ message: "Email or Password are not correct" });
+  }
+
+  const validPassword = await bcrypt.compare(req.body.Password, user.Password);
+  if (!validPassword) {
+    return res.status(400).json({ message: "Email or Password are not correct" });
+  }
+
+
+  await user.save();
+
+  // ✅ إنشاء التوكن
+  const token = jwt.sign(
+    { _id: user._id, isAdmin: user.isAdmin },
+    process.env.TOKEN_SECRET
+  );
+
+  const { password, ...others } = user._doc;
+  others.token = token;
+
+  return res.status(200).json({
+    message: "Login successful",
+    user: others,
+  });
+});
+
+
 
 // ================== Logout ==================
 const logoutUser = asyncHandler(async (req, res) => {
@@ -117,8 +151,8 @@ const uploadPhoto = asyncHandler(async (req, res) => {
 })
 
 module.exports = {
-    loginUser,
-    register,
+    LoginUser,
+    RegisterNewUser,
     logoutUser,
     deleteUser,
     getUserById,

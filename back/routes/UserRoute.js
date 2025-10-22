@@ -1,7 +1,8 @@
 const express = require('express')
 const route = express.Router()
-const {loginUser,
-    register,
+const {
+    LoginUser,
+    RegisterNewUser,
     logoutUser,
     deleteUser,
     getUserById,
@@ -11,10 +12,10 @@ const {loginUser,
 const photoUpload = require('../Middelwares/uploadPhoto')
 const protect = require('../Middelwares/authMiddelware')
 route.route('/register')
-    .post(register)
+    .post(RegisterNewUser)
 
 route.route('/login')
-    .post(loginUser)
+    .post(LoginUser)
 
 route.route('/delete/:id')
     .delete(deleteUser)

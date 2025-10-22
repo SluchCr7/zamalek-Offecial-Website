@@ -15,8 +15,11 @@ const cookieParser = require('cookie-parser');
 ConnectDb()
 
 // middleware
-
-app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors({
+    origin: process.env.DOMAIN_NAME,
+    credentials: true    
+}));
 app.use(express.json()) 
 app.use(cookieParser());
 // XSS Attack Middelware

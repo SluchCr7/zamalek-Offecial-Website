@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { zamalekMatches } from "@/utils/data"
 import Match from "./Match"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import TitleSection from "./TitleSection"
 
 export default function MatchesSlider() {
   const [current, setCurrent] = useState(0)
@@ -22,9 +23,7 @@ export default function MatchesSlider() {
     <section className="relative bg-gradient-to-b from-white to-gray-100 py-16 overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-8">
         {/* عنوان القسم */}
-        <h2 className="text-center text-4xl font-extrabold mb-10 text-[#d50000] tracking-wide">
-          ⚽ مباريات الزمالك القادمة والسابقة
-        </h2>
+        <TitleSection title="مباريات الزمالك" subtitle="جدول مباريات الزمالك القادمه والسابقه" />
 
         {/* السلايدر */}
         <div className="relative flex items-center justify-center h-[500px] overflow-hidden select-none">

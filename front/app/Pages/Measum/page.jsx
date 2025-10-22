@@ -13,8 +13,8 @@ export default function MuseumPage() {
 
       {/* العنوان */}
       <div className="mb-8 text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-red-700">إنجازات نادي الزمالك</h2>
-        <p className="mt-2 text-gray-600">ألقاب وبطولات عبر التاريخ</p>
+        <h2 className="text-3xl md:text-4xl font-extrabold text-red-700">متحف نادي الزمالك</h2>
+        <p className="mt-2 text-gray-600">تاريخ ابيض موثق</p>
         <div className="mx-auto mt-4 h-1 w-28 bg-red-600 rounded"></div>
       </div>
 

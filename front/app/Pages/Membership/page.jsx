@@ -75,7 +75,7 @@ export default function MembershipPage() {
       <header className="relative">
         <div className="h-64 md:h-72 lg:h-80 relative overflow-hidden">
           <Image
-            src="/new.jpg"
+            src="/Fan1zsc.jpg"
             alt="Zamalek hero"
             fill
             className="object-cover brightness-75"
@@ -357,7 +357,7 @@ export default function MembershipPage() {
         </div>
 
         {/* Footer CTA */}
-        <div className="mt-8 bg-gradient-to-r from-red-600 to-red-500 rounded-2xl text-white p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="my-8 bg-gradient-to-r from-red-600 to-red-500 rounded-2xl text-white p-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
             <h4 className="text-lg font-bold">جاهز للانضمام؟</h4>
             <p className="text-sm">انقر على "قدّم الآن" لبدء عملية التقديم واستمتع بمزايا العضوية</p>

@@ -1469,15 +1469,15 @@ export const zamalekAssistsLiveSeasson = [
 
 export const cleanSheatsLiveSeasson = [
   {id : 1 ,  name : "محمد صبحي" , cleanSheats : 1 , matches : 1, img:'/no_img.jpg' },
-  {id : 2 ,  name : "محمد عواد" , cleanSheats : 1 ,matches : 0, img:'/no_img.jpg'},
-  {id : 3 ,  name : "مهدي سليمان" , cleanSheats : 1 ,matches : 0, img:'/no_img.jpg'}
+  {id : 2 ,  name : "محمد عواد" , cleanSheats : 0 ,matches : 0, img:'/no_img.jpg'},
+  {id : 3 ,  name : "مهدي سليمان" , cleanSheats : 0 ,matches : 0, img:'/no_img.jpg'}
 ]
 
 export const mesaumSections = [
-  {name : "خزانه الكوؤس" , link : "/trophies" , open : true , img : "/mesaum/trophies-min.png" , bio : "مجموعه من اهم الكوؤس والجوائز التي حصل عليها النادي"},
-  {name : "الصور التاريخية" , link : "/photos" , open : true , img : "/mesaum/historical-photos.png" , bio : "لحظات خالدة من تاريخ النادي العريق"},
-  {name : "القمصان التاريخية" , link : "/jerseys" , open : true , img : "/mesaum/jerseys.png" , bio : "مجموعة من القمصان الأسطورية عبر العصور"},
-  {name : "قاعة الأساطير" , link : "/legends" , open : true , img : "/mesaum/legends-min.png" , bio : "تكريم لأعظم نجوم تاريخ النادي"},
+  {name : "خزانه الكوؤس" , link : "/Pages/Champions" , open : true , img : "/mesaum/trophies-min.png" , bio : "مجموعه من اهم الكوؤس والجوائز التي حصل عليها النادي"},
+  {name : "الصور التاريخية" , link : "/Pages/Photos" , open : true , img : "/mesaum/historical-photos.png" , bio : "لحظات خالدة من تاريخ النادي العريق"},
+  {name : "القمصان التاريخية" , link : "/Pages/Archive" , open : true , img : "/mesaum/jerseys.png" , bio : "مجموعة من القمصان الأسطورية عبر العصور"},
+  {name : "قاعة الأساطير" , link : "/Pages/Legends" , open : true , img : "/mesaum/legends-min.png" , bio : "تكريم لأعظم نجوم تاريخ النادي"},
   {name : "الوثائق التاريخية" , link : "/documents" , open : false , img : "/mesaum/documents.png" , bio : "مستندات ووثائق نادرة من تاريخ النادي"},
   {name : "الميداليات الذهبية" , link : "/medals" , open : false , img : "/mesaum/medals.png" , bio : "مجموعة من الميداليات والأوسمة المميزة"},
 ]

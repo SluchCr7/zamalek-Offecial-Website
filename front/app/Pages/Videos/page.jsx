@@ -36,7 +36,7 @@ const VideosPage = () => {
   const [selectedVideo, setSelectedVideo] = useState(null)
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0b0b0b] to-[#1a1a1a] text-white overflow-hidden font-[Cairo]">
+    <div className="min-h-screen bg-white text-black overflow-hidden font-[Cairo]">
       {/* HERO SECTION */}
       <div className="relative h-[65vh] flex flex-col justify-center items-center text-center overflow-hidden">
         <Image
@@ -44,26 +44,27 @@ const VideosPage = () => {
           alt="Zamalek Background"
           fill
           priority
-          className="object-cover brightness-[0.35] absolute inset-0 -z-10"
+          className="object-cover brightness-[0.3] absolute inset-0 -z-10"
         />
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
+          className="relative z-10"
         >
-          <h1 className="text-5xl md:text-7xl font-extrabold text-white drop-shadow-[0_0_25px_#ff0000aa]">
-            🎬 فيديوهات <span className="text-[#e50914]">الزمالك</span>
+          <h1 className="text-5xl md:text-7xl font-extrabold text-black drop-shadow-[0_0_10px_#ff000030]">
+            🎬 فيديوهات <span className="text-[#d50000]">الزمالك</span>
           </h1>
-          <p className="mt-4 text-gray-300 text-lg md:text-xl">
+          <p className="mt-4 text-gray-700 text-lg md:text-xl">
             لحظات المجد — أهداف، لقطات، وانتصارات خالدة ⚽
           </p>
-          <div className="mt-6 w-24 h-1 bg-gradient-to-r from-white via-[#e50914] to-white rounded-full mx-auto"></div>
+          <div className="mt-6 w-24 h-1 bg-gradient-to-r from-black via-[#d50000] to-black rounded-full mx-auto"></div>
         </motion.div>
       </div>
 
       {/* VIDEOS GRID */}
-      <section className="py-20 px-6 md:px-12 bg-gradient-to-b from-[#141414] to-[#0b0b0b]">
-        <h2 className="text-3xl md:text-4xl font-semibold text-center mb-14 text-[#e50914] tracking-wide">
+      <section className="py-20 px-6 md:px-12 bg-gradient-to-b from-white to-gray-100">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-14 text-[#d50000] tracking-wide">
           أحدث الفيديوهات 🔥
         </h2>
 
@@ -75,7 +76,7 @@ const VideosPage = () => {
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative group cursor-pointer overflow-hidden rounded-2xl border border-[#2a2a2a] hover:border-[#e50914] bg-gradient-to-br from-[#141414] to-[#1f1f1f] shadow-[0_0_25px_#00000080]"
+              className="relative group cursor-pointer overflow-hidden rounded-2xl border border-gray-300 hover:border-[#d50000] bg-gradient-to-br from-white to-gray-50 shadow-[0_0_15px_#00000020]"
               onClick={() => setSelectedVideo(video)}
             >
               <Image
@@ -85,11 +86,13 @@ const VideosPage = () => {
                 height={250}
                 className="object-cover w-full h-56 group-hover:scale-110 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-500">
-                <PlayCircle className="text-[#e50914] w-16 h-16 drop-shadow-[0_0_15px_#e50914]" />
+              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-500">
+                <PlayCircle className="text-[#d50000] w-16 h-16 drop-shadow-[0_0_10px_#d50000]" />
               </div>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 text-center">
-                <p className="text-sm md:text-base font-medium">{video.title}</p>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-white/90 to-transparent p-3 text-center">
+                <p className="text-sm md:text-base font-semibold text-black">
+                  {video.title}
+                </p>
               </div>
             </motion.div>
           ))}
@@ -103,28 +106,32 @@ const VideosPage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
           >
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
+              exit={{ scale: 0.9, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="relative w-full max-w-5xl bg-[#111]/80 rounded-2xl p-4 shadow-[0_0_40px_#e5091460]"
+              className="relative w-full max-w-4xl bg-white rounded-2xl p-4 shadow-[0_0_25px_#d5000060] flex flex-col items-center"
             >
               <button
                 onClick={() => setSelectedVideo(null)}
-                className="absolute -top-10 right-0 text-gray-300 hover:text-[#e50914] transition"
+                className="absolute -top-10 right-0 text-gray-300 hover:text-[#d50000] transition"
               >
                 <X size={36} />
               </button>
-              <video
-                src={selectedVideo.src}
-                controls
-                autoPlay
-                className="w-full rounded-xl shadow-lg border border-[#e5091450]"
-              />
-              <p className="mt-4 text-center text-xl font-semibold text-white">
+
+              <div className="w-full max-h-[80vh] flex justify-center items-center overflow-hidden">
+                <video
+                  src={selectedVideo.src}
+                  controls
+                  autoPlay
+                  className="w-full h-full max-h-[80vh] rounded-xl border border-[#d50000]/50 shadow-[0_0_15px_#00000030]"
+                />
+              </div>
+
+              <p className="mt-4 text-center text-xl font-bold text-[#d50000]">
                 {selectedVideo.title}
               </p>
             </motion.div>

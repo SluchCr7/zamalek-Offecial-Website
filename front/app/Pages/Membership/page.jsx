@@ -78,7 +78,7 @@ export default function MembershipPage() {
             src="/Fan1zsc.jpg"
             alt="Zamalek hero"
             fill
-            className="object-cover brightness-75"
+            className="object-cover  brightness-75"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />

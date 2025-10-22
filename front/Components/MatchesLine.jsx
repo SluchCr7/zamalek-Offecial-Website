@@ -19,27 +19,32 @@ export default function MatchesSlider() {
   }
 
   return (
-    <section className="bg-gray-50 py-10">
-      <div className="relative max-w-7xl mx-auto">
-        
+    <section className="relative bg-gradient-to-b from-white to-gray-100 py-16 overflow-hidden">
+      <div className="relative max-w-7xl mx-auto px-8">
+        {/* عنوان القسم */}
+        <h2 className="text-center text-4xl font-extrabold mb-10 text-[#d50000] tracking-wide">
+          ⚽ مباريات الزمالك القادمة والسابقة
+        </h2>
+
         {/* السلايدر */}
-        <div className="relative flex items-center justify-center h-[420px] overflow-hidden">
+        <div className="relative flex items-center justify-center h-[500px] overflow-hidden select-none">
           {zamalekMatches.map((match, index) => {
             const offset = index - current
 
             return (
               <motion.div
                 key={index}
-                className="absolute"
+                className="absolute flex justify-center items-center"
                 animate={{
-                  scale: offset === 0 ? 1 : 0.8,
+                  scale: offset === 0 ? 1.05 : 0.85,
                   opacity: offset === 0 ? 1 : Math.abs(offset) === 1 ? 0.5 : 0,
-                  x: offset * 300,
-                  zIndex: offset === 0 ? 10 : 5,
+                  x: offset * 360,
+                  zIndex: offset === 0 ? 20 : 10,
+                  filter: offset === 0 ? "brightness(1)" : "brightness(0.8)"
                 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <div className="w-80">
+                <div className="w-[340px] sm:w-[380px] lg:w-[400px]">
                   <Match match={match} />
                 </div>
               </motion.div>
@@ -47,43 +52,41 @@ export default function MatchesSlider() {
           })}
         </div>
 
-        {/* أزرار التنقل */}
-        <motion.button
-          whileHover={{ scale: 1.15 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={prevSlide}
-          className="absolute top-1/2 left-4 -translate-y-1/2 
-                     w-12 h-12 flex items-center justify-center
-                     rounded-full backdrop-blur-md bg-white/40 
-                     shadow-lg border border-white/20
-                     hover:bg-red-600 hover:text-white
-                     transition-colors duration-300"
-        >
-          <ChevronLeft size={28} strokeWidth={2.5} />
-        </motion.button>
+        {/* أزرار التنقل خارج الكروت */}
+        <div className="absolute top-1/2 -translate-y-1/2 left-10 z-30">
+          <motion.button
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={prevSlide}
+            className="w-12 h-12 flex items-center justify-center
+                       rounded-full bg-white/90 hover:bg-[#d50000] hover:text-white
+                       shadow-lg border border-gray-200 transition-colors duration-300"
+          >
+            <ChevronLeft size={28} strokeWidth={2.5} />
+          </motion.button>
+        </div>
 
-        <motion.button
-          whileHover={{ scale: 1.15 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={nextSlide}
-          className="absolute top-1/2 right-4 -translate-y-1/2 
-                     w-12 h-12 flex items-center justify-center
-                     rounded-full backdrop-blur-md bg-white/40 
-                     shadow-lg border border-white/20
-                     hover:bg-red-600 hover:text-white
-                     transition-colors duration-300"
-        >
-          <ChevronRight size={28} strokeWidth={2.5} />
-        </motion.button>
+        <div className="absolute top-1/2 -translate-y-1/2 right-10 z-30">
+          <motion.button
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={nextSlide}
+            className="w-12 h-12 flex items-center justify-center
+                       rounded-full bg-white/90 hover:bg-[#d50000] hover:text-white
+                       shadow-lg border border-gray-200 transition-colors duration-300"
+          >
+            <ChevronRight size={28} strokeWidth={2.5} />
+          </motion.button>
+        </div>
 
-        {/* Pagination Dots */}
-        <div className="flex justify-center gap-2 mt-4">
+        {/* نقاط التصفح */}
+        <div className="flex justify-center gap-2 mt-8">
           {zamalekMatches.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className={`w-3 h-3 rounded-full ${
-                i === current ? "bg-red-600" : "bg-gray-300"
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                i === current ? "bg-[#d50000] scale-110" : "bg-gray-300"
               }`}
             />
           ))}

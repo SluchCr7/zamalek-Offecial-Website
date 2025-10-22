@@ -168,7 +168,7 @@ export default function LegendsPageEnhanced() {
             <Image src={zamalekLegends[0].img} alt={zamalekLegends[0].name} fill className="object-cover object-top" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
 
-            <div className="absolute inset-y-0 left-0 flex items-center pr-8">
+            <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4">
               <div className="bg-white/90 backdrop-blur-sm rounded-l-3xl p-6 w-[420px] text-right">
                 <h2 className="text-3xl font-extrabold text-red-700">{zamalekLegends[0].name}</h2>
                 <p className="mt-2 text-gray-700"><span className="font-semibold">المركز:</span> {zamalekLegends[0].position}</p>

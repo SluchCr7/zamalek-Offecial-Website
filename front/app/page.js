@@ -1,6 +1,4 @@
 import Image from "next/image";
-// import Hero from '../Components/Hero'
-// import MatchesLine from "@/Components/MatchesLine";
 import News from "@/Components/News";
 import Table from "@/Components/Table";
 import ZamalekAchievements from "@/Components/Competitions";
@@ -16,7 +14,6 @@ import MatchesSlider from "@/Components/MatchesLine";
 import AddMenuModalAll from "@/Components/MenuAdd";
 
 export default function Home() {
-  const [openMenuAll , setOpenMenuAll] = useState(false)
   return (
     <div className="overflow-hidden min-h-screen w-full">
       <HeroNews />

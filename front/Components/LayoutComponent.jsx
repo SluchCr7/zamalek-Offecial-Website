@@ -9,7 +9,7 @@ const LayoutComponent = ({ children }) => {
     const [opneModalAll , setOpenModalAll] = useState(false)
   return (
     <div>
-        <div className={`flex items-start gap-3 w-full`}>
+        <div className={`flex flex-col items-center gap-3 w-full`}>
         
             <Nav opneModalAll={opneModalAll} setOpenModalAll={setOpenModalAll}/>
             {children}

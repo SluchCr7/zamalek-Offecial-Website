@@ -149,16 +149,16 @@ export default function LegendsPageEnhanced() {
   const [selected, setSelected] = useState(null)
 
   return (
-    <div dir="rtl" className="min-h-screen bg-gradient-to-b from-white to-gray-50 p-6">
+    <div dir="rtl" className="min-h-screen w-full bg-gradient-to-b from-white to-gray-50 p-6">
       {/* Header */}
-      <header className="max-w-6xl mx-auto text-center py-12 px-4">
+      <header className="max-w-6xl mx-auto w-full text-center py-12 px-4">
         <h1 className="text-4xl md:text-5xl font-extrabold text-red-700">أساطير نادي الزمالك</h1>
         <p className="mt-3 text-lg text-gray-700 max-w-2xl mx-auto">تاريخ طويل من النجوم والبطولات — تعرف على أبرز نجوم القلعة البيضاء بتفاصيل وشهادات وأرقام.</p>
       </header>
 
       {/* Featured (first legend full-height) */}
       {zamalekLegends.length > 0 && (
-        <section className="max-w-6xl mx-auto mb-12">
+        <section className="max-w-6xl w-full mx-auto mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -191,7 +191,7 @@ export default function LegendsPageEnhanced() {
       )}
 
       {/* Grid of Legends (full-height images) */}
-      <section className="max-w-6xl mx-auto">
+      <section className="max-w-6xl w-full mx-auto">
         <h3 className="text-2xl font-bold text-red-700 mb-6 text-right">باقي الأساطير</h3>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {zamalekLegends.slice(1).map((p, idx) => (

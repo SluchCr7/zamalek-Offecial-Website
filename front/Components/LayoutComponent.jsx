@@ -4,6 +4,7 @@ import Nav from "@/Components/Nav";
 import Footer from "@/Components/Footer";
 import Song from "@/Components/Song";
 import AddNewsModal from './ModalNewAdd';
+import AddMenuModalAll from './MenuAdd';
 const LayoutComponent = ({ children }) => {
     const [opneModalAll , setOpenModalAll] = useState(false)
   return (

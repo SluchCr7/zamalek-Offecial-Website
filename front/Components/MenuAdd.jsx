@@ -1,4 +1,5 @@
 'use client'
+import { useNews } from '@/app/Context/NewsContext'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, FileText, ImagePlus, Video } from 'lucide-react'
 

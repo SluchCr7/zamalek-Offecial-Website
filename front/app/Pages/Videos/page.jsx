@@ -9,26 +9,26 @@ const videos = [
   {
     id: 1,
     title: 'ملخص مباراة الزمالك و الأهلي 🔥',
-    thumbnail: '/new.jpg',
-    src: 'https://www.w3schools.com/html/mov_bbb.mp4',
+    thumbnail: '/videos/video1.mp4',
+    src: '/videos/video1.mp4',
   },
   {
     id: 2,
     title: 'تدريبات الفريق قبل اللقاء القادم 💪',
-    thumbnail: '/new.jpg',
-    src: 'https://www.w3schools.com/html/movie.mp4',
+    thumbnail: '/videos/video2.mp4',
+    src: '/videos/video2.mp4',
   },
   {
     id: 3,
     title: 'أهداف الزمالك في البطولة العربية ⚽',
     thumbnail: '/new.jpg',
-    src: 'https://www.w3schools.com/html/mov_bbb.mp4',
+    src: '/videos/video3.mp4',
   },
   {
     id: 4,
     title: 'اللقطات الأجمل من تاريخ القلعة البيضاء 🏛️',
     thumbnail: '/new.jpg',
-    src: 'https://www.w3schools.com/html/movie.mp4',
+    src: '/videos/video4.mp4',
   },
 ]
 
@@ -36,7 +36,7 @@ const VideosPage = () => {
   const [selectedVideo, setSelectedVideo] = useState(null)
 
   return (
-    <div className="min-h-screen bg-white text-black overflow-hidden font-[Cairo]">
+    <div className="min-h-screen bg-white w-full text-black overflow-hidden font-[Cairo]">
       {/* HERO SECTION */}
       <div className="relative h-[65vh] flex flex-col justify-center items-center text-center overflow-hidden">
         <Image
@@ -63,7 +63,7 @@ const VideosPage = () => {
       </div>
 
       {/* VIDEOS GRID */}
-      <section className="py-20 px-6 md:px-12 bg-gradient-to-b from-white to-gray-100">
+      <section className="py-20 px-6 md:px-12 w-full">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-14 text-[#d50000] tracking-wide">
           أحدث الفيديوهات 🔥
         </h2>

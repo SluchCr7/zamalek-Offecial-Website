@@ -88,7 +88,7 @@ const Page = () => {
               className="group relative rounded-2xl overflow-hidden shadow-lg bg-white border border-gray-200 hover:shadow-2xl transition-all duration-300"
             >
               {/* Player Image */}
-              <Link href={`/Players/Football/${encodeURIComponent(player.name)}`}  className="relative w-full h-[380px]">
+              <Link href={`/Pages/Players/Football/${encodeURIComponent(player.name)}`}  className="relative w-full h-[380px]">
                 <Image 
                   // src={player.img}
                   src={'/no_img.jpg'}

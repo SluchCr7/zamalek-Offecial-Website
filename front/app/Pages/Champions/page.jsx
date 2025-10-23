@@ -360,7 +360,7 @@ export default function ZamalekTitlesAdvanced() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900">إنجازات نادي الزمالك</h1>
           <p className="mt-3 text-lg text-gray-600 max-w-2xl">تاريخ حافل بالتتويجات — استعرض إحصائيات وأبرز البطولات عبر العقود.</p>
 
-          <div className="mt-6 inline-flex items-center gap-3 bg-white rounded-full shadow px-3 py-2 border">
+          <div className="my-6 inline-flex items-center gap-3 bg-white rounded-full shadow px-3 py-2 border">
             <div className="px-3 text-sm text-gray-500">التصنيف:</div>
             {[{key:'all', label:'الكل'},{key:'local', label:'محلية'},{key:'continental', label:'قارية'},{key:'regional', label:'إقليمية'}].map(t => (
               <button key={t.key} onClick={() => setTab(t.key)} className={`px-3 py-1 rounded-full text-sm font-semibold ${tab===t.key? 'bg-red-600 text-white':'text-gray-700'}`}>

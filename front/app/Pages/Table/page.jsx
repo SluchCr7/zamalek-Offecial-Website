@@ -402,10 +402,17 @@ export default function LeagueTableAdvanced() {
                       animate="visible"
                       custom={idx}
                       className={`p-3 rounded-xl border bg-white shadow-sm flex items-center justify-between`}
-                    >
+                    > 
+                    {/* px-4 py-3 font-medium flex items-center gap-2 */}
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 relative rounded-full overflow-hidden border">
-                          <Image src={`/teams/${team.Logo}`} alt={team.team} fill sizes="40px" className="object-cover" />
+                          <Image
+                            width={24}
+                            height={24}
+                            src={`/teams/${team.Logo}`}
+                            alt={team.team}
+                            className="w-6 h-6 rounded-full border border-gray-300"
+                          />
                         </div>
                         <div>
                           <div className="font-semibold">{team.team}</div>

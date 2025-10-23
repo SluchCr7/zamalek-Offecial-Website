@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import TitleSection from "./TitleSection"
 
 export default function MatchesSlider() {
-  const [current, setCurrent] = useState(0)
+  const [current, setCurrent] = useState(1)
 
   const nextSlide = () => {
     setCurrent((prev) => (prev + 1) % zamalekMatches.length)

@@ -13,7 +13,7 @@ export default function HistoryTShirts() {
       : zamalekTshirts.filter(t => t.Provider.toLowerCase() === filter.toLowerCase())
 
   return (
-    <div className="bg-[#f7f7f7] min-h-screen pb-20">
+    <div dir='rtl' className="bg-[#f7f7f7] min-h-screen pb-20 w-full">
       {/* Banner */}
       <div className="relative h-[300px] flex items-center justify-center bg-gradient-to-r from-red-600 to-white shadow-lg">
         <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg text-center">
@@ -22,7 +22,7 @@ export default function HistoryTShirts() {
       </div>
 
       {/* Filters */}
-      <div className="max-w-6xl mx-auto px-4 mt-8 flex flex-wrap gap-3 justify-center">
+      <div className="max-w-6xl w-full mx-auto px-4 mt-8 flex flex-wrap gap-3 justify-center">
         {['All', ...new Set(zamalekTshirts.map(t => t.Provider))].map(provider => (
           <button
             key={provider}

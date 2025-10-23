@@ -70,15 +70,16 @@ export default function MembershipPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 text-gray-900">
+    <div dir='rtl' className="min-h-screen bg-gradient-to-b from-white to-gray-50 text-gray-900">
       {/* HERO */}
       <header className="relative">
         <div className="h-64 md:h-72 lg:h-80 relative overflow-hidden">
           <Image
             src="/Fan1zsc.jpg"
             alt="Zamalek hero"
-            fill
-            className="object-cover  brightness-75"
+            width={500} 
+            height={500}
+            className="object-cover w-full h-full brightness-75"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />

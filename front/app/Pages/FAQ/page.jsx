@@ -20,7 +20,7 @@ const FAQ = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-gray-50 py-16 px-4 md:px-12">
+    <div dir='rtl' className="min-h-screen bg-gradient-to-br w-full from-white to-gray-50 py-16 px-4 md:px-12">
       <div className="max-w-5xl mx-auto text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-extrabold text-red-600 mb-4">الأسئلة الشائعة</h1>
         <p className="text-gray-600 text-lg">
@@ -28,7 +28,7 @@ const FAQ = () => {
         </p>
       </div>
 
-      <div className="space-y-10">
+      <div className="space-y-10 w-full">
         {sections.map((section, sIndex) => (
           <div
             key={sIndex}

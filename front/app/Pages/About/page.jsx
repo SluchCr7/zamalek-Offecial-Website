@@ -273,23 +273,26 @@
 
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence, useViewportScroll, useTransform } from 'framer-motion'
-import { zamalekHistory } from '@/utils/data'
+import { zamalekHistory } from '@/utils/data' // keep your existing data source
 
-// ZamalekHistoryPro.jsx
-// إعادة تصميم احترافية لصفحة تاريخ نادي الزمالك
-// يعتمد على Tailwind CSS + Framer Motion + Next/Image
-// ملاحظات: تأكد من وجود zamalekHistory في utils/data ووجود الصور المشار إليها
+/*
+  ZamalekHistoryPro.full.jsx
+  - صفحة متكاملة ومحسّنة لعرض تاريخ نادي الزمالك
+  - تضم: Hero parallax، إحصاءات سريعة، Timeline أفقي قابل للسحب، Moments grid، Gallery، Modal للتفاصيل
+  - متوافقة مع RTL وTailwindCSS + Framer Motion
+*/
 
 export default function ZamalekHistoryPro() {
   const [selected, setSelected] = useState(null)
   const [progress, setProgress] = useState(0)
+  const scrollerRef = useRef(null)
 
   // Parallax header transform
   const { scrollY } = useViewportScroll()
-  const yParallax = useTransform(scrollY, [0, 600], [0, -60])
+  const yParallax = useTransform(scrollY, [0, 700], [0, -72])
 
   useEffect(() => {
     const onScroll = () => {
@@ -298,33 +301,51 @@ export default function ZamalekHistoryPro() {
       setProgress(total > 0 ? Math.min(100, Math.round((scrolled / total) * 100)) : 0)
     }
     onScroll()
-    window.addEventListener('scroll', onScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Group history by decade for timeline grouping
-  const grouped = zamalekHistory.reduce((acc, it) => {
-    const yearNum = parseInt(it.year.toString().slice(0, 4)) || 0
-    const decade = Math.floor(yearNum / 10) * 10
-    acc[decade] = acc[decade] || []
-    acc[decade].push(it)
-    return acc
-  }, {})
+  // Group by decade
+  const grouped = useMemo(() => {
+    return zamalekHistory.reduce((acc, it) => {
+      const yearNum = parseInt((it.year || '').toString().slice(0, 4)) || 0
+      const decade = Math.floor(yearNum / 10) * 10
+      acc[decade] = acc[decade] || []
+      acc[decade].push(it)
+      return acc
+    }, {})
+  }, [])
 
-  const decades = Object.keys(grouped).map((d) => ({ decade: `${d}s`, items: grouped[d] })).sort((a, b) => parseInt(a.decade) - parseInt(b.decade))
+  const decades = useMemo(() => {
+    return Object.keys(grouped)
+      .map((d) => ({ key: d, decade: `${d}s`, items: grouped[d].sort((a, b) => (a.year || 0) - (b.year || 0)) }))
+      .sort((a, b) => parseInt(a.key) - parseInt(b.key))
+  }, [grouped])
+
+  // keyboard support for horizontal scroller
+  useEffect(() => {
+    const el = scrollerRef.current
+    if (!el) return
+    const onKey = (e) => {
+      if (e.key === 'ArrowRight') el.scrollBy({ left: 320, behavior: 'smooth' })
+      if (e.key === 'ArrowLeft') el.scrollBy({ left: -320, behavior: 'smooth' })
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
 
   return (
-    <div dir="rtl" className="min-h-screen bg-gray-50 text-gray-800">
+    <div dir="rtl" className="min-h-screen bg-gray-50 text-gray-800 selection:bg-red-200">
       {/* TOP PROGRESS */}
       <div className="fixed top-0 left-0 right-0 h-1 z-50 bg-transparent pointer-events-none">
         <div
           className="h-full bg-gradient-to-r from-red-700 via-yellow-400 to-red-600 shadow-sm"
-          style={{ width: `${progress}%`, transition: 'width 120ms linear' }}
+          style={{ width: `${progress}%`, transition: 'width 160ms linear' }}
         />
       </div>
 
       {/* HERO */}
-      <header className="relative h-[56vh] md:h-[52vh] lg:h-[48vh] overflow-hidden">
+      <header className="relative h-[60vh] md:h-[52vh] lg:h-[48vh] overflow-hidden">
         <motion.div style={{ y: yParallax }} className="absolute inset-0">
           <Image src={zamalekHistory[0]?.img || '/zamalek-stadium.jpg'} alt="Zamalek archive" fill className="object-cover brightness-75" />
         </motion.div>
@@ -332,21 +353,22 @@ export default function ZamalekHistoryPro() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
         <div className="relative z-10 container mx-auto px-6 md:px-12 h-full flex items-center">
-          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
+          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-4xl">
             <span className="inline-block bg-red-700 text-white px-3 py-1 rounded-full font-semibold">أرشيف وتاريخ</span>
             <h1 className="mt-4 text-4xl md:text-5xl font-extrabold text-white leading-tight">رحلة الزمالك — محطات، صور، وأساطير</h1>
-            <p className="mt-4 text-white/80">استعرض أهم اللحظات في تاريخ القلعة البيضاء، من بدايات النادي إلى المئوية وما بعدها. تصفح الخط الزمني، شاهد لحظات مختارة، واطّلع على الأرشيف.</p>
+            <p className="mt-4 text-white/85 max-w-2xl">استعرض أهم اللحظات في تاريخ القلعة البيضاء، من البدايات المتواضعة إلى لحظات الانتصارات الكبرى — عرض مرئي، خط زمني تفاعلي، وأرشيف متعدد الوسائط.</p>
 
             <div className="mt-6 flex gap-3">
-              <a href="#timeline" className="bg-white/90 text-red-700 px-5 py-3 rounded-lg font-semibold shadow hover:scale-105 transition">الخط الزمني</a>
-              <a href="#moments" className="bg-red-600 text-white px-5 py-3 rounded-lg font-semibold shadow hover:scale-105 transition">اللحظات المختارة</a>
+              <a href="#timeline" className="bg-white/95 text-red-700 px-5 py-3 rounded-lg font-semibold shadow hover:scale-105 transition">الخط الزمني</a>
+              <a href="#moments" className="bg-gradient-to-r from-red-600 to-red-500 text-white px-5 py-3 rounded-lg font-semibold shadow hover:scale-105 transition">اللحظات المختارة</a>
+              <a href="#gallery" className="px-4 py-3 rounded-lg border border-white/20 text-white/90 hover:bg-white/5 transition">الأرشيف</a>
             </div>
           </motion.div>
         </div>
       </header>
 
       {/* MAIN */}
-      <main className="container mx-auto px-6 md:px-12 pb-20 -mt-12">
+      <main className="container mx-auto px-6 md:px-12 pb-28 -mt-14">
 
         {/* SUMMARY STATS */}
         <section className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
@@ -356,55 +378,50 @@ export default function ZamalekHistoryPro() {
           <StatCard title="كؤوس سوبر" value="5" colorClass="from-white to-red-50" />
         </section>
 
-        {/* TIMELINE (grouped by decade) */}
+        {/* TIMELINE HORIZONTAL */}
         <section id="timeline" className="mb-12">
-          <h2 className="text-3xl font-bold text-red-700 mb-6">الخط الزمني للقلعة البيضاء</h2>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-3xl font-bold text-red-700">الخط الزمني للقلعة البيضاء</h2>
+            <div className="text-sm text-gray-500">اسحب ↔ أو استخدم أسهم الكيبورد للتنقل</div>
+          </div>
 
-          <div className="space-y-10">
-            {decades.map((dec, idx) => (
-              <motion.div key={dec.decade} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.06 }} className="bg-white rounded-2xl shadow-lg border p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center text-red-700 font-bold text-lg">{dec.decade}</div>
-                    <div>
-                      <h3 className="text-xl font-semibold">حقبة {dec.decade}</h3>
-                      <p className="text-sm text-gray-500">محطات ومناسبات بارزة في هذه الفترة</p>
-                    </div>
-                  </div>
-                </div>
+          <div className="relative">
+            {/* left gradient */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-gray-50 to-transparent z-10" />
+            {/* right gradient */}
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-gray-50 to-transparent z-10" />
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {dec.items.map((it, i) => (
-                    <motion.article key={i} whileHover={{ y: -6 }} className="rounded-xl overflow-hidden border bg-gray-50">
-                      <div className="relative w-full h-44">
-                        <Image src={it.img} alt={it.title} fill className="object-cover" />
-                      </div>
-                      <div className="p-4">
-                        <div className="flex items-center justify-between">
-                          <h4 className="font-semibold text-red-800">{it.title}</h4>
-                          <div className="text-sm text-gray-500">{it.year}</div>
-                        </div>
-                        <p className="mt-2 text-sm text-gray-600 line-clamp-3">{it.description}</p>
-                        <div className="mt-4 flex justify-end">
-                          <button onClick={() => setSelected(it)} className="px-3 py-1 rounded-md bg-red-600 text-white text-sm">عرض التفاصيل</button>
-                        </div>
-                      </div>
-                    </motion.article>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
+            <div
+              ref={scrollerRef}
+              className="no-scrollbar flex gap-6 overflow-x-auto pb-6 scroll-smooth touch-pan-x"
+              role="list"
+              aria-label="Decade timeline scroller"
+            >
+              {decades.map((dec, idx) => (
+                <TimelineCard key={dec.decade} decade={dec.decade} items={dec.items} onOpen={setSelected} index={idx} />
+              ))}
+            </div>
+
+            {/* optional small controls */}
+            <div className="mt-3 flex gap-2 justify-end">
+              <button onClick={() => scrollerRef.current?.scrollBy({ left: -320, behavior: 'smooth' })} className="px-3 py-1 rounded-md bg-white border shadow-sm">◀</button>
+              <button onClick={() => scrollerRef.current?.scrollBy({ left: 320, behavior: 'smooth' })} className="px-3 py-1 rounded-md bg-red-600 text-white shadow-sm">▶</button>
+            </div>
           </div>
         </section>
 
         {/* MOMENTS (featured) */}
         <section id="moments" className="mb-12">
-          <h2 className="text-3xl font-bold text-red-700 mb-6">لحظات لا تُنسى</h2>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-3xl font-bold text-red-700">لحظات لا تُنسى</h2>
+            <div className="text-sm text-gray-500">مختارات من أرشيفنا مع وصف مختصر</div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {zamalekHistory.slice(0, 6).map((m, idx) => (
-              <motion.div key={idx} whileHover={{ scale: 1.02 }} className="bg-white rounded-2xl border shadow overflow-hidden">
+              <motion.div key={idx} whileHover={{ scale: 1.03 }} className="bg-white rounded-2xl border shadow overflow-hidden relative">
                 <div className="relative w-full h-56 bg-red-50 flex items-center justify-center">
-                  <Image src={m.img} alt={m.title} fill className="object-cover" />
+                  <Image src={m.img} alt={m.title} fill className="object-cover transition-transform duration-300 hover:scale-105" />
                 </div>
                 <div className="p-4">
                   <div className="flex items-center justify-between">
@@ -422,15 +439,19 @@ export default function ZamalekHistoryPro() {
         </section>
 
         {/* GALLERY PREVIEW */}
-        <section className="mb-14">
-          <h2 className="text-3xl font-bold text-red-700 mb-6">أرشيف الصور</h2>
+        <section id="gallery" className="mb-14">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-3xl font-bold text-red-700">أرشيف الصور</h2>
+            <div className="text-sm text-gray-500">تصفح صور مختارة من الأرشيف</div>
+          </div>
+
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {zamalekHistory.slice(0, 12).map((g, i) => (
-              <motion.button key={i} whileHover={{ scale: 1.03 }} onClick={() => setSelected(g)} className="group overflow-hidden rounded-lg shadow border border-red-100 bg-white">
+              <motion.button key={i} whileHover={{ scale: 1.03 }} onClick={() => setSelected(g)} className="group overflow-hidden rounded-lg shadow border border-red-100 bg-white text-left">
                 <div className="relative w-full h-40">
                   <Image src={g.img} alt={g.title} fill className="object-cover group-hover:scale-105 transition-transform" />
                 </div>
-                <div className="p-3 text-left">
+                <div className="p-3">
                   <div className="font-semibold text-red-800">{g.title}</div>
                   <div className="text-xs text-gray-500 mt-1">{g.year}</div>
                 </div>
@@ -450,9 +471,9 @@ export default function ZamalekHistoryPro() {
       <AnimatePresence>
         {selected && (
           <motion.div className="fixed inset-0 z-50 flex items-center justify-center p-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div className="absolute inset-0 bg-black/50" onClick={() => setSelected(null)} />
+            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setSelected(null)} />
 
-            <motion.div initial={{ y: 20, scale: 0.98 }} animate={{ y: 0, scale: 1 }} exit={{ y: 10, scale: 0.98 }} transition={{ duration: 0.18 }} className="relative z-10 w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden border">
+            <motion.div initial={{ y: 20, scale: 0.98 }} animate={{ y: 0, scale: 1 }} exit={{ y: 10, scale: 0.98 }} transition={{ duration: 0.18 }} className="relative z-10 w-full max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden border">
               <div className="grid grid-cols-1 md:grid-cols-2">
                 <div className="relative h-64 md:h-auto">
                   <Image src={selected.img} alt={selected.title} fill className="object-cover" />
@@ -463,6 +484,7 @@ export default function ZamalekHistoryPro() {
                   <p className="text-gray-700 leading-relaxed">{selected.description}</p>
 
                   <div className="mt-6 flex gap-3 justify-end">
+                    <a href={selected.source || '#'} target="_blank" rel="noreferrer" className="px-4 py-2 rounded-md border text-red-700">المصدر</a>
                     <button onClick={() => setSelected(null)} className="px-4 py-2 rounded-md bg-red-700 text-white">إغلاق</button>
                   </div>
                 </div>
@@ -475,6 +497,8 @@ export default function ZamalekHistoryPro() {
   )
 }
 
+// ---------- Sub components ----------
+
 function StatCard({ title, value, colorClass = 'from-white to-white' }) {
   return (
     <div className={`rounded-2xl p-5 border shadow bg-gradient-to-b ${colorClass}`}>
@@ -482,5 +506,41 @@ function StatCard({ title, value, colorClass = 'from-white to-white' }) {
       <div className="mt-3 text-3xl font-bold text-red-800">{value}</div>
       <div className="mt-2 text-xs text-gray-500">مسجلة عبر التاريخ</div>
     </div>
+  )
+}
+
+function TimelineCard({ decade, items = [], onOpen = () => {}, index = 0 }) {
+  return (
+    <motion.article whileHover={{ y: -6 }} transition={{ type: 'spring', stiffness: 220, damping: 22 }} className="min-w-[360px] flex-shrink-0 rounded-3xl bg-white shadow-lg border overflow-hidden">
+      <div className="p-4 border-b">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center text-red-700 font-bold text-lg">{decade}</div>
+          <div>
+            <h3 className="text-lg font-semibold">حقبة {decade}</h3>
+            <div className="text-sm text-gray-500">محطات بارزة</div>
+          </div>
+        </div>
+      </div>
+
+      <div className="p-4 space-y-4 max-h-[420px] overflow-y-auto">
+        {items.map((it, i) => (
+          <div key={i} className="flex gap-3 items-start">
+            <div className="w-16 h-16 relative rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
+              <Image src={it.img} alt={it.title} fill className="object-cover" />
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center justify-between">
+                <h4 className="font-semibold text-red-800">{it.title}</h4>
+                <span className="text-xs text-gray-500">{it.year}</span>
+              </div>
+              <p className="text-sm text-gray-600 mt-1 line-clamp-3">{it.description}</p>
+              <div className="mt-2 flex justify-end">
+                <button onClick={() => onOpen(it)} className="text-sm px-2 py-1 rounded-md bg-red-600 text-white">تفاصيل</button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </motion.article>
   )
 }

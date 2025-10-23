@@ -15,8 +15,8 @@ const videos = [
   {
     id: 2,
     title: 'تدريبات الفريق قبل اللقاء القادم 💪',
-    thumbnail: '/videos/video2.mp4',
-    src: '/videos/video2.mp4',
+    thumbnail: '/videos/video1.mp4',
+    src: '/videos/video1.mp4',
   },
   {
     id: 3,
@@ -28,7 +28,7 @@ const videos = [
     id: 4,
     title: 'اللقطات الأجمل من تاريخ القلعة البيضاء 🏛️',
     thumbnail: '/new.jpg',
-    src: '/videos/video4.mp4',
+    src: '/videos/video3.mp4',
   },
 ]
 

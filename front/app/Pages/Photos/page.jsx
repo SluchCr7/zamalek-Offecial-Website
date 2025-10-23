@@ -13,7 +13,7 @@ const currentImages = [
 
 const Page = () => {
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
+    <div dir="rtl" className="min-h-screen w-full bg-black text-white overflow-hidden">
       {/* Hero Section */}
       <div className="relative h-[70vh] flex flex-col justify-center items-center text-center">
         <Image
@@ -42,7 +42,7 @@ const Page = () => {
       </div>
 
       {/* Historic Images */}
-      <section id="gallery" className="container mx-auto px-6 py-8">
+      <section id="gallery" className="container w-full mx-auto px-6 py-8">
         <h2 className="text-3xl font-bold text-red-700 mb-6">أرشيف الصور</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {zamalekHistory.map((g, idx) => (

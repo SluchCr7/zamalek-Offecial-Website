@@ -1415,7 +1415,61 @@ export const zamalekStats = {
     {name : "جمال حمزه" , num : "43" , img :""},
     {name : "خالد الغندور" , num : "40" , img :""},
     {name : "طارق السيد" , num : "39" , img :""}
-  ]
+  ],
+  allTimeGreats: [
+    {
+      name: "عبد الواحد السيد",
+      matches: 513,
+      cleanSheets: 207,
+      titles: 20,
+      debut: 1997,
+      img: "",
+      notes: "أكثر حارس خدم الزمالك في التاريخ وأطولهم بقاءً في الفريق."
+    },
+    {
+      name: "عادل المأمور",
+      matches: 310,
+      cleanSheets: 120,
+      titles: 10,
+      debut: 1975,
+      img: "",
+      notes: "ساهم في التتويج الإفريقي الأول عام 1984 وأحد رموز الجيل الذهبي."
+    },
+    {
+      name: "حسن على",
+      matches: 250,
+      cleanSheets: 95,
+      debut: 1965,
+      titles: 8,
+      img: "",
+      notes: "من أبرز الحراس في الستينيات والسبعينيات ولقب بـ(السد العالي)."
+    },
+    {
+      name: "محمد أبو جبل",
+      matches: 135,
+      cleanSheets: 64,
+      titles: 6,
+      debut: 2019,
+      img: "",
+      notes: "تألق في دوري أبطال إفريقيا 2020 وكان بطل السوبر الإفريقي أمام الترجي."
+    },
+    {
+      name: "محمد عواد",
+      matches: 95,
+      cleanSheets: 42,
+      titles: 5,
+      debut: 2019,
+      img: "",
+      notes: "من أكثر الحراس ثباتًا في الأداء خلال مواسم 2021–2023."
+    },
+  ],
+  mostTrophiesWon: [
+    { name: "حازم إمام", trophies: 22, img: "" },
+    { name: "عبد الواحد السيد", trophies: 20, img: "" },
+    { name: "شيكابالا", trophies: 20, img: "" },
+    { name: "طارق حامد", trophies: 14, img: "" },
+    { name: "زيزو", trophies: 10, img: "" },
+  ],
 };
 
 

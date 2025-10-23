@@ -21,6 +21,7 @@ export default function Nav({opneModalAll , setOpenModalAll}) {
     { id: 5, title: 'الرؤساء', url: '/Pages/Presidents' },
     { id: 6, title: 'المتحف', url: '/Pages/Measum' },
     { id: 7, title: 'بطولات النادي', url: '/Pages/Champions' },
+    { id: 7, title: 'احصائيات النادي', url: '/Pages/Stats' },
   ]
 
   const links = [

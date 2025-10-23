@@ -15,6 +15,7 @@ import {
   LabelList,
 } from 'recharts'
 import { zamalekStats } from '@/utils/data'
+import Image from 'next/image'
 
 // ألوان الزمالك
 const COLORS = {
@@ -55,7 +56,7 @@ export default function ZamalekStatsPage() {
   }
 
   return (
-    <div dir="rtl" className="min-h-screen bg-white relative overflow-hidden">
+    <div dir="rtl" className="min-h-screen bg-white relative overflow-hidden w-full">
       {/* خلفية بخطوط حمراء خفيفة */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[10%] left-0 w-full h-1 bg-[#E30613]/10 rotate-[-3deg]" />
@@ -63,7 +64,7 @@ export default function ZamalekStatsPage() {
       </div>
 
       {/* الهيدر */}
-      <header className="bg-gradient-to-r from-white via-[#fff5f5] to-white shadow-sm relative z-10">
+      <header className="bg-gradient-to-r from-white via-[#fff5f5] to-white shadow-sm relative z-10 w-full">
         <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row items-center gap-6">
           <div className="flex-1 text-center md:text-right">
             <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900">
@@ -74,13 +75,13 @@ export default function ZamalekStatsPage() {
             </p>
           </div>
           <div className="p-2 bg-white rounded-full shadow-lg border border-red-100">
-            <img src="/zsc.png" className="w-20 md:w-24" alt="Zamalek logo" />
+            <Image width={100} height={100} src="/zsc.png" className="w-20 md:w-24" alt="Zamalek logo" />
           </div>
         </div>
       </header>
 
       {/* المحتوى */}
-      <main className="container mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <main className="container w-full mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
         
         {/* اليسار */}
         <section className="space-y-6">

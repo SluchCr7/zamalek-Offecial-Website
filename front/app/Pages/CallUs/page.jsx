@@ -20,7 +20,7 @@ const Page = () => {
         <p className="text-lg text-gray-600 italic mb-6">
           "الملوك لا يموتون... نحن زمالك"
         </p>
-        <p className="text-gray-700 max-w-md leading-relaxed">
+        <p className="text-gray-700 max-w-md text-center leading-relaxed">
           نادي الزمالك، أحد أعرق الأندية في تاريخ كرة القدم المصرية والإفريقية،
           تأسس عام 1911 وحقق العديد من البطولات المحلية والقارية.
           نحن أكثر من مجرد نادٍ، نحن كيان يعيش في قلوب جماهيره.

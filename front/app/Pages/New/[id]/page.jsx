@@ -32,7 +32,7 @@ const NewsPage = ({ params }) => {
       <div className="flex-1">
         
         {/* صورة الخبر */}
-        <div className="w-full h-full relative rounded-lg overflow-hidden shadow-md border border-gray-200">
+        <div className="w-full h-full relative rounded-lg overflow-hidden shadow-md border border-gray-200 flex flex-col gap-3 items-start">
           <Image
             src={newSelected.image}
             alt={newSelected.title}
@@ -40,26 +40,25 @@ const NewsPage = ({ params }) => {
             height={500}
             className="object-cover w-full h-auto hover:scale-105 transition-transform duration-500"
           />
-        </div>
+          {/* عنوان الخبر */}
+          <h1 className="mt-6 text-3xl md:text-4xl font-bold text-red-700 leading-snug">
+            {newSelected.title}
+          </h1>
 
-        {/* عنوان الخبر */}
-        <h1 className="mt-6 text-3xl md:text-4xl font-bold text-red-700 leading-snug">
-          {newSelected.title}
-        </h1>
+          {/* معلومات إضافية */}
+          <div className="flex items-center gap-6 mt-4 text-gray-500 text-sm">
+            <span className="flex items-center gap-1">
+              <Calendar size={16} /> {newSelected.date || 'غير محدد'}
+            </span>
+            <span className="flex items-center gap-1">
+              <User size={16} /> {newSelected.author || 'إدارة الأخبار'}
+            </span>
+          </div>
 
-        {/* معلومات إضافية */}
-        <div className="flex items-center gap-6 mt-4 text-gray-500 text-sm">
-          <span className="flex items-center gap-1">
-            <Calendar size={16} /> {newSelected.date || 'غير محدد'}
-          </span>
-          <span className="flex items-center gap-1">
-            <User size={16} /> {newSelected.author || 'إدارة الأخبار'}
-          </span>
-        </div>
-
-        {/* نص الخبر */}
-        <div className="mt-6 text-lg leading-loose text-gray-800 whitespace-pre-line">
-          {newSelected.content || 'lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda id quo tempora neque, esse quod repudiandae ipsum ab expedita itaque distinctio veritatis dolorum eius pariatur adipisci eligendi minima sint nisi?'}
+          {/* نص الخبر */}
+          <div className="mt-6 text-lg leading-loose text-gray-800 whitespace-pre-line">
+            {newSelected.content || 'lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda id quo tempora neque, esse quod repudiandae ipsum ab expedita itaque distinctio veritatis dolorum eius pariatur adipisci eligendi minima sint nisi?'}
+          </div>
         </div>
       </div>
 

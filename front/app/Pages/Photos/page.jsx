@@ -2,7 +2,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-
+import { zamalekHistory } from '@/utils/data'
 const historicImages = [
   '/new.jpg', '/new.jpg', '/new.jpg', '/new.jpg', '/new.jpg'
 ]
@@ -42,25 +42,21 @@ const Page = () => {
       </div>
 
       {/* Historic Images */}
-      <section className="py-16 px-8 bg-gradient-to-b from-black to-gray-900">
-        <h2 className="text-3xl font-semibold mb-10 text-center text-yellow-400">
-          📜 لقطات من التاريخ
-        </h2>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {historicImages.map((src, i) => (
+      <section id="gallery" className="container mx-auto px-6 py-8">
+        <h2 className="text-3xl font-bold text-red-700 mb-6">أرشيف الصور</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {zamalekHistory.map((g, idx) => (
             <motion.div
-              key={i}
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: 'spring', stiffness: 200 }}
-              className="overflow-hidden rounded-2xl border border-gray-700"
+              key={idx}
+              whileHover={{ scale: 1.03 }}
+              className="group relative overflow-hidden rounded-lg cursor-pointer bg-white border border-red-100"
+              onClick={() => setSelected(g)}
             >
-              <Image
-                src={src}
-                alt="Historic Zamalek"
-                width={400}
-                height={400}
-                className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
-              />
+              <Image src={g.img} alt={g.title} width={500} height={500} className="w-full h-48 object-cover" />
+              <div className="p-3">
+                <div className="font-semibold text-red-900">{g.title}</div>
+                <div className="text-xs text-gray-600">{g.year}</div>
+              </div>
             </motion.div>
           ))}
         </div>

@@ -3,8 +3,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Users, Heart, Share2, Camera, Download, Music, MessageCircle, Star, Award, Zap, Smile, Trophy } from 'lucide-react';
-
+import { Users, Heart, Share2, Camera, Download, Music, MessageCircle, Star, Award, Zap, Smile, Trophy, Play } from 'lucide-react';
+import { Play } from 'lucide-react';
 export default function FanZonePage() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden" dir="rtl">

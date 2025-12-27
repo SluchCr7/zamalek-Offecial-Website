@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
 import { Trophy, History, Shield, Users, ArrowRight, X, PlayCircle } from 'lucide-react';
 import { zamalekHistory } from '@/utils/data';
 import TitleSection from '@/Components/TitleSection';

@@ -1,17 +1,12 @@
 "use client";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+
 import { useState, useRef, useId, useEffect, useLayoutEffect } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronRight, ChevronLeft, LayoutGrid } from "lucide-react";
 
-// دمج ref المحلي مع Ref القياس من الأب
-const mergeRefs = (localRef, parentRef) => (el) => {
-  localRef.current = el;
-  if (parentRef) parentRef.current = el;
-};
-
-const Slide = ({ slide, index, current, handleSlideClick, itemRef }) => {
+const Slide = ({ slide, index, current, handleSlideClick }) => {
   const slideRef = useRef(null);
-
   const xRef = useRef(0);
   const yRef = useRef(0);
   const frameRef = useRef();
@@ -44,133 +39,89 @@ const Slide = ({ slide, index, current, handleSlideClick, itemRef }) => {
     yRef.current = 0;
   };
 
-  const imageLoaded = (event) => {
-    event.currentTarget.style.opacity = "1";
-  };
+  const { src, title, category } = slide;
+  const isActive = current === index;
 
-  const { src, title } = slide;
-
-  // خلي الـ <li> هو العنصر الجذري (بدون wrapper div) عشان يبقى ابن مباشر لـ <ul>
   return (
-    <li
-      ref={mergeRefs(slideRef, itemRef)}
-      className="flex-none basis-[280px] md:basis-[320px] relative text-center z-10 rounded-xl overflow-hidden shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-300
-                 [perspective:1200px] [transform-style:preserve-3d]"
+    <motion.li
+      ref={slideRef}
+      initial={{ opacity: 0, x: 20 }}
+      animate={{
+        opacity: 1,
+        x: 0,
+        scale: isActive ? 1 : 0.9,
+        rotateY: isActive ? 0 : index < current ? 15 : -15
+      }}
+      className="flex-none w-[300px] md:w-[450px] relative aspect-[16/10] group cursor-pointer transition-all duration-700 ease-out preserve-3d"
       onClick={() => handleSlideClick(index)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{
-        transform:
-          current !== index ? "scale(0.96) rotateX(8deg)" : "scale(1) rotateX(0deg)",
-        transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-        transformOrigin: "bottom",
-      }}
     >
-      <div
-        className="relative w-full"
-        style={{
-          transform:
-            current === index
-              ? "translate3d(calc(var(--x) / 30), calc(var(--y) / 30), 0)"
-              : "none",
-        }}
-      >
-        <Image
-          className="w-full h-auto object-contain transition-opacity duration-500"
-          alt={title}
-          src={src}
-          width={600}
-          height={400}
-          onLoad={imageLoaded}
-          loading="eager"
-          decoding="sync"
-          quality={100}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-      </div>
-    </li>
-  );
-};
+      <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden border border-border shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+        <div
+          className="relative w-full h-full transition-transform duration-500"
+          style={{
+            transform: isActive ? "translate3d(calc(var(--x) / 30), calc(var(--y) / 30), 0)" : "none",
+          }}
+        >
+          <Image
+            src={src}
+            alt={title}
+            fill
+            className="object-cover transition-transform duration-1000 group-hover:scale-110"
+            quality={100}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent group-hover:via-black/40 transition-colors" />
+        </div>
 
-const CarouselControl = ({ type, title, handleClick }) => {
-  return (
-    <button
-      className="w-10 h-10 flex items-center justify-center bg-neutral-200 dark:bg-neutral-800 
-                 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none 
-                 hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200"
-      title={title}
-      onClick={handleClick}
-    >
-      {type === "previous" ? (
-        <FaArrowLeft className="text-neutral-600 dark:text-neutral-200" />
-      ) : (
-        <FaArrowRight className="text-neutral-600 dark:text-neutral-200" />
-      )}
-    </button>
+        {/* Slide Info */}
+        <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col items-start translate-y-4 group-hover:translate-y-0 transition-transform duration-500" dir="rtl">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="w-8 h-[2px] bg-primary" />
+            <span className="text-primary font-black text-[10px] uppercase tracking-tighter">{category || "فريق"}</span>
+          </div>
+          <h3 className="text-2xl md:text-3xl font-black text-white font-heading leading-tight">{title}</h3>
+        </div>
+      </div>
+    </motion.li>
   );
 };
 
 export function Carousel({ slides }) {
   const [current, setCurrent] = useState(0);
-  const id = useId();
-
-  // refs للقياس
   const trackRef = useRef(null);
-  const firstCardRef = useRef(null);
+  const [step, setStep] = useState(474); // Default step for md+ screens
 
-  // مقدار الخطوة (عرض الكارت + الفجوة)
-  const [step, setStep] = useState(0);
-
-  // احسب step بدقة مع دعم تغيير المقاسات
-  useLayoutEffect(() => {
-    const computeStep = () => {
-      if (!firstCardRef.current || !trackRef.current) return;
-      const cardWidth = firstCardRef.current.offsetWidth;
-      const styles = window.getComputedStyle(trackRef.current);
-      const gap = parseFloat(styles.columnGap || "0") || 0;
-      setStep(cardWidth + gap);
+  useEffect(() => {
+    const handleResize = () => {
+      const width = trackRef.current?.offsetWidth || 0;
+      if (window.innerWidth < 768) {
+        setStep(316); // 300px width + 16px gap
+      } else {
+        setStep(474); // 450px width + 24px gap
+      }
     };
-
-    computeStep();
-
-    // راقب تغيّر أحجام العناصر
-    const ro = new ResizeObserver(computeStep);
-    if (trackRef.current) ro.observe(trackRef.current);
-    if (firstCardRef.current) ro.observe(firstCardRef.current);
-
-    window.addEventListener("resize", computeStep);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", computeStep);
-    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handlePreviousClick = () => {
-    setCurrent((c) => (c - 1 < 0 ? slides.length - 1 : c - 1));
-  };
-
-  const handleNextClick = () => {
-    setCurrent((c) => (c + 1 === slides.length ? 0 : c + 1));
-  };
-
-  const handleSlideClick = (index) => {
-    if (current !== index) setCurrent(index);
+  const handleMove = (dir) => {
+    if (dir === 'next') {
+      setCurrent(prev => (prev + 1) % slides.length);
+    } else {
+      setCurrent(prev => (prev - 1 < 0 ? slides.length - 1 : prev - 1));
+    }
   };
 
   return (
-    <div
-      className="relative w-full max-w-5xl mx-auto flex flex-col items-center"
-      aria-labelledby={`carousel-heading-${id}`}
-    >
-      {/* Viewport */}
-      <div className="w-full overflow-hidden">
-        {/* Track */}
-        <ul
+    <div className="relative w-full py-12">
+      <div className="overflow-visible md:overflow-hidden px-4 md:px-0">
+        <motion.ul
           ref={trackRef}
-          className="flex gap-4 md:gap-6 will-change-transform transition-transform duration-700 ease-out"
-          style={{
-            transform: `translateX(-${current * step}px)`,
-          }}
+          animate={{ x: -current * step }}
+          transition={{ type: "spring", damping: 25, stiffness: 120 }}
+          className="flex gap-4 md:gap-6"
         >
           {slides.map((slide, index) => (
             <Slide
@@ -178,26 +129,37 @@ export function Carousel({ slides }) {
               slide={slide}
               index={index}
               current={current}
-              handleSlideClick={handleSlideClick}
-              // مرر ref للعنصر الأول فقط للقياس
-              itemRef={index === 0 ? firstCardRef : undefined}
+              handleSlideClick={setCurrent}
             />
           ))}
-        </ul>
+        </motion.ul>
       </div>
 
-      {/* الأسهم تحت الكروت */}
-      <div className="flex justify-center items-center gap-4 mt-6">
-        <CarouselControl
-          type="previous"
-          title="Go to previous slide"
-          handleClick={handlePreviousClick}
-        />
-        <CarouselControl
-          type="next"
-          title="Go to next slide"
-          handleClick={handleNextClick}
-        />
+      {/* Navigation Controls */}
+      <div className="flex items-center justify-center gap-8 mt-16">
+        <button
+          onClick={() => handleMove('prev')}
+          className="w-14 h-14 rounded-full border border-border bg-card flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-xl"
+        >
+          <ChevronRight size={24} />
+        </button>
+
+        <div className="flex items-center gap-2">
+          {slides.map((_, i) => (
+            <div
+              key={i}
+              className={`h-1.5 transition-all duration-500 rounded-full ${i === current ? "w-12 bg-primary" : "w-1.5 bg-border"
+                }`}
+            />
+          ))}
+        </div>
+
+        <button
+          onClick={() => handleMove('next')}
+          className="w-14 h-14 rounded-full border border-border bg-card flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-xl"
+        >
+          <ChevronLeft size={24} />
+        </button>
       </div>
     </div>
   );

@@ -1,130 +1,152 @@
-'use client'
-import { useState } from 'react'
-import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
-import { X } from 'lucide-react'
-import TitleSection from './TitleSection'
+'use client';
+
+import { useState } from 'react';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, ShoppingBag, Eye, Shirt, Sparkles } from 'lucide-react';
+import Link from 'next/link';
 
 export default function ZamalekKitShowcase() {
   const kits = [
     {
       id: 'home',
-      name: 'القميص الأساسي',
+      name: 'طقم الملكي الأساسي',
       img: '/zamalekHomeNike.jpg',
-      desc: 'القميص الرسمي لموسم 2025 بخامات عالية الجودة وتصميم كلاسيكي أبيض بخطين أحمر.',
-      fabric: 'Dry-FIT Premium',
-      year: '2025',
-      price: '1199 جنيه'
+      desc: 'القميص التقليدي باللون الأبيض والخطين الحمراوين، يجسد تاريخ مدرسة الفن والهندسة.',
+      fabric: 'Nike VaporKnit',
+      year: '2025/26',
+      price: '1,299 EGP'
     },
     {
       id: 'away',
-      name: 'القميص الاحتياطي',
+      name: 'طقم الفرسان الاحتياطي',
       img: '/zamalekAwayNike.jpg',
-      desc: 'النسخة الاحتياطية باللون الأسود الجذاب وشعار الزمالك الذهبي.',
-      fabric: 'AeroSwift Performance',
-      year: '2025',
-      price: '1099 جنيه'
+      desc: 'تصميم عصري باللون الأسود العميق مع لمسات ذهبية تعكس الفخامة والقوة.',
+      fabric: 'Dri-FIT Advanced',
+      year: '2025/26',
+      price: '1,199 EGP'
     },
     {
       id: 'third',
-      name: 'القميص الثالث',
+      name: 'الطقم الثالث التاريخي',
       img: '/zamalekThird.jpg',
-      desc: 'تصميم خاص مستوحى من تاريخ النادي العريق، مزيج من الأناقة والجرأة.',
-      fabric: 'Breathable Mesh',
-      year: '2025',
-      price: '999 جنيه'
+      desc: 'نسخة تذكارية تحتفل بمرور 114 عاماً على تأسيس القلعة البيضاء العريقة.',
+      fabric: 'Sustainable Poly',
+      year: '2025/26',
+      price: '1,099 EGP'
     },
     {
       id: 'GK',
-      name: 'قميص الحارس',
+      name: 'طقم حامي العرين',
       img: '/zamalekGK.jpg',
-      desc: 'قميص الحارس الرسمي بتقنية Dri-FIT لراحة مثالية أثناء المباريات.',
-      fabric: 'Flex Dry Pro',
-      year: '2025',
-      price: '899 جنيه'
+      desc: 'درع الحارس باللون البنفسجي المميز، مصمم لأقصى درجات المرونة والتحمل.',
+      fabric: 'Flex Shield Tech',
+      year: '2025/26',
+      price: '999 EGP'
     },
-  ]
+  ];
 
-  const [selected, setSelected] = useState(null)
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.1, duration: 0.5 }
-    })
-  }
+  const [selected, setSelected] = useState(null);
 
   return (
-    <section dir="rtl" className="relative w-full min-h-screen bg-gradient-to-br from-white via-gray-50 to-gray-100 overflow-hidden py-20 px-6">
-      {/* خلفية زخرفية */}
-      <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-5 mix-blend-overlay pointer-events-none"></div>
+    <section className="py-24 bg-background relative overflow-hidden" dir="rtl">
+      {/* Decorative Background */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-border to-transparent" />
 
-      <TitleSection
-        title="ارتدِ الفخر"
-        subtitle="استكشف أطقم الزمالك الرسمية لموسم 2025 — تصميم يجمع بين التاريخ والأناقة، بخامات عالمية الجودة."
-      />
-
-      {/* السلايدر */}
-      <motion.div
-        className="mt-16 flex gap-8 overflow-x-auto pb-6 scrollbar-hide"
-        drag="x"
-        dragConstraints={{ left: -500, right: 0 }}
-      >
-        {kits.map((kit, i) => (
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
+        {/* Header */}
+        <div className="flex flex-col items-center text-center mb-20">
           <motion.div
-            key={kit.id}
-            custom={i}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            whileHover={{ scale: 1.05 }}
-            onClick={() => setSelected(kit)}
-            className="relative min-w-[320px] lg:min-w-[360px] h-[480px] bg-gradient-to-tr from-gray-100 to-white border border-gray-200/60 rounded-3xl shadow-xl cursor-pointer group overflow-hidden"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            className="flex items-center gap-2 text-primary font-black uppercase tracking-[0.3em] text-[10px] mb-4"
           >
-            <Image
-              src={kit.img}
-              alt={kit.name}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-110"
-              placeholder="blur"
-              blurDataURL="/blur-placeholder.png"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6 text-white">
-              <h3 className="text-2xl font-bold">{kit.name}</h3>
-              <p className="text-sm text-gray-200 mt-1 line-clamp-2">{kit.desc}</p>
-            </div>
+            <Shirt size={14} />
+            <span>متجر النادي الرسمي</span>
           </motion.div>
-        ))}
-      </motion.div>
+          <h2 className="text-4xl md:text-6xl font-black font-heading tracking-tighter mb-6">درع <span className="text-primary italic">الفرسان</span></h2>
+          <p className="text-sm md:text-lg font-bold opacity-60 max-w-2xl leading-relaxed">
+            استعرض الأطقم الرسمية لموسم 2025. جودة استثنائية وتصميم يعبر عن الهوية الملكية لنادي قرن حقيقي.
+          </p>
+        </div>
 
-      {/* المودال */}
+        {/* Kits Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {kits.map((kit, index) => (
+            <motion.div
+              key={kit.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+              onClick={() => setSelected(kit)}
+              className="group relative cursor-pointer"
+            >
+              <div className="relative aspect-[3/4] rounded-[2rem] overflow-hidden bg-muted border border-border shadow-xl transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-primary/10">
+                <Image
+                  src={kit.img}
+                  alt={kit.name}
+                  fill
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+
+                {/* Hover Action */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+                  <div className="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center shadow-2xl">
+                    <Eye size={24} />
+                  </div>
+                </div>
+
+                {/* Info Overlay */}
+                <div className="absolute inset-x-0 bottom-0 p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-primary mb-1 block">{kit.year}</span>
+                  <h3 className="text-xl font-black text-white leading-tight">{kit.name}</h3>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Bottom Action */}
+        <div className="mt-20 text-center">
+          <Link
+            href="/Pages/Store"
+            className="inline-flex items-center gap-4 bg-foreground text-background font-black px-12 py-5 rounded-full hover:scale-105 transition-all group"
+          >
+            <ShoppingBag size={20} />
+            <span>تسوق المجموعة الكاملة</span>
+          </Link>
+        </div>
+      </div>
+
+      {/* Detail Modal */}
       <AnimatePresence>
         {selected && (
           <motion.div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-xl"
             onClick={() => setSelected(null)}
           >
             <motion.div
-              onClick={(e) => e.stopPropagation()}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ type: 'spring', stiffness: 220, damping: 20 }}
-              className="relative bg-white rounded-3xl shadow-2xl overflow-hidden max-w-lg w-full"
+              initial={{ scale: 0.9, opacity: 0, y: 40 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 40 }}
+              className="relative w-full max-w-5xl bg-card rounded-[3rem] overflow-hidden border border-border grid grid-cols-1 md:grid-cols-2"
+              onClick={e => e.stopPropagation()}
             >
               <button
-                className="absolute top-4 left-4 text-gray-600 hover:text-red-700"
                 onClick={() => setSelected(null)}
+                className="absolute top-6 left-6 z-10 w-12 h-12 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-primary transition-colors"
+                dir="ltr"
               >
-                <X size={26} />
+                <X size={24} />
               </button>
 
-              <div className="relative w-full h-80">
+              {/* Image Side */}
+              <div className="relative aspect-square md:aspect-auto h-[400px] md:h-[600px]">
                 <Image
                   src={selected.img}
                   alt={selected.name}
@@ -133,37 +155,42 @@ export default function ZamalekKitShowcase() {
                 />
               </div>
 
-              <div className="p-6 text-center">
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">{selected.name}</h2>
-                <p className="text-gray-600 mb-4">{selected.desc}</p>
-
-                <div className="flex justify-center gap-6 text-sm text-gray-700 mb-4">
-                  <span>🧵 {selected.fabric}</span>
-                  <span>📅 {selected.year}</span>
-                  <span>💰 {selected.price}</span>
+              {/* Content Side */}
+              <div className="p-8 md:p-14 flex flex-col justify-center items-start text-right" dir="rtl">
+                <div className="flex items-center gap-2 text-primary font-black uppercase tracking-[0.2em] text-[10px] mb-6">
+                  <Sparkles size={14} />
+                  <span>الإصدار الأصلي</span>
                 </div>
 
-                <motion.button
-                  whileHover={{ scale: 1.07 }}
-                  className="px-8 py-3 bg-gradient-to-r from-red-700 to-red-500 text-white font-semibold rounded-xl shadow-md hover:shadow-lg transition"
-                >
-                  اشترِ الآن
-                </motion.button>
+                <h2 className="text-4xl md:text-5xl font-black font-heading mb-6 leading-tight">{selected.name}</h2>
+                <p className="text-lg font-bold opacity-60 leading-relaxed mb-10">
+                  {selected.desc}
+                </p>
+
+                <div className="grid grid-cols-2 gap-8 w-full mb-12">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-black uppercase opacity-40">الخامات</span>
+                    <p className="font-black text-sm">{selected.fabric}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-black uppercase opacity-40">السعر</span>
+                    <p className="font-black text-xl text-primary">{selected.price}</p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 w-full">
+                  <button className="flex-1 py-5 rounded-2xl bg-primary text-white font-black hover:bg-primary-hover transition-all shadow-xl shadow-primary/20">
+                    أضف إلى السلة
+                  </button>
+                  <button className="flex-1 py-5 rounded-2xl bg-muted border border-border font-black hover:bg-border transition-all">
+                    دليل المقاسات
+                  </button>
+                </div>
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </section>
-  )
+  );
 }

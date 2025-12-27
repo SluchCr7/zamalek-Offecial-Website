@@ -1,6 +1,7 @@
 "use client"
+
 import { motion } from "framer-motion"
-import { CalendarDays, MapPin, Plane, Home, Timer } from "lucide-react"
+import { CalendarDays, MapPin, Plane, Home, Timer, Trophy } from "lucide-react"
 import { useEffect, useState } from "react"
 import Image from "next/image"
 
@@ -16,7 +17,7 @@ export default function Match({ match }) {
       const diff = matchDate - now
 
       if (diff <= 0) {
-        setTimeLeft("Starting soon...")
+        setTimeLeft("قريباً...")
         return
       }
 
@@ -24,7 +25,7 @@ export default function Match({ match }) {
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24)
       const minutes = Math.floor((diff / (1000 * 60)) % 60)
 
-      setTimeLeft(`${days > 0 ? days + "d " : ""}${hours}h ${minutes}m`)
+      setTimeLeft(`${days > 0 ? days + "ي " : ""}${hours}س ${minutes}د`)
     }
 
     updateCountdown()
@@ -33,81 +34,93 @@ export default function Match({ match }) {
   }, [match.date, match.status])
 
   const statusColors = {
-    Live: "bg-[#d50000] animate-pulse text-white",
-    Finished: "bg-green-600 text-white",
-    Upcoming: "bg-blue-600 text-white",
+    Live: "bg-primary animate-pulse text-white shadow-lg shadow-primary/40",
+    Finished: "bg-secondary text-secondary-foreground border border-border",
+    Upcoming: "bg-muted text-muted-foreground border border-border",
   }
 
   return (
     <motion.div
-      whileHover={{ y: -8, scale: 1.03 }}
-      transition={{ duration: 0.3 }}
-      className="bg-white rounded-2xl shadow-[0_4px_25px_#00000020] p-6 w-full relative overflow-hidden border border-gray-200"
+      whileHover={{ y: -5 }}
+      className="bg-card rounded-3xl p-6 w-full relative overflow-hidden border border-border group transition-all duration-300 hover:shadow-2xl hover:shadow-black/10"
     >
-      {/* شريط علوي */}
-      <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#d50000] via-[#b80000] to-[#d50000]" />
-
-      {/* البطولة والتاريخ */}
-      <div className="flex items-center justify-between mb-4 mt-2">
-        <h3 className="text-base font-bold text-gray-800">{match.competition}</h3>
-        <div className="flex items-center text-xs text-gray-500 gap-1">
-          <CalendarDays size={14} /> {match.date}
+      {/* Competition & Date */}
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+            <Trophy size={16} />
+          </div>
+          <span className="text-sm font-black uppercase tracking-tight opacity-70">{match.competition}</span>
+        </div>
+        <div className="flex items-center gap-1.5 text-[11px] font-bold opacity-50">
+          <CalendarDays size={14} />
+          <span>{match.date}</span>
         </div>
       </div>
 
-      {/* الفرق */}
-      <div className="flex items-center justify-between">
-        {/* الزمالك */}
-        <div className="flex flex-col items-center w-1/3">
-          <Image src="/teams/zamalek.png" alt="Zamalek Logo" width={55} height={55} />
+      {/* Teams & Score */}
+      <div className="flex items-center justify-between mb-8">
+        {/* Home Team */}
+        <div className="flex flex-col items-center flex-1 gap-3">
+          <div className="relative w-16 h-16 md:w-20 md:h-20 transition-transform group-hover:scale-110 duration-500">
+            <Image src="/teams/zamalek.png" alt="Zamalek" fill className="object-contain" />
+          </div>
+          <span className="text-sm font-black text-center leading-none">الزمالك</span>
         </div>
 
-        {/* النتيجة */}
-        <div className="flex flex-col items-center">
-          <p className="text-3xl font-extrabold text-gray-800 tracking-wide">
-            {match.result || "- : -"}
-          </p>
-          <span
-            className={`mt-1 px-3 py-0.5 rounded-full text-xs font-semibold ${statusColors[match.status]}`}
-          >
-            {match.status}
-          </span>
+        {/* Score/Status */}
+        <div className="flex flex-col items-center px-4">
+          <div className="text-3xl md:text-4xl font-black tracking-tighter mb-2 font-heading">
+            {match.status === "Upcoming" ? "VS" : match.result}
+          </div>
+          <div className={`px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${statusColors[match.status]}`}>
+            {match.status === "Live" ? "مباشر" : match.status === "Finished" ? "انتهت" : "قريباً"}
+          </div>
           {match.status === "Upcoming" && (
-            <div className="flex items-center gap-1 text-xs text-gray-600 mt-1">
-              <Timer size={12} /> {timeLeft}
+            <div className="flex items-center gap-1.5 text-[11px] font-bold opacity-60 mt-2">
+              <Timer size={12} />
+              <span>{timeLeft}</span>
             </div>
           )}
         </div>
 
-        {/* الفريق المنافس */}
-        <div className="flex flex-col items-center gap-2 w-1/3">
-          <img
-            src={`/teams/${match.opponentLogo}`}
-            alt={`${match.opponent} Logo`}
-            className="w-14 h-14 object-contain"
-          />
+        {/* Away Team */}
+        <div className="flex flex-col items-center flex-1 gap-3">
+          <div className="relative w-16 h-16 md:w-20 md:h-20 transition-transform group-hover:scale-110 duration-500">
+            <Image
+              src={`/teams/${match.opponentLogo}`}
+              alt={match.opponent}
+              fill
+              className="object-contain"
+            />
+          </div>
+          <span className="text-sm font-black text-center leading-none">{match.opponent}</span>
         </div>
       </div>
 
-      {/* تفاصيل إضافية */}
-      <div className="flex items-center justify-between text-xs text-gray-500 mt-5 pt-3 border-t">
-        <div className="flex items-center gap-1">
-          <MapPin size={12} /> {match.city || "Cairo"}
+      {/* Footer Info */}
+      <div className="flex items-center justify-between pt-4 border-t border-border mt-auto">
+        <div className="flex items-center gap-1.5 opacity-60">
+          <MapPin size={12} className="text-primary" />
+          <span className="text-[10px] font-bold">{match.city || "القاهرة"}</span>
         </div>
-        <div className="flex items-center gap-2">
-          {match.matchType === "Home" && (
-            <span className="flex items-center gap-1 text-green-600 font-medium">
-              <Home size={14} /> Home
-            </span>
-          )}
-          {match.matchType === "Away" && (
-            <span className="flex items-center gap-1 text-blue-600 font-medium">
-              <Plane size={14} /> Away
-            </span>
-          )}
-        </div>
-        <div className="flex items-center gap-1">
-          ⚖️ {match.referee || "Referee TBD"}
+
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5">
+            {match.matchType === "Home" ? (
+              <div className="flex items-center gap-1 text-primary">
+                <Home size={12} />
+                <span className="text-[10px] font-black uppercase">أرضنا</span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-1 opacity-60">
+                <Plane size={12} />
+                <span className="text-[10px] font-black uppercase">خارج</span>
+              </div>
+            )}
+          </div>
+          <div className="w-1 h-1 rounded-full bg-border" />
+          <span className="text-[10px] font-bold opacity-60">{match.referee || "طاقم تحكيم"}</span>
         </div>
       </div>
     </motion.div>

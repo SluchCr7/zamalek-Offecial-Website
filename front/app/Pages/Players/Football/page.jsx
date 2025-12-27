@@ -79,7 +79,8 @@ const Page = () => {
             ))
           :
           filteredPlayers.map((player, idx) => (
-            <motion.div
+            <Link
+              href={`/Pages/Players/Football/${encodeURIComponent(player.name)}`}
               key={idx}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -88,7 +89,7 @@ const Page = () => {
               className="group relative rounded-2xl overflow-hidden shadow-lg bg-white border border-gray-200 hover:shadow-2xl transition-all duration-300"
             >
               {/* Player Image */}
-              <Link href={`/Pages/Players/Football/${encodeURIComponent(player.name)}`}  className="relative w-full h-[380px]">
+              <div className="relative w-full h-[380px]">
                 <Image 
                   // src={player.img}
                   src={'/no_img.jpg'}
@@ -97,7 +98,7 @@ const Page = () => {
                   height={500}
                   className="object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer"
                 />
-              </Link>
+              </div>
 
               {/* Info Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 translate-y-full group-hover:translate-y-0 transition-all duration-500 ease-out flex flex-col justify-end p-5 text-white">
@@ -113,7 +114,7 @@ const Page = () => {
                 <h4 className="font-bold text-lg text-red-700">{player.name}</h4>
                 <p className="text-sm text-gray-600">{player.position}</p>
               </div>
-            </motion.div>
+            </Link>
           ))
         }
       </div>

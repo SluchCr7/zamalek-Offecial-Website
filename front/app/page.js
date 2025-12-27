@@ -18,17 +18,15 @@ export default function Home() {
     <div className="overflow-hidden min-h-screen w-full">
       <HeroNews />
       <MatchesSlider />
-      <div className="w-full max-w-7xl mx-auto relative">
-        <News/>
+      <div className="w-full relative">
+        <News />
         <Table />
-        <TeamsSlider/>
-        <ZamalekAchievements/>
-        <FirstTeam/>
-        <ZamalekKitShowcase/>
-        {/* <ZamalekStoreBanner/> */}
-      
+        <TeamsSlider />
+        <ZamalekAchievements />
+        <FirstTeam />
+        <ZamalekKitShowcase />
       </div>
-      <ArrowTopButton/>
+      <ArrowTopButton />
     </div>
   );
 }

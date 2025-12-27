@@ -1,121 +1,180 @@
-'use client'
-import React, { useState } from 'react'
-import Image from 'next/image'
-import { motion } from 'framer-motion'
-import CountUp from 'react-countup'
-import { zamalekTitles } from '@/utils/data'
-import TitleSection from './TitleSection'
+'use client';
+
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import CountUp from 'react-countup';
+import { zamalekTitles } from '@/utils/data';
+import { X, Trophy, History, Calendar, ChevronLeft } from 'lucide-react';
 
 export default function ZamalekAchievements() {
-  const [selected, setSelected] = useState(null)
+  const [selected, setSelected] = useState(null);
 
-  // sort descending by num for display
-  const items = [...zamalekTitles].sort((a, b) => b.num - a.num).slice(0, 3)
+  // Take top items for the home page showcase
+  const items = [...zamalekTitles].sort((a, b) => b.num - a.num).slice(0, 3);
 
   return (
-    <section className="w-full min-h-screen bg-white py-24 px-6 md:px-12">
-      <div className="max-w-6xl mx-auto">
-        <TitleSection title="إنجازات نادي الزمالك" subtitle="ألقاب وبطولات عبر التاريخ" />
+    <section className="py-24 bg-background relative overflow-hidden">
+      {/* Decorative Text */}
+      <div className="absolute top-0 right-0 text-[15rem] font-black text-primary/5 select-none pointer-events-none translate-x-1/4 -translate-y-1/4 italic leading-none">
+        TITLES
+      </div>
+
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
+        {/* Header */}
+        <div className="flex flex-col items-center text-center mb-16" dir="rtl">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            className="flex items-center gap-2 text-primary font-black uppercase tracking-widest text-sm mb-4"
+          >
+            <Trophy size={16} />
+            <span>خزائن البطولات</span>
+          </motion.div>
+          <h2 className="text-4xl md:text-6xl font-black font-heading tracking-tighter">قاعة <span className="text-primary italic">الأمجاد</span></h2>
+        </div>
+
         {/* Grid */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-        >
-          {items.map((t, idx) => (
-            <motion.button
-              key={t.Title}
-              onClick={() => setSelected(t)}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.99 }}
-              className="relative group bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 text-left p-6 flex flex-col items-start"
-              aria-label={`عرض تفاصيل ${t.Title}`}
-            >
-              {/* Trophy image */}
-              <div className="w-full flex justify-center items-center mb-4">
-                <div className="relative w-28 h-28 md:w-32 md:h-32 transition-transform group-hover:scale-105">
-                  <Image src={t.img} alt={t.Title} fill sizes="(max-width: 768px) 28vw, 120px" style={{ objectFit: 'contain' }} />
-                </div>
-              </div>
-
-              {/* Title */}
-              <h3 className="text-lg font-semibold text-gray-900 mb-1">{t.Title}</h3>
-
-              {/* Count / badge */}
-              <div className="mt-auto flex items-center justify-between w-full">
-                <div className="flex items-center gap-3">
-                  <div className="bg-red-50 text-red-700 px-3 py-1 rounded-full font-bold text-xl">
-                    <CountUp end={t.num} duration={1.5} />
-                  </div>
-                  <span className="text-sm text-gray-500">مرة / مرات</span>
-                </div>
-
-                {/* subtle chevron */}
-                <svg className="w-6 h-6 text-gray-400 group-hover:text-red-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-
-              {/* Hover overlay shimmer */}
-              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-red-50 opacity-40 mix-blend-multiply"></div>
-              </div>
-            </motion.button>
-          ))}
-        </motion.div>
-
-
-        {/* Modal for details */}
-        {selected && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-6">
-            <div className="absolute inset-0 bg-black/60" onClick={() => setSelected(null)} />
-
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {items.map((title, index) => (
             <motion.div
-              initial={{ y: 40, opacity: 0, scale: 0.98 }}
-              animate={{ y: 0, opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              className="relative z-10 max-w-3xl w-full bg-white rounded-2xl shadow-2xl p-6 md:p-10"
+              key={title.Title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+              onClick={() => setSelected(title)}
+              className="group relative cursor-pointer"
             >
-              <button
-                onClick={() => setSelected(null)}
-                className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
-                aria-label="إغلاق"
-              >
-                ✕
-              </button>
-
-              <div className="flex flex-col md:flex-row items-center gap-6">
-                <div className="w-36 h-36 relative flex-shrink-0">
-                  <Image src={selected.img} alt={selected.Title} fill style={{ objectFit: 'contain' }} />
+              <div className="absolute inset-0 bg-primary/5 rounded-[2.5rem] transform group-hover:scale-95 transition-transform duration-500" />
+              <div className="relative bg-card border border-border rounded-[2.5rem] p-8 md:p-10 flex flex-col items-center text-center shadow-xl hover:shadow-2xl transition-all duration-500">
+                {/* Trophy Showcase */}
+                <div className="relative w-40 h-40 mb-8 transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-6">
+                  <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full scale-50 group-hover:scale-100 transition-transform" />
+                  <Image
+                    src={title.img}
+                    alt={title.Title}
+                    fill
+                    className="object-contain drop-shadow-2xl"
+                  />
                 </div>
 
-                <div className="flex-1">
-                  <h3 className="text-2xl font-extrabold text-gray-900">{selected.Title}</h3>
-                  <p className="mt-2 text-gray-600">عدد المرات: <span className="font-bold text-red-600">{selected.num}</span></p>
-                  <div className='grid grid-cols-3 md:grid-cols-6 w-full gap-3'>
-                    {
-                      selected.years.map((year, index) => (
-                        <p key={index} className="text-white p-2 rounded-xl bg-red-400 text-center">{year}</p>
-                      ))
-                    }
-                  </div>
-                  <div className="mt-4 text-gray-700">
-                    {/* Placeholder for more historical info. You can replace this with real content or props. */}
-                    <p>هنا يمكنك إضافة نبذة تاريخية عن البطولة، أهم لحظات الفوز، أعوام التتويج أو صور لمباريات التتويج.</p>
-                  </div>
+                {/* Info */}
+                <h3 className="text-2xl font-black font-heading mb-4 leading-tight">{title.Title}</h3>
 
-                  <div className="mt-6 flex gap-3">
-                    <a href="#" onClick={(e)=>e.preventDefault()} className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-red-600 text-red-600 font-semibold">سجل الأعوام</a>
-                    <button onClick={() => setSelected(null)} className="px-4 py-2 rounded-lg bg-red-600 text-white font-semibold">إغلاق</button>
+                <div className="flex items-center gap-4">
+                  <div className="text-5xl font-black text-primary italic">
+                    <CountUp end={title.num} enableScrollSpy />
                   </div>
+                  <div className="text-right">
+                    <div className="text-[10px] font-black uppercase opacity-40">مرات</div>
+                    <div className="text-sm font-bold">التتويج</div>
+                  </div>
+                </div>
+
+                {/* Action Decor */}
+                <div className="mt-8 pt-8 border-t border-border w-full flex items-center justify-between opacity-40 group-hover:opacity-100 transition-opacity">
+                  <span className="text-[10px] font-black uppercase tracking-widest">عرض سجل البطولات</span>
+                  <ChevronLeft size={16} />
                 </div>
               </div>
             </motion.div>
-          </div>
-        )}
+          ))}
+        </div>
+
+        {/* Global Action */}
+        <div className="mt-20 text-center">
+          <button className="inline-flex items-center gap-4 px-10 py-5 rounded-full border border-border font-black text-sm hover:bg-foreground hover:text-background transition-all group">
+            <History size={18} />
+            <span>استكشف السجل الكامل للبطولات (114 عام)</span>
+          </button>
+        </div>
       </div>
+
+      {/* Modal Hall of Fame */}
+      <AnimatePresence>
+        {selected && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-xl"
+            onClick={() => setSelected(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 40 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 40 }}
+              className="relative w-full max-w-4xl bg-card rounded-[3rem] overflow-hidden border border-border flex flex-col md:flex-row"
+              onClick={e => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setSelected(null)}
+                className="absolute top-6 left-6 z-10 w-12 h-12 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-primary transition-colors"
+                dir="ltr"
+              >
+                <X size={24} />
+              </button>
+
+              {/* Visual Side */}
+              <div className="md:w-2/5 p-12 bg-muted/50 flex flex-col items-center justify-center text-center">
+                <div className="relative w-full aspect-square mb-8">
+                  <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full" />
+                  <Image
+                    src={selected.img}
+                    alt={selected.Title}
+                    fill
+                    className="object-contain drop-shadow-2xl"
+                  />
+                </div>
+                <h4 className="text-[10px] font-black uppercase tracking-widest text-primary mb-2">عدد الألقاب</h4>
+                <div className="text-7xl font-black italic text-primary leading-none mb-4">
+                  {selected.num}
+                </div>
+              </div>
+
+              {/* Details Side */}
+              <div className="md:w-3/5 p-8 md:p-16 flex flex-col justify-center items-start text-right" dir="rtl">
+                <div className="flex items-center gap-2 text-primary font-black uppercase tracking-[0.2em] text-[10px] mb-6">
+                  <History size={14} />
+                  <span>تاريخ البطولات</span>
+                </div>
+
+                <h2 className="text-4xl md:text-5xl font-black font-heading mb-8 leading-tight">{selected.Title}</h2>
+
+                <div className="space-y-8 w-full">
+                  <div>
+                    <span className="text-[10px] font-black uppercase opacity-40 mb-4 block">سنوات التتويج</span>
+                    <div className="flex flex-wrap gap-2">
+                      {selected.years.map((year, i) => (
+                        <div key={i} className="px-4 py-2 rounded-xl bg-muted border border-border text-sm font-black flex items-center gap-2">
+                          <Calendar size={12} className="text-primary" />
+                          {year}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="p-6 rounded-2xl bg-primary/5 border border-primary/10">
+                    <p className="text-sm font-bold leading-relaxed opacity-60">
+                      يُعتبر نادي الزمالك أحد أكثر الأندية تحقيقاً لهذه البطولة تاريخياً، حيث سطر الفرسان ملاحم كروية خالدة في ذاكرة الجماهير البيضاء عبر العصور.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-12 flex gap-4 w-full">
+                  <button className="flex-1 py-4 rounded-2xl bg-foreground text-background font-black text-sm hover:scale-[1.02] transition-all">
+                    عرض معرض الصور
+                  </button>
+                  <button onClick={() => setSelected(null)} className="flex-1 py-4 rounded-2xl bg-muted border border-border font-black text-sm hover:bg-border transition-all">
+                    رجوع
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
-  )
+  );
 }

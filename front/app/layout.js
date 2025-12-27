@@ -1,44 +1,46 @@
-import { JetBrains_Mono } from "next/font/google";
+import { Inter, Barlow, Lateef } from "next/font/google";
 import "./globals.css";
-import Nav from "@/Components/Nav";
-import {Lateef} from 'next/font/google'
-import Footer from "@/Components/Footer";
-import Song from "@/Components/Song";
 import { NewsContextProvider } from "./Context/NewsContext";
 import { AlertContextProvider } from "./Context/AlertContext";
 import { AuthContextProvider } from "./Context/AuthContext";
-import AddNewsModal from "@/Components/ModalNewAdd";
+import { ThemeProvider } from "./Context/ThemeContext";
 import LayoutComponent from "@/Components/LayoutComponent";
-const jetBrainsMono = JetBrains_Mono({
-  subsets: ["latin"]
-  , weight: ["100", "200"]
-  , style: ["normal", "italic"]
-})
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const barlow = Barlow({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-barlow",
+});
 
 const lateef = Lateef({
-  subsets: ["latin"]
-  , weight: ["400", "700"]
-  , style: ["normal"]
-})
+  subsets: ["arabic"],
+  weight: ["400", "700"],
+  variable: "--font-lateef",
+});
 
 export const metadata = {
-  title: "نادي الزمالك للالعاب الرياضيه",
-  description: "نادي الزمالك للالعاب الرياضيه",
+  title: "Zamalek SC | Official Website",
+  description: "Official website of Zamalek Sporting Club - The Pride of Art and Engineering.",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${lateef.className} antialiased bg-white`}
-      >
-        <AlertContextProvider>
-          <AuthContextProvider>
-            <NewsContextProvider>
-              <LayoutComponent>{children}</LayoutComponent>
-            </NewsContextProvider>
-          </AuthContextProvider>
-        </AlertContextProvider>
+    <html lang="en" className={`${inter.variable} ${barlow.variable} ${lateef.variable}`}>
+      <body className="font-body antialiased">
+        <ThemeProvider>
+          <AlertContextProvider>
+            <AuthContextProvider>
+              <NewsContextProvider>
+                <LayoutComponent>{children}</LayoutComponent>
+              </NewsContextProvider>
+            </AuthContextProvider>
+          </AlertContextProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

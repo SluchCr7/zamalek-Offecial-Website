@@ -1,36 +1,48 @@
-'use client'
-import React, { useState, useEffect } from 'react'
-import { FaArrowUp } from 'react-icons/fa6'
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUp } from 'lucide-react';
 
 const ArrowTopButton = () => {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
 
-  // مراقبة السكول
   useEffect(() => {
     const toggleVisibility = () => {
-      setIsVisible(window.scrollY > 100)
-    }
-    window.addEventListener('scroll', toggleVisibility)
-    return () => window.removeEventListener('scroll', toggleVisibility)
-  }, [])
+      setIsVisible(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener('scroll', toggleVisibility);
+  }, []);
 
   const handleScroll = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
-    })
-  }
+    });
+  };
 
   return (
-    isVisible && (
-      <button
-        className="fixed bottom-6 w-8 h-8 md:w-12 md:h-12 flex items-center justify-center left-20 bg-red-600 text-white p-3 rounded-full shadow-lg hover:bg-red-700 transition"
-        onClick={handleScroll}
-      >
-        <FaArrowUp size={18} />
-      </button>
-    )
-  )
-}
+    <AnimatePresence>
+      {isVisible && (
+        <motion.button
+          initial={{ opacity: 0, y: 20, scale: 0.8 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 20, scale: 0.8 }}
+          whileHover={{ scale: 1.1, y: -5 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={handleScroll}
+          className="fixed bottom-10 left-10 z-[100] w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center shadow-2xl shadow-primary/30 group"
+          aria-label="Back to Top"
+        >
+          {/* Animated Background Pulse */}
+          <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-20 group-hover:opacity-40" />
 
-export default ArrowTopButton
+          <ArrowUp size={24} className="relative z-10 transition-transform group-hover:-translate-y-1" />
+        </motion.button>
+      )}
+    </AnimatePresence>
+  );
+};
+
+export default ArrowTopButton;

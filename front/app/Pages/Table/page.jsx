@@ -3,7 +3,7 @@
 import React, { useMemo, useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Trophy, Award, ShieldCheck, ChevronUp, ChevronDown, Sliders, Info, Zap, TrendingUp } from 'lucide-react';
+import { Trophy, Award, ShieldCheck, ChevronUp, ChevronDown, Sliders, Info, Zap, TrendingUp, ChevronRight } from 'lucide-react';
 import {
   zamalekTable,
   zamalekTopGoalsLiveSeasson,

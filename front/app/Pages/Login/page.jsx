@@ -1,118 +1,152 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { useAuth } from '@/app/Context/AuthContext'
+import React, { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { Mail, Lock, ShieldCheck, Github, Chrome, ArrowRight } from 'lucide-react';
+import { useGlobalContext } from '@/context/globalContext';
 
-const LoginPage = () => {
-  const [Email, setEmail] = useState('');
-  const [Password, setPassword] = useState('');
-  const { login } = useAuth()
-  const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+export default function LoginPage() {
+  const { login } = useGlobalContext();
+  const [formData, setFormData] = useState({ email: '', password: '' });
+
   const handleLogin = (e) => {
     e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      if (Password != "" || Email != "") login(Email, Password)
-    }, 1500);
+    if (formData.email && formData.password) {
+      login(formData.email, formData.password);
+    }
   };
+
   return (
-    <div dir='rtl' className="min-h-screen flex flex-col lg:flex-row bg-gradient-to-br from-white via-gray-50 to-gray-200">
-      
-      {/* Left Side - Info */}
-      <div className="flex-1 flex flex-col items-center justify-center p-8 text-center bg-white shadow-lg">
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="mb-6"
-        >
-          <Image
-            src="/zsc.png"
-            alt="Zamalek Logo"
-            width={180}
-            height={180}
-            className="drop-shadow-xl"
-          />
-        </motion.div>
+    <div className="min-h-screen bg-background flex flex-col md:flex-row overflow-hidden" dir="rtl">
 
-        <motion.h1
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-3xl font-bold text-red-700"
-        >
-        اكبر قلعه رياضية في مصر
-        </motion.h1>
+      {/* Background Decor */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 pointer-events-none blur-[120px]" />
 
-        <motion.p
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-4 text-gray-600 max-w-md"
-        >
-          قم بتسجيل الدخول للوصول إلى أحدث الأخبار، نتائج المباريات، وتاريخ نادي الزمالك العريق.
-        </motion.p>
-      </div>
-
-      {/* Right Side - Form */}
-      <div className="flex-1 flex items-center justify-center p-8">
-        <motion.form
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg"
-          onSubmit={(e)=> handleLogin(e)}
-        >
-          <h2 className="text-2xl font-bold mb-6 text-gray-800">تسجيل الدخول</h2>
-
-          <div className="mb-4">
-            <label className="block text-gray-600 mb-2">البريد الإلكتروني</label>
-            <input
-              type="email"
-              placeholder="example@email.com"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500"
-            value={Email}
-            onChange={(e) => setEmail(e.target.value)}
+      {/* Visual Side (Heritage) */}
+      <motion.div
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        className="hidden lg:flex relative w-1/2 flex-col justify-end p-20"
+      >
+        <Image
+          src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=2076&auto=format&fit=crop"
+          alt="Zamalek Heritage"
+          fill
+          className="object-cover grayscale opacity-40"
+          priority
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+
+        <div className="relative z-10 space-y-6">
+          <div className="w-20 h-20 relative p-4 bg-white rounded-3xl shadow-2xl">
+            <Image src="/teams/zamalek.png" alt="Zamalek SC" fill className="object-contain p-2" />
           </div>
-
-          <div className="mb-6">
-            <label className="block text-gray-600 mb-2">كلمة المرور</label>
-            <input
-              type="password"
-              placeholder="********"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500"
-            value={Password}
-            onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-
-          <motion.button
-            whileTap={{ scale: 0.97 }}
-            disabled={loading}
-            className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition disabled:opacity-50 flex items-center justify-center gap-2"
-          >
-            {loading && (
-              <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a12 12 0 100 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"></path>
-              </svg>
-            )}
-            {loading ? 'جاري تسجيل الدخول' : 'تسجيل الدخول'}
-          </motion.button>
-          
-
-          <p className="mt-4 text-sm text-gray-500">
-            ليس لديك حساب؟ <a href="/Pages/Register" className="text-red-600 hover:underline">سجّل الآن</a>
+          <h1 className="text-6xl font-black font-heading leading-tight italic">
+            أهلاً بك في <br />
+            <span className="text-primary not-italic">بيت الأبطال</span>
+          </h1>
+          <p className="text-xl font-bold opacity-60 max-w-md">
+            سجل دخولك لتتمتع بكافة مميزات العضوية الرقمية، متابعة فريقك المفضل، والحصول على تجربة مشجع استثنائية.
           </p>
-        </motion.form>
-      </div>
-    </div>
-  )
-}
+        </div>
+      </motion.div>
 
-export default LoginPage
+      {/* Form Side */}
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        className="flex-1 flex flex-col items-center justify-center p-8 md:p-16 relative z-10"
+      >
+        <div className="w-full max-w-md space-y-12">
+
+          {/* Mobile Back Button */}
+          <Link href="/" className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest opacity-40 hover:opacity-100 hover:text-primary transition-all lg:hidden">
+            <ArrowRight size={14} />
+            <span>العودة للرئيسية</span>
+          </Link>
+
+          <header className="space-y-4">
+            <h2 className="text-4xl font-black font-heading">تسجيل الدخول</h2>
+            <p className="font-bold opacity-40">أدخل بياناتك للوصول إلى حسابك الشخصي</p>
+          </header>
+
+          <form className="space-y-6" onSubmit={handleLogin}>
+            <div className="space-y-2">
+              <label className="text-[10px] font-black uppercase tracking-widest opacity-60 px-4">البريد الإلكتروني</label>
+              <div className="relative group">
+                <Mail className="absolute right-6 top-1/2 -translate-y-1/2 text-primary opacity-40 group-focus-within:opacity-100 transition-all" size={18} />
+                <input
+                  type="email"
+                  placeholder="name@example.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full bg-card border border-border rounded-2xl py-5 pr-14 pl-6 outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-bold text-sm"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between px-4">
+                <label className="text-[10px] font-black uppercase tracking-widest opacity-60">كلمة المرور</label>
+                <button type="button" className="text-[10px] font-black uppercase tracking-widest text-primary hover:underline">نسيت كلمة المرور؟</button>
+              </div>
+              <div className="relative group">
+                <Lock className="absolute right-6 top-1/2 -translate-y-1/2 text-primary opacity-40 group-focus-within:opacity-100 transition-all" size={18} />
+                <input
+                  type="password"
+                  placeholder="••••••••"
+                  value={formData.password}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  className="w-full bg-card border border-border rounded-2xl py-5 pr-14 pl-6 outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-bold text-sm"
+                  required
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-primary text-white py-5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-2xl shadow-primary/20 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-3"
+            >
+              <span>تسجيل الدخول</span>
+              <ShieldCheck size={18} />
+            </button>
+          </form>
+
+          {/* Divider */}
+          <div className="relative py-4">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-border" />
+            </div>
+            <div className="relative flex justify-center text-[10px] font-black uppercase">
+              <span className="bg-background px-4 opacity-40 tracking-[0.2em]">أو استمر عبر</span>
+            </div>
+          </div>
+
+          {/* Social Logins */}
+          <div className="grid grid-cols-2 gap-4">
+            <button className="flex items-center justify-center gap-3 py-4 rounded-2xl bg-card border border-border font-black text-[10px] uppercase hover:bg-muted transition-all">
+              <Chrome size={16} />
+              <span>جوجل</span>
+            </button>
+            <button className="flex items-center justify-center gap-3 py-4 rounded-2xl bg-card border border-border font-black text-[10px] uppercase hover:bg-muted transition-all">
+              <Github size={16} />
+              <span>جيت هاب</span>
+            </button>
+          </div>
+
+          <footer className="text-center pt-8">
+            <p className="font-bold opacity-40 text-sm">
+              ليس لديك حساب؟{' '}
+              <Link href="/Pages/Signup" className="text-primary hover:underline ml-1">إنشاء حساب جديد</Link>
+            </p>
+          </footer>
+
+        </div>
+      </motion.div>
+
+    </div>
+  );
+}

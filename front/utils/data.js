@@ -1646,3 +1646,143 @@ export const PLANS = [
     popular: false,
   }
 ]
+
+export const zamalekVolleyball2025 = {
+  teamName: "Zamalek Volleyball Team (Dream Team)",
+  club: "Zamalek SC",
+  season: "2025-2026",
+  lastTechnicalUpdate: "December 24, 2025",
+
+  // الجهاز الفني الجديد
+  coachingStaff: {
+    headCoach: "د. حسام عبد العزيز (Hossam Abdel-Aziz)",
+    assistantCoach: "محمد عبد المنعم",
+    teamManager: "أحمد شعلان",
+    physiotherapist: "د. أحمد سعودي"
+  },
+
+  // القائمة الكاملة للاعبين حسب المراكز
+  roster: {
+    setters: [
+      { name: "أشرف اللقاني", captain: true, nationality: "Egyptian" },
+      { name: "ياسين عيد", nationality: "Egyptian" },
+      { name: "أحمد السيد", nationality: "Egyptian" }
+    ],
+    opposites: [
+      { name: "رولندو سيبيدا (Rolando Cepeda)", nationality: "Cuban", status: "Pro Player" },
+      { name: "مروان الصافي", nationality: "Egyptian" },
+      { name: "إسلام عبد القادر", nationality: "Egyptian" }
+    ],
+    outsideHitters: [
+      { name: "أحمد عفيفي", nationality: "Egyptian" },
+      { name: "أبو السعود إمام", nationality: "Egyptian" },
+      { name: "إياد ثابت", nationality: "Egyptian" },
+      { name: "محمود إبراهيم (حودة)", nationality: "Egyptian" },
+      { name: "أحمد توفيق", nationality: "Egyptian" }
+    ],
+    middleBlockers: [
+      { name: "محمد مسعود", nationality: "Egyptian" },
+      { name: "عبد الرحمن محمد", nationality: "Egyptian" },
+      { name: "إبراهيم عبد المقصود", nationality: "Egyptian" },
+      { name: "محمد علي", nationality: "Egyptian" }
+    ],
+    liberos: [
+      { name: "شريف علي", nationality: "Egyptian" },
+      { name: "محمد رضا", nationality: "Egyptian" },
+      { name: "ياسين أبو الحسن", nationality: "Egyptian" }
+    ]
+  },
+}
+
+export const zamalekBasketballDec2025 = {
+  teamName: "Zamalek Basketball Team (The Kings)",
+  season: "2025-2026",
+  lastUpdate: "27 December 2025",
+  headCoach: "وائل بدر (Wael Badr)",
+
+  // القائمة الرسمية بعد استبعاد كيجو وإضافة إيرلي والصفقات الجديدة
+  roster: {
+    pointGuards: [
+      { name: "يوسف رفعت", type: "New Signing", role: "Playmaker" },
+      { name: "آدم موسى", type: "New Signing", role: "Combo Guard" },
+      { name: "وليد عبد الجواد", type: "Veteran", role: "Point Guard" }
+    ],
+    shootingGuards: [
+      { name: "مهاب ياسر", type: "Key Player", role: "Shooter" },
+      { name: "أحمد عزب", type: "Core Player", role: "Defender/Shooter" },
+      { name: "عمر هشام", type: "Captain", role: "Shooting Guard" }
+    ],
+    smallForwards: [
+      { name: "مازن العزازي", type: "New Signing", role: "Wing" },
+      { name: "أحمد ياسر عبد الوهاب", type: "Core", role: "Forward" },
+      { name: "معاذ أيمن", type: "Young Talent", role: "Forward" }
+    ],
+    powerForwards: [
+      { name: "خالد عبد الناصر", type: "Starter", role: "Power Forward" },
+      { name: "علي حجازي", type: "Young Talent", role: "Power Forward" }
+    ],
+    centers: [
+      {
+        name: "تيريل إيرلي (Terrell Early)",
+        type: "Foreign Professional",
+        status: "Main Center",
+        note: "المحترف الأجنبي الأساسي حالياً"
+      },
+      { name: "فهمي زيدان", type: "Backup", role: "Center" },
+      { name: "محمد طارق سونية", type: "Rotation", role: "Forward/Center" }
+    ]
+  },
+};
+
+export const zamalekHandballFinal2025 = {
+  teamName: "Zamalek Handball Team (The Commandos)",
+  season: "2025-2026",
+  lastUpdate: "December 27, 2025",
+
+  // الجهاز الفني
+  coachingStaff: {
+    headCoach: "فرانك موريش (Franck Maurice)",
+    assistantCoach: "إيهاب محسن",
+    teamManager: "حمادة عبد الباري",
+    doctor: "د. عمرو علي"
+  },
+
+  // القائمة الكاملة للاعبين
+  roster: {
+    goalkeepers: [
+      { name: "محمود خليل (فلفل)", status: "Main GK" },
+      { name: "هشام السبكي", status: "Veteran GK" },
+      { name: "يوسف ناجي", status: "Young GK" }
+    ],
+    leftBacks: [
+      { name: "حسن وليد قداح", note: "عائد رسمياً في يناير 2026", status: "Elite" },
+      { name: "هشام دويدار", status: "Core" },
+      { name: "محمد البتاوي", status: "Rotation" }
+    ],
+    centerBacks: [
+      { name: "أحمد راضي", note: "لاعب الأهلي السابق - صفقة جديدة", status: "Playmaker" },
+      { name: "أحمد سامح", status: "Key Player" },
+      { name: "زياد حشاد", status: "Young Talent" }
+    ],
+    rightBacks: [
+      { name: "أحمد الأحمر", status: "Captain / Legend" },
+      { name: "بيجاد مروان", note: "صفقة جديدة لتدعيم الخط الخلفي", status: "Young Talent" },
+      { name: "محمد صلاح", status: "Rotation" }
+    ],
+    leftWings: [
+      { name: "أحمد مؤمن صفا", status: "Main LW" },
+      { name: "مازن رضا", status: "Backup LW" }
+    ],
+    rightWings: [
+      { name: "أكرم يسري", status: "Main RW" },
+      { name: "عمر عدلان", note: "صفقة جديدة", status: "Young Talent" },
+      { name: "محمد عدلان", note: "صفقة جديدة", status: "Young Talent" }
+    ],
+    pivots: [
+      { name: "شادي خليل", status: "Main Pivot" },
+      { name: "يوسف عمرو", note: "صفقة جديدة من المقاولون العرب", status: "Pivot/Defensive Specialist" },
+      { name: "خالد وليد", status: "Core" }
+    ]
+  },
+
+};

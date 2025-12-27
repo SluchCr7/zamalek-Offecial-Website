@@ -1,54 +1,240 @@
-'use client'
-import React from 'react'
-import Image from 'next/image'
-import { newsList } from '@/utils/data'
-import Link from 'next/link'
+'use client';
+
+import React, { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar, ArrowRight, Newspaper, TrendingUp, Clock, Filter, Share2, Bookmark, Flame } from 'lucide-react';
+import { newsList } from '@/utils/data';
+import TitleSection from '@/Components/TitleSection';
+
+const categories = ["الكل", "أخبار الفريق", "النادي", "انتقالات", "ألعاب أخرى", "الناشئين"];
 
 export default function NewsPage() {
+  const [activeCategory, setActiveCategory] = useState("الكل");
+
+  const filteredNews = activeCategory === "الكل"
+    ? newsList
+    : newsList.filter(news => news.category === activeCategory);
+
+  const featuredNews = filteredNews[0];
+  const sidebarNews = newsList.slice(1, 4);
+  const gridNews = filteredNews.slice(1);
+
   return (
-    <div className="min-h-screen w-full max-w-7xl mx-auto px-4 py-10 bg-gray-50">
-      {/* Header */}
-      <div className="mb-10 text-center">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-red-700">أخبار القلعة البيضاء</h2>
-        <p className="mt-3 text-gray-600 text-lg">تابع أحدث الأخبار المتعلقة بنادي الزمالك</p>
-        <div className="mx-auto mt-4 h-1 w-28 bg-red-600 rounded"></div>
-      </div>
+    <div className="min-h-screen bg-background text-foreground" dir="rtl">
 
-      {/* Hero News */}
-      {newsList[0] && (
-        <Link href={`/Pages/New/${newsList[0].id}`} className="mb-10 relative w-full h-[420px] rounded-3xl overflow-hidden shadow-2xl">
-          <Image src={newsList[0].image} alt={newsList[0].title} fill className="object-cover hover:scale-105 transition-transform duration-500"/>
-          <div className="absolute inset-0 bg-black bg-opacity-40 p-8 flex flex-col justify-end">
-            <h3 className="text-4xl md:text-5xl font-bold text-white">{newsList[0].title}</h3>
-            <p className="text-gray-200 mt-4 text-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda id quo tempora neque, esse quod repudiandae ipsum ab expedita itaque distinctio veritatis dolorum eius pariatur adipisci eligendi minima sint nisi?</p>
-          </div>
-        </Link>
-      )}
-
-      {/* Two Columns */}
-      <div className="grid md:grid-cols-2 gap-6 mb-10">
-        {newsList.slice(1, 3).map((news, idx) => (
-          <Link href={`/Pages/New/${news.id}`} key={idx} className="relative w-full h-[260px] rounded-2xl overflow-hidden shadow-lg">
-            <Image src={news.image} alt={news.title} fill className="object-cover hover:scale-105 transition-transform duration-500"/>
-            <div className="absolute inset-0 bg-black bg-opacity-30 p-4 flex items-end">
-              <h4 className="text-white text-2xl font-semibold">{news.title}</h4>
+      {/* Dynamic News Ticker */}
+      <div className="bg-primary overflow-hidden py-3 whitespace-nowrap border-b border-white/10 hidden md:block">
+        <motion.div
+          animate={{ x: ["100%", "-100%"] }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          className="inline-flex gap-20 items-center text-white text-[10px] font-black uppercase tracking-[0.2em]"
+        >
+          {newsList.map((n, i) => (
+            <div key={i} className="flex items-center gap-4">
+              <Flame size={14} className="fill-current" />
+              <span>{n.title}</span>
             </div>
-          </Link>
-        ))}
+          ))}
+        </motion.div>
       </div>
 
-      {/* Grid News */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {newsList.slice(3, 8).map((news, idx) => (
-            <Link href={`/Pages/New/${news.id}`} key={idx} className="bg-white rounded-2xl shadow-md hover:shadow-lg transition p-4">
-                <div className="relative w-full max-h-56 mb-4">
-                    <Image src={news.image} alt={news.title} fill className="object-cover rounded-xl"/>
+      {/* Hero Section: Editorial Focus */}
+      <section className="relative py-24 px-4 md:px-8 bg-muted/20">
+        <div className="container mx-auto max-w-7xl">
+          <header className="flex flex-col md:flex-row justify-between items-end gap-12 mb-20">
+            <div className="space-y-6 max-w-2xl">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest"
+              >
+                <Newspaper size={14} />
+                <span>المركز الإعلامي الرسمي</span>
+              </motion.div>
+              <TitleSection
+                title="أخبار القلعة البيضاء"
+                subtitle="التغطية الحصرية والأخبار الرسمية لنادي الزمالك لحظة بلحظة، من قلب الحدث."
+              />
+            </div>
+
+            {/* Categories Navigation */}
+            <nav className="flex flex-wrap gap-3 bg-card p-2 rounded-[2rem] border border-border shadow-2xl">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${activeCategory === cat ? 'bg-primary text-white shadow-lg' : 'hover:bg-muted opacity-60'
+                    }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </nav>
+          </header>
+
+          {/* Featured Section */}
+          <div className="grid lg:grid-cols-3 gap-12">
+            {/* Main Headline */}
+            <div className="lg:col-span-2">
+              <AnimatePresence mode="wait">
+                {featuredNews && (
+                  <motion.div
+                    key={featuredNews.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -30 }}
+                    className="group relative bg-card rounded-[3.5rem] border border-border overflow-hidden shadow-2xl"
+                  >
+                    <div className="relative aspect-[16/9] overflow-hidden">
+                      <Image src={featuredNews.image} alt={featuredNews.title} fill className="object-cover transition-transform duration-1000 group-hover:scale-105" priority />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                      <div className="absolute top-10 right-10 flex gap-3">
+                        <div className="px-6 py-2 bg-primary rounded-full text-white text-[10px] font-black uppercase tracking-widest shadow-xl">مانشيت اليوم</div>
+                        <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all cursor-pointer">
+                          <Share2 size={18} />
+                        </div>
+                      </div>
+
+                      <div className="absolute bottom-12 right-12 left-12">
+                        <div className="flex items-center gap-6 text-[10px] font-black uppercase tracking-widest text-white/60 mb-6">
+                          <div className="flex items-center gap-2"><Clock size={14} /> <span>منذ ساعتين</span></div>
+                          <div className="flex items-center gap-2 text-primary font-black"><Filter size={14} /> <span>{featuredNews.category}</span></div>
+                        </div>
+                        <h2 className="text-4xl md:text-6xl font-black font-heading leading-tight text-white line-clamp-2">
+                          {featuredNews.title}
+                        </h2>
+                      </div>
+                    </div>
+
+                    <div className="p-12 pb-16 flex justify-between items-center">
+                      <p className="text-lg font-bold opacity-60 leading-relaxed max-w-xl line-clamp-2">
+                        {featuredNews.summary || "تغطية شاملة وحصرية لآخر المستجدات داخل جدران القلعة البيضاء، والقرارات المصيرية التي تم اتخاذها للجهاز الفني واللاعبين."}
+                      </p>
+                      <Link href={`/Pages/New/${featuredNews.id}`} className="w-20 h-20 rounded-full border-2 border-primary text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all overflow-hidden relative">
+                        <ArrowRight size={32} className="relative z-10" />
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Sidebar: Trending / Popular */}
+            <div className="space-y-8">
+              <div className="bg-card rounded-[3rem] border border-border p-10 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full" />
+                <div className="flex items-center gap-4 mb-10">
+                  <TrendingUp size={24} className="text-primary" />
+                  <h3 className="text-2xl font-black font-heading">الأكثر قراءة</h3>
                 </div>
-                <h5 className="font-bold text-gray-900">{news.title}</h5>
-                {/* <p className="text-gray-600 text-sm mt-2 line-clamp-3">{news.summary}</p> */}
-            </Link>
-        ))}
-      </div>
+
+                <div className="space-y-10">
+                  {sidebarNews.map((news, idx) => (
+                    <Link key={news.id} href={`/Pages/New/${news.id}`} className="group flex gap-6 items-start">
+                      <span className="text-4xl font-black font-heading text-border group-hover:text-primary transition-colors">0{idx + 1}</span>
+                      <div className="space-y-2">
+                        <h4 className="font-black leading-snug group-hover:text-primary transition-colors line-clamp-2">{news.title}</h4>
+                        <div className="flex items-center gap-4 text-[8px] font-black uppercase tracking-widest opacity-40">
+                          <div className="flex items-center gap-1"><Clock size={10} /> <span>منذ ساعة</span></div>
+                          <span>#خبر_عاجل</span>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Newsletter Mini */}
+              <div className="bg-primary rounded-[3rem] p-10 text-white shadow-2xl shadow-primary/30 relative group overflow-hidden">
+                <div className="relative z-10 space-y-6">
+                  <h3 className="text-2xl font-black font-heading uppercase tracking-tighter italic">Official Newsletter</h3>
+                  <p className="text-sm font-bold opacity-80 leading-relaxed">اشترك لتصلك كواليس البيت الأبيض وأخبار الصفقات الجديدة حصرياً.</p>
+                  <div className="relative">
+                    <input type="email" placeholder="بريدك الإلكتروني" className="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-4 placeholder:text-white/40 focus:outline-none focus:bg-white/20 transition-all text-sm font-bold" />
+                    <button className="absolute left-2 top-2 bottom-2 px-6 bg-white text-primary rounded-xl font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all">OK</button>
+                  </div>
+                </div>
+                <Newspaper size={120} className="absolute -bottom-10 -left-10 opacity-10 group-hover:rotate-12 transition-transform duration-700" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Grid: All News */}
+      <section className="container mx-auto max-w-7xl px-4 py-32">
+        <div className="flex items-center justify-between mb-16 px-4">
+          <div className="flex items-center gap-6">
+            <h2 className="text-4xl font-black font-heading tracking-tight">آخر الأخبار</h2>
+            <div className="h-px w-32 bg-border hidden md:block" />
+          </div>
+          <span className="text-[10px] font-black uppercase tracking-widest opacity-40">عرض {gridNews.length} مقال</span>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {gridNews.map((news, idx) => (
+            <motion.div
+              key={news.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: (idx % 3) * 0.1 }}
+              className="group relative flex flex-col h-full bg-card rounded-[2.5rem] border border-border overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image src={news.image} alt={news.title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute bottom-6 right-6">
+                  <div className="px-4 py-1.5 bg-white/10 backdrop-blur-xl border border-white/20 text-white text-[8px] font-black uppercase tracking-widest rounded-lg">
+                    {news.category || "أخبار النادي"}
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-8 flex flex-col flex-1">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest opacity-40">
+                    <Calendar size={12} />
+                    <span>24 ديسمبر 2023</span>
+                  </div>
+                  <Bookmark size={16} className="opacity-20 hover:text-primary hover:opacity-100 transition-all cursor-pointer" />
+                </div>
+
+                <h3 className="text-2xl font-black font-heading leading-tight mb-8 group-hover:text-primary transition-colors line-clamp-2">
+                  {news.title}
+                </h3>
+
+                <div className="mt-auto flex items-center justify-between pt-8 border-t border-border/50">
+                  <Link href={`/Pages/New/${news.id}`} className="text-[10px] font-black uppercase tracking-widest text-primary flex items-center gap-3">
+                    اقرأ المزيد <ArrowRight size={14} />
+                  </Link>
+                  <div className="flex -space-x-2 rtl:space-x-reverse">
+                    {[1, 2].map(i => (
+                      <div key={i} className="w-8 h-8 rounded-full border-2 border-card bg-muted flex items-center justify-center overflow-hidden">
+                        <User size={14} className="opacity-40" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Pagination Placeholder */}
+        <div className="mt-24 flex justify-center gap-4">
+          <button className="w-14 h-14 rounded-2xl border border-border flex items-center justify-center opacity-40 cursor-not-allowed"><ArrowRight className="rotate-180" size={20} /></button>
+          <div className="flex gap-2">
+            <button className="w-14 h-14 rounded-2xl bg-primary text-white font-black">1</button>
+            <button className="w-14 h-14 rounded-2xl border border-border font-black hover:bg-muted transition-all">2</button>
+            <button className="w-14 h-14 rounded-2xl border border-border font-black hover:bg-muted transition-all">3</button>
+          </div>
+          <button className="w-14 h-14 rounded-2xl border border-border flex items-center justify-center hover:bg-muted transition-all"><ArrowRight size={20} /></button>
+        </div>
+      </section>
+
     </div>
-  )
+  );
 }

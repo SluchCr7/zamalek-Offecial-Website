@@ -8,7 +8,7 @@ import { Mail, Phone, MapPin, ExternalLink, ShieldCheck } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-secondary text-secondary-foreground pt-20 pb-10 overflow-hidden" dir="rtl">
+    <footer className="bg-secondary w-full text-secondary-foreground pt-20 pb-10 overflow-hidden" dir="rtl">
       <div className="container mx-auto px-4 md:px-8">
 
         {/* Main Footer Grid */}
@@ -22,7 +22,7 @@ const Footer = () => {
               </div>
               <h3 className="text-2xl font-black text-primary font-heading tracking-tighter">ZAMALEK SC</h3>
             </Link>
-            <p className="text-sm font-bold opacity-60 leading-relaxed max-w-xs">
+            <p className="text-sm text-gray-200 font-bold opacity-60 leading-relaxed max-w-xs">
               نادي الزمالك للألعاب الرياضية، مدرسة الفن والهندسة. أكثر من مجرد نادٍ، هو تاريخ وهوية وفخر لكل زملكاوي.
             </p>
 
@@ -99,7 +99,7 @@ const Footer = () => {
 
         {/* Copyright Section */}
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-sm font-bold opacity-40">
+          <p className="text-sm text-gray-200 font-bold opacity-40">
             &copy; {new Date().getFullYear()} نادي الزمالك المصري. جميع الحقوق محفوظة.
           </p>
 
@@ -109,7 +109,7 @@ const Footer = () => {
             <FooterLegalLink href="/Pages/Cookies" name="ملفات التعريف" />
           </div>
 
-          <div className="flex items-center gap-2 text-[10px] font-black opacity-30">
+          <div className="flex text-gray-200 items-center gap-2 text-[10px] font-black opacity-30">
             <span>مدعوم بواسطة</span>
             <div className="w-4 h-4 rounded-full bg-foreground/10" />
             <span>Digital Media Dept.</span>
@@ -123,7 +123,7 @@ const Footer = () => {
 
 const FooterColumn = ({ title, links }) => (
   <div className="space-y-6">
-    <h4 className="text-lg font-black font-heading mb-6 relative inline-block">
+    <h4 className="text-lg text-white font-black font-heading mb-6 relative inline-block">
       {title}
       <span className="absolute -bottom-1 right-0 w-8 h-[2px] bg-primary" />
     </h4>
@@ -132,7 +132,7 @@ const FooterColumn = ({ title, links }) => (
         <Link
           key={idx}
           href={link.href}
-          className="text-sm font-bold opacity-60 hover:opacity-100 hover:text-primary transition-all flex items-center gap-2 group"
+          className="text-sm font-bold opacity-60 hover:opacity-100 text-red-500 hover:text-primary transition-all flex items-center gap-2 group"
         >
           <div className="w-1.5 h-1.5 rounded-full bg-border group-hover:bg-primary transition-colors" />
           {link.name}
@@ -150,7 +150,7 @@ const ContactItem = ({ icon, text }) => (
 );
 
 const FooterLegalLink = ({ href, name }) => (
-  <Link href={href} className="text-[12px] font-bold opacity-40 hover:opacity-100 hover:text-primary transition-all">
+  <Link href={href} className="text-[12px] font-bold opacity-40 hover:opacity-100 text-red-500 hover:text-primary transition-all">
     {name}
   </Link>
 );

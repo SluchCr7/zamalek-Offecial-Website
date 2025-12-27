@@ -92,7 +92,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
-            className="mt-16 grid grid-cols-3 gap-8 border-t border-white/10 pt-8 max-w-lg mr-auto"
+            className="mt-16 mb-10 grid grid-cols-3 gap-8 border-t border-white/10 pt-8 max-w-lg mr-auto"
           >
             <div>
               <div className="text-3xl font-black text-white font-heading">1911</div>

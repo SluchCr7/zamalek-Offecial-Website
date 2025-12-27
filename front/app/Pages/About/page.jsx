@@ -1,273 +1,231 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { zamalekHistory } from '@/utils/data'
-import Image from 'next/image'
+import React, { useState, useRef } from 'react';
+import Image from 'next/image';
+import { motion, useScroll, useSpring } from 'framer-motion';
+import { Trophy, History, Shield, Users, ArrowRight, X, PlayCircle } from 'lucide-react';
+import { zamalekHistory } from '@/utils/data';
+import TitleSection from '@/Components/TitleSection';
 
-export default function ZamalekHistoryPage() {
-  const [selected, setSelected] = useState(null)
-  const [progress, setProgress] = useState(0)
+export default function AboutPage() {
+  const containerRef = useRef(null);
+  const [selectedHighlight, setSelectedHighlight] = useState(null);
 
-  useEffect(() => {
-    const onScroll = () => {
-      const total = document.documentElement.scrollHeight - window.innerHeight
-      const scrolled = window.scrollY
-      setProgress(total > 0 ? Math.min(100, Math.round((scrolled / total) * 100)) : 0)
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
-  const highlights = [
-    zamalekHistory[0],
-    zamalekHistory.find((x) => x.title.includes('كأس السلطان')) || zamalekHistory[1],
-    zamalekHistory.find((x) => x.title.includes('أول بطولة دوري')) || zamalekHistory[6],
-    zamalekHistory.find((x) => x.title.includes('أول بطولة إفريقية')) || zamalekHistory[9],
-    zamalekHistory.find((x) => x.title.includes('مئوية')) || zamalekHistory[14]
-  ].filter(Boolean)
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  const timelineData = [
+    { year: 1911, title: 'التأسيس', desc: 'تأسس النادي تحت اسم "قصر النيل" على يد البلجيكي جورج مرزباخ لتكون بداية أعظم قلاع الرياضة في الشرق الأوسط.', icon: <Shield size={24} /> },
+    { year: 1941, title: 'الملك فاروق', desc: 'تم تغيير اسم النادي إلى "نادي فاروق الأول" بعد التتويج بلقب كأس الملك، وشهدت هذه الحقبة طفرة إنشائية ورياضية كبرى.', icon: <Users size={24} /> },
+    { year: 1952, title: 'نادي الزمالك', desc: 'مع قيام الثورة، استقر اسم النادي على "الزمالك" نسبة إلى الحي العريق الذي احتضن النادي في بداياته.', icon: <History size={24} /> },
+    { year: 1984, title: 'المجد القاري', desc: 'بداية حقبة السيطرة الإفريقية والتتويج بأول ألقاب دوري أبطال إفريقيا، لتبدأ رحلة الزمالك نحو العالمية.', icon: <Trophy size={24} /> },
+  ];
 
   return (
-    <div dir='rtl' className="bg-white text-red-900 w-full">
-      {/* Progress bar */}
-      <div className="fixed top-0 left-0 right-0 h-1 z-50 bg-transparent">
-        <div
-          className="h-full bg-gradient-to-r from-red-700 via-yellow-400 to-red-600"
-          style={{
-            width: `${progress}%`,
-            transition: 'width 150ms linear'
-          }}
+    <div className="min-h-screen bg-background text-foreground" dir="rtl" ref={containerRef}>
+
+      {/* Immersive Hero Section */}
+      <section className="relative h-[100vh] flex items-center justify-center overflow-hidden">
+        <Image
+          src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=2076&auto=format&fit=crop"
+          alt="Zamalek Scenary"
+          fill
+          className="object-cover grayscale opacity-20"
+          priority
         />
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
 
-      <main className="min-h-screen w-full">
-        {/* HERO */}
-        <section className="relative h-[60vh] flex items-center bg-gradient-to-b from-red-50 to-white">
-          <div className="container mx-auto px-6 relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                className="space-y-4"
-              >
-                <h1 className="text-4xl md:text-5xl font-extrabold text-red-700">
-                  تاريخ نادي الزمالك
-                </h1>
-                <p className="text-gray-700 max-w-xl">
-                  أكبر قلعة رياضية في مصر — رحلة أكثر من قرن من الفخر والإنجازات.
-                  استكشف المحطات، الأساطير، وصور الأرشيف.
-                </p>
+        {/* Scroll Progress Bar */}
+        <motion.div
+          style={{ scaleX }}
+          className="fixed top-0 left-0 right-0 h-1.5 bg-primary origin-right z-[100]"
+        />
 
-                <div className="flex gap-3 mt-4">
-                  <a
-                    href="#timeline"
-                    className="bg-red-700 hover:bg-red-800 text-white px-5 py-3 rounded-lg shadow-lg transition"
-                  >
-                    شاهد المحطات
-                  </a>
-                  <a
-                    href="#gallery"
-                    className="bg-yellow-400 hover:bg-yellow-500 text-red-900 px-5 py-3 rounded-lg shadow-lg transition"
-                  >
-                    الأرشيف
-                  </a>
-                </div>
-              </motion.div>
+        <div className="relative z-10 text-center space-y-8 px-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="w-32 h-32 md:w-48 md:h-48 relative mx-auto p-6 bg-white rounded-full shadow-[0_32px_128px_rgba(227,27,35,0.2)]"
+          >
+            <Image src="/teams/zamalek.png" alt="Zamalek SC" fill className="object-contain p-6" />
+          </motion.div>
 
-              {/* Highlights */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6 }}
-                className="bg-white border border-red-200 rounded-xl p-4 shadow-lg"
-              >
-                <div className="text-sm text-red-800 font-semibold">
-                  أبرز المحطات
-                </div>
-                <div className="mt-3 grid grid-cols-2 gap-3">
-                  {highlights.map((h, idx) => (
-                    <div
-                      key={idx}
-                      className="bg-red-50 rounded-lg overflow-hidden flex items-stretch border border-red-100"
-                    >
-                      <div className="w-1/3 bg-gradient-to-br from-red-700 to-red-500 flex items-center justify-center">
-                        <span className="text-white text-xs font-semibold">
-                          IMG
-                        </span>
-                      </div>
-                      <div className="p-3 flex-1">
-                        <div className="text-sm font-semibold text-red-900">
-                          {h.title}
-                        </div>
-                        <div className="text-xs text-gray-600 mt-1">
-                          {h.year}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
+          <div className="space-y-4">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-5xl md:text-8xl font-black font-heading tracking-tighter"
+            >
+              مدرسة الفن <span className="text-primary">&</span> الهندسة
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-xl md:text-3xl font-bold opacity-40 max-w-3xl mx-auto"
+            >
+              أكثر من مائة عام من المجد، الفخر، والوفاء لأعظم قلاع الرياضة في القارة السمراء.
+            </motion.p>
           </div>
-        </section>
 
-        {/* STATS */}
-        <section className="container mx-auto px-6 py-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <StatCard title="ألقاب الدوري" value="14" />
-            <StatCard title="كأس مصر" value="29" />
-            <StatCard title="ألقاب إفريقية" value="5" />
-            <StatCard title="كؤوس سوبر" value="5" />
-          </div>
-        </section>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="pt-12 animate-bounce"
+          >
+            <div className="w-1 h-20 rounded-full bg-gradient-to-b from-primary to-transparent mx-auto" />
+          </motion.div>
+        </div>
+      </section>
 
-        {/* TIMELINE */}
-        <section id="timeline" className="container mx-auto px-6 py-8">
-          <h2 className="text-3xl font-bold text-red-700 mb-6">الخط الزمني</h2>
+      {/* Modern Timeline Section */}
+      <section className="container mx-auto px-4 md:px-8 py-32">
+        <TitleSection
+          title="محطات خالدة"
+          subtitle="رحلة عبر الزمان ترصد أهم التحولات في تاريخ مائة عام من الأبيض"
+        />
 
-          <div className="relative">
-            <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-red-700 to-yellow-400/40 opacity-40" />
+        <div className="relative mt-24 space-y-24">
+          {/* Central Line */}
+          <div className="absolute top-0 bottom-0 right-1/2 translate-x-1/2 w-0.5 bg-border hidden md:block" />
 
-            <div className="space-y-10">
-              {zamalekHistory.map((item, i) => {
-                const left = i % 2 === 0
-                return (
-                  <motion.article
-                    key={i}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.5, delay: i * 0.05 }}
-                    className={`md:flex md:items-center md:gap-6 ${left ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-                  >
-                    <div className="md:w-1/2">
-                      <div className="bg-white rounded-xl shadow overflow-hidden border border-red-100">
-                        <Image
-                          src={item.img}
-                          alt={item.title}
-                          width={500}
-                          height={500}
-                          className="w-full h-64 object-cover"
-                        />
-                        <div className="p-5">
-                          <h3 className="text-2xl font-bold text-red-700">{item.title}</h3>
-                          <p className="text-sm text-gray-700 mt-2 line-clamp-4">{item.description}</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="md:w-1/2 flex items-center justify-center md:px-6">
-                      <div className="flex flex-col items-center text-center">
-                        <div className="bg-red-700 text-white font-bold px-4 py-2 rounded-full shadow">
-                          {item.year}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.article>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* MOMENTS */}
-        <section className="container mx-auto px-6 py-8">
-          <h2 className="text-3xl font-bold text-red-700 mb-6">لحظات لا تُنسى</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[0, 1, 2].map((i) => (
-              <motion.div
-                key={i}
-                whileHover={{ y: -6 }}
-                className="bg-white rounded-xl overflow-hidden shadow border border-red-100"
-              >
-                <div className="w-full h-48 bg-red-50 flex items-center justify-center">
-                  فيديو/صورة افتراضية
-                </div>
-                <div className="p-4">
-                  <div className="font-semibold text-red-900">لحظة رقم {i + 1}</div>
-                  <div className="text-sm text-gray-600 mt-2">ملخص قصير عن اللحظة وسبب تميزها.</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* GALLERY */}
-        {/* <section id="gallery" className="container mx-auto px-6 py-8">
-          <h2 className="text-3xl font-bold text-red-700 mb-6">أرشيف الصور</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {zamalekHistory.map((g, idx) => (
-              <motion.div
-                key={idx}
-                whileHover={{ scale: 1.03 }}
-                className="group relative overflow-hidden rounded-lg cursor-pointer bg-white border border-red-100"
-                onClick={() => setSelected(g)}
-              >
-                <Image src={g.img} alt={g.title} width={500} height={500} className="w-full h-48 object-cover" />
-                <div className="p-3">
-                  <div className="font-semibold text-red-900">{g.title}</div>
-                  <div className="text-xs text-gray-600">{g.year}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section> */}
-
-        {/* MODAL */}
-        <AnimatePresence>
-          {selected && (
+          {timelineData.map((item, idx) => (
             <motion.div
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+              key={item.year}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className={`relative flex flex-col md:flex-row items-center gap-12 ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                }`}
+            >
+              {/* Year Bubble */}
+              <div className="absolute right-1/2 translate-x-1/2 w-20 h-20 rounded-full border-4 border-background bg-primary text-white flex items-center justify-center font-black text-xl z-20 shadow-xl shadow-primary/20 hidden md:flex">
+                {item.year}
+              </div>
+
+              {/* Content Card */}
+              <div className={`w-full md:w-1/2 bg-card p-12 rounded-[3rem] border border-border shadow-2xl relative group hover:border-primary/30 transition-all ${idx % 2 === 0 ? 'md:text-left' : 'md:text-right'
+                }`}>
+                <div className={`flex items-center gap-4 mb-6 ${idx % 2 === 0 ? 'md:justify-start' : 'md:justify-end'
+                  }`}>
+                  <div className="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-3xl font-black font-heading">{item.title}</h3>
+                </div>
+                <p className="text-lg font-bold opacity-60 leading-relaxed">
+                  {item.desc}
+                </p>
+                <div className="mt-8 text-primary font-black text-4xl opacity-10 font-heading md:hidden">
+                  {item.year}
+                </div>
+              </div>
+
+              {/* Decorative Spacer */}
+              <div className="hidden md:block w-1/2" />
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Moments of Glory Showcase */}
+      <section className="bg-muted/30 py-32 border-y border-border overflow-hidden">
+        <div className="container mx-auto px-4 md:px-8">
+          <header className="text-center mb-24">
+            <h2 className="text-4xl md:text-6xl font-black font-heading mb-6 tracking-tight">لحظات لا تنسى</h2>
+            <div className="w-24 h-1 bg-primary mx-auto rounded-full" />
+          </header>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {zamalekHistory.slice(0, 6).map((moment, idx) => (
+              <motion.div
+                key={moment.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                onClick={() => setSelectedHighlight(moment)}
+                className="group relative cursor-pointer overflow-hidden rounded-[2.5rem] bg-card border border-border aspect-[4/5] shadow-xl"
+              >
+                <Image
+                  src={moment.image}
+                  alt={moment.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+
+                <div className="absolute inset-0 flex flex-col justify-end p-10">
+                  <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white mb-6">
+                    <PlayCircle size={24} />
+                  </div>
+                  <h3 className="text-2xl font-black font-heading text-white mb-2 leading-tight">
+                    {moment.title}
+                  </h3>
+                  <p className="text-white/60 font-bold text-sm">
+                    {moment.year}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Selection Modal */}
+      <AnimatePresence>
+        {selectedHighlight && (
+          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              onClick={() => setSelectedHighlight(null)}
+              className="absolute inset-0 bg-black/90 backdrop-blur-sm"
+            />
+
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative w-full max-w-4xl bg-card rounded-[3.5rem] border border-border overflow-hidden shadow-2xl"
             >
-              <motion.div
-                initial={{ scale: 0.95 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0.95 }}
-                className="bg-white rounded-xl w-full max-w-3xl overflow-hidden shadow-lg border border-red-200"
+              <button
+                onClick={() => setSelectedHighlight(null)}
+                className="absolute top-8 left-8 w-12 h-12 rounded-full bg-muted/50 flex items-center justify-center hover:bg-primary hover:text-white transition-all z-10"
               >
-                <div className="flex justify-between items-center p-4 border-b border-red-100">
-                  <h3 className="text-xl font-bold text-red-700">{selected.title}</h3>
-                  <button className="text-gray-500" onClick={() => setSelected(null)}>✕</button>
-                </div>
+                <X size={24} />
+              </button>
 
-                <div className="p-4">
-                  <div className="w-full h-64 bg-red-50 flex items-center justify-center rounded-md">
-                    صورة تفصيلية افتراضية
-                  </div>
-                  <p className="mt-4 text-gray-700">{selected.description}</p>
-                  <p className="mt-3 text-sm text-gray-500">سنة/فترة: {selected.year}</p>
+              <div className="grid md:grid-cols-2 h-full">
+                <div className="relative aspect-square md:aspect-auto">
+                  <Image src={selectedHighlight.image} alt={selectedHighlight.title} fill className="object-cover" />
                 </div>
-
-                <div className="p-4 border-t border-red-100 text-right">
-                  <button onClick={() => setSelected(null)} className="px-4 py-2 bg-red-700 text-white rounded">إغلاق</button>
+                <div className="p-12 md:p-16 flex flex-col justify-center">
+                  <div className="text-primary font-black font-heading text-4xl mb-4 italic">{selectedHighlight.year}</div>
+                  <h2 className="text-3xl md:text-5xl font-black font-heading mb-8 leading-tight">{selectedHighlight.title}</h2>
+                  <p className="text-lg font-bold opacity-60 leading-relaxed mb-12">
+                    {selectedHighlight.description || "هذه اللحظة تعد علامة فارقة في تاريخ النادي، حيث سطر فيها لاعبو الزمالك ملحمة كروية ستبقى محفورة في ذاكرة كل من ينتمي للقلعة البيضاء."}
+                  </p>
+                  <button className="flex items-center gap-3 text-primary font-black text-xs uppercase tracking-widest hover:gap-5 transition-all">
+                    <span>عرض التوثيق الكامل</span>
+                    <ArrowRight size={18} />
+                  </button>
                 </div>
-              </motion.div>
+              </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-
-        <footer className="mt-12 bg-red-50 py-6">
-          <div className="container mx-auto px-6 text-center text-sm text-red-800">
-            تصميم واجهة صفحة التاريخ — نموذج احترافي بثيم الزمالك
           </div>
-        </footer>
-      </main>
+        )}
+      </AnimatePresence>
     </div>
-  )
+  );
 }
-
-function StatCard({ title, value }) {
-  return (
-    <div className="bg-red-50 border border-red-200 rounded-xl shadow p-6 flex flex-col items-start">
-      <div className="text-sm text-red-700 font-medium">{title}</div>
-      <div className="mt-2 text-3xl font-bold text-red-800">{value}</div>
-      <div className="mt-3 text-xs text-gray-500">تحديث مستمر</div>
-    </div>
-  )
-}
-

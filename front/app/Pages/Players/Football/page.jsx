@@ -1,129 +1,215 @@
-'use client'
-import React, { useState } from 'react'
-import { zamalekPlayers  , zamalekCoachingStaff} from '@/utils/data'
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import Link from 'next/link'
+'use client';
 
-const positions = ["All", "Goalkeeper", "Defender", "Midfielder", "Forward" , "Staff"]
+import React, { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Shield, Star, Users, ArrowRight, Zap, Target, Search, Filter, Activity, Trophy } from 'lucide-react';
+import { zamalekPlayers, zamalekCoachingStaff } from '@/utils/data';
 
-const Page = () => {
-  const [position, setPosition] = useState("All")
+const positions = ["All", "Goalkeeper", "Defender", "Midfielder", "Forward", "Staff"];
 
-  const filteredPlayers = position === "All" 
-    ? zamalekPlayers 
-    : zamalekPlayers.filter(player => player.mainPosition === position)
+export default function PlayersPage() {
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  const filteredItems = activeFilter === "All"
+    ? zamalekPlayers
+    : activeFilter === "Staff"
+      ? zamalekCoachingStaff
+      : zamalekPlayers.filter(p => p.mainPosition === activeFilter);
+
   return (
-    <div dir="rtl" className="min-h-screen bg-gradient-to-b from-white via-gray-100 to-white px-6 py-10">
-      
-      {/* Header */}
-      <div className="mb-8 text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-red-700">لاعبي فريق كرة القدم</h2>
-        <p className="mt-2 text-gray-700 font-medium">أبطال القلعة البيضاء</p>
-        <div className="mx-auto mt-3 h-1 w-28 bg-red-700 rounded"></div>
-      </div>
+    <div className="min-h-screen bg-background text-foreground" dir="rtl">
 
-      {/* Filter Buttons */}
-      <div className="flex flex-wrap justify-center gap-4 mb-10">
-        {positions.map((pos, idx) => (
-          <motion.button
-            key={idx}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setPosition(pos)}
-            className={`px-5 py-2 rounded-full text-sm md:text-base font-medium transition-all duration-300 border
-              ${position === pos 
-                ? "bg-red-700 text-white border-red-700 shadow-lg scale-105" 
-                : "bg-white text-red-700 border-red-300 hover:bg-red-100"}`}
+      {/* Cinematic Hero */}
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden border-b border-border">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=2076&auto=format&fit=crop"
+            alt="Squad Hero"
+            fill
+            className="object-cover opacity-20 grayscale brightness-50"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+        </div>
+
+        <div className="relative z-10 text-center space-y-8 px-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="w-24 h-24 relative mx-auto p-4 bg-white rounded-3xl shadow-2xl rotate-3"
           >
-            {pos}
-          </motion.button>
-        ))}
-      </div>
+            <Image src="/teams/zamalek.png" alt="Zamalek SC" fill className="object-contain p-2" />
+          </motion.div>
 
-      {/* Players Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {
-          position === "Staff" ? 
-            zamalekCoachingStaff.map((coach, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
-                viewport={{ once: true }}
-                className="group relative rounded-2xl overflow-hidden shadow-lg bg-white border border-gray-200 hover:shadow-2xl transition-all duration-300"
-              >
-                {/* Player Image */}
-                <div className="relative w-full h-[380px]">
-                  <Image 
-                    // src={coach.img}
-                    src={'/no_img.jpg'}
-                    alt={coach.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-
-                {/* Info Overlay
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 translate-y-full group-hover:translate-y-0 transition-all duration-500 ease-out flex flex-col justify-end p-5 text-white">
-                  <h3 className="text-2xl font-bold">{coach.name}</h3>
-                  <p className="text-sm mt-1">Role <span className="font-semibold">{coach.role}</span></p>
-                </div> */}
-
-                {/* Player Name (always visible) */}
-                <div className="p-4 text-center">
-                  <h4 className="font-bold text-lg text-red-700">{coach.name}</h4>
-                  <p className="text-sm text-gray-600">{coach.role}</p>
-                </div>
-              </motion.div>
-            ))
-          :
-          filteredPlayers.map((player, idx) => (
-            <Link
-              href={`/Pages/Players/Football/${encodeURIComponent(player.name)}`}
-              key={idx}
+          <div className="space-y-4">
+            <motion.h1
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: idx * 0.05 }}
-              viewport={{ once: true }}
-              className="group relative rounded-2xl overflow-hidden shadow-lg bg-white border border-gray-200 hover:shadow-2xl transition-all duration-300"
+              animate={{ opacity: 1, y: 0 }}
+              className="text-6xl md:text-9xl font-black font-heading tracking-tighter italic uppercase"
             >
-              {/* Player Image */}
-              <div className="relative w-full h-[380px]">
-                <Image 
-                  // src={player.img}
-                  src={'/no_img.jpg'}
-                  alt={'Player'}
-                  width={500}
-                  height={500}
-                  className="object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer"
-                />
-              </div>
+              كـتـيـبـة <span className="text-primary">الـفـارس</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-xl md:text-2xl font-bold opacity-40 max-w-3xl mx-auto italic"
+            >
+              تعرف على القائمة الرسمية للفريق الأول لكرة القدم بنادي الزمالك والجهاز الفني.
+            </motion.p>
+          </div>
+        </div>
+      </section>
 
-              {/* Info Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 translate-y-full group-hover:translate-y-0 transition-all duration-500 ease-out flex flex-col justify-end p-5 text-white">
-                <h3 className="text-2xl font-bold">{player.name}</h3>
-                <p className="text-sm mt-1">رقم القميص: <span className="font-semibold">{player.number ?? 'N/A'}</span></p>
-                <p className="text-sm">المركز: <span className="font-semibold">{player.position}</span></p>
-                <p className="text-sm">القيمة السوقية: <span className="font-semibold">{player.marketValue ?? 'N/A'}</span></p>
-                <p className="text-sm">الجنسية: <span className="font-semibold">{player.nationality}</span></p>
-              </div>
+      {/* Squad Navigation & Stats */}
+      <section className="container mx-auto px-4 -mt-12 relative z-20">
+        <div className="bg-card p-4 rounded-[3.5rem] border border-border shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 max-w-7xl mx-auto backdrop-blur-3xl">
+          {/* Filter Pills */}
+          <div className="flex flex-wrap gap-2">
+            {positions.map((pos) => (
+              <button
+                key={pos}
+                onClick={() => setActiveFilter(pos)}
+                className={`px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${activeFilter === pos ? 'bg-primary text-white shadow-xl shadow-primary/20' : 'hover:bg-muted opacity-60'
+                  }`}
+              >
+                {pos === "All" ? "الكل" :
+                  pos === "Goalkeeper" ? "حراس المرمى" :
+                    pos === "Defender" ? "الدفاع" :
+                      pos === "Midfielder" ? "الوسط" :
+                        pos === "Forward" ? "الهجوم" : "الجهاز الفني"}
+              </button>
+            ))}
+          </div>
 
-              {/* Player Name (always visible) */}
-              <div className="p-4 text-center">
-                <h4 className="font-bold text-lg text-red-700">{player.name}</h4>
-                <p className="text-sm text-gray-600">{player.position}</p>
-              </div>
-            </Link>
-          ))
-        }
-      </div>
+          {/* Squad Stats Mini */}
+          <div className="flex items-center gap-12 px-8 border-r border-border hidden lg:flex">
+            <div className="text-center">
+              <div className="text-2xl font-black font-heading italic text-primary">{zamalekPlayers.length}</div>
+              <div className="text-[8px] font-black uppercase tracking-widest opacity-40">Total Players</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-black font-heading italic text-primary">24.5</div>
+              <div className="text-[8px] font-black uppercase tracking-widest opacity-40">Avg. Age</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-black font-heading italic text-primary">12</div>
+              <div className="text-[8px] font-black uppercase tracking-widest opacity-40">National Stars</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      {filteredPlayers.length  === 0 && position !== "Staff" && (
-        <p className="text-center text-gray-500 mt-10">لا يوجد لاعبين في هذا المركز.</p>
-      )}
+      {/* Main Squad Grid */}
+      <section className="container mx-auto px-4 py-32">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12">
+          <AnimatePresence mode="popLayout">
+            {filteredItems.map((item, idx) => (
+              <PlayerCard
+                key={item.id || item.name}
+                item={item}
+                index={idx}
+                isStaff={activeFilter === "Staff"}
+              />
+            ))}
+          </AnimatePresence>
+        </div>
+
+        {filteredItems.length === 0 && (
+          <div className="text-center py-24 space-y-6">
+            <Users size={64} className="mx-auto opacity-10" />
+            <h3 className="text-2xl font-bold opacity-40 italic">لا يوجد لاعبين متاحين في هذا القسم حالياً</h3>
+          </div>
+        )}
+      </section>
+
     </div>
-  )
+  );
 }
 
-export default Page
+function PlayerCard({ item, index, isStaff }) {
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ delay: (index % 4) * 0.1 }}
+      className="group relative"
+    >
+      {/* Visual Frame */}
+      <div className="absolute inset-0 bg-primary/20 rounded-[4rem] blur-[30px] opacity-0 group-hover:opacity-100 transition-all duration-700" />
+
+      <div className="relative bg-card border border-border rounded-[3.5rem] overflow-hidden flex flex-col h-full shadow-[0_32px_128px_rgba(0,0,0,0.2)] transition-all duration-700 hover:rounded-[2.5rem]">
+
+        <Link href={isStaff ? "#" : `/Pages/Player/${encodeURIComponent(item.name)}`} className="relative aspect-[3/4.5] overflow-hidden block">
+          <Image
+            src={item.img || "/no_img.jpg"}
+            alt={item.name}
+            fill
+            className="object-cover object-top transition-transform duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+
+          {/* Number Overlay */}
+          {!isStaff && item.number && (
+            <div className="absolute top-10 left-10 text-white/10 group-hover:text-primary/20 text-9xl font-black font-heading italic transition-all duration-700">
+              {item.number}
+            </div>
+          )}
+
+          {/* Badge Indicator */}
+          <div className="absolute top-10 right-10">
+            <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white scale-0 group-hover:scale-100 transition-all duration-500">
+              {isStaff ? <Shield size={24} /> : <Target size={24} />}
+            </div>
+          </div>
+
+          {/* Info Overlay Bottom */}
+          <div className="absolute bottom-10 inset-x-10">
+            <div className="space-y-4 translate-y-8 group-hover:translate-y-0 transition-all duration-500 opacity-0 group-hover:opacity-100">
+              <div className="flex gap-4">
+                {isStaff ? (
+                  <div className="px-4 py-1.5 bg-primary rounded-xl text-white text-[8px] font-black uppercase tracking-widest">{item.role}</div>
+                ) : (
+                  <>
+                    <div className="px-4 py-1.5 bg-primary rounded-xl text-white text-[8px] font-black uppercase tracking-widest">{item.position}</div>
+                    <div className="px-4 py-1.5 bg-white/10 backdrop-blur border border-white/20 rounded-xl text-white text-[8px] font-black uppercase tracking-widest">{item.nationality}</div>
+                  </>
+                )}
+              </div>
+              <div className="flex items-center justify-between text-white/60 text-[9px] font-bold">
+                {!isStaff && <span>Market Value: {item.marketValue || "N/A"}</span>}
+                <div className="flex items-center gap-2">
+                  <Activity size={12} className="text-primary" />
+                  <span>Ready for Battle</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Link>
+
+        {/* Permanent Label Section */}
+        <div className="p-10 bg-card border-t border-border flex flex-col items-center text-center relative">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-1.5 bg-primary rounded-full" />
+
+          <h3 className="text-2xl font-black font-heading leading-tight mb-2 group-hover:text-primary transition-colors">
+            {item.name}
+          </h3>
+          <p className="text-xs font-bold opacity-40 uppercase tracking-widest italic">
+            {isStaff ? (item.role || "Technical Staff") : (item.mainPosition || item.position)}
+          </p>
+
+          <div className="mt-8 pt-6 border-t border-border/50 w-full flex items-center justify-between opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-y-4 group-hover:translate-y-0">
+            <span className="text-[9px] font-black uppercase tracking-widest text-primary">View Statistics</span>
+            <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
+              <ArrowRight size={14} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}

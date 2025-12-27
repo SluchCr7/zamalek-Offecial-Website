@@ -1,342 +1,210 @@
+'use client';
 
-'use client'
-import React from 'react'
-import { motion } from 'framer-motion'
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  CartesianGrid,
-  LabelList,
-} from 'recharts'
-import { zamalekStats } from '@/utils/data'
-import Image from 'next/image'
-
-// ألوان الزمالك
-const COLORS = {
-  red: '#E30613',
-  gold: '#D4AF37',
-  cardBorder: 'border-[#E30613]/20',
-}
+import React from 'react';
+import { motion } from 'framer-motion';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, Line, CartesianGrid, LabelList, AreaChart, Area, PieChart, Pie, Cell } from 'recharts';
+import { zamalekStats } from '@/utils/data';
+import Image from 'next/image';
+import { Trophy, Target, Users, Zap, Calendar, TrendingUp, Award, Activity, Globe, Flame, Star, History } from 'lucide-react';
 
 export default function ZamalekStatsPage() {
-  const {
-    topScorersAllTime,
-    topAssistPlayer,
-    topPlayMatches,
-    derbyRecord,
-    topScorerSeason,
-    fastestGoal,
-    firstHatrick,
-    mostHatrickScore,
-    mostSuperHatrickScore,
-    highWin,
-    mostYoungPlayersScore,
-    mostCountriesPlayInZamalek,
-    mostMatchesattendance,
-  } = zamalekStats
+  const { topScorersAllTime, topAssistPlayer, topPlayMatches, derbyRecord, topScorerSeason, fastestGoal, firstHatrick, mostHatrickScore, highWin, mostYoungPlayersScore, mostCountriesPlayInZamalek, mostMatchesattendance } = zamalekStats;
 
-  // بيانات الرسوم البيانية
-  const seasonData = topScorerSeason.map((s) => ({ season: s.season, goals: s.goals, player: s.player }))
-  const topScorersChart = topScorersAllTime.map((p) => ({ name: p.player, goals: p.goals }))
-
-  // أنيميشن للكروت
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.15, duration: 0.5 }
-    })
-  }
+  const seasonData = topScorerSeason.map((s) => ({ season: s.season, goals: s.goals, player: s.player }));
+  const topScorersChart = topScorersAllTime.map((p) => ({ name: p.player, goals: p.goals }));
 
   return (
-    <div dir="rtl" className="min-h-screen bg-white relative overflow-hidden w-full">
-      {/* خلفية بخطوط حمراء خفيفة */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[10%] left-0 w-full h-1 bg-[#E30613]/10 rotate-[-3deg]" />
-        <div className="absolute top-[30%] left-0 w-full h-1 bg-[#E30613]/10 rotate-[3deg]" />
-      </div>
+    <div className="min-h-screen bg-background text-foreground" dir="rtl">
 
-      {/* الهيدر */}
-      <header className="bg-gradient-to-r from-white via-[#fff5f5] to-white shadow-sm relative z-10 w-full">
-        <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row items-center gap-6">
-          <div className="flex-1 text-center md:text-right">
-            <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900">
-              أرقام نادي الزمالك عبر التاريخ
+      {/* Hero: Data Intelligence Style */}
+      <section className="relative pt-32 pb-24 px-4 bg-muted/20 border-b border-border overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Activity size={500} className="absolute -top-40 -right-40 text-primary/5 rotate-12" />
+          <TrendingUp size={400} className="absolute -bottom-20 -left-20 text-primary/5 -rotate-12" />
+        </div>
+
+        <div className="container mx-auto max-w-7xl relative z-10 text-center space-y-12">
+          <header className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest"
+            >
+              <Zap size={14} />
+              <span>مركز التحليل الإحصائي الرسمي</span>
+            </motion.div>
+            <h1 className="text-5xl md:text-8xl font-black font-heading tracking-tighter italic">
+              بـيـانـات <span className="text-primary">الـبـطـولات</span>
             </h1>
-            <p className="text-sm md:text-base text-gray-600 mt-2">
-              إحصائيات تفاعلية ورسوم بيانية لأهم لحظات الأسطورة البيضاء
+            <p className="text-xl md:text-2xl font-bold opacity-40 max-w-3xl mx-auto italic">
+              تاريخ نادي الزمالك بلغة الأرقام.. من الهدافين التاريخيين إلى أكبر الانتصارات المسجلة.
             </p>
-          </div>
-          <div className="p-2 bg-white rounded-full shadow-lg border border-red-100">
-            <Image width={100} height={100} src="/zsc.png" className="w-20 md:w-24" alt="Zamalek logo" />
+          </header>
+
+          {/* Quick Stats Banner */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-card border border-border rounded-[3rem] shadow-2xl">
+            <QuickStat icon={<Target />} label="أكبر فوز" value={highWin.score} sub={`ضد ${highWin.team}`} />
+            <QuickStat icon={<History />} label="أسرع هدف" value={fastestGoal.time} sub={fastestGoal.player} />
+            <QuickStat icon={<Flame />} label="أكبر دربي" value={derbyRecord.largestWinVsAhly} sub="vs الأهلي" />
+            <QuickStat icon={<Users />} label="أكبر حضور" value="100K+" sub="استاد القاهرة" />
           </div>
         </div>
-      </header>
+      </section>
 
-      {/* المحتوى */}
-      <main className="container w-full mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        {/* اليسار */}
-        <section className="space-y-6">
-          {/* الهدافون التاريخيون */}
-          <motion.div
-            custom={0}
-            initial="hidden"
-            animate="show"
-            variants={cardVariants}
-            className={`p-4 rounded-xl border ${COLORS.cardBorder} shadow hover:shadow-lg transition bg-white`}
-          >
-            <h2 className="text-lg font-semibold mb-3">🥇 الهدافون التاريخيون</h2>
-            <ol className="space-y-3">
-              {topScorersAllTime.map((p, i) => (
-                <li key={p.player} className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-md bg-gray-100 flex items-center justify-center text-sm font-bold">{i + 1}</div>
-                    <div>
-                      <div className="font-medium">{p.player}</div>
-                      <div className="text-xs text-gray-500">أهداف: {p.goals}</div>
+      {/* Main Stats Grid */}
+      <section className="container mx-auto max-w-7xl px-4 py-32">
+        <div className="grid lg:grid-cols-3 gap-12">
+
+          {/* Sidebar: Goal Machines */}
+          <div className="space-y-12">
+            {/* Top Scorers All Time */}
+            <section className="bg-card border border-border rounded-[3rem] p-10 shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full" />
+              <div className="flex items-center gap-4 mb-10">
+                <Award size={24} className="text-primary" />
+                <h3 className="text-2xl font-black font-heading">الهدافون التاريخيون</h3>
+              </div>
+
+              <div className="space-y-8">
+                {topScorersAllTime.map((p, i) => (
+                  <div key={i} className="group relative">
+                    <div className="flex justify-between items-end mb-3">
+                      <div className="space-y-1">
+                        <div className="text-xs font-black text-primary opacity-40">#{i + 1} RANKING</div>
+                        <div className="text-xl font-black font-heading">{p.player}</div>
+                      </div>
+                      <div className="text-2xl font-black font-heading text-primary italic">{p.goals}</div>
+                    </div>
+                    <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${(p.goals / topScorersAllTime[0].goals) * 100}%` }}
+                        transition={{ duration: 1.5, ease: "circOut" }}
+                        className="h-full bg-primary"
+                      />
                     </div>
                   </div>
-                  <div className="w-24">
-                    <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-2 bg-[#E30613]" style={{ width: `${(p.goals / topScorersAllTime[0].goals) * 100}%` }} />
-                    </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Assists Kings */}
+            <section className="bg-card border border-border rounded-[3rem] p-10 shadow-2xl">
+              <div className="flex items-center gap-4 mb-10">
+                <Zap size={24} className="text-primary" />
+                <h3 className="text-2xl font-black font-heading">صناع الأهداف</h3>
+              </div>
+              <div className="space-y-6">
+                {topAssistPlayer.map((a, i) => (
+                  <div key={i} className="flex items-center justify-between p-6 bg-muted/30 rounded-2xl border border-transparent hover:border-primary/20 transition-all">
+                    <div className="font-bold">{a.name}</div>
+                    <div className="text-xl font-black font-heading text-primary">{a.num}</div>
                   </div>
-                </li>
-              ))}
-            </ol>
-          </motion.div>
-
-          {/* صناع الأهداف */}
-          <motion.div
-            custom={1}
-            initial="hidden"
-            animate="show"
-            variants={cardVariants}
-            className={`p-4 rounded-xl border ${COLORS.cardBorder} shadow hover:shadow-lg transition bg-white`}
-          >
-            <h2 className="text-lg font-semibold mb-3">🎯 صناع الأهداف</h2>
-            <ul className="space-y-3">
-              {topAssistPlayer.map((a) => (
-                <li key={a.name} className="flex justify-between">
-                  <span>{a.name}</span>
-                  <span className="text-[#E30613] font-semibold">{a.num}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* أكثر المشاركين */}
-          <motion.div
-            custom={2}
-            initial="hidden"
-            animate="show"
-            variants={cardVariants}
-            className={`p-4 rounded-xl border ${COLORS.cardBorder} shadow hover:shadow-lg transition bg-white`}
-          >
-            <h2 className="text-lg font-semibold mb-3">📊 أكثر المشاركين</h2>
-            <ul className="space-y-3">
-              {topPlayMatches.map((p) => (
-                <li key={p.name} className="flex justify-between">
-                  <span>{p.name}</span>
-                  <span className="text-gray-500 text-sm">مباريات: {p.num}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </section>
-
-        {/* اليمين - الرسوم البيانية */}
-        <section className="lg:col-span-2 space-y-6">
-          {/* بار شارت */}
-          <motion.div
-            custom={3}
-            initial="hidden"
-            animate="show"
-            variants={cardVariants}
-            className={`p-4 rounded-xl border ${COLORS.cardBorder} shadow hover:shadow-lg transition bg-white`}
-          >
-            <h3 className="font-semibold mb-3">📅 أبرز مواسم الهداف</h3>
-            <div className="w-full h-64">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={seasonData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                  <XAxis dataKey="player" />
-                  <YAxis />
-                  <Tooltip />
-                  <Bar dataKey="goals" fill={COLORS.red} radius={[6, 6, 0, 0]}>
-                    <LabelList dataKey="goals" position="top" fill="#333" fontSize={12} />
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </motion.div>
-
-          {/* لاين شارت */}
-          <motion.div
-            custom={4}
-            initial="hidden"
-            animate="show"
-            variants={cardVariants}
-            className={`p-4 rounded-xl border ${COLORS.cardBorder} shadow hover:shadow-lg transition bg-white`}
-          >
-            <h3 className="font-semibold mb-3">🏆 مقارنة هدافي التاريخ</h3>
-            <div className="w-full h-64">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={topScorersChart}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Line type="monotone" dataKey="goals" stroke={COLORS.red} strokeWidth={3} dot={{ r: 6, stroke: COLORS.gold, strokeWidth: 2 }} />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* ---------------- بقية الإحصائيات ---------------- */}
-        <section className="lg:col-span-3 space-y-8 mt-10">
-
-          {/* أرقام خاصة */}
-          <motion.div
-            custom={5}
-            initial="hidden"
-            animate="show"
-            variants={cardVariants}
-            className={`p-4 rounded-xl border ${COLORS.cardBorder} shadow hover:shadow-lg transition bg-white`}
-          >
-            <h2 className="text-lg font-semibold mb-4">⚡ أرقام خاصة</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="p-3 border rounded-lg text-center bg-gray-50">
-                <p className="text-sm text-gray-500">أسرع هدف</p>
-                <p className="text-xl font-bold text-[#E30613]">{fastestGoal.time}</p>
-                <p className="text-xs text-gray-600">{fastestGoal.player} - {fastestGoal.year}</p>
+                ))}
               </div>
-              <div className="p-3 border rounded-lg text-center bg-gray-50">
-                <p className="text-sm text-gray-500">أول هاتريك</p>
-                <p className="text-lg font-bold">{firstHatrick.player}</p>
-                <p className="text-xs text-gray-600">{firstHatrick.year}</p>
-              </div>
-              <div className="p-3 border rounded-lg text-center bg-gray-50">
-                <p className="text-sm text-gray-500">أكثر من سجل هاتريك</p>
-                <p className="text-lg font-bold">{mostHatrickScore.player}</p>
-                <p className="text-xs text-gray-600">{mostHatrickScore.num} مرات</p>
-              </div>
-              <div className="p-3 border rounded-lg text-center bg-gray-50">
-                <p className="text-sm text-gray-500">أكبر فوز</p>
-                <p className="text-lg font-bold">{highWin.score}</p>
-                <p className="text-xs text-gray-600">ضد {highWin.team}</p>
-              </div>
-            </div>
-          </motion.div>
+            </section>
+          </div>
 
-          {/* أصغر هدافين */}
-          <motion.div
-            custom={6}
-            initial="hidden"
-            animate="show"
-            variants={cardVariants}
-            className={`p-4 rounded-xl border ${COLORS.cardBorder} shadow hover:shadow-lg transition bg-white`}
-          >
-            <h2 className="text-lg font-semibold mb-4">🌟 أصغر هدافين في تاريخ النادي</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {mostYoungPlayersScore.map((p) => (
-                <div key={p.name} className="flex items-center gap-3 border p-3 rounded-lg bg-gray-50">
-                  <img src={p.img || "/default-player.png"} alt={p.name} className="w-12 h-12 rounded-full object-cover border" />
-                  <div>
-                    <p className="font-bold">{p.name}</p>
-                    <p className="text-xs text-gray-500">{p.age} و {p.months}</p>
-                  </div>
+          {/* Main Charts & Records */}
+          <div className="lg:col-span-2 space-y-12">
+            {/* Season Goals Analytics */}
+            <section className="bg-card border border-border rounded-[4rem] p-12 shadow-2xl">
+              <header className="flex items-center justify-between mb-16">
+                <div className="space-y-2">
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Performance Trend</span>
+                  <h3 className="text-3xl font-black font-heading italic">تحليل مواسم الهدافين</h3>
                 </div>
-              ))}
-            </div>
-          </motion.div>
+                <TrendingUp className="text-primary/20" size={40} />
+              </header>
+              <div className="h-[400px] w-full rtl-chart">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={seasonData}>
+                    <defs>
+                      <linearGradient id="colorGoals" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#E31B23" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="#E31B23" stopOpacity={0} />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#ffffff10" />
+                    <XAxis dataKey="season" axisLine={false} tickLine={false} tick={{ fill: '#ffffff40', fontSize: 10, fontWeight: 900 }} />
+                    <YAxis axisLine={false} tickLine={false} tick={{ fill: '#ffffff40', fontSize: 10, fontWeight: 900 }} />
+                    <Tooltip contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #ffffff10', borderRadius: '1rem' }} />
+                    <Area type="monotone" dataKey="goals" stroke="#E31B23" strokeWidth={4} fillOpacity={1} fill="url(#colorGoals)" />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
+            </section>
 
-          {/* أكثر الدول التي لعب منها محترفون */}
-          <motion.div
-            custom={7}
-            initial="hidden"
-            animate="show"
-            variants={cardVariants}
-            className={`p-4 rounded-xl border ${COLORS.cardBorder} shadow hover:shadow-lg transition bg-white`}
-          >
-            <h2 className="text-lg font-semibold mb-4">🌍 أكثر الدول التي لعب منها محترفون</h2>
-            <div className="w-full h-72">
-              <ResponsiveContainer>
-                <BarChart data={mostCountriesPlayInZamalek}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="country" />
-                  <YAxis />
-                  <Tooltip />
-                  <Bar dataKey="num" fill={COLORS.red}>
-                    <LabelList dataKey="num" position="top" />
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </motion.div>
+            {/* Young Guns Showcase */}
+            <section className="space-y-12">
+              <h3 className="text-3xl font-black font-heading italic px-4">أصغر هدافي الأبيض التاريخيين</h3>
+              <div className="grid md:grid-cols-3 gap-8">
+                {mostYoungPlayersScore.map((p, i) => (
+                  <div key={i} className="group p-8 bg-card border border-border rounded-[3rem] hover:border-primary transition-all text-center space-y-6">
+                    <div className="relative w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-muted group-hover:border-primary transition-all">
+                      <Image src={p.img || "https://images.unsplash.com/photo-1543351611-58f69d7c1781?q=80&w=1974&auto=format&fit=crop"} alt={p.name} fill className="object-cover" />
+                    </div>
+                    <div>
+                      <div className="text-xl font-black font-heading">{p.name}</div>
+                      <div className="text-[10px] font-black uppercase tracking-widest text-primary pt-2">{p.age} YEARS OLD</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
 
-          {/* أكبر حضور جماهيري */}
-          <motion.div
-            custom={8}
-            initial="hidden"
-            animate="show"
-            variants={cardVariants}
-            className={`p-4 rounded-xl border ${COLORS.cardBorder} shadow hover:shadow-lg transition bg-white`}
-          >
-            <h2 className="text-lg font-semibold mb-4">👥 أكبر حضور جماهيري</h2>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm text-right border-collapse">
-                <thead>
-                  <tr className="bg-gray-100">
-                    <th className="p-2">المباراة</th>
-                    <th className="p-2">الحضور</th>
-                    <th className="p-2">السنة</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {mostMatchesattendance.map((m, i) => (
-                    <tr key={i} className="border-b hover:bg-gray-50">
-                      <td className="p-2">{m.against}</td>
-                      <td className="p-2">{m.num}</td>
-                      <td className="p-2">{m.year}</td>
-                    </tr>
+            {/* International Reach & Attendance */}
+            <div className="grid md:grid-cols-2 gap-12">
+              {/* Countries Chart */}
+              <section className="bg-card border border-border rounded-[3rem] p-10 shadow-2xl">
+                <h4 className="text-xl font-black font-heading mb-10 flex items-center gap-4"><Globe size={20} className="text-primary" /> المحترفون حسب الجنسية</h4>
+                <div className="h-[250px] w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={mostCountriesPlayInZamalek} layout="vertical">
+                      <XAxis type="number" hide />
+                      <YAxis dataKey="country" type="category" axisLine={false} tickLine={false} tick={{ fill: '#ffffff60', fontSize: 8, fontWeight: 900 }} width={60} />
+                      <Tooltip />
+                      <Bar dataKey="num" fill="#E31B23" radius={[0, 4, 4, 0]} barSize={20} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </section>
+
+              {/* Attendance Records */}
+              <section className="bg-primary rounded-[3rem] p-10 text-white shadow-2xl shadow-primary/30 relative overflow-hidden">
+                <Users size={150} className="absolute -bottom-10 -left-10 opacity-10" />
+                <h4 className="text-xl font-black font-heading mb-10 relative z-10 italic">أرقام الحضور الجماهيري</h4>
+                <div className="space-y-6 relative z-10">
+                  {mostMatchesattendance.slice(0, 3).map((m, i) => (
+                    <div key={i} className="flex justify-between items-center pb-4 border-b border-white/10 last:border-0">
+                      <div>
+                        <div className="font-black italic">vs {m.against}</div>
+                        <div className="text-[10px] font-bold opacity-60 uppercase tracking-widest">SEASON {m.year}</div>
+                      </div>
+                      <div className="text-2xl font-black font-heading italic">{m.num}</div>
+                    </div>
                   ))}
-                </tbody>
-              </table>
+                </div>
+              </section>
             </div>
-          </motion.div>
+          </div>
 
-          {/* مواجهات القمة */}
-          <motion.div
-            custom={9}
-            initial="hidden"
-            animate="show"
-            variants={cardVariants}
-            className={`p-4 rounded-xl border ${COLORS.cardBorder} shadow hover:shadow-lg transition bg-white`}
-          >
-            <h2 className="text-lg font-semibold mb-4">🔥 مواجهات القمة</h2>
-            <p className="text-gray-700">
-              أكبر فوز على الأهلي:
-              <span className="font-bold text-[#E30613]"> {derbyRecord.largestWinVsAhly}</span>
-              في أعوام {derbyRecord.Years.join(" و ")}
-            </p>
-          </motion.div>
-        </section>
-      </main>
+        </div>
+      </section>
 
-      {/* الفوتر */}
-      <footer className="py-6 text-center text-gray-500 text-sm border-t">
-        © {new Date().getFullYear()} إحصائيات الزمالك — تصميم احترافي
-      </footer>
     </div>
-  )
+  );
+}
+
+function QuickStat({ icon, label, value, sub }) {
+  return (
+    <div className="p-8 text-center space-y-2 group">
+      <div className="w-12 h-12 rounded-2xl bg-muted text-foreground flex items-center justify-center mx-auto group-hover:bg-primary group-hover:text-white transition-all">
+        {icon}
+      </div>
+      <div className="text-[9px] font-black uppercase tracking-widest opacity-40 pt-2">{label}</div>
+      <div className="text-3xl font-black font-heading italic">{value}</div>
+      <div className="text-[10px] font-bold opacity-20 truncate">{sub}</div>
+    </div>
+  );
 }

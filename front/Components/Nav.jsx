@@ -28,9 +28,9 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
     {
       id: 3, title: 'الفرق', url: '#', sublinks: [
         { id: 31, title: 'الفريق الأول لكرة القدم', url: '/Pages/Players/Football' },
-        { id: 32, title: 'فريق كرة السلة', url: '/Pages/Players/basketball' },
-        { id: 33, title: 'فريق الكرة الطائرة', url: '/Pages/Players/volleyball' },
-        { id: 34, title: 'فريق كرة اليد', url: '/Pages/Players/handball' },
+        { id: 32, title: 'فريق كرة السلة', url: '/Pages/Players/Basketball' },
+        { id: 33, title: 'فريق الكرة الطائرة', url: '/Pages/Players/Volleyball' },
+        { id: 34, title: 'فريق كرة اليد', url: '/Pages/Players/Handball' },
         { id: 35, title: 'فرق السيدات', url: '/Pages/Players/women' },
       ]
     },

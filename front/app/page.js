@@ -10,6 +10,7 @@ import ArrowTopButton from "@/Components/ArrowTopButton";
 import TeamsSlider from "@/Components/Teams";
 import HeroNews from "../Components/Hero";
 import { cn } from "@/lib/utils";
+import PartnershipAd from "@/Components/PartnershipAd";
 import MatchesSlider from "@/Components/MatchesLine";
 import AddMenuModalAll from "@/Components/MenuAdd";
 
@@ -24,6 +25,7 @@ export default function Home() {
         <TeamsSlider />
         <ZamalekAchievements />
         <FirstTeam />
+        <PartnershipAd />
         <ZamalekKitShowcase />
       </div>
       <ArrowTopButton />

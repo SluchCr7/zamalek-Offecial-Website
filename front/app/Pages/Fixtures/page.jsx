@@ -153,309 +153,287 @@
 //   );
 // }
 
-'use client'
-import React, { useMemo, useState } from 'react'
-import dayjs from 'dayjs'
-import 'dayjs/locale/ar'
-import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
-import { zamalekMatches } from '@/utils/data'
+'use client';
 
-// ضبط لغة dayjs للعربية
-dayjs.locale('ar')
+import React, { useMemo, useState } from 'react';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ar';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Calendar as CalendarIcon,
+  MapPin,
+  Trophy,
+  Clock,
+  ChevronRight,
+  ChevronLeft,
+  X,
+  Tv
+} from 'lucide-react';
+import { zamalekMatches } from '@/utils/data';
+import TitleSection from '@/Components/TitleSection';
 
-const COLORS = {
-  primary: '#E30613', // لون الزمالك الأحمر
-  neutralBg: 'bg-[#f7f5f5]',
-  cardShadow: 'shadow-[0_6px_20px_rgba(0,0,0,0.08)]',
-}
+dayjs.locale('ar');
 
 const matchTypeColors = {
-  Home: 'bg-white text-red-700 border-2 border-red-700',
-  Away: 'bg-gray-800 text-white border-2 border-gray-600',
-  'Egyptian Cup': 'bg-yellow-300 text-red-800 border-2 border-yellow-500',
-  'CAF Champions League': 'bg-emerald-600 text-white border-2 border-emerald-800',
-}
+  Home: 'border-primary bg-primary/5 text-primary',
+  Away: 'border-foreground bg-foreground/5 text-foreground',
+  'Egyptian Cup': 'border-yellow-500 bg-yellow-500/5 text-yellow-600',
+  'CAF Champions League': 'border-emerald-500 bg-emerald-500/5 text-emerald-600',
+};
 
-export default function MatchesCalendarEnhanced() {
-  const [currentMonth, setCurrentMonth] = useState(dayjs())
-  const [selectedMatch, setSelectedMatch] = useState(null)
-  const [filterCompetition, setFilterCompetition] = useState('All')
-  const [filterType, setFilterType] = useState('All')
+export default function FixturesPage() {
+  const [currentMonth, setCurrentMonth] = useState(dayjs());
+  const [selectedMatch, setSelectedMatch] = useState(null);
 
-  const startDay = currentMonth.startOf('month').startOf('week')
-  const endDay = currentMonth.endOf('month').endOf('week')
+  const startDay = currentMonth.startOf('month').startOf('week');
+  const endDay = currentMonth.endOf('month').endOf('week');
 
-  // بناء مصفوفة الأيام التي ستظهر في الشبكة
-  const days = []
-  let day = startDay
+  const days = [];
+  let day = startDay;
   while (day.isBefore(endDay) || day.isSame(endDay, 'day')) {
-    days.push(day)
-    day = day.add(1, 'day')
+    days.push(day);
+    day = day.add(1, 'day');
   }
-
-  // فرز وتصفية المباريات بناء على الشهر والفلتر
-  const matchesInMonth = useMemo(() => {
-    return zamalekMatches.filter((m) => dayjs(m.date).isSame(currentMonth, 'month'))
-  }, [currentMonth])
-
-  const competitions = useMemo(() => {
-    const set = new Set(matchesInMonth.map((m) => m.competition))
-    return ['All', ...Array.from(set)]
-  }, [matchesInMonth])
 
   const getMatchesForDate = (d) => {
-    return zamalekMatches
-      .filter((m) => dayjs(m.date).isSame(d, 'day'))
-      .filter((m) => (filterCompetition === 'All' ? true : m.competition === filterCompetition))
-      .filter((m) => (filterType === 'All' ? true : (m.matchType || m.type) === filterType))
-  }
+    return zamalekMatches.filter((m) => dayjs(m.date).isSame(d, 'day'));
+  };
 
-  const isToday = (d) => dayjs().isSame(d, 'day')
-
-  // إحصائيات الشهر
-  const stats = useMemo(() => {
-    const data = { total: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0 }
-    matchesInMonth.forEach((m) => {
-      data.total += 1
-      if (m.status === 'Finished' && m.result) {
-        const [a, b] = m.result.split('-').map((s) => parseInt(s.trim()))
-        // افتراض أن النتيجة في صيغة ZamalekGoals - OpponentGoals
-        if (!isNaN(a) && !isNaN(b)) {
-          data.goalsFor += a
-          data.goalsAgainst += b
-          if (a > b) data.wins += 1
-          else if (a === b) data.draws += 1
-          else data.losses += 1
-        }
-      }
-    })
-    return data
-  }, [matchesInMonth])
+  const isToday = (d) => dayjs().isSame(d, 'day');
 
   return (
-    <div dir="rtl" className="p-4 sm:p-6 w-full max-w-7xl mx-auto rounded-lg bg-white">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-3">
-          <div className="relative w-12 h-12 rounded-full overflow-hidden border-2" style={{ borderColor: COLORS.primary }}>
-            <Image src="/teams/zamalek.png" alt="Zamalek" fill sizes="48px" />
+    <div className="min-h-screen bg-background text-foreground pb-24" dir="rtl">
+      {/* Header Section */}
+      <section className="relative pt-32 pb-16 px-4 md:px-8 border-b border-border overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="container mx-auto relative z-10">
+          <TitleSection
+            title="جدول المباريات"
+            subtitle="مواعيد ونتائج كافة مواجهات مدرسة الفن والهندسة في جميع المسابقات"
+          />
+
+          <div className="flex items-center justify-center gap-6 mt-12 bg-card/50 backdrop-blur-xl border border-border p-2 rounded-2xl w-fit mx-auto shadow-2xl">
+            <button
+              onClick={() => setCurrentMonth(prev => prev.subtract(1, 'month'))}
+              className="w-12 h-12 flex items-center justify-center rounded-xl bg-muted hover:bg-primary hover:text-white transition-all"
+            >
+              <ChevronRight size={20} />
+            </button>
+            <div className="text-xl font-black font-heading px-8 min-w-[200px] text-center">
+              {currentMonth.format('MMMM YYYY')}
+            </div>
+            <button
+              onClick={() => setCurrentMonth(prev => prev.add(1, 'month'))}
+              className="w-12 h-12 flex items-center justify-center rounded-xl bg-muted hover:bg-primary hover:text-white transition-all"
+            >
+              <ChevronLeft size={20} />
+            </button>
           </div>
-          <div>
-            <h1 className="text-2xl font-extrabold" style={{ color: COLORS.primary }}>تقويم مباريات الزمالك</h1>
-            <p className="text-sm text-gray-500">عرض شهري منظم ومتكامل للمباريات</p>
-          </div>
         </div>
-
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setCurrentMonth((m) => m.subtract(1, 'month'))}
-            className="px-3 py-1 rounded border hover:bg-gray-50 transition"
-          >
-            ◀
-          </button>
-
-          <div className="px-4 py-2 rounded font-semibold" style={{ background: COLORS.primary, color: '#fff' }}>
-            {currentMonth.format('MMMM YYYY')}
-          </div>
-
-          <button
-            onClick={() => setCurrentMonth((m) => m.add(1, 'month'))}
-            className="px-3 py-1 rounded border hover:bg-gray-50 transition"
-          >
-            ▶
-          </button>
-        </div>
-      </div>
-
-      {/* Filters */}
-      <div className="flex flex-col sm:flex-row gap-3 items-center justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <label className="text-sm font-medium">البطولة</label>
-          <select
-            value={filterCompetition}
-            onChange={(e) => setFilterCompetition(e.target.value)}
-            className="px-3 py-2 border rounded"
-          >
-            {competitions.map((c) => (
-              <option key={c} value={c}>{c}</option>
-            ))}
-          </select>
-
-          <label className="text-sm font-medium">نوع المباراة</label>
-          <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="px-3 py-2 border rounded">
-            <option value="All">All</option>
-            <option value="Home">Home</option>
-            <option value="Away">Away</option>
-          </select>
-        </div>
-
-        <div className="flex items-center gap-6">
-          <div className="text-sm text-gray-600">مجموع مباريات الشهر: <span className="font-semibold">{stats.total}</span></div>
-          <div className="text-sm text-gray-600">أهداف: <span className="font-semibold">{stats.goalsFor} - {stats.goalsAgainst}</span></div>
-        </div>
-      </div>
-
-      {/* Days Header */}
-      <div className="grid grid-cols-7 text-center font-semibold bg-red-600 text-white rounded-t-lg overflow-hidden">
-        {['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'].map((d) => (
-          <div key={d} className="p-2">{d}</div>
-        ))}
-      </div>
+      </section>
 
       {/* Calendar Grid */}
-      <div className={`grid grid-cols-7 gap-2 ${COLORS.neutralBg} p-2 rounded-b-lg`}>
-        <AnimatePresence mode="popLayout">
-          {days.map((d, idx) => {
-            const matches = getMatchesForDate(d)
-            const hasMatch = matches.length > 0
+      <section className="container mx-auto px-4 md:px-8 py-16">
+        <div className="bg-card/30 backdrop-blur-md rounded-[3rem] border border-border shadow-2xl overflow-hidden">
 
-            return (
-              <motion.div
-                key={d.toString()}
-                layout
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.18 }}
-                className={`min-h-[92px] flex flex-col p-2 rounded-md ${COLORS.cardShadow} ${!d.isSame(currentMonth, 'month') ? 'opacity-50' : ''}`}
-              >
-                <div className="flex items-center justify-between">
-                  <div className={`text-sm font-bold ${isToday(d) ? 'text-white bg-red-600 rounded-full w-7 h-7 flex items-center justify-center' : 'text-red-600'}`}>
+          {/* Days Header */}
+          <div className="grid grid-cols-7 border-b border-border bg-muted/30">
+            {['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'].map((d) => (
+              <div key={d} className="p-6 text-center text-xs font-black uppercase tracking-widest opacity-40">
+                {d}
+              </div>
+            ))}
+          </div>
+
+          {/* Grid Cells */}
+          <div className="grid grid-cols-7">
+            {days.map((d, idx) => {
+              const matches = getMatchesForDate(d);
+              const inMonth = d.isSame(currentMonth, 'month');
+              const cellIsToday = isToday(d);
+
+              return (
+                <div
+                  key={idx}
+                  className={`min-h-[160px] p-4 border-l border-b border-border relative group transition-colors ${!inMonth ? 'bg-muted/5 opacity-30 shadow-inner' : 'hover:bg-primary/[0.02]'
+                    } ${idx % 7 === 6 ? 'border-l-0' : ''}`}
+                >
+                  <div className={`text-sm font-black mb-4 flex items-center justify-center w-8 h-8 rounded-full transition-all ${cellIsToday ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'opacity-40'
+                    }`}>
                     {d.format('D')}
                   </div>
-                  <div className="text-xs text-gray-500">{d.format('MMM')}</div>
-                </div>
 
-                <div className="mt-2 flex-1 flex flex-col gap-1 overflow-hidden">
-                  {hasMatch ? (
-                    matches.slice(0, 2).map((m, i) => (
+                  <div className="space-y-2">
+                    {matches.map((m, i) => (
                       <motion.button
                         key={i}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                         onClick={() => setSelectedMatch(m)}
-                        whileHover={{ scale: 1.02 }}
-                        className={`flex items-center justify-between w-full p-2 rounded-md text-xs ${matchTypeColors[m.matchType] || 'bg-white'} ${m.status === 'Finished' ? 'opacity-95' : ''}`}
+                        className={`w-full p-2.5 rounded-xl border text-[10px] font-bold text-center transition-all shadow-sm ${matchTypeColors[m.matchType] || 'border-border bg-muted'
+                          }`}
                       >
-                        <div className="flex items-center gap-2">
-                          <div className="relative w-6 h-6 rounded-full overflow-hidden">
-                            <Image src={`/teams/${m.opponentLogo}`} alt={m.opponent} fill sizes="24px" />
-                          </div>
-                          <div className="font-semibold">{m.opponent}</div>
+                        <div className="flex items-center justify-center gap-1.5 mb-1 opacity-60">
+                          <Trophy size={10} />
+                          {m.competition}
                         </div>
-
-                        <div className="text-center">
-                          <div className="text-[11px]">{m.competition}</div>
-                          {m.status === 'Finished' ? (
-                            <div className="font-bold mt-1 text-sm bg-white rounded px-2 py-0.5">{m.result}</div>
-                          ) : (
-                            <div className="font-semibold mt-1">{dayjs(m.date).format('HH:mm')}</div>
-                          )}
+                        <div className="flex items-center justify-center gap-1">
+                          <span className="truncate">{m.opponent}</span>
                         </div>
                       </motion.button>
-                    ))
-                  ) : (
-                    <div className="text-xs text-gray-400">—</div>
-                  )}
-
-                  {/* تظهر شارة + إذا كانت هناك مباريات أكثر */}
-                  {matches.length > 2 && (
-                    <div className="text-xs text-right text-gray-600">+{matches.length - 2} مباراة</div>
-                  )}
+                    ))}
+                  </div>
                 </div>
-              </motion.div>
-            )
-          })}
-        </AnimatePresence>
-      </div>
-
-      {/* Legend & Stats */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-6 bg-white p-4 rounded-md border">
-        <div className="flex items-center gap-6">
-          <LegendItem color="bg-white border-2 border-red-600" text="🏠 Home" />
-          <LegendItem color="bg-gray-800 text-white border-2 border-gray-600" text="✈️ Away" />
-          <LegendItem color="bg-yellow-300 border-2 border-yellow-500" text="🏆 كأس مصر" />
-          <LegendItem color="bg-emerald-600 text-white border-2 border-emerald-800" text="🌍 دوري الأبطال" />
+              );
+            })}
+          </div>
         </div>
 
-        <div className="flex items-center gap-6">
-          <div className="text-sm">فوز: <span className="font-semibold">{stats.wins}</span></div>
-          <div className="text-sm">تعادل: <span className="font-semibold">{stats.draws}</span></div>
-          <div className="text-sm">خسارة: <span className="font-semibold">{stats.losses}</span></div>
+        {/* Legend Panel */}
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-8 bg-card rounded-[2rem] border border-border p-8 shadow-xl">
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 rounded-full bg-primary" />
+            <span className="text-[10px] font-black uppercase tracking-widest opacity-60">مباراة في ملعبنا</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 rounded-full bg-foreground" />
+            <span className="text-[10px] font-black uppercase tracking-widest opacity-60">مباراة خارج أرضنا</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 rounded-full bg-yellow-500" />
+            <span className="text-[10px] font-black uppercase tracking-widest opacity-60">كأس مصر</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 rounded-full bg-emerald-500" />
+            <span className="text-[10px] font-black uppercase tracking-widest opacity-60">البطولات الإفريقية</span>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Match Modal */}
+      {/* Match Details Modal */}
       <AnimatePresence>
         {selectedMatch && (
-          <motion.div
-            key="modal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          >
+          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-8">
             <motion.div
-              initial={{ scale: 0.96, y: 10 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.96, y: 10 }}
-              transition={{ duration: 0.18 }}
-              className="max-w-xl w-full bg-white rounded-lg p-4 shadow-lg border"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedMatch(null)}
+              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            />
+
+            <motion.div
+              layoutId={`match-modal-${selectedMatch.id}`}
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="relative w-full max-w-4xl bg-card rounded-[3rem] border border-border shadow-[0_32px_128px_rgba(0,0,0,0.5)] overflow-hidden"
             >
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-3">
-                  <div className="relative w-14 h-14 rounded-full overflow-hidden border" style={{ borderColor: COLORS.primary }}>
-                    <Image src="/teams/zamalek.png" alt="Zamalek" fill sizes="56px" />
+              {/* Modal Background Decor */}
+              <div className="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-primary/10 to-transparent pointer-events-none" />
+
+              <button
+                onClick={() => setSelectedMatch(null)}
+                className="absolute top-8 left-8 w-12 h-12 rounded-full bg-muted/50 flex items-center justify-center hover:bg-primary hover:text-white transition-all z-10"
+              >
+                <X size={24} />
+              </button>
+
+              <div className="relative p-8 md:p-16">
+
+                {/* Competition Badge */}
+                <div className="flex flex-col items-center mb-12">
+                  <div className="px-6 py-2 rounded-full border border-primary/20 bg-primary/10 text-primary text-xs font-black uppercase tracking-[0.2em] mb-4">
+                    {selectedMatch.competition}
                   </div>
-                  <div className="text-center">
-                    <div className="font-bold text-lg">Zamalek</div>
-                    <div className="text-sm text-gray-500">{dayjs(selectedMatch.date).format('dddd, D MMMM YYYY')}</div>
+                  <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest opacity-40">
+                    <CalendarIcon size={14} />
+                    <span>{dayjs(selectedMatch.date).format('dddd, D MMMM YYYY')}</span>
                   </div>
                 </div>
 
-                <button onClick={() => setSelectedMatch(null)} className="px-3 py-1 rounded border">إغلاق</button>
+                {/* Score / Teams Grid */}
+                <div className="grid grid-cols-3 items-center gap-8 mb-16">
+
+                  {/* Team 1 (Zamalek) */}
+                  <div className="flex flex-col items-center gap-6">
+                    <div className="relative w-24 h-24 md:w-40 md:h-40 p-4 rounded-full bg-white shadow-2xl">
+                      <Image src="/teams/zamalek.png" alt="Zamalek" fill className="object-contain p-4" />
+                    </div>
+                    <h3 className="text-xl md:text-3xl font-black font-heading text-center">الزمالك</h3>
+                  </div>
+
+                  {/* VS Card */}
+                  <div className="flex flex-col items-center">
+                    {selectedMatch.status === 'Finished' ? (
+                      <div className="flex items-center gap-4">
+                        <span className="text-5xl md:text-8xl font-black font-heading tracking-tighter">
+                          {selectedMatch.result.split('-')[0]}
+                        </span>
+                        <span className="text-2xl font-black opacity-20">-</span>
+                        <span className="text-5xl md:text-8xl font-black font-heading tracking-tighter">
+                          {selectedMatch.result.split('-')[1]}
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col items-center">
+                        <div className="text-xs font-black uppercase tracking-[0.3em] opacity-40 mb-6">قادمة</div>
+                        <div className="text-5xl md:text-7xl font-black font-heading tracking-tighter text-primary">
+                          {dayjs(selectedMatch.date).format('HH:mm')}
+                        </div>
+                      </div>
+                    )}
+
+                    {selectedMatch.status === 'Live' && (
+                      <div className="mt-4 flex items-center gap-2 bg-red-600 px-4 py-1.5 rounded-full text-white text-[10px] font-black animate-pulse">
+                        <div className="w-1.5 h-1.5 rounded-full bg-white" />
+                        مباشر الآن
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Team 2 (Opponent) */}
+                  <div className="flex flex-col items-center gap-6">
+                    <div className="relative w-24 h-24 md:w-40 md:h-40 p-4 rounded-full bg-white shadow-2xl">
+                      <Image src={`/teams/${selectedMatch.opponentLogo}`} alt={selectedMatch.opponent} fill className="object-contain p-4" />
+                    </div>
+                    <h3 className="text-xl md:text-3xl font-black font-heading text-center">{selectedMatch.opponent}</h3>
+                  </div>
+
+                </div>
+
+                {/* Match Info Grid */}
+                <div className="grid md:grid-cols-3 gap-6 pt-12 border-t border-border">
+                  <div className="flex items-center gap-4 p-4 rounded-2xl bg-muted/30">
+                    <MapPin size={24} className="text-primary" />
+                    <div>
+                      <div className="text-[10px] font-black uppercase opacity-40">الملعب</div>
+                      <div className="font-bold">{selectedMatch.venue || "ستاد القاهرة الدولي"}</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4 p-4 rounded-2xl bg-muted/30">
+                    <Clock size={24} className="text-primary" />
+                    <div>
+                      <div className="text-[10px] font-black uppercase opacity-40">التوقيت</div>
+                      <div className="font-bold text-sm">بتوقيت القاهرة</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4 p-4 rounded-2xl bg-muted/30">
+                    <Tv size={24} className="text-primary" />
+                    <div>
+                      <div className="text-[10px] font-black uppercase opacity-40">القنوات الناقلة</div>
+                      <div className="font-bold">أون تايم سبورتس</div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
-
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex-1 text-center">
-                  <div className="relative w-20 h-20 mx-auto rounded-full overflow-hidden border" style={{ borderColor: COLORS.primary }}>
-                    <Image src={`/teams/${selectedMatch.opponentLogo}`} alt={selectedMatch.opponent} fill sizes="80px" />
-                  </div>
-                  <div className="font-bold mt-2">{selectedMatch.opponent}</div>
-                </div>
-
-                <div className="flex-1 text-center">
-                  <div className="text-sm text-gray-500">{selectedMatch.competition}</div>
-                  <div className="text-2xl font-extrabold mt-2" style={{ color: COLORS.primary }}>
-                    {selectedMatch.status === 'Finished' ? selectedMatch.result : dayjs(selectedMatch.date).format('HH:mm')}
-                  </div>
-                  <div className="text-sm text-gray-500 mt-1">{selectedMatch.venue || 'ملعب غير معروف'}</div>
-                </div>
-
-                <div className="flex-1 text-center">
-                  <div className="text-xs text-gray-500">نوع</div>
-                  <div className="font-semibold mt-1">{selectedMatch.matchType || selectedMatch.type || '—'}</div>
-                  <div className="text-xs text-gray-500 mt-3">الحالة</div>
-                  <div className="font-semibold mt-1">{selectedMatch.status}</div>
-                </div>
-              </div>
-
-              {selectedMatch.notes && (
-                <div className="mt-4 text-sm text-gray-700">ملاحظات: {selectedMatch.notes}</div>
-              )}
-
             </motion.div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </div>
-  )
-}
-
-function LegendItem({ color, text }) {
-  return (
-    <div className="flex items-center gap-2">
-      <span className={`w-4 h-4 inline-block ${color} rounded`}></span>
-      <span className="text-sm font-medium">{text}</span>
-    </div>
-  )
+  );
 }

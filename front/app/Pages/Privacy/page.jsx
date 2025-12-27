@@ -1,123 +1,107 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { ShieldCheck, User, Lock, Globe, Clock, FileText } from 'lucide-react'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ShieldCheck, User, Lock, Globe, Clock, FileText, Download, Shield, Bookmark, Fingerprint, Eye } from 'lucide-react';
 
-export default function PrivacyPolicyPage() {
+const sections = [
+  { id: 'intro', title: 'مقدمة', icon: <ShieldCheck />, content: `نحن في موقع نادي الزمالك الرسمي نولي خصوصيتك أهمية قصوى. تلتزم إدارة النادي بحماية كافة البيانات الشخصية التي يتم مشاركتها معنا، ونحرص على توضيح كيفية جمع واستخدام هذه البيانات لضمان تجربة آمنة وموثوقة لكافة الجماهير.` },
+  { id: 'data', title: 'البيانات التي نجمعها', icon: <Fingerprint />, content: `نقوم بجمع بيانات محدودة تشمل: الاسم، البريد الإلكتروني، رقم الهاتف، ومعلومات التصفح الفنية مثل عنوان الـ IP ونوع الجهاز، وذلك لتحسين جودة الخدمات المقدمة وضمان وصول الأخبار والفعاليات إليك بشكل دقيق.` },
+  { id: 'use', title: 'كيفية استخدام البيانات', icon: <Globe />, content: `نستخدم بياناتك لتخصيص محتوى الموقع، وإرسال النشرات الإخبارية الرسمية، وتحليل أداء الموقع لتطويره، بالإضافة إلى الامتثال للمتطلبات القانونية والتنظيمية المعمول بها في جمهورية مصر العربية.` },
+  { id: 'rights', title: 'حقوقك القانونية', icon: <Lock />, content: `لك الحق الكامل في الوصول إلى بياناتك المسجلة لدينا، وطلب تصحيحها أو حذفها في أي وقت. يمكنك أيضاً سحب موافقتك على معالجة البيانات من خلال إعدادات حسابك أو بالتواصل المباشر مع الدعم الفني للنادي.` },
+];
+
+export default function PrivacyPage() {
   return (
-    <div dir="rtl" className="min-h-screen bg-gray-50 text-gray-900 font-sans">
-      {/* Header */}
-      <header className="bg-red-700 text-white py-8 shadow-md relative">
-        <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-3xl font-bold mb-2">سياسة الخصوصية</h1>
-          <p className="text-sm text-red-100">آخر تحديث: 13 أغسطس 2025</p>
+    <div className="min-h-screen bg-background text-foreground" dir="rtl">
+
+      {/* Legal Hero */}
+      <section className="relative h-[40vh] flex items-center justify-center overflow-hidden border-b border-border">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--color-primary)_0%,_transparent_70%)] opacity-5" />
         </div>
-      </header>
 
-      <div className="max-w-7xl mx-auto px-4 py-10 flex gap-10">
-        {/* Sidebar */}
-        <aside className="hidden md:block w-1/4 sticky top-20 self-start">
-          <nav className="bg-white rounded-lg shadow-md p-4 border border-red-100">
-            <ul className="space-y-3 text-sm">
-              <li><a href="#intro" className="hover:text-red-700 font-medium">مقدمة</a></li>
-              <li><a href="#data" className="hover:text-red-700 font-medium">البيانات التي نجمعها</a></li>
-              <li><a href="#use" className="hover:text-red-700 font-medium">كيفية استخدام البيانات</a></li>
-              <li><a href="#share" className="hover:text-red-700 font-medium">مشاركة المعلومات</a></li>
-              <li><a href="#rights" className="hover:text-red-700 font-medium">حقوقك</a></li>
-              <li><a href="#contact" className="hover:text-red-700 font-medium">التواصل معنا</a></li>
-            </ul>
-          </nav>
-        </aside>
+        <div className="relative z-10 text-center space-y-6 px-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest"
+          >
+            <Eye size={14} />
+            <span>معايير الخصوصية العالمية</span>
+          </motion.div>
+          <h1 className="text-4xl md:text-7xl font-black font-heading tracking-tight italic uppercase">
+            سياسة <span className="text-primary italic">الـخـصوصـية</span>
+          </h1>
+          <p className="text-sm font-bold opacity-40 uppercase tracking-[0.2em]">Latest Updated: August 2024</p>
+        </div>
+      </section>
 
-        {/* Main Content */}
-        <main className="flex-1 space-y-8">
-          {/* Intro */}
-          <section id="intro" className="bg-white rounded-xl shadow-sm p-6 border border-red-100">
-            <h2 className="flex items-center gap-2 text-xl font-bold mb-4 text-red-700">
-              <ShieldCheck className="w-6 h-6" /> مقدمة
-            </h2>
-            <p>
-              نحن في موقع نادي الزمالك نحترم خصوصيتك ونسعى لحماية بياناتك الشخصية. توضح هذه السياسة كيفية جمعنا، استخدامنا، وحمايتنا لمعلوماتك عند استخدامك لموقعنا.
-            </p>
-          </section>
+      {/* Content Layout */}
+      <section className="container mx-auto max-w-7xl px-4 py-32">
+        <div className="grid lg:grid-cols-12 gap-16">
 
-          {/* Data */}
-          <section id="data" className="bg-white rounded-xl shadow-sm p-6 border border-red-100">
-            <h2 className="flex items-center gap-2 text-xl font-bold mb-4 text-red-700">
-              <User className="w-6 h-6" /> البيانات التي نجمعها
-            </h2>
-            <ul className="list-disc pr-6 space-y-2">
-              <li>الاسم ومعلومات التواصل (البريد الإلكتروني، رقم الهاتف).</li>
-              <li>معلومات تسجيل الدخول (اسم المستخدم، كلمة المرور).</li>
-              <li>معلومات النشاط على الموقع (الصفحات التي تزورها، مدة التصفح).</li>
-              <li>عنوان الـ IP ونوع الجهاز والمتصفح.</li>
-            </ul>
-          </section>
+          {/* Sidebar Navigation */}
+          <aside className="lg:col-span-4 space-y-12">
+            <div className="sticky top-32 p-10 bg-card border border-border rounded-[3rem] shadow-2xl space-y-10">
+              <header className="space-y-4">
+                <h3 className="text-xl font-black font-heading italic">أقسام السياسة</h3>
+                <div className="h-1 w-12 bg-primary rounded-full" />
+              </header>
+              <nav className="space-y-4">
+                {sections.map(s => (
+                  <a key={s.id} href={`#${s.id}`} className="flex items-center gap-4 text-sm font-bold opacity-40 hover:opacity-100 hover:text-primary transition-all group">
+                    <Bookmark size={16} className="group-hover:fill-current" />
+                    <span>{s.title}</span>
+                  </a>
+                ))}
+              </nav>
+              <button onClick={() => window.print()} className="w-full h-16 bg-muted rounded-2xl flex items-center justify-center gap-3 text-xs font-black uppercase tracking-widest hover:bg-primary hover:text-white transition-all">
+                <Download size={18} />
+                <span>Print Record</span>
+              </button>
+            </div>
+          </aside>
 
-          {/* Use */}
-          <section id="use" className="bg-white rounded-xl shadow-sm p-6 border border-red-100">
-            <h2 className="flex items-center gap-2 text-xl font-bold mb-4 text-red-700">
-              <Globe className="w-6 h-6" /> كيفية استخدام البيانات
-            </h2>
-            <p>نستخدم بياناتك للأغراض التالية:</p>
-            <ul className="list-disc pr-6 space-y-2 mt-2">
-              <li>تحسين تجربة المستخدم وتخصيص المحتوى.</li>
-              <li>إرسال إشعارات حول أخبار النادي والعروض.</li>
-              <li>تحليل استخدام الموقع وتطوير خدماتنا.</li>
-              <li>الامتثال للمتطلبات القانونية.</li>
-            </ul>
-          </section>
+          {/* Main Content */}
+          <div className="lg:col-span-8 space-y-12">
+            {sections.map((s, idx) => (
+              <motion.section
+                key={s.id}
+                id={s.id}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="p-12 md:p-20 bg-card border border-border rounded-[4rem] group shadow-2xl hover:border-primary transition-all relative overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[4rem] group-hover:bg-primary transition-all translate-x-12 -translate-y-12 group-hover:translate-x-0 group-hover:translate-y-0 flex items-center justify-center p-8">
+                  <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                    {s.icon}
+                  </div>
+                </div>
 
-          {/* Share */}
-          <section id="share" className="bg-white rounded-xl shadow-sm p-6 border border-red-100">
-            <h2 className="flex items-center gap-2 text-xl font-bold mb-4 text-red-700">
-              <FileText className="w-6 h-6" /> مشاركة المعلومات
-            </h2>
-            <p>
-              نحن لا نشارك بياناتك الشخصية مع أطراف ثالثة إلا في الحالات التالية:
-            </p>
-            <ul className="list-disc pr-6 space-y-2 mt-2">
-              <li>بموافقتك الصريحة.</li>
-              <li>للجهات القانونية عند الطلب.</li>
-              <li>مع مزودي الخدمات الموثوقين الذين يساعدوننا في تشغيل الموقع.</li>
-            </ul>
-          </section>
+                <div className="space-y-8 relative z-10">
+                  <div className="space-y-3">
+                    <div className="text-primary font-black text-[10px] uppercase tracking-widest opacity-40">Section {idx + 1}</div>
+                    <h2 className="text-3xl font-black font-heading italic">{s.title}</h2>
+                  </div>
+                  <p className="text-lg font-bold opacity-60 leading-relaxed text-right">
+                    {s.content}
+                  </p>
+                </div>
+              </motion.section>
+            ))}
 
-          {/* Rights */}
-          <section id="rights" className="bg-white rounded-xl shadow-sm p-6 border border-red-100">
-            <h2 className="flex items-center gap-2 text-xl font-bold mb-4 text-red-700">
-              <Lock className="w-6 h-6" /> حقوقك
-            </h2>
-            <p>لديك الحقوق التالية:</p>
-            <ul className="list-disc pr-6 space-y-2 mt-2">
-              <li>الوصول إلى بياناتك وتصحيحها.</li>
-              <li>طلب حذف بياناتك.</li>
-              <li>سحب الموافقة على معالجة بياناتك.</li>
-              <li>تقديم شكوى للجهات المختصة.</li>
-            </ul>
-          </section>
-
-          {/* Contact */}
-          <section id="contact" className="bg-white rounded-xl shadow-sm p-6 border border-red-100">
-            <h2 className="flex items-center gap-2 text-xl font-bold mb-4 text-red-700">
-              <Clock className="w-6 h-6" /> التواصل معنا
-            </h2>
-            <p>
-              إذا كانت لديك أي أسئلة أو استفسارات بخصوص سياسة الخصوصية، يمكنك التواصل معنا عبر البريد الإلكتروني: <span className="text-red-700 font-medium">privacy@zamalekclub.com</span>
-            </p>
-          </section>
-
-          {/* Print Button */}
-          <div className="flex justify-end">
-            <button
-              onClick={() => window.print()}
-              className="bg-red-700 text-white px-6 py-2 rounded-lg shadow hover:bg-red-800 transition"
-            >
-              طباعة / حفظ PDF
-            </button>
+            <footer className="p-12 text-center space-y-4 opacity-20 font-black text-[10px] uppercase tracking-widest italic">
+              <p>© 2024 Zamalek Sporting Club - Security & Compliance</p>
+              <p>Trust is our Foundation.</p>
+            </footer>
           </div>
-        </main>
-      </div>
+
+        </div>
+      </section>
+
     </div>
-  )
+  );
 }

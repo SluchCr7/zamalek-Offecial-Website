@@ -1,91 +1,170 @@
-'use client'
-import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { FiChevronDown } from 'react-icons/fi'
-import { sections } from '@/utils/data'
+'use client';
 
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, MessageSquare, HelpCircle, Search, Mail, Phone, ExternalLink } from 'lucide-react';
+import { sections } from '@/utils/data';
+import TitleSection from '@/Components/TitleSection';
 
-const FAQ = () => {
-  const [active, setActive] = useState({ section: null, question: null })
+export default function FAQPage() {
+  const [active, setActive] = useState({ section: 0, question: null });
+  const [searchQuery, setSearchQuery] = useState("");
 
   const toggle = (sectionIndex, questionIndex) => {
-    if (
-      active.section === sectionIndex &&
-      active.question === questionIndex
-    ) {
-      setActive({ section: null, question: null })
+    if (active.section === sectionIndex && active.question === questionIndex) {
+      setActive({ ...active, question: null });
     } else {
-      setActive({ section: sectionIndex, question: questionIndex })
+      setActive({ section: sectionIndex, question: questionIndex });
     }
-  }
+  };
 
   return (
-    <div dir='rtl' className="min-h-screen bg-gradient-to-br w-full from-white to-gray-50 py-16 px-4 md:px-12">
-      <div className="max-w-5xl mx-auto text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-red-600 mb-4">الأسئلة الشائعة</h1>
-        <p className="text-gray-600 text-lg">
-          كل ما تحتاج معرفته عن نادي الزمالك في مكان واحد 💬
-        </p>
-      </div>
+    <div className="min-h-screen bg-background text-foreground" dir="rtl">
 
-      <div className="space-y-10 w-full">
-        {sections.map((section, sIndex) => (
-          <div
-            key={sIndex}
-            className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden"
-          >
-            <div className="bg-red-600 text-white py-3 px-6 text-xl font-bold">
-              {section.title}
+      {/* Hero: Support Center Style */}
+      <section className="relative pt-32 pb-24 px-4 bg-muted/20 border-b border-border">
+        <div className="container mx-auto max-w-4xl text-center space-y-12">
+          <header className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest"
+            >
+              <HelpCircle size={14} />
+              <span>مركز المساعدة والدعم</span>
+            </motion.div>
+            <TitleSection
+              title="كيف يمكننا مساعدتك؟"
+              subtitle="إليك الإجابات على الأسئلة الأكثر شيوعاً حول العضوية، التذاكر، والخدمات الرقمية."
+            />
+          </header>
+
+          {/* Premium Search Bar */}
+          <div className="relative max-w-2xl mx-auto">
+            <div className="absolute inset-y-0 right-8 flex items-center pointer-events-none text-primary">
+              <Search size={20} />
             </div>
-            <div className="divide-y divide-gray-200">
-              {section.questions.map((item, qIndex) => {
-                const isOpen =
-                  active.section === sIndex && active.question === qIndex
+            <input
+              type="text"
+              placeholder="ابحث عن سؤالك هنا (مثال: تجديد العضوية)"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full h-18 pr-20 pl-8 rounded-[2rem] bg-card border-2 border-border focus:border-primary focus:outline-none transition-all font-bold shadow-xl text-lg"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Sections */}
+      <section className="container mx-auto max-w-6xl px-4 py-32">
+        <div className="grid lg:grid-cols-[280px_1fr] gap-16">
+
+          {/* Sidebar Navigation */}
+          <aside className="space-y-4">
+            <h3 className="text-[10px] font-black uppercase tracking-[0.2em] opacity-40 mb-8 px-6">الأقسام الرئيسية</h3>
+            <nav className="space-y-2">
+              {sections.map((section, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActive({ section: idx, question: null })}
+                  className={`w-full text-right px-8 py-4 rounded-2xl font-black text-sm transition-all flex items-center justify-between group ${active.section === idx ? 'bg-primary text-white shadow-xl shadow-primary/20' : 'hover:bg-card border border-transparent hover:border-border'
+                    }`}
+                >
+                  <span>{section.title}</span>
+                  <ChevronDown size={16} className={`-rotate-90 group-hover:translate-x-1 transition-transform ${active.section === idx ? 'opacity-100' : 'opacity-20'}`} />
+                </button>
+              ))}
+            </nav>
+
+            <div className="mt-12 p-8 bg-muted/50 rounded-[2.5rem] border border-border space-y-6">
+              <div className="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+                <MessageSquare size={24} />
+              </div>
+              <h4 className="font-black">لم تجد إجابتك؟</h4>
+              <p className="text-xs font-bold opacity-60 leading-relaxed">فريق الدعم الفني متاح دائماً لمساعدتك في أي استفسار.</p>
+              <button className="w-full py-4 bg-primary text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all">تواصل معنا</button>
+            </div>
+          </aside>
+
+          {/* Accordion Content */}
+          <div className="space-y-8">
+            <div className="flex items-center gap-6 mb-12">
+              <h2 className="text-3xl font-black font-heading tracking-tight">{sections[active.section].title}</h2>
+              <div className="h-px flex-1 bg-border" />
+            </div>
+
+            <div className="space-y-4">
+              {sections[active.section].questions.map((item, qIdx) => {
+                const isOpen = active.question === qIdx;
                 return (
                   <div
-                    key={qIndex}
-                    onClick={() => toggle(sIndex, qIndex)}
-                    className="cursor-pointer px-6 py-5 hover:bg-gray-50 transition-colors"
+                    key={qIdx}
+                    className={`group rounded-[2.5rem] border transition-all duration-500 overflow-hidden ${isOpen ? 'bg-card border-primary shadow-2xl' : 'bg-transparent border-border hover:border-primary/40'
+                      }`}
                   >
-                    <div className="flex justify-between items-center">
-                      <h3 className="font-semibold text-gray-800 text-lg">
+                    <button
+                      onClick={() => toggle(active.section, qIdx)}
+                      className="w-full text-right p-8 flex items-center justify-between gap-6"
+                    >
+                      <span className={`text-lg font-black font-heading transition-colors ${isOpen ? 'text-primary' : 'group-hover:text-primary'}`}>
                         {item.q}
-                      </h3>
-                      <motion.div
-                        animate={{ rotate: isOpen ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <FiChevronDown className="text-red-600 text-xl" />
-                      </motion.div>
-                    </div>
+                      </span>
+                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${isOpen ? 'bg-primary text-white rotate-180' : 'bg-muted text-foreground opacity-40'
+                        }`}>
+                        <ChevronDown size={20} />
+                      </div>
+                    </button>
+
                     <AnimatePresence>
                       {isOpen && (
                         <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="text-gray-600 mt-3 leading-relaxed"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.4, ease: "circOut" }}
                         >
-                          {item.a}
+                          <div className="p-8 pt-0 text-lg font-bold opacity-60 leading-relaxed max-w-3xl">
+                            {item.a}
+                            <div className="mt-8 flex gap-6">
+                              <button className="flex items-center gap-2 text-[10px] font-black uppercase text-primary hover:underline">
+                                <ExternalLink size={14} />
+                                <span>رابط مباشر للموضوع</span>
+                              </button>
+                            </div>
+                          </div>
                         </motion.div>
                       )}
                     </AnimatePresence>
                   </div>
-                )
+                );
               })}
             </div>
           </div>
-        ))}
-      </div>
 
-      <div className="text-center mt-16">
-        <p className="text-gray-600">
-          لم تجد إجابتك؟ <span className="font-semibold text-red-600 cursor-pointer hover:underline">تواصل معنا مباشرة</span>
-        </p>
-      </div>
+        </div>
+      </section>
+
+      {/* Footer Contact Grid */}
+      <section className="container mx-auto max-w-7xl px-4 py-32 border-t border-border">
+        <div className="grid md:grid-cols-3 gap-8">
+          <ContactMethod icon={<Mail />} title="البريد الإلكتروني" value="info@zamalek.sc" />
+          <ContactMethod icon={<Phone />} title="الخط الساخن" value="19111" />
+          <ContactMethod icon={<MessageSquare />} title="واتساب" value="+20 123 456 789" />
+        </div>
+      </section>
+
     </div>
-  )
+  );
 }
 
-export default FAQ
+function ContactMethod({ icon, title, value }) {
+  return (
+    <div className="p-10 bg-card border border-border rounded-[3rem] group hover:border-primary transition-all text-center space-y-4">
+      <div className="w-14 h-14 rounded-2xl bg-muted text-foreground flex items-center justify-center mx-auto group-hover:bg-primary group-hover:text-white transition-all">
+        {icon}
+      </div>
+      <div className="text-[10px] font-black uppercase tracking-widest opacity-40">{title}</div>
+      <div className="text-xl font-black font-heading">{value}</div>
+    </div>
+  );
+}

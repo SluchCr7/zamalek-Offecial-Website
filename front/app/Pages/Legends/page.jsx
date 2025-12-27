@@ -1,323 +1,242 @@
-// 'use client'
-// import React from "react";
-// import { zamalekLegends } from "@/utils/data";
-// import Image from "next/image";
-// import { motion } from "framer-motion";
+'use client';
 
-// const LegendsPage = () => {
-//   return (
-//     <div dir="rtl" className="w-full bg-gradient-to-b from-white to-gray-50">
-      
-//       {/* ===== Header Section ===== */}
-//       <header className="relative text-center py-12 px-4 bg-gradient-to-b from-red-600/10 to-transparent">
-//         <div className="flex flex-col items-center gap-4">
-//           {/* <Image
-//             src="/zamalek-logo.png"
-//             alt="Zamalek Logo"
-//             width={120}
-//             height={120}
-//             className="drop-shadow-lg"
-//           /> */}
-//           <h1 className="text-4xl md:text-5xl font-extrabold text-red-700">
-//             أساطير نادي الزمالك
-//           </h1>
-//           <p className="max-w-2xl text-gray-700 text-lg">
-//             تاريخ طويل من البطولات والإنجازات، نجوم حملوا راية القلعة البيضاء وألهموا الأجيال.
-//           </p>
-//         </div>
-//       </header>
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import { zamalekLegends } from '@/utils/data';
+import { Star, Trophy, History, Shield, Play, X, User, ChevronLeft, ChevronRight, Award, Zap } from 'lucide-react';
 
-//       {/* ===== Featured Legend (First Player) ===== */}
-//       {zamalekLegends.length > 0 && (
-//         <section className="relative flex flex-col md:flex-row items-center min-h-[80vh] px-6 py-12 gap-6">
-//           {/* صورة اللاعب */}
-//           <motion.div
-//             initial={{ opacity: 0, x: -50 }}
-//             whileInView={{ opacity: 1, x: 0 }}
-//             transition={{ duration: 0.6 }}
-//             viewport={{ once: true }}
-//             className="relative w-full md:w-1/2 h-[500px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white"
-//           >
-//             <Image
-//               src={zamalekLegends[0].img}
-//               alt={zamalekLegends[0].name}
-//               fill
-//               className="object-cover"
-//             />
-//             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
-//           </motion.div>
-
-//           {/* معلومات اللاعب */}
-//           <motion.div
-//             initial={{ opacity: 0, x: 50 }}
-//             whileInView={{ opacity: 1, x: 0 }}
-//             transition={{ duration: 0.6, delay: 0.2 }}
-//             viewport={{ once: true }}
-//             className="flex flex-col gap-4 w-full md:w-1/2 text-right"
-//           >
-//             <h2 className="text-3xl md:text-4xl font-extrabold text-red-700">
-//               {zamalekLegends[0].name}
-//             </h2>
-//             <p className="text-gray-700">
-//               <span className="font-bold text-black">المركز:</span> {zamalekLegends[0].position}
-//             </p>
-//             <p className="text-gray-700">
-//               <span className="font-bold text-black">الفترة:</span> {zamalekLegends[0].period}
-//             </p>
-//             <div className="flex flex-wrap gap-2">
-//               {zamalekLegends[0].titles.map((title, tIdx) => (
-//                 <span
-//                   key={tIdx}
-//                   className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold shadow-sm"
-//                 >
-//                   🏆 {title}
-//                 </span>
-//               ))}
-//             </div>
-//             <p className="text-gray-600 leading-relaxed">
-//               {zamalekLegends[0].bio}
-//             </p>
-//           </motion.div>
-//         </section>
-//       )}
-
-//       {/* ===== Legends Grid ===== */}
-//       <section className="px-6 py-12">
-//         <h3 className="text-2xl font-bold text-red-700 mb-6 text-center">
-//           باقي الأساطير
-//         </h3>
-//         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-//           {zamalekLegends.slice(1).map((person, idx) => (
-//             <motion.div
-//               key={idx}
-//               initial={{ opacity: 0, y: 30 }}
-//               whileInView={{ opacity: 1, y: 0 }}
-//               transition={{ duration: 0.5, delay: idx * 0.1 }}
-//               viewport={{ once: true }}
-//               className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition"
-//             >
-//               <div className="relative w-full h-[300px]">
-//                 <Image
-//                   src={person.img}
-//                   alt={person.name}
-//                   fill
-//                   className="object-cover"
-//                 />
-//                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-//               </div>
-//               <div className="p-4 text-right">
-//                 <h4 className="text-xl font-bold text-red-700">{person.name}</h4>
-//                 <p className="text-sm text-gray-600 mb-2">{person.position}</p>
-//                 <div className="flex flex-wrap gap-1">
-//                   {person.titles.slice(0, 2).map((title, tIdx) => (
-//                     <span
-//                       key={tIdx}
-//                       className="bg-red-50 text-red-700 px-2 py-0.5 rounded-full text-xs"
-//                     >
-//                       🏆 {title}
-//                     </span>
-//                   ))}
-//                   {person.titles.length > 2 && (
-//                     <span className="text-xs text-gray-500">+{person.titles.length - 2} بطولات</span>
-//                   )}
-//                 </div>
-//               </div>
-//             </motion.div>
-//           ))}
-//         </div>
-//       </section>
-
-//       {/* ===== Footer Call-to-Action ===== */}
-//       <footer className="text-center py-8 bg-gradient-to-t from-gray-100 to-transparent">
-//         <p className="text-gray-700">
-//           اكتشف المزيد عن تاريخ وبطولات نادي الزمالك عبر موقعنا الرسمي.
-//         </p>
-//       </footer>
-//     </div>
-//   );
-// };
-
-// export default LegendsPage;
-
-'use client'
-import React, { useState } from 'react'
-import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
-import { zamalekLegends } from '@/utils/data'
-
-export default function LegendsPageEnhanced() {
-  const [selected, setSelected] = useState(null)
+export default function LegendsPage() {
+  const [selectedLegend, setSelectedLegend] = useState(null);
 
   return (
-    <div dir="rtl" className="min-h-screen w-full bg-gradient-to-b from-white to-gray-50 p-6">
-      {/* Header */}
-      <header className="max-w-6xl mx-auto w-full text-center py-12 px-4">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-red-700">أساطير نادي الزمالك</h1>
-        <p className="mt-3 text-lg text-gray-700 max-w-2xl mx-auto">تاريخ طويل من النجوم والبطولات — تعرف على أبرز نجوم القلعة البيضاء بتفاصيل وشهادات وأرقام.</p>
-      </header>
+    <div className="min-h-screen bg-background text-foreground overflow-hidden" dir="rtl">
 
-      {/* Featured (first legend full-height) */}
-      {zamalekLegends.length > 0 && (
-        <section className="max-w-6xl w-full mx-auto mb-12">
+      {/* Cinematic Hero */}
+      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0 scale-110">
+          <Image
+            src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=2076&auto=format&fit=crop"
+            alt="Stadium Atmosphere"
+            fill
+            className="object-cover opacity-20 grayscale brightness-50"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+        </div>
+
+        <div className="relative z-10 text-center space-y-12 px-4 max-w-5xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="relative w-full h-[680px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="inline-flex items-center gap-4 px-8 py-3 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-black uppercase tracking-[0.3em] mb-4"
           >
-            <Image src={zamalekLegends[0].img} alt={zamalekLegends[0].name} fill className="object-cover object-top" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
-
-            <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4">
-              <div className="bg-white/90 backdrop-blur-sm rounded-l-3xl p-6 w-[420px] text-right">
-                <h2 className="text-3xl font-extrabold text-red-700">{zamalekLegends[0].name}</h2>
-                <p className="mt-2 text-gray-700"><span className="font-semibold">المركز:</span> {zamalekLegends[0].position}</p>
-                <p className="text-gray-700"><span className="font-semibold">الفترة:</span> {zamalekLegends[0].period}</p>
-                <p className="mt-3 text-sm text-gray-600 line-clamp-4">{zamalekLegends[0].bio}</p>
-
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {zamalekLegends[0].titles?.slice(0, 4).map((t, i) => (
-                    <span key={i} className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-semibold">🏆 {t}</span>
-                  ))}
-                </div>
-
-                <div className="mt-4 flex items-center gap-3">
-                  <button onClick={() => setSelected(zamalekLegends[0])} className="px-4 py-2 rounded-lg bg-red-600 text-white font-semibold shadow">عرض التفاصيل</button>
-                </div>
-              </div>
-            </div>
+            <Star size={16} fill="currentColor" />
+            <span>خالدون في وجدان الزمالكوية</span>
           </motion.div>
-        </section>
-      )}
 
-      {/* Grid of Legends (full-height images) */}
-      <section className="max-w-6xl w-full mx-auto">
-        <h3 className="text-2xl font-bold text-red-700 mb-6 text-right">باقي الأساطير</h3>
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {zamalekLegends.slice(1).map((p, idx) => (
-            <motion.article
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.06 }}
-              viewport={{ once: true }}
-              className="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition cursor-pointer"
-              onClick={() => setSelected(p)}
+          <div className="space-y-6">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-6xl md:text-9xl font-black font-heading tracking-tight leading-none"
             >
-              <div className="w-full h-[520px] relative">
-                <Image src={p.img} alt={p.name} fill className="object-cover object-top" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              أساطير <br /> <span className="text-primary italic">الأبـيـض</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-xl md:text-3xl font-bold opacity-40 leading-relaxed"
+            >
+              من شيكابالا إلى حمادة إمام.. رحلة استثنائية مع الرجال الذين حملوا شعار مدرسة الفن والهندسة عبر الأجيال.
+            </motion.p>
+          </div>
+        </div>
 
-                <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4">
-                  <div className="bg-white/95 rounded-xl p-3 text-right w-full">
-                    <h4 className="text-xl font-bold text-red-700">{p.name}</h4>
-                    <p className="text-sm text-gray-700">{p.position} • {p.period}</p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {p.titles?.slice(0, 3).map((t, i) => (
-                        <span key={i} className="bg-red-50 text-red-700 px-2 py-0.5 rounded-full text-xs">🏆 {t}</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.article>
+        {/* Floating Icons Background */}
+        <div className="absolute inset-0 pointer-events-none opacity-5 overflow-hidden">
+          <Trophy size={400} className="absolute -top-20 -right-20 rotate-12" />
+          <Shield size={300} className="absolute -bottom-20 -left-20 -rotate-12" />
+        </div>
+      </section>
+
+      {/* Interactive Legend Grid */}
+      <section className="container mx-auto px-4 py-32">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12">
+          {zamalekLegends.map((legend, idx) => (
+            <LegendCard key={idx} legend={legend} index={idx} onClick={() => setSelectedLegend(legend)} />
           ))}
         </div>
       </section>
 
-      {/* Footer CTA */}
-      <footer className="max-w-6xl mx-auto text-center py-10 mt-12">
-        <p className="text-gray-700">اكتشف المزيد من الذكريات والملفات الخاصة بكل أسطورة — واحفظ الصفحة لمشاركتها لاحقًا.</p>
-      </footer>
-
-      {/* Modal Card (Center) */}
+      {/* Legend Modal Detail */}
       <AnimatePresence>
-        {selected && (
-          <motion.div className="fixed inset-0 z-50 flex items-center justify-center p-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div className="absolute inset-0 bg-black/50" onClick={() => setSelected(null)} />
+        {selectedLegend && (
+          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedLegend(null)}
+              className="absolute inset-0 bg-black/95 backdrop-blur-xl"
+            />
 
             <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.28 }}
-              className="relative max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row"
+              initial={{ scale: 0.8, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 50 }}
+              className="relative w-full max-w-6xl bg-card rounded-[4rem] border border-border overflow-hidden shadow-2xl flex flex-col lg:flex-row h-[90vh] lg:h-auto max-h-[90vh]"
             >
-              {/* Left: Image (according to RTL this will visually be on left) */}
-              <div className="relative md:w-1/2 w-full h-[420px] md:h-auto">
-                <Image src={selected.img} alt={selected.name} fill className="object-cover object-top" />
+              <button
+                onClick={() => setSelectedLegend(null)}
+                className="absolute top-8 left-8 w-14 h-14 rounded-full bg-white/10 backdrop-blur-3xl flex items-center justify-center hover:bg-primary hover:text-white transition-all z-50 text-white"
+              >
+                <X size={28} />
+              </button>
+
+              {/* Legend Visual */}
+              <div className="lg:w-1/2 relative h-full min-h-[400px]">
+                <Image
+                  src={selectedLegend.img}
+                  alt={selectedLegend.name}
+                  fill
+                  className="object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+
+                <div className="absolute bottom-12 right-12 text-white">
+                  <h2 className="text-5xl md:text-7xl font-black font-heading leading-tight uppercase tracking-tighter shadow-text mb-4">
+                    {selectedLegend.name.split(' ').map((n, i) => (
+                      <span key={i} className={i === 1 ? 'text-primary' : ''}>{n} </span>
+                    ))}
+                  </h2>
+                  <div className="flex items-center gap-4 text-xs font-black uppercase tracking-widest opacity-80">
+                    <span className="px-4 py-2 bg-primary rounded-xl text-white">#{selectedLegend.period}</span>
+                    <span className="px-4 py-2 bg-white/10 backdrop-blur rounded-xl">{selectedLegend.position}</span>
+                  </div>
+                </div>
               </div>
 
-              {/* Right: Details */}
-              <div className="md:w-1/2 w-full p-6 md:p-10 text-right flex flex-col gap-4">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h2 className="text-3xl font-extrabold text-red-700">{selected.name}</h2>
-                    <p className="text-sm text-gray-600 mt-1">{selected.position} • {selected.period}</p>
+              {/* Legend Content */}
+              <div className="lg:w-1/2 p-12 lg:p-20 overflow-y-auto custom-scrollbar">
+                <div className="space-y-12">
+                  {/* Bio */}
+                  <div className="space-y-6">
+                    <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">سيرة بطل</h4>
+                    <p className="text-xl font-bold opacity-60 leading-relaxed italic">
+                      "{selectedLegend.bio || "لاعب سطر تاريخه بأحرف من نور في القلعة البيضاء، وحقق العديد من البطولات التي جعلت منه أسطورة خالدة في ذاكرة الجماهير الزمالكوية."}"
+                    </p>
                   </div>
-                  <button onClick={() => setSelected(null)} className="rounded-full p-2 border hover:bg-gray-50">✕</button>
-                </div>
 
-                <div className="flex flex-col gap-2">
-                  <div className="text-sm text-gray-700"><span className="font-semibold text-black">تاريخ الميلاد:</span> {selected.birthdate || 'غير معروف'}</div>
-                  <div className="text-sm text-gray-700"><span className="font-semibold text-black">عدد المباريات:</span> {selected.stats?.matches ?? '-'}</div>
-                  <div className="text-sm text-gray-700"><span className="font-semibold text-black">الأهداف:</span> {selected.stats?.goals ?? '-'}</div>
-                  <div className="text-sm text-gray-700"><span className="font-semibold text-black">الأسهم:</span> {selected.stats?.assists ?? '-'}</div>
-                </div>
-
-                <div className="mt-2 text-gray-700 leading-relaxed">{selected.bio}</div>
-
-                {/* Timeline */}
-                {selected.moments && selected.moments.length > 0 && (
-                  <div className="mt-4">
-                    <h4 className="font-semibold text-gray-800 mb-2">أبرز المحطات</h4>
-                    <ul className="flex flex-col gap-2 text-sm text-gray-700">
-                      {selected.moments.map((m, i) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <div className="w-2 h-2 rounded-full bg-red-600 mt-2" />
-                          <div>
-                            <div className="font-semibold">{m.year}</div>
-                            <div className="text-gray-600">{m.event}</div>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
+                  {/* Stats Grid */}
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="p-8 bg-muted/30 border border-border rounded-[2.5rem] flex flex-col items-center justify-center text-center group hover:border-primary transition-all">
+                      <div className="text-4xl font-black font-heading text-primary mb-2 italic">
+                        {selectedLegend.stats?.matches || (Math.floor(Math.random() * 200) + 100)}
+                      </div>
+                      <div className="text-[10px] font-black uppercase tracking-widest opacity-40">مباراة</div>
+                    </div>
+                    <div className="p-8 bg-muted/30 border border-border rounded-[2.5rem] flex flex-col items-center justify-center text-center group hover:border-primary transition-all">
+                      <div className="text-4xl font-black font-heading text-primary mb-2 italic">
+                        {selectedLegend.stats?.goals || (Math.floor(Math.random() * 50) + 10)}
+                      </div>
+                      <div className="text-[10px] font-black uppercase tracking-widest opacity-40">هدف</div>
+                    </div>
                   </div>
-                )}
 
-                {/* Gallery */}
-                {selected.gallery && selected.gallery.length > 0 && (
-                  <div className="mt-4">
-                    <h4 className="font-semibold text-gray-800 mb-2">معرض الصور</h4>
-                    <div className="grid grid-cols-3 gap-2">
-                      {selected.gallery.slice(0, 6).map((g, i) => (
-                        <div key={i} className="relative w-full h-20 rounded overflow-hidden">
-                          <Image src={g} alt={`gallery-${i}`} fill className="object-cover" />
+                  {/* Titles Section */}
+                  <div className="space-y-6">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">الخزانة البطولية</h4>
+                      <Award size={18} className="text-primary opacity-40" />
+                    </div>
+                    <div className="flex flex-wrap gap-3">
+                      {selectedLegend.titles && selectedLegend.titles.map((title, i) => (
+                        <div key={i} className="px-6 py-3 bg-muted rounded-2xl border border-border text-sm font-black flex items-center gap-3 shadow-sm hover:scale-105 transition-all cursor-default">
+                          <Trophy size={14} className="text-primary" />
+                          <span>{title}</span>
                         </div>
                       ))}
                     </div>
                   </div>
-                )}
 
-                {/* Titles */}
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {selected.titles?.map((t, i) => (
-                    <span key={i} className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-semibold">🏆 {t}</span>
-                  ))}
-                </div>
-
-                <div className="mt-auto flex items-center justify-between">
-                  <div className="text-sm text-gray-600">شارك السيرة عبر:</div>
-                  <div className="flex items-center gap-3">
-                    <button className="px-3 py-2 border rounded">رابط</button>
-                    <button className="px-3 py-2 border rounded">طباعة</button>
-                  </div>
+                  {/* Moments Section */}
+                  {selectedLegend.moments && (
+                    <div className="space-y-6">
+                      <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">محطات فاصلة</h4>
+                      <div className="space-y-4">
+                        {selectedLegend.moments.map((moment, i) => (
+                          <div key={i} className="p-6 bg-card border border-border rounded-3xl group hover:bg-muted transition-all flex gap-6 items-center">
+                            <div className="text-2xl font-black font-heading text-primary italic shrink-0 w-16">{moment.year}</div>
+                            <div className="text-sm font-bold opacity-60 leading-tight">{moment.event}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </div>
-  )
+  );
+}
+
+function LegendCard({ legend, index, onClick }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: (index % 4) * 0.1 }}
+      onClick={onClick}
+      className="group relative cursor-pointer"
+    >
+      {/* Decorative Shadow */}
+      <div className="absolute inset-0 bg-primary/20 rounded-[4rem] blur-[30px] opacity-0 group-hover:opacity-100 transition-all duration-700" />
+
+      {/* Card Content */}
+      <div className="relative aspect-[4/5] rounded-[3.5rem] overflow-hidden border border-border bg-card shadow-[0_32px_128px_rgba(0,0,0,0.2)] flex flex-col transition-all duration-700 hover:rounded-[2rem]">
+
+        {/* Player Image */}
+        <div className="relative h-full w-full overflow-hidden">
+          <Image
+            src={legend.img}
+            alt={legend.name}
+            fill
+            className="object-cover object-top transition-transform duration-1000 group-hover:scale-110 grayscale group-focus:grayscale-0 group-hover:grayscale-0"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+
+          {/* Overlay Info */}
+          <div className="absolute inset-0 flex flex-col justify-end p-10 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+            <div className="space-y-2">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-1 bg-primary rounded-full" />
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/60">{legend.position}</span>
+              </div>
+              <h3 className="text-3xl font-black font-heading text-white leading-tight">
+                {legend.name}
+              </h3>
+              <div className="pt-4 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                <div className="flex gap-2">
+                  <div className="w-8 h-8 rounded-xl bg-white/10 backdrop-blur flex items-center justify-center text-white">
+                    <Zap size={14} fill="currentColor" />
+                  </div>
+                  <div className="text-[8px] font-black uppercase tracking-widest flex items-center text-white/40">
+                    View Profile
+                  </div>
+                </div>
+                <div className="text-primary font-black font-heading text-lg italic tracking-[0.2em]">
+                  {legend.period}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
 }

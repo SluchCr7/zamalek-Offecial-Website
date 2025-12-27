@@ -1,407 +1,277 @@
-'use client'
-import React, { useState } from 'react'
-import Image from 'next/image'
-import { motion } from 'framer-motion'
-import {
-  CheckCircle,
-  CreditCard,
-  User,
-  Users,
-  Calendar,
-  Upload,
-  X
-} from 'lucide-react'
-import { PLANS } from '@/utils/data'
+'use client';
 
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import { CheckCircle, CreditCard, User, Users, Calendar, Upload, X, Shield, Star, Crown, Zap, Mail, Phone, Fingerprint } from 'lucide-react';
+import { PLANS } from '@/utils/data';
+import TitleSection from '@/Components/TitleSection';
 
-/* ---------- Small UI bits ---------- */
-const Icon = ({ children }) => (
-  <div className="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center text-red-600">
-    {children}
-  </div>
-)
-
-/* ---------- Main Page ---------- */
 export default function MembershipPage() {
-  const [selectedPlan, setSelectedPlan] = useState(PLANS[1].id)
-  const [form, setForm] = useState({
-    fullName: '',
-    nationalId: '',
-    phone: '',
-    email: '',
-    plan: selectedPlan,
-    paymentMethod: 'full',
-    files: null
-  })
-  const [submitting, setSubmitting] = useState(false)
-  const [successOpen, setSuccessOpen] = useState(false)
-  const [errors, setErrors] = useState({})
+  const [selectedPlan, setSelectedPlan] = useState(PLANS[1].id);
+  const [form, setForm] = useState({ fullName: '', nationalId: '', phone: '', email: '', plan: selectedPlan, paymentMethod: 'full', files: null });
+  const [submitting, setSubmitting] = useState(false);
+  const [successOpen, setSuccessOpen] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const validate = () => {
-    const e = {}
-    if (!form.fullName.trim()) e.fullName = 'الاسم الكامل مطلوب'
-    if (!form.nationalId.trim()) e.nationalId = 'الرقم القومي مطلوب'
-    if (!/^\d{10,15}$/.test(form.phone)) e.phone = 'رقم هاتف صحيح مطلوب'
-    if (!/\S+@\S+\.\S+/.test(form.email)) e.email = 'بريد إلكتروني صحيح مطلوب'
-    setErrors(e)
-    return Object.keys(e).length === 0
-  }
+    const e = {};
+    if (!form.fullName.trim()) e.fullName = 'الاسم الكامل مطلوب';
+    if (!form.nationalId.trim()) e.nationalId = 'الرقم القومي مطلوب';
+    if (!/^\d{10,15}$/.test(form.phone)) e.phone = 'رقم هاتف صحيح مطلوب';
+    if (!/\S+@\S+\.\S+/.test(form.email)) e.email = 'بريد إلكتروني صحيح مطلوب';
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
 
-  const handleSubmit = async (ev) => {
-    ev.preventDefault()
-    if (!validate()) return
-    setSubmitting(true)
-
-    // محاكاة إرسال — استبدلها بمناداة API لاحقًا
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+    if (!validate()) return;
+    setSubmitting(true);
     setTimeout(() => {
-      setSubmitting(false)
-      setSuccessOpen(true)
-      // إعادة تعيين النموذج (أو توجه لصفحة شكراً)
-      setForm({
-        fullName: '',
-        nationalId: '',
-        phone: '',
-        email: '',
-        plan: selectedPlan,
-        paymentMethod: 'full',
-        files: null
-      })
-    }, 1800)
-  }
+      setSubmitting(false);
+      setSuccessOpen(true);
+      setForm({ fullName: '', nationalId: '', phone: '', email: '', plan: selectedPlan, paymentMethod: 'full', files: null });
+    }, 2000);
+  };
 
   return (
-    <div dir='rtl' className="min-h-screen bg-gradient-to-b from-white to-gray-50 text-gray-900">
-      {/* HERO */}
-      <header className="relative">
-        <div className="h-64 md:h-72 lg:h-80 relative overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground" dir="rtl">
+
+      {/* Hero: Elite Status Intro */}
+      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
           <Image
-            src="/Fan1zsc.jpg"
-            alt="Zamalek hero"
-            width={500} 
-            height={500}
-            className="object-cover w-full h-full brightness-75"
+            src="https://images.unsplash.com/photo-1577416416141-7c833947808d?q=80&w=2070&auto=format&fit=crop"
+            alt="Elite Club"
+            fill
+            className="object-cover opacity-20 grayscale brightness-50"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-          <div className="absolute inset-0 flex items-center justify-center px-4">
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.7 }}
-              className="text-center max-w-3xl"
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+        </div>
+
+        <div className="relative z-10 text-center space-y-12 px-4 max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="inline-flex items-center gap-4 px-8 py-3 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-black uppercase tracking-[0.3em] mb-4"
+          >
+            <Crown size={16} fill="currentColor" />
+            <span>بطاقة النخبة في القلعة البيضاء</span>
+          </motion.div>
+
+          <div className="space-y-6">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-6xl md:text-9xl font-black font-heading tracking-tight leading-none italic"
             >
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
-                انضم إلى <span className="text-red-400">عائلة نادي الزمالك</span>
-              </h1>
-              <p className="mt-3 text-white/90 text-lg md:text-xl">
-                عضويات مصممة لكل عشاق القلعة البيضاء — اختر باقتك وتمتع بمزايا حصرية وخدمات مميزة.
-              </p>
-              <div className="mt-6 flex items-center justify-center gap-4">
-                <a href="#plans" className="inline-block bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md font-medium shadow-lg transition">
-                  استعرض الباقات
-                </a>
-                <a href="#apply" className="inline-block border border-white/30 text-white px-6 py-3 rounded-md font-medium hover:bg-white/10 transition">
-                  قدّم الآن
-                </a>
-              </div>
-            </motion.div>
+              انتمِ إلى <span className="text-primary">الـمـلـوك</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-xl md:text-3xl font-bold opacity-40 leading-relaxed"
+            >
+              عضوية نادي الزمالك ليست مجرد اشتراك، بل هي انتماء تاريخي وحق أصيل في إدارة وبناء صرح القلعة البيضاء.
+            </motion.p>
           </div>
         </div>
-      </header>
+      </section>
 
-      {/* MAIN CONTENT */}
-      <main className="max-w-7xl mx-auto -mt-12 relative z-10 px-4 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Column: Plans & Benefits */}
-          <section className="lg:col-span-2 space-y-6">
-            {/* Plans */}
-            <section id="plans" className="bg-white rounded-2xl shadow-md p-6 border border-gray-100">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h2 className="text-2xl font-bold text-gray-900">باقات العضوية</h2>
-                  <p className="text-gray-500 mt-1">اختر الباقة الأنسب لك ولعائلتك</p>
+      {/* Main Experience Layout */}
+      <section className="container mx-auto px-4 py-32 -mt-32 relative z-20">
+        <div className="grid lg:grid-cols-12 gap-16">
+
+          {/* Plans & Benefits View (8 Cols) */}
+          <div className="lg:col-span-8 space-y-32">
+
+            {/* Pricing Cards */}
+            <section className="space-y-12">
+              <header className="flex items-end justify-between border-b border-border pb-8">
+                <div className="space-y-2">
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Choose Your Plan</span>
+                  <h2 className="text-4xl font-black font-heading italic">باقات الاشتراك</h2>
                 </div>
-                <div className="hidden md:flex items-center gap-3">
-                  <span className="text-sm text-gray-500">مقارنة سريعة</span>
-                </div>
+              </header>
+
+              <div className="grid md:grid-cols-3 gap-8">
+                {PLANS.map((plan, idx) => (
+                  <PlanCard
+                    key={plan.id}
+                    plan={plan}
+                    selected={selectedPlan === plan.id}
+                    onClick={() => { setSelectedPlan(plan.id); setForm({ ...form, plan: plan.id }); }}
+                  />
+                ))}
               </div>
+            </section>
 
-              <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-                {PLANS.map((p) => (
-                  <motion.div
-                    key={p.id}
-                    onClick={() => { setSelectedPlan(p.id); setForm({ ...form, plan: p.id }) }}
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.18 }}
-                    className={`cursor-pointer rounded-xl p-5 border ${selectedPlan === p.id ? 'border-red-600 shadow-lg' : 'border-gray-100'} bg-gradient-to-b ${p.popular ? 'from-white to-red-50' : 'from-white to-white'}`}
+            {/* Benefits Experience */}
+            <section className="space-y-16">
+              <header className="text-center md:text-right space-y-4">
+                <h3 className="text-3xl font-black font-heading tracking-tight">امتيازات حصرية لحاملي البطاقة</h3>
+                <p className="text-lg font-bold opacity-40 max-w-2xl">بصفتك عضواً في نادي الزمالك، تفتح لك الأبواب لمجموعة لا متناهية من الخدمات والامتيازات الاستثنائية.</p>
+              </header>
+
+              <div className="grid sm:grid-cols-2 gap-8">
+                <BenefitItem icon={<Users />} title="دخول كافة فروع النادي" desc="تمتع بدخول كافة المقرات والمرافق الرياضية والترفيهية للنادي في ميت عقبة وأكتوبر." />
+                <BenefitItem icon={<Zap />} title="حق التصويت والانتخاب" desc="كن شريكاً في صناعة القرار والمشاركة في الجمعيات العمومية ورسم مستبقل النادي." />
+                <BenefitItem icon={<Star />} title="خصومات للمتاجر الرسمية" desc="خصومات حصرية تصل لـ 20% على منتجات المتجر الرسمي وكافة الرعاة المعتمدين." />
+                <BenefitItem icon={<CreditCard />} title="تسهيلات بنكية وحلول دفع" desc="إمكانية تقسيط العضويات من خلال بروتوكولات تعاون مع كبرى البنوك المصرية." />
+              </div>
+            </section>
+
+          </div>
+
+          {/* Application Form (4 Cols) */}
+          <aside className="lg:col-span-4">
+            <div className="sticky top-32">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                className="bg-card border border-border rounded-[4rem] p-10 shadow-[0_32px_128px_rgba(0,0,0,0.3)] space-y-12"
+              >
+                <header className="space-y-2">
+                  <h3 className="text-3xl font-black font-heading italic">طلب التحاق</h3>
+                  <p className="text-xs font-bold opacity-40 uppercase tracking-widest">Submit Member Application</p>
+                </header>
+
+                <form onSubmit={handleSubmit} className="space-y-8">
+                  <div className="space-y-6">
+                    <InputField label="الاسم الكامل" icon={<User size={16} />} value={form.fullName} error={errors.fullName} onChange={(val) => setForm({ ...form, fullName: val })} />
+                    <InputField label="الرقم القومي (14 رقم)" icon={<Fingerprint size={16} />} value={form.nationalId} error={errors.nationalId} onChange={(val) => setForm({ ...form, nationalId: val })} />
+                    <InputField label="رقم الهاتف" icon={<Phone size={16} />} value={form.phone} error={errors.phone} onChange={(val) => setForm({ ...form, phone: val })} />
+                    <InputField label="البريد الإلكتروني" icon={<Mail size={16} />} value={form.email} error={errors.email} onChange={(val) => setForm({ ...form, email: val })} />
+
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black uppercase tracking-widest opacity-40 mr-4">رفع الوثائق (ID/Photo)</label>
+                      <div className="relative group">
+                        <input type="file" className="absolute inset-0 opacity-0 cursor-pointer z-10" />
+                        <div className="h-16 border-2 border-dashed border-border rounded-2xl flex items-center justify-center gap-4 group-hover:border-primary transition-all">
+                          <Upload size={18} className="text-primary" />
+                          <span className="text-xs font-bold opacity-60">Choose Files</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="w-full h-20 bg-primary text-white rounded-3xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-primary/40 flex items-center justify-center gap-4 hover:-translate-y-1 transition-all disabled:opacity-50"
                   >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900">{p.name}</h3>
-                        <p className="text-sm text-gray-500 mt-1">{p.short}</p>
-                      </div>
-                      {p.popular && (
-                        <div className="text-xs bg-red-600 text-white px-2 py-1 rounded-full font-semibold">الأكثر شعبية</div>
-                      )}
-                    </div>
-
-                    <div className="mt-4 flex items-end justify-between">
-                      <div>
-                        <p className="text-2xl font-bold text-gray-900">{p.price}</p>
-                        <p className="text-xs text-gray-500">رسوم سنوية</p>
-                      </div>
-                      <div>
-                        <button
-                          onClick={() => { setSelectedPlan(p.id); setForm({ ...form, plan: p.id }); document.getElementById('apply-form')?.scrollIntoView({ behavior: 'smooth' }) }}
-                          className="bg-red-600 text-white px-4 py-2 rounded-md text-sm shadow hover:bg-red-700 transition"
-                        >
-                          اختر الباقة
-                        </button>
-                      </div>
-                    </div>
-
-                    <ul className="mt-4 space-y-2">
-                      {p.perks.map((perk, i) => (
-                        <li key={i} className="flex items-center gap-2 text-sm text-gray-600">
-                          <CheckCircle className="w-4 h-4 text-red-500" /> {perk}
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                ))}
-              </div>
-            </section>
-
-            {/* Benefits */}
-            <section className="bg-white rounded-2xl shadow-md p-6 border border-gray-100">
-              <h3 className="text-xl font-bold text-gray-900">مزايا العضوية</h3>
-              <p className="text-gray-500 mt-1">استمتع بمجموعة من المزايا الحصرية للأعضاء</p>
-
-              <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="flex items-start gap-4">
-                  <Icon><User className="w-5 h-5" /></Icon>
-                  <div>
-                    <h4 className="font-semibold">دخول المرافق</h4>
-                    <p className="text-sm text-gray-500">الوصول لصالات التدريب والملاعب</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <Icon><Users className="w-5 h-5" /></Icon>
-                  <div>
-                    <h4 className="font-semibold">مزايا عائلية</h4>
-                    <p className="text-sm text-gray-500">خصومات وميزات لأفراد الأسرة</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <Icon><CreditCard className="w-5 h-5" /></Icon>
-                  <div>
-                    <h4 className="font-semibold">خيارات دفع مرنة</h4>
-                    <p className="text-sm text-gray-500">دفع كامل أو تقسيط حسب الحملة</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <Icon><Calendar className="w-5 h-5" /></Icon>
-                  <div>
-                    <h4 className="font-semibold">حضور الفعاليات</h4>
-                    <p className="text-sm text-gray-500">دعوات خاصة للأعضاء على الفعاليات</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <Icon><Upload className="w-5 h-5" /></Icon>
-                  <div>
-                    <h4 className="font-semibold">تحميل الوثائق إلكترونياً</h4>
-                    <p className="text-sm text-gray-500">رفع المستندات بسهولة عبر النموذج</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <Icon><CheckCircle className="w-5 h-5" /></Icon>
-                  <div>
-                    <h4 className="font-semibold">خصومات المتجر</h4>
-                    <p className="text-sm text-gray-500">خصومات حصرية على المنتجات الرسمية</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Steps */}
-            <section className="bg-white rounded-2xl shadow-md p-6 border border-gray-100">
-              <h3 className="text-xl font-bold">خطوات التقديم</h3>
-              <div className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-4">
-                {[
-                  { t: 'تعبئة النموذج', d: 'املأ بياناتك الأساسية' },
-                  { t: 'رفع المستندات', d: 'ارفق نسخة البطاقة/صورة' },
-                  { t: 'الدفع', d: 'اختر طريقة الدفع المناسبة' },
-                  { t: 'استلام البطاقة', d: 'استلم بطاقة العضوية بعد الموافقة' }
-                ].map((s, i) => (
-                  <div key={i} className="p-4 rounded-lg border border-gray-100 bg-gradient-to-b from-white to-gray-50">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full flex items-center justify-center bg-red-50 text-red-600 font-bold">{i + 1}</div>
-                      <div>
-                        <h4 className="font-semibold">{s.t}</h4>
-                        <p className="text-sm text-gray-500">{s.d}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          </section>
-
-          {/* Right Column: Application Form & Contact */}
-          <aside className="space-y-6">
-            <div id="apply" className="sticky top-20">
-              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-                <h3 className="text-lg font-bold">قدّم الآن</h3>
-                <p className="text-sm text-gray-500 mt-1">املأ البيانات لإكمال طلب العضوية</p>
-
-                <form id="apply-form" onSubmit={handleSubmit} className="mt-4 space-y-3">
-                  <div>
-                    <label className="text-sm font-medium">الاسم الكامل</label>
-                    <input
-                      value={form.fullName}
-                      onChange={(e) => setForm({ ...form, fullName: e.target.value })}
-                      className={`mt-1 w-full px-3 py-2 border rounded-md focus:outline-none ${errors.fullName ? 'border-red-500' : 'border-gray-200'}`}
-                      placeholder="أدخل الاسم الكامل"
-                    />
-                    {errors.fullName && <p className="text-xs text-red-600 mt-1">{errors.fullName}</p>}
-                  </div>
-
-                  <div>
-                    <label className="text-sm font-medium">الرقم القومي</label>
-                    <input
-                      value={form.nationalId}
-                      onChange={(e) => setForm({ ...form, nationalId: e.target.value })}
-                      className={`mt-1 w-full px-3 py-2 border rounded-md focus:outline-none ${errors.nationalId ? 'border-red-500' : 'border-gray-200'}`}
-                      placeholder="مثال: 12345678901234"
-                    />
-                    {errors.nationalId && <p className="text-xs text-red-600 mt-1">{errors.nationalId}</p>}
-                  </div>
-
-                  <div>
-                    <label className="text-sm font-medium">رقم الهاتف</label>
-                    <input
-                      value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      className={`mt-1 w-full px-3 py-2 border rounded-md focus:outline-none ${errors.phone ? 'border-red-500' : 'border-gray-200'}`}
-                      placeholder="مثال: 01012345678"
-                    />
-                    {errors.phone && <p className="text-xs text-red-600 mt-1">{errors.phone}</p>}
-                  </div>
-
-                  <div>
-                    <label className="text-sm font-medium">البريد الإلكتروني</label>
-                    <input
-                      value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      className={`mt-1 w-full px-3 py-2 border rounded-md focus:outline-none ${errors.email ? 'border-red-500' : 'border-gray-200'}`}
-                      placeholder="example@mail.com"
-                    />
-                    {errors.email && <p className="text-xs text-red-600 mt-1">{errors.email}</p>}
-                  </div>
-
-                  <div>
-                    <label className="text-sm font-medium">نوع العضوية</label>
-                    <select
-                      value={form.plan}
-                      onChange={(e) => { setForm({ ...form, plan: e.target.value }); setSelectedPlan(e.target.value) }}
-                      className="mt-1 w-full px-3 py-2 border rounded-md focus:outline-none border-gray-200"
-                    >
-                      {PLANS.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="text-sm font-medium">طريقة الدفع</label>
-                    <select
-                      value={form.paymentMethod}
-                      onChange={(e) => setForm({ ...form, paymentMethod: e.target.value })}
-                      className="mt-1 w-full px-3 py-2 border rounded-md focus:outline-none border-gray-200"
-                    >
-                      <option value="full">دفع كامل</option>
-                      <option value="installment">تقسيط</option>
-                      <option value="bank">تحويل/إيداع بنكي</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="text-sm font-medium">رفع المستندات</label>
-                    <input
-                      onChange={(e) => setForm({ ...form, files: e.target.files })}
-                      type="file"
-                      accept="image/*,application/pdf"
-                      className="mt-1 w-full text-sm"
-                    />
-                  </div>
-
-                  <div className="pt-3">
-                    <button
-                      type="submit"
-                      disabled={submitting}
-                      className={`w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md text-white font-medium ${submitting ? 'bg-gray-400' : 'bg-red-600 hover:bg-red-700'}`}
-                    >
-                      {submitting ? 'جاري الإرسال...' : 'أرسل طلب العضوية'}
-                    </button>
-                  </div>
+                    {submitting ? 'PROCESSING...' : 'SEND APPLICATION'}
+                    <Zap size={18} />
+                  </button>
                 </form>
 
-                <div className="mt-4 text-xs text-gray-500">
-                  <p>بمجرد إرسال النموذج سيتم التواصل معك عبر البريد أو رقم الهاتف لتأكيد الطلب واستكمال الإجراءات.</p>
-                </div>
-              </div>
+                <p className="text-[9px] font-bold opacity-20 text-center leading-relaxed">بإرسالك لهذا الطلب، أنت توافق على كافة الشروط والأحكام الخاصة بنادي الزمالك وسياسة الخصوصية المعمول بها.</p>
+              </motion.div>
             </div>
           </aside>
-        </div>
 
-        {/* Footer CTA */}
-        <div className="my-8 bg-gradient-to-r from-red-600 to-red-500 rounded-2xl text-white p-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div>
-            <h4 className="text-lg font-bold">جاهز للانضمام؟</h4>
-            <p className="text-sm">انقر على "قدّم الآن" لبدء عملية التقديم واستمتع بمزايا العضوية</p>
-          </div>
-          <div>
-            <a href="#apply" className="inline-block bg-white text-red-600 px-5 py-3 rounded-md font-semibold shadow">قدّم الآن</a>
-          </div>
         </div>
-      </main>
+      </section>
 
       {/* Success Modal */}
-      <AnimateSuccessModal open={successOpen} onClose={() => setSuccessOpen(false)} />
+      <AnimatePresence>
+        {successOpen && (
+          <div className="fixed inset-0 z-[300] flex items-center justify-center p-4">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSuccessOpen(false)} className="absolute inset-0 bg-black/90 backdrop-blur-xl" />
+            <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="relative bg-card border border-border rounded-[4rem] p-16 max-w-lg w-full text-center space-y-8">
+              <div className="w-24 h-24 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto shadow-inner">
+                <CheckCircle size={48} />
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-3xl font-black font-heading">تم استلام طلبك!</h3>
+                <p className="text-lg font-bold opacity-60">سيتواصل معك أحد ممثلي إدارة العضويات لإتمام إجراءات التعاقد واستلام البطاقات.</p>
+              </div>
+              <button onClick={() => setSuccessOpen(false)} className="w-full h-16 bg-muted rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all">CLOSE</button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
     </div>
-  )
+  );
 }
 
-/* ---------- Success Modal Component ---------- */
-function AnimateSuccessModal({ open, onClose }) {
-  if (!open) return null
+function PlanCard({ plan, selected, onClick }) {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      whileHover={{ scale: 1.02 }}
+      onClick={onClick}
+      className={`relative p-10 rounded-[3rem] border-2 transition-all cursor-pointer flex flex-col h-full overflow-hidden ${selected ? 'bg-primary border-primary text-white shadow-2xl shadow-primary/30' : 'bg-card border-border hover:border-primary/40'
+        }`}
     >
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
-      <motion.div
-        initial={{ scale: 0.9, y: 20 }}
-        animate={{ scale: 1, y: 0 }}
-        transition={{ duration: 0.25 }}
-        className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-6"
-      >
-        <button onClick={onClose} className="absolute top-3 right-3 text-gray-400 hover:text-gray-700">
-          <X />
-        </button>
-        <div className="flex flex-col items-center gap-3 text-center">
-          <CheckCircle className="w-16 h-16 text-green-500" />
-          <h3 className="text-xl font-bold">تم إرسال طلبك بنجاح</h3>
-          <p className="text-sm text-gray-600">شكرًا لك! سنراجع طلبك ونتواصل معك خلال 3-7 أيام عمل.</p>
-          <button onClick={onClose} className="mt-3 bg-red-600 text-white px-6 py-2 rounded-md">حسناً</button>
+      <div className="relative z-10 space-y-8">
+        <div className="space-y-2">
+          <div className={`text-[10px] font-black uppercase tracking-widest ${selected ? 'text-white/60' : 'text-primary'}`}>{plan.short}</div>
+          <h4 className="text-3xl font-black font-heading italic">{plan.name}</h4>
         </div>
-      </motion.div>
+
+        <div className="space-y-1">
+          <div className="text-4xl font-black font-heading">{plan.price}</div>
+          <div className={`text-[10px] font-black uppercase tracking-widest ${selected ? 'text-white/40' : 'opacity-20'}`}>EGP / ANNUAL FEE</div>
+        </div>
+
+        <div className="w-full h-px bg-current opacity-10" />
+
+        <ul className="space-y-4">
+          {plan.perks.map((perk, i) => (
+            <li key={i} className="flex items-center gap-3 text-xs font-bold">
+              <CheckCircle size={14} className={selected ? 'text-white' : 'text-primary'} />
+              <span className={selected ? 'text-white/80' : 'opacity-60'}>{perk}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {plan.popular && (
+        <div className="absolute top-8 left-8 rotate-[-90deg] origin-top-left -translate-x-full">
+          <span className={`px-4 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest ${selected ? 'bg-white text-primary' : 'bg-primary text-white'}`}>MOST POPULAR</span>
+        </div>
+      )}
+
+      {selected && <Shield size={150} className="absolute bottom-[-50px] left-[-50px] text-white/5 -rotate-12" />}
     </motion.div>
-  )
+  );
+}
+
+function BenefitItem({ icon, title, desc }) {
+  return (
+    <div className="p-10 bg-card border border-border rounded-[3rem] group hover:border-primary transition-all flex items-start gap-8">
+      <div className="w-16 h-16 rounded-2xl bg-muted text-foreground flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all shrink-0">
+        {icon}
+      </div>
+      <div className="space-y-3">
+        <h4 className="text-xl font-black font-heading">{title}</h4>
+        <p className="text-sm font-bold opacity-60 leading-relaxed">{desc}</p>
+      </div>
+    </div>
+  );
+}
+
+function InputField({ label, icon, value, error, onChange }) {
+  return (
+    <div className="space-y-3">
+      <label className="text-[10px] font-black uppercase tracking-widest opacity-40 mr-4">{label}</label>
+      <div className="relative group">
+        <div className="absolute inset-y-0 right-6 flex items-center opacity-40 group-focus-within:opacity-100 transition-opacity">
+          {icon}
+        </div>
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className={`w-full h-16 bg-muted/30 border-2 rounded-2xl pr-14 pl-6 focus:outline-none transition-all font-bold ${error ? 'border-primary' : 'border-border focus:border-primary focus:bg-card'
+            }`}
+        />
+      </div>
+      {error && <p className="text-[9px] font-black text-primary px-4">{error}</p>}
+    </div>
+  );
 }

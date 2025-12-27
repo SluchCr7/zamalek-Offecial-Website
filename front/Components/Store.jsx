@@ -29,7 +29,7 @@ export default function ZamalekKitShowcase() {
     {
       id: 'third',
       name: 'الطقم الثالث التاريخي',
-      img: '/zamalekThird.jpg',
+      img: '',
       desc: 'نسخة تذكارية تحتفل بمرور 114 عاماً على تأسيس القلعة البيضاء العريقة.',
       fabric: 'Sustainable Poly',
       year: '2025/26',
@@ -38,7 +38,43 @@ export default function ZamalekKitShowcase() {
     {
       id: 'GK',
       name: 'طقم حامي العرين',
-      img: '/zamalekGK.jpg',
+      img: '/zamalekGKNike.jpg',
+      desc: 'درع الحارس باللون البنفسجي المميز، مصمم لأقصى درجات المرونة والتحمل.',
+      fabric: 'Flex Shield Tech',
+      year: '2025/26',
+      price: '999 EGP'
+    },
+    {
+      id: 'GK',
+      name: 'طقم حامي العرين الاحتياطي',
+      img: '/zamalekGK2Nike.jpg',
+      desc: 'درع الحارس باللون البنفسجي المميز، مصمم لأقصى درجات المرونة والتحمل.',
+      fabric: 'Flex Shield Tech',
+      year: '2025/26',
+      price: '999 EGP'
+    },
+    {
+      id: 'pre_match',
+      name: 'تيشرت الزمالك للاحماء',
+      img: '/zamalekpre-MatchNike.jpg',
+      desc: 'درع الحارس باللون البنفسجي المميز، مصمم لأقصى درجات المرونة والتحمل.',
+      fabric: 'Flex Shield Tech',
+      year: '2025/26',
+      price: '999 EGP'
+    },
+    {
+      id: 'Track',
+      name: 'تراك الزمالك',
+      img: '/zamalekTrackNike.jpg',
+      desc: 'درع الحارس باللون البنفسجي المميز، مصمم لأقصى درجات المرونة والتحمل.',
+      fabric: 'Flex Shield Tech',
+      year: '2025/26',
+      price: '999 EGP'
+    },
+    {
+      id: 'Training',
+      name: 'تيشرت الزمالك للتمرين',
+      img: '/zamalekTrainingNike.jpg',
       desc: 'درع الحارس باللون البنفسجي المميز، مصمم لأقصى درجات المرونة والتحمل.',
       fabric: 'Flex Shield Tech',
       year: '2025/26',
@@ -83,12 +119,25 @@ export default function ZamalekKitShowcase() {
               className="group relative cursor-pointer"
             >
               <div className="relative aspect-[3/4] rounded-[2rem] overflow-hidden bg-muted border border-border shadow-xl transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-primary/10">
-                <Image
-                  src={kit.img}
-                  alt={kit.name}
-                  fill
-                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                />
+                {kit.img ? (
+                  <Image
+                    src={kit.img}
+                    alt={kit.name}
+                    fill
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-muted to-border text-center px-6">
+                    <Shirt size={48} className="mb-4 opacity-40" />
+                    <p className="text-sm font-black uppercase tracking-widest opacity-60">
+                      سيتوفر قريباً
+                    </p>
+                    <span className="text-[10px] mt-2 opacity-40">
+                      Coming Soon
+                    </span>
+                  </div>
+                )}
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
 
                 {/* Hover Action */}

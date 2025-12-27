@@ -5,10 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Mail, Lock, ShieldCheck, Github, Chrome, ArrowRight } from 'lucide-react';
-import { useGlobalContext } from '@/context/globalContext';
+import { useAuth } from '@/app/Context/AuthContext';
 
 export default function LoginPage() {
-  const { login } = useGlobalContext();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({ email: '', password: '' });
 
   const handleLogin = (e) => {

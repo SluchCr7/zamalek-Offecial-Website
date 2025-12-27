@@ -17,7 +17,7 @@ export default function TeamsSlider() {
   ];
 
   return (
-    <section id="teams" className="py-24 bg-background overflow-hidden">
+    <section id="teams" className="py-24 overflow-hidden">
       <div className="container mx-auto px-4 md:px-8">
 
         {/* Section Header */}

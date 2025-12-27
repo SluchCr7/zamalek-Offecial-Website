@@ -81,7 +81,7 @@ export default function MatchesSlider() {
           </div>
 
           {/* Navigation Controls */}
-          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none px-4 md:px-0">
+          <div className="absolute inset-x-0 top-1/2 z-50 -translate-y-1/2 flex justify-between pointer-events-none px-4 md:px-0">
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}

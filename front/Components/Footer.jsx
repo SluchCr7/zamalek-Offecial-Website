@@ -2,117 +2,149 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { sponsers, socialLinks } from '@/utils/data';
+import { socialLinks, sponsers } from '@/utils/data';
 import Link from 'next/link';
-import { Mail, Phone, MapPin, ExternalLink, ShieldCheck } from 'lucide-react';
+import { Mail, Phone, MapPin, ShieldCheck, ArrowUpRight, Send, Star, Copyright } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Footer = () => {
   return (
-    <footer className="bg-secondary w-full text-secondary-foreground pt-20 pb-10 overflow-hidden" dir="rtl">
-      <div className="container mx-auto px-4 md:px-8">
+    <footer className="relative bg-secondary text-white pt-32 pb-12 overflow-hidden border-t border-white/5" dir="rtl">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
-        {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
 
-          {/* Brand Column */}
-          <div className="space-y-6">
-            <Link href="/" className="inline-block transform transition-transform hover:scale-105">
-              <div className="relative w-24 h-24 mb-2">
-                <Image src="/zsc.png" alt="Zamalek SC" fill className="object-contain" />
+        {/* Newsletter & Brand Header */}
+        <div className="grid lg:grid-cols-2 gap-16 mb-24 items-center">
+          <div className="space-y-8">
+            <Link href="/" className="inline-flex items-center gap-6 group">
+              <div className="relative w-20 h-20 bg-white rounded-2xl p-3 shadow-2xl transition-transform group-hover:scale-110 group-hover:rotate-3">
+                <Image src="/zsc.png" alt="Zamalek SC" fill className="object-contain p-2" />
               </div>
-              <h3 className="text-2xl font-black text-primary font-heading tracking-tighter">ZAMALEK SC</h3>
+              <div className="space-y-1">
+                <h3 className="text-3xl font-black font-heading tracking-tighter leading-none italic">ZAMALEK <span className="text-primary italic">SC</span></h3>
+                <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/40">The White Knights • 1911</p>
+              </div>
             </Link>
-            <p className="text-sm text-gray-200 font-bold opacity-60 leading-relaxed max-w-xs">
-              نادي الزمالك للألعاب الرياضية، مدرسة الفن والهندسة. أكثر من مجرد نادٍ، هو تاريخ وهوية وفخر لكل زملكاوي.
+            <p className="text-xl font-bold opacity-60 leading-relaxed max-w-xl italic">
+              "أكثر من مجرد نادي رياضي، هو مدرسة للفن والهندسة وتاريخ سطرته أجيال من العظماء. نحن لا نصنع التاريخ، نحن التاريخ."
             </p>
-
-            {/* Social Links */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               {socialLinks.map((social, idx) => (
                 <Link
                   key={idx}
                   href={social.link}
                   target="_blank"
-                  className="w-10 h-10 rounded-full bg-background/50 border border-border flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300"
+                  className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary hover:text-white transition-all duration-500 hover:-translate-y-1"
                 >
-                  <span className="scale-90">{social.icon}</span>
+                  <span className="scale-110">{social.icon}</span>
                 </Link>
               ))}
             </div>
           </div>
 
-          {/* Quick Links Column */}
-          <FooterColumn title="اكتشف النادي" links={[
-            { name: 'الرئيسية', href: '/' },
-            { name: 'آخر الأخبار', href: '/Pages/News' },
-            { name: 'المباريات والنتائج', href: '/Pages/Fixtures' },
-            { name: 'جدول الترتيب', href: '/Pages/Table' },
-            { name: 'تاريخ الملكي', href: '/Pages/About' },
-            { name: 'مجلس الإدارة', href: '/Pages/Directors' },
-          ]} />
-
-          {/* Teams Column */}
-          <FooterColumn title="الفرق الرياضية" links={[
-            { name: 'كرة القدم', href: '/Pages/Players/Football' },
-            { name: 'كرة السلة', href: '/Pages/Players/Basketball' },
-            { name: 'الكرة الطائرة', href: '/Pages/Players/Volleyball' },
-            { name: 'كرة اليد', href: '/Pages/Players/Handball' },
-            { name: 'قطاع الناشئين', href: '/Pages/Players/Youth' },
-          ]} />
-
-          {/* Contact/Support Column */}
-          <div className="space-y-6">
-            <h4 className="text-lg font-black font-heading mb-6 relative inline-block">
-              تواصل معنا
-              <span className="absolute -bottom-1 right-0 w-8 h-[2px] bg-primary" />
-            </h4>
-            <div className="space-y-4">
-              <ContactItem icon={<Phone size={16} />} text="+20 123 456 789" />
-              <ContactItem icon={<Mail size={16} />} text="contact@zamalek.com" />
-              <ContactItem icon={<MapPin size={16} />} text="ميت عقبة، الجيزة، مصر" />
+          <div className="bg-white/[0.03] backdrop-blur-3xl border border-white/10 rounded-[3rem] p-10 md:p-16 relative overflow-hidden group">
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="relative z-10 space-y-8">
+              <div className="space-y-4">
+                <h4 className="text-2xl font-black font-heading italic">اشترك في النشرة <span className="text-primary">الملكية</span></h4>
+                <p className="text-sm font-bold opacity-40">كن أول من يعلم بأخبار الصفقات، مواعيد المباريات، والمنتجات الحصرية.</p>
+              </div>
+              <div className="relative">
+                <input
+                  type="email"
+                  placeholder="بريدك الإلكتروني"
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl py-6 pr-8 pl-24 outline-none focus:border-primary transition-all font-bold text-sm"
+                />
+                <button className="absolute left-3 top-3 bottom-3 px-8 bg-primary rounded-xl text-white font-black text-[10px] uppercase tracking-widest hover:scale-105 active:scale-95 transition-all flex items-center gap-3">
+                  <span>انـضم</span>
+                  <Send size={14} />
+                </button>
+              </div>
             </div>
-
-            <Link
-              href="/Pages/Membership"
-              className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl bg-primary text-white font-black hover:bg-primary-hover transition-all shadow-xl shadow-primary/20"
-            >
-              <ShieldCheck size={20} />
-              طلب عضوية النادي
-            </Link>
           </div>
-
         </div>
 
-        {/* Sponsors Section */}
-        <div className="border-t border-border pt-12 mb-12">
-          <div className="flex flex-col items-center gap-8">
-            <span className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">الشركاء الرسميون</span>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
+        {/* Navigation Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-24 pt-24 border-t border-white/5">
+          <FooterNavGroup
+            title="النادي"
+            links={[
+              { name: 'عن الزمالك', href: '/Pages/About' },
+              { name: 'مجلس الإدارة', href: '/Pages/Directors' },
+              { name: 'الأعضاء', href: '/Pages/Membership' },
+              { name: 'تواصل معنا', href: '/Pages/Contact' },
+            ]}
+          />
+          <FooterNavGroup
+            title="الفرق"
+            links={[
+              { name: 'كرة القدم', href: '/Pages/Players/Football' },
+              { name: 'كرة السلة', href: '/Pages/Players/Basketball' },
+              { name: 'كرة اليد', href: '/Pages/Players/Handball' },
+              { name: 'الكرة الطائرة', href: '/Pages/Players/Volleyball' },
+            ]}
+          />
+          <FooterNavGroup
+            title="الميديا"
+            links={[
+              { name: 'آخر الأخبار', href: '/Pages/News' },
+              { name: 'معرض الصور', href: '/Pages/Gallery' },
+              { name: 'قناة الزمالك', href: '/Pages/ZSC-TV' },
+              { name: 'المركز الإعلامي', href: '/Pages/Media' },
+            ]}
+          />
+          <FooterNavGroup
+            title="المتجر"
+            links={[
+              { name: 'أطقم الفريق', href: '/Pages/Store/Kits' },
+              { name: 'ملابس التمرين', href: '/Pages/Store/Training' },
+              { name: 'إكسسوارات', href: '/Pages/Store/Accessories' },
+              { name: 'تخفيضات', href: '/Pages/Store/Sale' },
+            ]}
+          />
+        </div>
+
+        {/* Partners Showcase */}
+        <div className="py-16 border-y border-white/5">
+          <div className="flex flex-col items-center gap-12">
+            <div className="flex items-center gap-4 text-[9px] font-black uppercase tracking-[1em] text-white/30">
+              <div className="h-px w-20 bg-white/10" />
+              <span>Official Global Partners</span>
+              <div className="h-px w-20 bg-white/10" />
+            </div>
+            <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-1000">
               {sponsers.map((sponsor, idx) => (
-                <div key={idx} className="relative w-24 h-12 md:w-32 md:h-16">
-                  <Image src={sponsor} alt={`Sponsor ${idx}`} fill className="object-contain" />
+                <div key={idx} className="relative w-28 h-12 md:w-40 md:h-16 hover:scale-110 transition-transform">
+                  <Image src={sponsor} alt="Sponsor" fill className="object-contain" />
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Copyright Section */}
-        <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-sm text-gray-200 font-bold opacity-40">
-            &copy; {new Date().getFullYear()} نادي الزمالك المصري. جميع الحقوق محفوظة.
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-6">
-            <FooterLegalLink href="/Pages/Privacy" name="خصوصية البيانات" />
-            <FooterLegalLink href="/Pages/Terms" name="شروط الاستخدام" />
-            <FooterLegalLink href="/Pages/Cookies" name="ملفات التعريف" />
+        {/* Bottom Bar */}
+        <div className="pt-12 flex flex-col md:flex-row items-center justify-between gap-8 opacity-40">
+          <div className="flex items-center gap-4 text-xs font-bold">
+            <Copyright size={14} />
+            <span>{new Date().getFullYear()} نادي الزمالك المصري. جميع الحقوق محفوظة.</span>
           </div>
 
-          <div className="flex text-gray-200 items-center gap-2 text-[10px] font-black opacity-30">
-            <span>مدعوم بواسطة</span>
-            <div className="w-4 h-4 rounded-full bg-foreground/10" />
-            <span>Digital Media Dept.</span>
+          <div className="flex gap-8 text-[10px] font-black uppercase tracking-widest">
+            <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
+            <Link href="/cookies" className="hover:text-primary transition-colors">Cookie settings</Link>
+          </div>
+
+          <div className="flex items-center gap-3 text-[10px] font-black tracking-tighter italic">
+            <span className="opacity-40 uppercase">Developed by</span>
+            <div className="flex items-center gap-1 bg-white/10 px-3 py-1.5 rounded-lg">
+              <Star size={10} fill="currentColor" className="text-primary" />
+              <span className="text-white">PRO DESIGN HUB</span>
+            </div>
           </div>
         </div>
 
@@ -121,38 +153,23 @@ const Footer = () => {
   );
 };
 
-const FooterColumn = ({ title, links }) => (
-  <div className="space-y-6">
-    <h4 className="text-lg text-white font-black font-heading mb-6 relative inline-block">
-      {title}
-      <span className="absolute -bottom-1 right-0 w-8 h-[2px] bg-primary" />
-    </h4>
-    <nav className="flex flex-col space-y-3">
+const FooterNavGroup = ({ title, links }) => (
+  <div className="space-y-10">
+    <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-primary">{title}</h4>
+    <nav className="flex flex-col gap-6">
       {links.map((link, idx) => (
         <Link
           key={idx}
           href={link.href}
-          className="text-sm font-bold opacity-60 hover:opacity-100 text-red-500 hover:text-primary transition-all flex items-center gap-2 group"
+          className="text-lg font-bold opacity-40 hover:opacity-100 transition-all hover:translate-x-[-8px] flex items-center justify-between group"
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-border group-hover:bg-primary transition-colors" />
-          {link.name}
+          <span>{link.name}</span>
+          <ArrowUpRight size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
         </Link>
       ))}
     </nav>
   </div>
 );
 
-const ContactItem = ({ icon, text }) => (
-  <div className="flex items-center gap-3 text-sm font-bold opacity-60">
-    <div className="text-primary">{icon}</div>
-    <span>{text}</span>
-  </div>
-);
-
-const FooterLegalLink = ({ href, name }) => (
-  <Link href={href} className="text-[12px] font-bold opacity-40 hover:opacity-100 text-red-500 hover:text-primary transition-all">
-    {name}
-  </Link>
-);
-
 export default Footer;
+

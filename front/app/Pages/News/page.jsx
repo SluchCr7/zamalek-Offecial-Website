@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, ArrowRight, Newspaper, TrendingUp, Clock, Filter, Share2, Bookmark, Flame } from 'lucide-react';
+import { Calendar, ArrowRight, Newspaper, TrendingUp, Clock, Filter, Share2, Bookmark, Flame, User } from 'lucide-react';
 import { newsList } from '@/utils/data';
 import TitleSection from '@/Components/TitleSection';
 

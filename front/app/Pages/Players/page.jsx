@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Trophy, Users, Zap, Star, Shield, ArrowRight, Activity, Flame } from 'lucide-react';
+import { Trophy, Users, Zap, Star, Shield, ArrowRight, Activity, Flame, Heart } from 'lucide-react';
 
 const sports = [
     {
@@ -54,7 +54,7 @@ const sports = [
         id: 'women',
         name: 'كرة الطائرة (سيدات)',
         title: 'Women Volleyball',
-        path: '/Pages/Players/women',
+        path: '/Pages/Players/Women',
         img: 'https://images.unsplash.com/photo-1593766788306-2856108162dd?q=80&w=2070&auto=format&fit=crop',
         icon: <Heart size={24} />,
         color: 'from-purple-600 to-purple-800',

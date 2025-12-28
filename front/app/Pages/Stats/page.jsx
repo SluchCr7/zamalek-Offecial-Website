@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { Trophy, Target, Users, Zap, Calendar, TrendingUp, Award, Activity, Globe, Flame, Star, History } from 'lucide-react';
 
 export default function ZamalekStatsPage() {
-  const { topScorersAllTime, topAssistPlayer, topPlayMatches, derbyRecord, topScorerSeason, fastestGoal, firstHatrick, mostHatrickScore, highWin, mostYoungPlayersScore, mostCountriesPlayInZamalek, mostMatchesattendance } = zamalekStats;
+  const { topScorersAllTime, topAssistPlayer, topPlayMatches, derbyRecord, topScorerSeason, fastestGoal, firstHatrick, mostHatrickScore, highWin, mostYoungPlayersScore, mostCountriesPlayInZamalek, mostMatchesAttendance } = zamalekStats;
 
   const seasonData = topScorerSeason.map((s) => ({ season: s.season, goals: s.goals, player: s.player }));
   const topScorersChart = topScorersAllTime.map((p) => ({ name: p.player, goals: p.goals }));
@@ -175,7 +175,7 @@ export default function ZamalekStatsPage() {
                 <Users size={150} className="absolute -bottom-10 -left-10 opacity-10" />
                 <h4 className="text-xl font-black font-heading mb-10 relative z-10 italic">أرقام الحضور الجماهيري</h4>
                 <div className="space-y-6 relative z-10">
-                  {mostMatchesattendance.slice(0, 3).map((m, i) => (
+                  {mostMatchesAttendance.slice(0, 3).map((m, i) => (
                     <div key={i} className="flex justify-between items-center pb-4 border-b border-white/10 last:border-0">
                       <div>
                         <div className="font-black italic">vs {m.against}</div>

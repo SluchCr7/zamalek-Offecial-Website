@@ -56,7 +56,7 @@ const FirstTeam = () => {
               <div className="absolute inset-0 flex items-end justify-center">
                 <div className="relative w-full h-full">
                   <Image
-                    src={'/no_img.jpg'}
+                    src={player.img}
                     alt={player.name}
                     fill
                     className="object-cover object-top transition-transform duration-700 group-hover:scale-110"

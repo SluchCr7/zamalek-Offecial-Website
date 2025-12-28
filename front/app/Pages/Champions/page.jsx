@@ -191,7 +191,7 @@ export default function ChampionsPage() {
             </div>
           </div>
 
-          <div className="h-[400px] w-full bg-card border border-border rounded-[3rem] p-12 shadow-2xl relative overflow-hidden">
+          <div className="h-[400px] w-full rounded-[3rem] p-12 shadow-2xl relative overflow-hidden">
              <div className="absolute inset-0 bg-primary/5 pointer-events-none" />
              <ResponsiveContainer width="100%" height="100%">
                <PieChart>
@@ -223,56 +223,66 @@ export default function ChampionsPage() {
       {/* Details Modal */}
       <AnimatePresence>
         {selected && (
-          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
-            <motion.div 
+          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6">
+            {/* الخلفية المظلمة */}
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelected(null)}
-              className="absolute inset-0 bg-black/90 backdrop-blur-sm" 
+              className="absolute inset-0 bg-black/90 backdrop-blur-sm"
             />
-            
+
+            {/* النافذة المنبثقة (Modal) */}
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-3xl bg-card rounded-[3.5rem] border border-border overflow-hidden shadow-2xl flex flex-col md:flex-row"
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              // التعديل هنا: إضافة max-h-full و overflow-y-auto
+              className="relative w-full max-w-3xl max-h-[90vh] bg-card rounded-[2rem] md:rounded-[3.5rem] border border-border overflow-y-auto shadow-2xl flex flex-col md:flex-row scrollbar-hide"
             >
-              <button 
+              {/* زر الإغلاق - جعلته ثابت (sticky) ليبقى ظاهراً أثناء التمرير */}
+              <button
                 onClick={() => setSelected(null)}
-                className="absolute top-8 left-8 w-12 h-12 rounded-full bg-muted/50 flex items-center justify-center hover:bg-primary hover:text-white transition-all z-10"
+                className="sticky md:absolute top-4 left-4 md:top-8 md:left-8 w-10 h-10 md:w-12 md:h-12 rounded-full bg-muted/80 backdrop-blur flex items-center justify-center hover:bg-primary hover:text-white transition-all z-20 shadow-lg"
               >
-                <X size={24} />
+                <X size={20} />
               </button>
 
-              <div className="md:w-5/12 aspect-square md:aspect-auto relative p-12 bg-muted/30">
-                <Image src={selected.img} alt={selected.Title} fill className="object-contain p-12" />
+              {/* قسم الصورة */}
+              <div className="w-full md:w-5/12 aspect-square md:aspect-auto relative p-8 md:p-12 bg-muted/30 flex-shrink-0">
+                <Image
+                  src={selected.img}
+                  alt={selected.Title}
+                  fill
+                  className="object-contain p-8 md:p-12"
+                />
               </div>
 
-              <div className="md:w-7/12 p-12 md:p-16 flex flex-col justify-center">
-                 <div className="text-primary font-black font-heading text-4xl mb-4 italic">#{selected.num}</div>
-                 <h2 className="text-3xl md:text-5xl font-black font-heading mb-8 leading-tight">{selected.Title}</h2>
-                 
-                 <div className="space-y-6">
-                    <div className="text-[10px] font-black uppercase tracking-[0.2em] opacity-40">سنوات التتويج</div>
-                    <div className="flex flex-wrap gap-2">
-                       {selected.years && selected.years.map((year, i) => (
-                         <span key={i} className="px-4 py-2 bg-muted rounded-xl text-xs font-black shadow-sm border border-border">
-                           {year}
-                         </span>
-                       ))}
-                    </div>
-                 </div>
+              {/* قسم المحتوى */}
+              <div className="w-full md:w-7/12 p-8 md:p-16 flex flex-col justify-center">
+                <div className="text-primary font-black font-heading text-3xl md:text-4xl mb-2 md:mb-4 italic">#{selected.num}</div>
+                <h2 className="text-2xl md:text-5xl font-black font-heading mb-6 md:mb-8 leading-tight">{selected.Title}</h2>
 
-                 <p className="mt-8 text-lg font-bold opacity-60 leading-relaxed">
-                   {selected.description || "تعد هذه البطولة من الألقاب العزيزة على جماهير القلعة البيضاء، حيث تم تحقيقها بعد نضال رياضي كبير وأداء فني رفيع يجسد مدرسة الفن والهندسة."}
-                 </p>
+                <div className="space-y-4 md:y-6">
+                  <div className="text-[10px] font-black uppercase tracking-[0.2em] opacity-40">سنوات التتويج</div>
+                  <div className="flex flex-wrap gap-2">
+                    {selected.years && selected.years.map((year, i) => (
+                      <span key={i} className="px-3 py-1.5 md:px-4 md:py-2 bg-muted rounded-xl text-[10px] md:text-xs font-black shadow-sm border border-border">
+                        {year}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <p className="mt-6 md:mt-8 text-base md:text-lg font-bold opacity-60 leading-relaxed">
+                  {selected.description || "تعد هذه البطولة من الألقاب العزيزة على جماهير القلعة البيضاء، حيث تم تحقيقها بعد نضال رياضي كبير وأداء فني رفيع يجسد مدرسة الفن والهندسة."}
+                </p>
               </div>
             </motion.div>
           </div>
         )}
       </AnimatePresence>
-
     </div>
   );
 }

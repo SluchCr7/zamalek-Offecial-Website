@@ -160,13 +160,14 @@ export default function FixturesPage() {
       {/* Match Details Modal */}
       <AnimatePresence>
         {selectedMatch && (
-          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-8">
+          <div className="fixed inset-0 z-[200] flex items-center justify-center p-2 md:p-8">
+            {/* الخلفية المظلمة */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedMatch(null)}
-              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-black/85 backdrop-blur-md"
             />
 
             <motion.div
@@ -174,23 +175,25 @@ export default function FixturesPage() {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-4xl bg-card rounded-[3rem] border border-border shadow-[0_32px_128px_rgba(0,0,0,0.5)] overflow-hidden"
+              /* التعديلات هنا لضمان التمرير والاحتواء */
+              className="relative w-full max-w-4xl bg-card rounded-[2.5rem] md:rounded-[3rem] border border-border shadow-[0_32px_128px_rgba(0,0,0,0.5)] overflow-y-auto max-h-[95vh] scrollbar-hide"
             >
-              {/* Modal Background Decor */}
+              {/* التدرج اللوني في الخلفية */}
               <div className="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-primary/10 to-transparent pointer-events-none" />
 
+              {/* زر الإغلاق - Sticky لسهولة الاستخدام */}
               <button
                 onClick={() => setSelectedMatch(null)}
-                className="absolute top-8 left-8 w-12 h-12 rounded-full bg-muted/50 flex items-center justify-center hover:bg-primary hover:text-white transition-all z-10"
+                className="sticky md:absolute top-6 left-6 w-12 h-12 rounded-full bg-muted/80 backdrop-blur-sm flex items-center justify-center hover:bg-primary hover:text-white transition-all z-50 shadow-lg"
               >
                 <X size={24} />
               </button>
 
-              <div className="relative p-8 md:p-16">
+              <div className="relative p-6 md:p-16">
 
-                {/* Competition Badge */}
-                <div className="flex flex-col items-center mb-12">
-                  <div className="px-6 py-2 rounded-full border border-primary/20 bg-primary/10 text-primary text-xs font-black uppercase tracking-[0.2em] mb-4">
+                {/* شارة البطولة والوقت */}
+                <div className="flex flex-col items-center mb-8 md:mb-12">
+                  <div className="px-6 py-2 rounded-full border border-primary/20 bg-primary/10 text-primary text-[10px] md:text-xs font-black uppercase tracking-[0.2em] mb-4">
                     {selectedMatch.competition}
                   </div>
                   <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest opacity-40">
@@ -199,32 +202,32 @@ export default function FixturesPage() {
                   </div>
                 </div>
 
-                {/* Score / Teams Grid */}
-                <div className="grid grid-cols-3 items-center gap-8 mb-16">
+                {/* شبكة النتيجة والفرق - جعلناها Flex-Col في الموبايل */}
+                <div className="flex flex-col md:grid md:grid-cols-3 items-center gap-8 mb-12 md:mb-16">
 
-                  {/* Team 1 (Zamalek) */}
-                  <div className="flex flex-col items-center gap-6">
-                    <div className="relative w-24 h-24 md:w-40 md:h-40 p-4 rounded-full bg-white shadow-2xl">
+                  {/* الفريق 1 (الزمالك) */}
+                  <div className="flex flex-row md:flex-col items-center gap-4 md:gap-6 w-full md:w-auto justify-center">
+                    <div className="relative w-20 h-20 md:w-40 md:h-40 p-3 rounded-full bg-white shadow-xl flex-shrink-0">
                       <Image src="/teams/zamalek.png" alt="Zamalek" fill className="object-contain p-4" />
                     </div>
-                    <h3 className="text-xl md:text-3xl font-black font-heading text-center">الزمالك</h3>
+                    <h3 className="text-xl md:text-3xl font-black font-heading">الزمالك</h3>
                   </div>
 
-                  {/* VS Card */}
-                  <div className="flex flex-col items-center">
+                  {/* VS Card / النتيجة */}
+                  <div className="flex flex-col items-center order-first md:order-none mb-4 md:mb-0">
                     {selectedMatch.status === 'Finished' ? (
                       <div className="flex items-center gap-4">
-                        <span className="text-5xl md:text-8xl font-black font-heading tracking-tighter">
+                        <span className="text-6xl md:text-8xl font-black font-heading tracking-tighter">
                           {selectedMatch.result.split('-')[0]}
                         </span>
                         <span className="text-2xl font-black opacity-20">-</span>
-                        <span className="text-5xl md:text-8xl font-black font-heading tracking-tighter">
+                        <span className="text-6xl md:text-8xl font-black font-heading tracking-tighter">
                           {selectedMatch.result.split('-')[1]}
                         </span>
                       </div>
                     ) : (
                       <div className="flex flex-col items-center">
-                        <div className="text-xs font-black uppercase tracking-[0.3em] opacity-40 mb-6">قادمة</div>
+                        <div className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40 mb-2 md:mb-6">قادمة</div>
                         <div className="text-5xl md:text-7xl font-black font-heading tracking-tighter text-primary">
                           {dayjs(selectedMatch.date).format('HH:mm')}
                         </div>
@@ -239,37 +242,36 @@ export default function FixturesPage() {
                     )}
                   </div>
 
-                  {/* Team 2 (Opponent) */}
-                  <div className="flex flex-col items-center gap-6">
-                    <div className="relative w-24 h-24 md:w-40 md:h-40 p-4 rounded-full bg-white shadow-2xl">
+                  {/* الفريق 2 (الخصم) */}
+                  <div className="flex flex-row-reverse md:flex-col items-center gap-4 md:gap-6 w-full md:w-auto justify-center">
+                    <div className="relative w-20 h-20 md:w-40 md:h-40 p-3 rounded-full bg-white shadow-xl flex-shrink-0">
                       <Image src={`/teams/${selectedMatch.opponentLogo}`} alt={selectedMatch.opponent} fill className="object-contain p-4" />
                     </div>
                     <h3 className="text-xl md:text-3xl font-black font-heading text-center">{selectedMatch.opponent}</h3>
                   </div>
-
                 </div>
 
-                {/* Match Info Grid */}
-                <div className="grid md:grid-cols-3 gap-6 pt-12 border-t border-border">
-                  <div className="flex items-center gap-4 p-4 rounded-2xl bg-muted/30">
-                    <MapPin size={24} className="text-primary" />
+                {/* شبكة معلومات المباراة - Grid Responsive */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 pt-8 md:pt-12 border-t border-border">
+                  <div className="flex items-center gap-4 p-4 rounded-2xl bg-muted/30 border border-border/50">
+                    <MapPin size={20} className="text-primary flex-shrink-0" />
                     <div>
-                      <div className="text-[10px] font-black uppercase opacity-40">الملعب</div>
-                      <div className="font-bold">{selectedMatch.venue || "ستاد القاهرة الدولي"}</div>
+                      <div className="text-[9px] font-black uppercase opacity-40">الملعب</div>
+                      <div className="font-bold text-sm md:text-base">{selectedMatch.venue || "ستاد القاهرة الدولي"}</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4 p-4 rounded-2xl bg-muted/30">
-                    <Clock size={24} className="text-primary" />
+                  <div className="flex items-center gap-4 p-4 rounded-2xl bg-muted/30 border border-border/50">
+                    <Clock size={20} className="text-primary flex-shrink-0" />
                     <div>
-                      <div className="text-[10px] font-black uppercase opacity-40">التوقيت</div>
+                      <div className="text-[9px] font-black uppercase opacity-40">التوقيت</div>
                       <div className="font-bold text-sm">بتوقيت القاهرة</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4 p-4 rounded-2xl bg-muted/30">
-                    <Tv size={24} className="text-primary" />
+                  <div className="flex items-center gap-4 p-4 rounded-2xl bg-muted/30 border border-border/50">
+                    <Tv size={20} className="text-primary flex-shrink-0" />
                     <div>
-                      <div className="text-[10px] font-black uppercase opacity-40">القنوات الناقلة</div>
-                      <div className="font-bold">أون تايم سبورتس</div>
+                      <div className="text-[9px] font-black uppercase opacity-40">القنوات الناقلة</div>
+                      <div className="font-bold text-sm md:text-base">أون تايم سبورتس</div>
                     </div>
                   </div>
                 </div>

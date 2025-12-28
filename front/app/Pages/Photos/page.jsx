@@ -66,7 +66,7 @@ export default function PhotosPage() {
       </section>
 
       {/* Gallery Interaction Bar */}
-      <section className="container mx-auto px-4 -mt-12 relative z-20">
+      <section className="container mx-auto px-4 -mt-3 relative z-20">
         <div className="bg-card p-4 rounded-[3.5rem] border border-border shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 max-w-7xl mx-auto backdrop-blur-3xl">
           <div className="flex flex-wrap gap-2">
             {categories.map((cat) => (

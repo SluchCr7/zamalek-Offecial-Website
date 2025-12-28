@@ -96,7 +96,8 @@ export default function KitMuseumPage() {
       {/* Detailed Lightbox */}
       <AnimatePresence>
         {selectedKit && (
-          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-[200] flex items-center justify-center p-2 sm:p-4">
+            {/* الخلفية */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -109,61 +110,64 @@ export default function KitMuseumPage() {
               initial={{ scale: 0.8, opacity: 0, rotate: -5 }}
               animate={{ scale: 1, opacity: 1, rotate: 0 }}
               exit={{ scale: 0.8, opacity: 0, rotate: 5 }}
-              className="relative w-full max-w-5xl bg-card rounded-[4rem] border border-border overflow-hidden shadow-2xl flex flex-col lg:flex-row h-[85vh] lg:h-auto"
+              /* التعديل الجذري هنا: تحديد الارتفاع الأقصى وتفعيل التمرير العمودي */
+              className="relative w-full max-w-5xl bg-card rounded-[2.5rem] lg:rounded-[4rem] border border-border overflow-y-auto max-h-[95vh] shadow-2xl flex flex-col lg:flex-row scrollbar-hide"
             >
+              {/* زر الإغلاق - جعلته Sticky ليبقى متاحاً دائماً أثناء التمرير */}
               <button
                 onClick={() => setSelectedKit(null)}
-                className="absolute top-8 left-8 w-14 h-14 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-primary transition-all z-50"
+                className="sticky lg:absolute top-6 left-6 w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-primary transition-all z-[60] shadow-xl backdrop-blur-md"
               >
-                <X size={28} />
+                <X size={24} />
               </button>
 
-              {/* Kit Visual */}
-              <div className="lg:w-1/2 relative h-full min-h-[400px] bg-muted/20">
+              {/* Kit Visual - قسم الصورة */}
+              <div className="w-full lg:w-1/2 relative min-h-[350px] sm:min-h-[450px] lg:h-auto bg-muted/20 flex-shrink-0">
                 <Image
                   src={selectedKit.img.replace('../public', '')}
                   alt={selectedKit.sesson}
                   fill
-                  className="object-contain p-12 lg:p-24 drop-shadow-[0_32px_64px_rgba(0,0,0,0.2)]"
+                  className="object-contain p-8 sm:p-12 lg:p-24 drop-shadow-[0_32px_64px_rgba(0,0,0,0.4)]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent pointer-events-none" />
               </div>
 
-              {/* Kit Story */}
-              <div className="lg:w-1/2 p-12 lg:p-20 flex flex-col justify-center space-y-12">
+              {/* Kit Story - قسم المحتوى النصي */}
+              <div className="w-full lg:w-1/2 p-8 sm:p-12 lg:p-20 flex flex-col justify-center space-y-8 lg:space-y-12">
                 <div className="space-y-4">
-                  <div className="flex items-center gap-4 text-primary font-black text-xs uppercase tracking-[0.3em]">
-                    <Star size={16} fill="currentColor" />
+                  <div className="flex items-center gap-4 text-primary font-black text-[10px] sm:text-xs uppercase tracking-[0.3em]">
+                    <Star size={14} fill="currentColor" />
                     <span>Classic Heritage</span>
                   </div>
-                  <h2 className="text-4xl md:text-7xl font-black font-heading tracking-tighter leading-none italic">
+                  <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black font-heading tracking-tighter leading-none italic text-foreground">
                     {selectedKit.sesson}
                   </h2>
                 </div>
 
-                <div className="space-y-8">
-                  <div className="flex items-center gap-6">
-                    <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center group">
-                      <Shield size={24} className="opacity-40" />
+                <div className="space-y-6 lg:space-y-8">
+                  <div className="flex items-center gap-4 sm:gap-6">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-muted flex items-center justify-center group flex-shrink-0 border border-border">
+                      <Shield size={20} className="opacity-40" />
                     </div>
                     <div>
-                      <div className="text-[10px] font-black uppercase tracking-widest opacity-40">المصنع الرسمي</div>
-                      <div className="text-xl font-black font-heading">{selectedKit.Provider}</div>
+                      <div className="text-[9px] font-black uppercase tracking-widest opacity-40">المصنع الرسمي</div>
+                      <div className="text-lg sm:text-xl font-black font-heading">{selectedKit.Provider}</div>
                     </div>
                   </div>
 
-                  <p className="text-xl font-bold opacity-60 leading-relaxed italic border-r-4 border-primary/20 pr-8">
-                    "هذا القميص ليس مجرد قطعة ثياب، بل هو رداء المعارك البطولية التي خاضها ملوك الفن والهندسة في تلك الحقبة التاريخية من عمر الزمالك."
+                  <p className="text-base sm:text-xl font-bold opacity-60 leading-relaxed italic border-r-4 border-primary/20 pr-4 sm:pr-8">
+                    "هذا القميص ليس مجرد قطعة ثياب، بل هو رداء المعارك البطولية التي خاضها ملوك الفن والهندسة."
                   </p>
 
-                  <div className="grid grid-cols-2 gap-8 px-4">
-                    <div className="text-center p-6 bg-muted border border-border rounded-3xl">
-                      <div className="text-2xl font-black font-heading text-primary">100%</div>
-                      <div className="text-[8px] font-black uppercase tracking-widest opacity-40">Authentic Fabric</div>
+                  {/* الإحصائيات - تعديل لضمان عدم خروجها في الشاشات الصغيرة */}
+                  <div className="grid grid-cols-2 gap-4 sm:gap-8 pt-4">
+                    <div className="text-center p-4 sm:p-6 bg-muted border border-border rounded-2xl sm:rounded-3xl">
+                      <div className="text-xl sm:text-2xl font-black font-heading text-primary">100%</div>
+                      <div className="text-[7px] sm:text-[8px] font-black uppercase tracking-widest opacity-40">Authentic Fabric</div>
                     </div>
-                    <div className="text-center p-6 bg-muted border border-border rounded-3xl">
-                      <div className="text-2xl font-black font-heading text-primary">HISTORIC</div>
-                      <div className="text-[8px] font-black uppercase tracking-widest opacity-40">Collector Item</div>
+                    <div className="text-center p-4 sm:p-6 bg-muted border border-border rounded-2xl sm:rounded-3xl">
+                      <div className="text-xl sm:text-2xl font-black font-heading text-primary">HISTORIC</div>
+                      <div className="text-[7px] sm:text-[8px] font-black uppercase tracking-widest opacity-40">Collector Item</div>
                     </div>
                   </div>
                 </div>
@@ -172,7 +176,6 @@ export default function KitMuseumPage() {
           </div>
         )}
       </AnimatePresence>
-
     </div>
   );
 }

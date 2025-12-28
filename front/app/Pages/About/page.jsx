@@ -10,7 +10,7 @@ import TitleSection from '@/Components/TitleSection';
 export default function AboutPage() {
   const containerRef = useRef(null);
   const [selectedHighlight, setSelectedHighlight] = useState(null);
-
+    
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]

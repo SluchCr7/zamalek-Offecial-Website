@@ -11,6 +11,13 @@ const products = [
   { id: 3, name: 'Supporter Scarf Heritage', price: 'EGP 600', img: 'https://images.unsplash.com/photo-1518091043644-c1d445eb9519?q=80&w=2013&auto=format&fit=crop', category: 'Accessories' },
 ];
 
+const avatars = [
+  "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=100&h=100&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&h=100&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&h=100&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=100&h=100&auto=format&fit=crop"
+];
+
 export default function StoreComingSoon() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
@@ -68,14 +75,19 @@ export default function StoreComingSoon() {
             </motion.p>
           </div>
 
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 pt-12">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 pb-20 pt-8">
             <div className="flex -space-x-4">
-              {[1, 2, 3, 4].map(i => (
-                <div key={i} className="w-16 h-16 rounded-full border-4 border-background overflow-hidden relative">
-                  <Image src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="User" fill />
+              {avatars.map((url, i) => (
+                <div key={i} className="w-16 h-16 rounded-full border-4 border-background overflow-hidden relative shadow-lg">
+                  <Image
+                    src={url}
+                    alt={`User ${i + 1}`}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
               ))}
-              <div className="w-16 h-16 rounded-full border-4 border-background bg-primary text-white flex items-center justify-center font-black text-xs z-10">
+              <div className="w-16 h-16 rounded-full border-4 border-background bg-primary text-white flex items-center justify-center font-black text-xs z-10 shadow-lg">
                 +15K
               </div>
             </div>

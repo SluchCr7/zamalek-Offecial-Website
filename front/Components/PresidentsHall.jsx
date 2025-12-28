@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { zamalekPresidents } from '@/utils/data';
 import { History, Shield, Award, ChevronLeft, ChevronRight } from 'lucide-react';
-
+import Link from 'next/link';
 const PresidentsHall = () => {
     // Take a selection of notable presidents/legends
     const items = zamalekPresidents.slice(0, 6);
@@ -83,10 +83,12 @@ const PresidentsHall = () => {
 
                 <div className="mt-20 text-center">
                     <button className="inline-flex items-center gap-6 px-12 py-6 rounded-full bg-white text-black font-black text-sm hover:bg-primary hover:text-white transition-all shadow-2xl shadow-black/20">
-                        <span>إحصائيات رؤساء النادي (114 عام)</span>
-                        <div className="w-8 h-8 rounded-full bg-black/5 flex items-center justify-center">
-                            <ChevronLeft size={16} />
-                        </div>
+                        <Link href="/Pages/Presidents">
+                            <span>إحصائيات رؤساء النادي (114 عام)</span>
+                            <div className="w-8 h-8 rounded-full bg-black/5 flex items-center justify-center">
+                                <ChevronLeft size={16} />
+                            </div>
+                        </Link>
                     </button>
                 </div>
             </div>

@@ -46,10 +46,20 @@ const sports = [
         title: 'Volleyball',
         path: '/Pages/Players/Volleyball',
         img: 'https://images.unsplash.com/photo-1592656091025-275776100994?q=80&w=2070&auto=format&fit=crop',
-        icon: <Trophy size={24} />,
         color: 'from-blue-600 to-blue-800',
         description: 'فريق الأحلام - عودة ملوك الطائرة لمنصات التتويج.',
         stats: { players: '18', titles: '42' }
+    },
+    {
+        id: 'women',
+        name: 'كرة الطائرة (سيدات)',
+        title: 'Women Volleyball',
+        path: '/Pages/Players/women',
+        img: 'https://images.unsplash.com/photo-1593766788306-2856108162dd?q=80&w=2070&auto=format&fit=crop',
+        icon: <Heart size={24} />,
+        color: 'from-purple-600 to-purple-800',
+        description: 'فريق البطولات - صقور ميت عقبة في صالات القارة.',
+        stats: { players: '15', titles: '11' }
     }
 ];
 

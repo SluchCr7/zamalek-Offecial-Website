@@ -86,6 +86,7 @@ const Footer = () => {
               { name: 'كرة السلة', href: '/Pages/Players/Basketball' },
               { name: 'كرة اليد', href: '/Pages/Players/Handball' },
               { name: 'الكرة الطائرة', href: '/Pages/Players/Volleyball' },
+              { name: 'سيدات الطائرة', href: '/Pages/Players/Women' },
             ]}
           />
           <FooterNavGroup

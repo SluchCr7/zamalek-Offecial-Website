@@ -31,7 +31,7 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
         { id: 32, title: 'فريق كرة السلة', url: '/Pages/Players/Basketball' },
         { id: 33, title: 'فريق الكرة الطائرة', url: '/Pages/Players/Volleyball' },
         { id: 34, title: 'فريق كرة اليد', url: '/Pages/Players/Handball' },
-        { id: 35, title: 'فرق السيدات', url: '/Pages/Players/women' },
+        { id: 35, title: 'فرق السيدات', url: '/Pages/Players/Women' },
       ]
     },
     {

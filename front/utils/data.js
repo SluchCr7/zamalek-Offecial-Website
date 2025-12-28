@@ -1789,6 +1789,111 @@ export const zamalekHandballFinal2025 = {
   },
 };
 
+export const zamalekVolleyballWomen2025 = {
+  teamName: "Zamalek SC – Women's Volleyball Team",
+  season: "2025–2026",
+  lastUpdate: "December 2025",
+
+  // الجهاز الفني (غير معلن رسميًا – قابل للتحديث)
+  coachingStaff: {
+    headCoach: "احمد فتحي",
+  },
+
+  // قائمة اللاعبات
+  roster: {
+    setters: [
+      {
+        name: "نور عزمي",
+        status: "Core Setter",
+        note: "صانعة ألعاب"
+      },
+      {
+        name: "داليا المرشدي",
+        status: "Rotation",
+        note: "خبرة محلية"
+      }
+    ],
+
+    outsideHitters: [
+      {
+        name: "سابين عابد",
+        status: "Starting OH",
+        note: "استقبال وضربات قوية"
+      },
+      {
+        name: "أيسل نديم",
+        status: "Young Talent",
+        note: "مشروع نجمة مستقبلية"
+      },
+      {
+        name: "ندي مورجان",
+        status: "Rotation",
+        note: "مرونة تكتيكية"
+      },
+      {
+        name: "هنا تامر",
+        status: "Backup OH",
+        note: "دور دفاعي وهجومي"
+      }
+    ],
+
+    opposites: [
+      {
+        name: "المحترفة ماتيا ماجدتش",
+        nationality: "أجنبية",
+        status: "Foreign Star / Main Opposite",
+        note: "المهاجمة الأساسية للفريق"
+      }
+    ],
+
+    middleBlockers: [
+      {
+        name: "تقي مدحت",
+        status: "Starting MB",
+        note: "حائط صد أساسي"
+      },
+      {
+        name: "فريدة الزرقا",
+        status: "Rotation",
+        note: "سرعة في التحرك على الشبكة"
+      },
+      {
+        name: "مريم ثروت",
+        status: "Backup MB",
+        note: "تغطية دفاعية جيدة"
+      },
+      {
+        name: "مروة مجدي",
+        status: "Rotation",
+        note: "خبرة محلية"
+      }
+    ],
+
+    liberos: [
+      {
+        name: "مريم ممدوح",
+        status: "Main Libero",
+        note: "قائدة الخط الخلفي"
+      },
+      {
+        name: "فريدة الحناوي",
+        status: "Backup Libero",
+        note: "استقبال قوي"
+      }
+    ],
+
+    utilityPlayers: [
+      {
+        name: "فرج العايدي",
+        status: "Utility Player",
+        note: "تلعب أكثر من مركز حسب الحاجة"
+      }
+    ]
+  },
+
+};
+
+
 export const zamalekTV = {
   details: {
     name: "قناة الزمالك",

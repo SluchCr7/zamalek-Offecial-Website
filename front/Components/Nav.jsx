@@ -41,6 +41,7 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
         { id: 43, title: 'مجلس الإدارة', url: '/Pages/Directors' },
         { id: 44, title: 'رؤساء النادي', url: '/Pages/Presidents' },
         { id: 45, title: 'المتحف', url: '/Pages/Measum' },
+        { id: 46, title: 'قناة الزمالك', url: '/Pages/ZamalekTV' },
       ]
     },
     { id: 5, title: 'المباريات', url: '/Pages/Fixtures' },

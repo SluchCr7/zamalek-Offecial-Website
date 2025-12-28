@@ -76,7 +76,7 @@ const Footer = () => {
               { name: 'عن الزمالك', href: '/Pages/About' },
               { name: 'مجلس الإدارة', href: '/Pages/Directors' },
               { name: 'الأعضاء', href: '/Pages/Membership' },
-              { name: 'تواصل معنا', href: '/Pages/Contact' },
+              { name: 'تواصل معنا', href: '/Pages/CallUs' },
             ]}
           />
           <FooterNavGroup
@@ -92,9 +92,9 @@ const Footer = () => {
             title="الميديا"
             links={[
               { name: 'آخر الأخبار', href: '/Pages/News' },
-              { name: 'معرض الصور', href: '/Pages/Gallery' },
-              { name: 'قناة الزمالك', href: '/Pages/ZSC-TV' },
-              { name: 'المركز الإعلامي', href: '/Pages/Media' },
+              { name: 'معرض الصور', href: '/Pages/Photos' },
+              { name: 'قناة الزمالك', href: '/Pages/ZamalekTV' },
+              { name: 'المركز الإعلامي', href: '/Pages/MediaCenter' },
             ]}
           />
           <FooterNavGroup

@@ -83,8 +83,8 @@ export default function ZamalekAchievements() {
         </div>
 
         {/* Global Action */}
-        <Link href={"/Pages/Champions"} className="mt-20 text-center">
-          <button className="inline-flex items-center gap-4 px-10 py-5 rounded-full border border-border font-black text-sm hover:bg-foreground hover:text-background transition-all group">
+        <Link href={"/Pages/Champions"} className="mt-20 text-center w-full justify-center flex items-center">
+          <button className="inline-flex max-w-7xl items-center gap-4 px-10 py-5 rounded-full border border-border font-black text-sm hover:bg-foreground hover:text-background transition-all group">
             <History size={18} />
             <span>استكشف السجل الكامل للبطولات (114 عام)</span>
           </button>

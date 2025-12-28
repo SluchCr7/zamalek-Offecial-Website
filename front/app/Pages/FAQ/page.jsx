@@ -19,7 +19,7 @@ export default function FAQPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground" dir="rtl">
+    <div className="min-h-screen w-full bg-background text-foreground" dir="rtl">
 
       {/* Hero: Support Center Style */}
       <section className="relative pt-32 pb-24 px-4 bg-muted/20 border-b border-border">

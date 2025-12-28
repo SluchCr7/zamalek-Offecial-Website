@@ -1,316 +1,357 @@
 import { CiFacebook } from "react-icons/ci";
 import { RiTwitterXLine } from "react-icons/ri";
 import { RiYoutubeFill } from "react-icons/ri";
-import { FaInstagram , FaFacebook , FaYoutube , FaTwitter , FaTiktok , FaSnapchat , FaTwitch } from "react-icons/fa6";
+import { FaInstagram, FaFacebook, FaYoutube, FaTwitter, FaTiktok, FaSnapchat, FaTwitch } from "react-icons/fa6";
 
 export const zamalekMatches = [
   {
     opponent: "Al Ahly",
     opponentLogo: "al-ahly.png",
-    date: "2025-08-01",
+    date: "2025-11-09",
     time: "20:00",
+    stadium: "Mohammed bin Zayed Stadium",
+    city: "Abu Dhabi, UAE",
+    result: "0 - 2",
+    status: "Finished",
+    matchType: "Neutral",
+    referee: "Szymon Marciniak",
+    competition: "Egyptian Super Cup Final"
+  },
+  {
+    opponent: "Pyramids FC",
+    opponentLogo: "pyramids.png",
+    date: "2025-11-06",
+    time: "19:00",
+    stadium: "Al Nahyan Stadium",
+    city: "Abu Dhabi, UAE",
+    result: "1 - 1 (5-4 Pen)",
+    status: "Finished",
+    matchType: "Neutral",
+    referee: "Mohamed Adel",
+    competition: "Egyptian Super Cup Semi-final"
+  },
+  {
+    opponent: "ZESCO United",
+    opponentLogo: "zesco.png",
+    date: "2025-11-23",
+    time: "18:00",
+    stadium: "Cairo International Stadium",
+    city: "Cairo, Egypt",
+    result: "1 - 0",
+    status: "Finished",
+    matchType: "Home",
+    referee: "Jean-Jacques Ndala",
+    competition: "CAF Confederation Cup"
+  },
+  {
+    opponent: "Kaizer Chiefs",
+    opponentLogo: "kaizer-chiefs.png",
+    date: "2025-11-29",
+    time: "20:00",
+    stadium: "FNB Stadium",
+    city: "Johannesburg, South Africa",
+    result: "1 - 1",
+    status: "Finished",
+    matchType: "Away",
+    referee: "Bamlak Tessema",
+    competition: "CAF Confederation Cup"
+  },
+  {
+    opponent: "Kahrbaa Ismailia",
+    opponentLogo: "ismailia.png",
+    date: "2025-12-09",
+    time: "17:00",
+    stadium: "Ismailia Stadium",
+    city: "Ismailia, Egypt",
+    result: "3 - 3",
+    status: "Finished",
+    matchType: "Away",
+    referee: "Ahmed El Ghandour",
+    competition: "Egyptian League Cup"
+  },
+  {
+    opponent: "Haras El Hodood",
+    opponentLogo: "harras.png",
+    date: "2025-12-20",
+    time: "19:00",
     stadium: "Cairo International Stadium",
     city: "Cairo, Egypt",
     result: "2 - 1",
     status: "Finished",
     matchType: "Home",
-    referee: "Mahmoud Ashour",
-    competition: "Egyptian Premier League"
-  },
-  {
-    opponent: "Pyramids FC",
-    opponentLogo: "pyramids.png",
-    date: "2025-08-05",
-    time: "19:00",
-    stadium: "30 June Stadium",
-    city: "Cairo, Egypt",
-    result: "1 - 1",
-    status: "Finished",
-    matchType: "Home",
-    referee: "Gehad Gerisha",
-    competition: "Egyptian Premier League"
-  },
-  {
-    opponent: "Ismaily SC",
-    opponentLogo: "ismaily.png",
-    date: "2025-08-10",
-    time: "18:00",
-    stadium: "Ismailia Stadium",
-    city: "Ismailia, Egypt",
-    status: "Upcoming",
-    matchType: "Away",
-    referee: "Amr El Ghandour",
-    competition: "Egyptian Premier League"
-  },
-  {
-    opponent: "Al Masry",
-    opponentLogo: "al-masry.png",
-    date: "2025-08-15",
-    time: "21:00",
-    stadium: "Borg El Arab Stadium",
-    city: "Alexandria, Egypt",
-    status: "Upcoming",
-    // matchType: "Away",
-    referee: "Mohamed Adel",
-    competition: "Egyptian Cup"
+    referee: "Amin Omar",
+    competition: "Egyptian League Cup"
   },
   {
     opponent: "Smouha SC",
     opponentLogo: "smouha.png",
-    date: "2025-08-20",
+    date: "2025-12-25",
     time: "19:30",
     stadium: "Alexandria Stadium",
     city: "Alexandria, Egypt",
-    status: "Upcoming",
+    result: "2 - 1",
+    status: "Finished",
     matchType: "Away",
     referee: "Ibrahim Nour El Din",
-    competition: "Egyptian Premier League"
+    competition: "Egyptian League Cup"
   },
   {
-    opponent: "ENPPI",
-    opponentLogo: "enppi.png",
-    date: "2025-08-25",
-    time: "20:00",
-    stadium: "Petro Sport Stadium",
+    opponent: "Baladiyyat El Mahalla",
+    opponentLogo: "mahalla.png",
+    date: "2025-12-28",
+    time: "18:00",
+    stadium: "Cairo International Stadium",
     city: "Cairo, Egypt",
     status: "Upcoming",
     matchType: "Home",
-    referee: "Ahmed El Ghandour",
-    competition: "Egyptian Premier League"
+    referee: "Mahmoud El Banna",
+    competition: "Egypt Cup"
   },
   {
-    opponent: "Future FC",
-    opponentLogo: "future.png",
-    date: "2025-08-30",
+    opponent: "Al Ittihad Alexandria",
+    opponentLogo: "ittihad.png",
+    date: "2026-01-01",
+    time: "19:00",
+    stadium: "Borg El Arab Stadium",
+    city: "Alexandria, Egypt",
+    status: "Upcoming",
+    matchType: "Away",
+    referee: "Mohamed El Sabahi",
+    competition: "Egyptian League Cup"
+  },
+  {
+    opponent: "ZED FC",
+    opponentLogo: "zed.png",
+    date: "2026-01-11",
     time: "19:00",
     stadium: "Cairo International Stadium",
     city: "Cairo, Egypt",
     status: "Upcoming",
-    // matchType: "Home",
-    referee: "Mohamed Farouk",
-    competition: "CAF Champions League"
-  },
-  {
-    opponent: "Tala'ea El Gaish",
-    opponentLogo: "talaea.png",
-    date: "2025-09-04",
-    time: "18:30",
-    stadium: "Gezeira Stadium",
-    city: "Cairo, Egypt",
-    status: "Upcoming",
     matchType: "Home",
-    referee: "Mohamed El Sabahi",
-    competition: "Egyptian Premier League"
-  },
-  {
-    opponent: "Ceramica Cleopatra",
-    opponentLogo: "ceramica.png",
-    date: "2025-09-09",
-    time: "20:00",
-    stadium: "Arab Contractors Stadium",
-    city: "Cairo, Egypt",
-    status: "Upcoming",
-    matchType: "Away",
-    referee: "Amin Omar",
-    competition: "Egyptian Premier League"
-  },
-  {
-    opponent: "Pharco FC",
-    opponentLogo: "pharco.png",
-    date: "2025-09-14",
-    time: "19:00",
-    stadium: "Alexandria Stadium",
-    city: "Alexandria, Egypt",
-    status: "Upcoming",
-    // matchType: "Away",
-    referee: "Ahmed Hossam Taha",
-    competition: "Egyptian Cup"
+    referee: "Nader Qamar El Dawla",
+    competition: "Egyptian League Cup"
   }
 ];
 
 
 export const zamalekTable = [
   {
-    "team": "Al Masry",
-    "Logo": "al-masry.png",
-    "played": 1,
-    "won": 1,
-    "drawn": 0,
-    "lost": 0,
-    "goals_for": 3,
-    "goals_against": 1,
-    "goal_difference": 2,
-    "points": 3
+    "team": "Ceramica Cleopatra",
+    "Logo": "ceramica.png",
+    "played": 13,
+    "won": 9,
+    "drawn": 2,
+    "lost": 2,
+    "goals_for": 17,
+    "goals_against": 5,
+    "goal_difference": 12,
+    "points": 29
   },
   {
-    "team": "Zamalek",
-    "Logo": "zamalek.png",
-    "played": 1,
-    "won": 1,
-    "drawn": 0,
-    "lost": 0,
-    "goals_for": 2,
-    "goals_against": 0,
-    "goal_difference": 2,
-    "points": 3
-  },
-  {
-    "team": "ZED FC",
-    "Logo": "zed.png",
-    "played": 1,
-    "won": 1,
-    "drawn": 0,
-    "lost": 0,
-    "goals_for": 2,
-    "goals_against": 0,
-    "goal_difference": 2,
-    "points": 3
+    "team": "Pyramids FC",
+    "Logo": "pyramids.png",
+    "played": 12,
+    "won": 8,
+    "drawn": 3,
+    "lost": 1,
+    "goals_for": 21,
+    "goals_against": 8,
+    "goal_difference": 13,
+    "points": 27
   },
   {
     "team": "Al Ahly",
     "Logo": "al-ahly.png",
-    "played": 1,
-    "won": 0,
-    "drawn": 1,
-    "lost": 0,
-    "goals_for": 2,
-    "goals_against": 2,
-    "goal_difference": 0,
-    "points": 1
+    "played": 12,
+    "won": 6,
+    "drawn": 5,
+    "lost": 1,
+    "goals_for": 20,
+    "goals_against": 13,
+    "goal_difference": 7,
+    "points": 23
   },
   {
-    "team": "Tala'ea El Gaish",
-    "Logo": "talaea.png",
-    "played": 1,
-    "won": 0,
-    "drawn": 1,
-    "lost": 0,
-    "goals_for": 1,
-    "goals_against": 1,
-    "goal_difference": 0,
-    "points": 1
+    "team": "Zamalek",
+    "Logo": "zamalek.png",
+    "played": 12,
+    "won": 6,
+    "drawn": 4,
+    "lost": 2,
+    "goals_for": 18,
+    "goals_against": 9,
+    "goal_difference": 9,
+    "points": 22
   },
   {
-    "team": "Smouha",
-    "Logo": "smouha.png",
-    "played": 1,
-    "won": 0,
-    "drawn": 1,
-    "lost": 0,
-    "goals_for": 1,
-    "goals_against": 1,
-    "goal_difference": 0,
-    "points": 1
-  },
-  {
-    "team": "Modern Sport",
-    "Logo": "future.png",
-    "played": 1,
-    "won": 0,
-    "drawn": 1,
-    "lost": 0,
-    "goals_for": 2,
-    "goals_against": 2,
-    "goal_difference": 0,
-    "points": 1
-  },
-  {
-    "team": "Petrojet",
-    "Logo": "petrojet.png",
-    "played": 1,
-    "won": 0,
-    "drawn": 1,
-    "lost": 0,
-    "goals_for": 0,
-    "goals_against": 0,
-    "goal_difference": 0,
-    "points": 1
-  },
-  {
-    "team": "Ismaily",
-    "Logo": "ismaily.png",
-    "played": 1,
-    "won": 0,
-    "drawn": 1,
-    "lost": 0,
-    "goals_for": 0,
-    "goals_against": 0,
-    "goal_difference": 0,
-    "points": 1
+    "team": "Al Masry",
+    "Logo": "al-masry.png",
+    "played": 12,
+    "won": 5,
+    "drawn": 5,
+    "lost": 2,
+    "goals_for": 18,
+    "goals_against": 11,
+    "goal_difference": 7,
+    "points": 20
   },
   {
     "team": "Wadi Degla",
     "Logo": "Wadi Degla.png",
-    "played": 1,
-    "won": 0,
-    "drawn": 1,
-    "lost": 0,
-    "goals_for": 0,
-    "goals_against": 0,
-    "goal_difference": 0,
-    "points": 1
+    "played": 13,
+    "won": 5,
+    "drawn": 5,
+    "lost": 3,
+    "goals_for": 15,
+    "goals_against": 11,
+    "goal_difference": 4,
+    "points": 20
   },
   {
-    "team": "Pyramids",
-    "Logo": "pyramids.png",
-    "played": 1,
-    "won": 0,
-    "drawn": 1,
-    "lost": 0,
-    "goals_for": 0,
-    "goals_against": 0,
-    "goal_difference": 0,
-    "points": 1
+    "team": "ZED FC",
+    "Logo": "zed.png",
+    "played": 14,
+    "won": 5,
+    "drawn": 5,
+    "lost": 4,
+    "goals_for": 14,
+    "goals_against": 12,
+    "goal_difference": 2,
+    "points": 20
   },
   {
     "team": "ENPPI",
     "Logo": "enppi.png",
-    "played": 1,
-    "won": 0,
-    "drawn": 0,
+    "played": 12,
+    "won": 4,
+    "drawn": 7,
     "lost": 1,
-    "goals_for": 0,
-    "goals_against": 2,
-    "goal_difference": -2,
-    "points": 0
+    "goals_for": 11,
+    "goals_against": 7,
+    "goal_difference": 4,
+    "points": 19
+  },
+  {
+    "team": "Al Ittihad",
+    "Logo": "ittihad.png",
+    "played": 13,
+    "won": 4,
+    "drawn": 6,
+    "lost": 3,
+    "goals_for": 12,
+    "goals_against": 10,
+    "goal_difference": 2,
+    "points": 18
+  },
+  {
+    "team": "Smouha",
+    "Logo": "smouha.png",
+    "played": 13,
+    "won": 4,
+    "drawn": 5,
+    "lost": 4,
+    "goals_for": 13,
+    "goals_against": 14,
+    "goal_difference": -1,
+    "points": 17
+  },
+  {
+    "team": "Modern Sport",
+    "Logo": "future.png",
+    "played": 12,
+    "won": 3,
+    "drawn": 6,
+    "lost": 3,
+    "goals_for": 11,
+    "goals_against": 11,
+    "goal_difference": 0,
+    "points": 15
+  },
+  {
+    "team": "Ismaily",
+    "Logo": "ismaily.png",
+    "played": 13,
+    "won": 3,
+    "drawn": 4,
+    "lost": 6,
+    "goals_for": 9,
+    "goals_against": 15,
+    "goal_difference": -6,
+    "points": 13
+  },
+  {
+    "team": "Tala'ea El Gaish",
+    "Logo": "talaea.png",
+    "played": 12,
+    "won": 2,
+    "drawn": 5,
+    "lost": 5,
+    "goals_for": 8,
+    "goals_against": 14,
+    "goal_difference": -6,
+    "points": 11
+  },
+  {
+    "team": "Petrojet",
+    "Logo": "petrojet.png",
+    "played": 13,
+    "won": 2,
+    "drawn": 4,
+    "lost": 7,
+    "goals_for": 7,
+    "goals_against": 16,
+    "goal_difference": -9,
+    "points": 10
+  },
+  {
+    "team": "Pharco FC",
+    "Logo": "pharco.png",
+    "played": 12,
+    "won": 1,
+    "drawn": 6,
+    "lost": 5,
+    "goals_for": 6,
+    "goals_against": 12,
+    "goal_difference": -6,
+    "points": 9
   },
   {
     "team": "Ghazl El Mahalla",
     "Logo": "Ghazl.png",
-    "played": 0,
-    "won": 0,
-    "drawn": 0,
-    "lost": 0,
-    "goals_for": 0,
-    "goals_against": 0,
-    "goal_difference": 0,
-    "points": 0
+    "played": 13,
+    "won": 1,
+    "drawn": 5,
+    "lost": 7,
+    "goals_for": 5,
+    "goals_against": 18,
+    "goal_difference": -13,
+    "points": 8
   },
   {
     "team": "Haras El Hodood",
     "Logo": "harras.png",
-    "played": 0,
-    "won": 0,
-    "drawn": 0,
-    "lost": 0,
-    "goals_for": 0,
-    "goals_against": 0,
-    "goal_difference": 0,
-    "points": 0
+    "played": 12,
+    "won": 1,
+    "drawn": 4,
+    "lost": 7,
+    "goals_for": 4,
+    "goals_against": 15,
+    "goal_difference": -11,
+    "points": 7
   },
   {
     "team": "El Gouna",
     "Logo": "Gouna.png",
-    "played": 0,
+    "played": 13,
     "won": 0,
-    "drawn": 0,
-    "lost": 0,
-    "goals_for": 0,
-    "goals_against": 0,
-    "goal_difference": 0,
-    "points": 0
+    "drawn": 5,
+    "lost": 8,
+    "goals_for": 3,
+    "goals_against": 19,
+    "goal_difference": -16,
+    "points": 5
   }
-]
+];
 
 
 export const zamalekAfrica = [
@@ -364,14 +405,14 @@ export const zamalekTitles = [
     Title: "Egyptian Premier League",
     img: '/awardes/award-1.png',
     num: 14,
-    years: ["1959-60","1963-64","1964-65","1977-78","1983-84","1987-88","1991-92","1992-93","2000-01","2002-03","2003-04","2014-15","2020-21","2021-22"],
+    years: ["1959-60", "1963-64", "1964-65", "1977-78", "1983-84", "1987-88", "1991-92", "1992-93", "2000-01", "2002-03", "2003-04", "2014-15", "2020-21", "2021-22"],
     category: "local"
   },
   {
     Title: "Egypt Cup",
     img: '/awardes/cup.png',
     num: 29,
-    years: ["1921-22","1931-32","1934-35","1937-38","1940-41","1942-43","1943-44","1951-52","1954-55","1956-57","1957-58","1958-59","1959-60","1961-62","1974-75","1976-77","1978-79","1987-88","1998-99","2001-02","2007-08","2012-13","2013-14","2014-15","2015-16","2017-18","2018-19","2020-21","2024-25"],
+    years: ["1921-22", "1931-32", "1934-35", "1937-38", "1940-41", "1942-43", "1943-44", "1951-52", "1954-55", "1956-57", "1957-58", "1958-59", "1959-60", "1961-62", "1974-75", "1976-77", "1978-79", "1987-88", "1998-99", "2001-02", "2007-08", "2012-13", "2013-14", "2014-15", "2015-16", "2017-18", "2018-19", "2020-21", "2024-25"],
     category: "local"
   },
   {
@@ -435,7 +476,7 @@ export const zamalekTitles = [
     img: '/awardes/دوري القاهرة.webp',
     num: 14,
     years: [
-      "1922-23","1929-30","1931-32","1939-40","1940-41","1943-44","1944-45","1945-46","1946-47","1948-49","1950-51","1951-52","1952-53","1955-56"
+      "1922-23", "1929-30", "1931-32", "1939-40", "1940-41", "1943-44", "1944-45", "1945-46", "1946-47", "1948-49", "1950-51", "1951-52", "1952-53", "1955-56"
     ],
     category: "local"
   }
@@ -815,74 +856,74 @@ export const zamalekDirectors = [
   {
     name: "حسين لبيب",
     position: "رئيس النادي",
-    img : "/Directors/husseinlabib-min.png"
+    img: "/Directors/husseinlabib-min.png"
   },
   {
     name: "هشام نصر",
     position: "نائب الرئيس",
-    img : "/Directors/hesham-nasr-min.png"
+    img: "/Directors/hesham-nasr-min.png"
   },
   {
     name: "حسام المندوه",
     position: "أمين الصندوق",
-    img : "/Directors/hossam-el-mandouh-min.png"
+    img: "/Directors/hossam-el-mandouh-min.png"
   },
   {
     name: "أحمد سليمان",
     position: "عضو مجلس الإدارة",
-    img : "/Directors/ahmed-soliman-min.png"
+    img: "/Directors/ahmed-soliman-min.png"
   },
   {
     name: "حسين السيد",
     position: "عضو مجلس الإدارة",
-    img : "/Directors/hussein-elsayed-min.png"
+    img: "/Directors/hussein-elsayed-min.png"
   },
   {
     name: "عمرو الأدهم",
     position: "عضو مجلس الإدارة",
-    img : "/Directors/amr-el-adham-min.png"
+    img: "/Directors/amr-el-adham-min.png"
   },
   {
     name: "هاني برزي",
     position: "عضو مجلس الإدارة",
-    img : "/Directors/hani-berzi-min.png"
+    img: "/Directors/hani-berzi-min.png"
   },
   {
     name: "هاني شكري",
     position: "عضو مجلس الإدارة",
-    img : "/Directors/hany-shoukry-min.png"
+    img: "/Directors/hany-shoukry-min.png"
   },
   {
     name: "محمد طارق",
     position: "عضو مجلس الإدارة",
-    img : "/Directors/mohamed-tareq-min.png"
+    img: "/Directors/mohamed-tareq-min.png"
   },
   {
     name: "نيرة الأحمر",
     position: "عضو مجلس الإدارة",
-    img : "/Directors/nayera-elahmar-min.png"
+    img: "/Directors/nayera-elahmar-min.png"
   },
   {
     name: "رامي نصوحي",
     position: "عضو مجلس الإدارة",
-    img : "/Directors/ramy-ibrahim-min.png"
+    img: "/Directors/ramy-ibrahim-min.png"
   },
   {
     name: "أحمد خالد",
     position: "عضو مجلس الإدارة",
-    img : "/Directors/ahmed-hasanin-min.png"
+    img: "/Directors/ahmed-hasanin-min.png"
   },
 ];
 
 export const zamalekCoachingStaff = [
-  { name: "يانيك فيريرا", role: "المدير الفني" , img:"/Staff/yannik Ferera.jpg" },
-  { name: "بيير باهرلي", role: "مدرب مساعد" , img:"/Staff/pierre-Baptiste Baherle.jpg" },
-  { name: "حازم إمام", role: "مدرب مساعد" , img:"/Staff/Hazem emam.jpg" },
-  { name: "چوجوسلاف لازيتش", role: "مدرب حراس المرمى", img:"/Staff/Jugoslav Lazic.jpg" },
-  { name: "راؤول لوبيز", role: "مدرب الأحمال", img:"/Staff/raul Lopez.jpg" },
-  { name: "محمد علاء ", role: "محلل الأداء", img:"/Staff/Mohamed Alaa Edin.jpg" },
-  { name: "جوليان لاچوكس", role: "محلل الأداء", img:"/Staff/julian.jpg" },
-  { name: "ماريو تومليانوفيتش", role: "مخطط الأحمال", img:"/Staff/Mario Tomljanović.jpg" }
+  { name: "يانيك فيريرا", role: "المدير الفني", img: "/Staff/yannik Ferera.jpg" },
+  { name: "بيير باهرلي", role: "مدرب مساعد", img: "/Staff/pierre-Baptiste Baherle.jpg" },
+  { name: "حازم إمام", role: "مدرب مساعد", img: "/Staff/Hazem emam.jpg" },
+  { name: "چوجوسلاف لازيتش", role: "مدرب حراس المرمى", img: "/Staff/Jugoslav Lazic.jpg" },
+  { name: "راؤول لوبيز", role: "مدرب الأحمال", img: "/Staff/raul Lopez.jpg" },
+  { name: "محمد علاء ", role: "محلل الأداء", img: "/Staff/Mohamed Alaa Edin.jpg" },
+  { name: "جوليان لاچوكس", role: "محلل الأداء", img: "/Staff/julian.jpg" },
+  { name: "ماريو تومليانوفيتش", role: "مخطط الأحمال", img: "/Staff/Mario Tomljanović.jpg" }
 ];
 
 export const placeholderImage = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
@@ -901,114 +942,114 @@ export const zamalekPresidents = [
     name: "جورج مرزباخ (Marzbach)",
     term: "1911–1915",
     description: "أول رئيس للنادي عند التأسيس، محامٍ من المحاكم المختلطة، أسهم في تأسيس الهوية الأولية للنادي.",
-    img : '/Presidents/جورج مرزباخ 3.jpg'
+    img: '/Presidents/جورج مرزباخ 3.jpg'
   },
   {
     name: "بيانكي (Bianchi)",
     term: "1915–1917",
     description: "رئيس فرنسي تولى المنصب في بدايات النادي.",
-    img : '/Presidents/أنطوان_بيانكي.png'
+    img: '/Presidents/أنطوان_بيانكي.png'
   },
   {
     name: "محمد بدر",
     term: "1917–1919",
     description: "أول رئيس مصري للنادي في تاريخه المبكر.",
-    img : '/Presidents/محمد_بدر.png2.png'
+    img: '/Presidents/محمد_بدر.png2.png'
   },
   {
     name: "محمد حيدر باشا",
     term: "1923–1952",
     description: "أطول رؤساء النادي durée، قائد عسكري رفيع، دعم النادي مالياً ونقل مقره ودعّم التطوير الإداري.",
-    img : '/Presidents/محمد حيدر باشا 4.jpg'
+    img: '/Presidents/محمد حيدر باشا 4.jpg'
   },
-  
+
   {
     name: "محمود شوقي",
     term: "1952–1955, 1955–1956",
     description: "أول رئيس بعد ثورة 1952، تنازل وأُعيد انتخابه، ساعد في إعادة التوازن المالي.",
-    img : '/Presidents/محمود شوقي 5.jpg'
+    img: '/Presidents/محمود شوقي 5.jpg'
   },
   {
     name: "عبد الحميد الشواربي",
     term: "1955",
     description: "تولى المنصب لفترة قصيرة جداً لإنقاذ النادي ماليًا ثم استقال.",
-    img : '/Presidents/عبدالحميد_الشواربي.jpg'
+    img: '/Presidents/عبدالحميد_الشواربي.jpg'
   },
   {
     name: "عبد اللطيف أبو رجيلة",
     term: "1956–1961",
     description: "أحد رجال الأعمال، قاد بناء ملعب النادي والمبنى الاجتماعي.",
-    img : '/Presidents/عبد_اللطيف_ابو_رجيلة65.jpg'
+    img: '/Presidents/عبد_اللطيف_ابو_رجيلة65.jpg'
   },
   {
     name: "علوي الجزار",
     term: "1961–1962",
     description: "رئيس قصير المدة بعد التأميم، جلب فريق ريال مدريد للنادي.",
-    img : '/Presidents/علوي الجزار7.jpg'
+    img: '/Presidents/علوي الجزار7.jpg'
   },
-  
+
   {
     name: "حسن عامر",
     term: "1962–1967, 1984–1988",
     description: "شقيق مسؤول حكومي له دور إداري في النادي، تولى المنصب مرتين.",
-    img : '/Presidents/حسن عامر8.jpg'
+    img: '/Presidents/حسن عامر8.jpg'
   },
   {
     name: "محمد حسن حلمي (هلمي زامورا)",
     term: "1967–1971, 1974–1984",
     description: "أول لاعب يتولى رئاسة الزمالك، صُنع معظم منشآت النادي، ويُعد الأكثر تأثيرًا تاريخيًا.",
-    img : '/Presidents/حلمي زامورا 9.jpg'
+    img: '/Presidents/حلمي زامورا 9.jpg'
   },
-  
+
   {
     name: "توفيق الخشن",
     term: "1971–1972",
     description: "رئيس بالتزكية لفترة قصيرة أثناء فترة حلمي زامورا.",
-    img : '/Presidents/توفيق الخشن10.jpg'
+    img: '/Presidents/توفيق الخشن10.jpg'
   },
   {
     name: "حسن أبو الفتوح",
     term: "1988–1990",
     description: "رئيس في أواخر الثمانينات.",
-    img : '/Presidents/حسن ابو الفتوح11.jpg'
+    img: '/Presidents/حسن ابو الفتوح11.jpg'
   },
-  
+
   {
     name: "نور الدالي",
     term: "1990–1992",
     description: "مهندس ولاعب سابق، كان آخر لاعب يتولى رئاسة النادي حتى الآن.",
-    img : '/Presidents/نور الدالي12.jpg'
+    img: '/Presidents/نور الدالي12.jpg'
   },
   {
     name: "جلال إبراهيم",
     term: "1992–1996, 2010–2011",
     description: "قاضٍ وبارز في الإدارة، تولى المنصب مرتين، استقال لظروف مالية.",
-    img : '/Presidents/جلال ابراهيم 13.jpeg'
+    img: '/Presidents/جلال ابراهيم 13.jpeg'
   },
-    
+
   {
     name: "كمال درويش",
     term: "1996–2005, 2013–2014",
     description: "رمز في كرة اليد والإدارة الرياضية، تولى المنصب مرتين وساهم في نهضة الألعاب الجماعية.",
-    img : '/Presidents/كمال درويش14.jpg'
+    img: '/Presidents/كمال درويش14.jpg'
   },
   {
     name: "مرتضى منصور",
     term: "2005, 2006, 2014–2017",
     description: "محامي برزت فتراته بالجدل الإعلامي والسياسي، حقق انجازات رياضية رغم الخلافات.",
-    img : '/Presidents/مرتضي منصور 15.jpg'
+    img: '/Presidents/مرتضي منصور 15.jpg'
   },
   {
     name: "مرسي عطا الله",
     term: "2005–2006",
     description: "شغل المنصب لفترة قصيرة بين فترتين لمشوار مرتضى منصور.",
-    img : '/Presidents/مرسي_عطا_الله.jpg'
+    img: '/Presidents/مرسي_عطا_الله.jpg'
   },
   {
     name: "ممدوح عباس",
     term: "2006–2008, 2009–2010, 2011–2013",
     description: "إداري تولى رئاسة متكررة، تجاوز النادي خلال فترات انتقالية.",
-    img : '/Presidents/ممدوح عباس 16.png'
+    img: '/Presidents/ممدوح عباس 16.png'
   },
   // {
   //   name: "محمد عامر",
@@ -1019,7 +1060,7 @@ export const zamalekPresidents = [
     name: "حسين لبيب",
     term: "2021 (May–Nov), منذ 2023",
     description: "رجل أعمال ولاعب كرة يد سابق، الرئيس الحالي للنادي.",
-    img : '/Presidents/حسين لبيب 17.webp'
+    img: '/Presidents/حسين لبيب 17.webp'
   }
 ];
 
@@ -1027,209 +1068,209 @@ export const zamalekPresidents = [
 export const socialLinks = [
   {
     name: "Facebook",
-    icon : <FaFacebook />,
+    icon: <FaFacebook />,
     link: "https://www.facebook.com/zamalk"
   },
   {
     name: "Twitter",
-    icon : <FaTwitter />,
+    icon: <FaTwitter />,
     link: "https://twitter.com/zamalk"
   },
   {
     name: "Instagram",
-    icon : <FaInstagram />,
+    icon: <FaInstagram />,
     link: "https://www.instagram.com/zamalk"
   },
   {
     name: "YouTube",
-    icon : <FaYoutube />,
+    icon: <FaYoutube />,
     link: "https://www.youtube.com/@zamalk"
   },
   {
     name: "TikTok",
-    icon : <FaTiktok />,
+    icon: <FaTiktok />,
     link: "https://www.tiktok.com/@zamalk"
   },
   {
     name: "Snapchat",
-    icon : <FaSnapchat />,
+    icon: <FaSnapchat />,
     link: "https://www.snapchat.com/add/zamalk"
   },
   {
     name: "Twitch",
-    icon : <FaTwitch />,
+    icon: <FaTwitch />,
     link: "https://www.twitch.tv/zamalk"
   }
 ]
 
 export const zamalekLegends = [
   {
-    name: "شيكابالا",
+    name: "شيكابالا (محمود عبد الرازق)",
     position: "جناح هجومي / صانع ألعاب",
-    period: "2002 - حتى الآن (متقطع)",
-    titles: ["الدوري المصري", "كأس مصر", "السوبر المصري", "الكونفدرالية الإفريقية"],
-    bio: "أحد أكثر اللاعبين موهبة وشعبية في تاريخ الزمالك، القائد الحالي وصانع ألعاب مميز يتميز بالمهارة والرؤية.",
+    period: "2002 - حتى الآن",
+    titles: ["الدوري المصري (4)", "كأس مصر (6)", "السوبر المصري (2)", "الكونفدرالية الإفريقية (2)", "السوبر الإفريقي (2)"],
+    bio: "الأسطورة الحية وقائد الفريق، يعتبره الكثيرون أمهر لاعب في تاريخ الكرة المصرية. يتميز بمهاراته الفردية الاستثنائية وتمريراته الحاسمة، وهو رمز الوفاء والانتماء لجماهير القلعة البيضاء.",
     img: "/Legends/شيكا.jpg"
   },
   {
-    name: "حسن شحاتة",
-    position: "صانع ألعاب",
-    period: "1966 - 1983",
-    titles: ["الدوري المصري", "كأس مصر"],
-    bio: "المعلم، أحد أساطير الزمالك، معروف بفنياته العالية وتأثيره الكبير داخل الملعب.",
+    name: "حسن شحاتة (المعلم)",
+    position: "صانع ألعاب / مهاجم",
+    period: "1967 - 1983",
+    titles: ["الدوري المصري (1)", "كأس مصر (3)"],
+    bio: "أحد أعظم من لمس الكرة في تاريخ الزمالك ومصر. نال لقب أفضل لاعب في آسيا عام 1970 أثناء احترافه في الكويت، وقاد الزمالك لعقود من التألق بأسلوبه الراقي والفريد.",
     img: "/Legends/حسن شحاته.webp"
   },
   {
-    name: "حماده إمام",
+    name: "حماده إمام (الثعلب)",
     position: "مهاجم",
     period: "1958 - 1974",
-    titles: ["الدوري المصري", "كأس مصر"],
-    bio: "الثعلب الكبير، رمز من رموز الزمالك، ووالد النجم حازم إمام.",
+    titles: ["الدوري المصري (2)", "كأس مصر (3)"],
+    bio: "رمز من رموز النادي الخالدة، اشتهر بذكائه الشديد داخل منطقة الجزاء وقدرته على تسجيل الأهداف من أصعب الزوايا. هو والد النجم حازم إمام وجده يحيى إمام حارس مرمى الزمالك الأسبق.",
     img: "/Legends/حماده امام.webp"
   },
   {
     name: "بشير التابعي",
     position: "قلب دفاع",
-    period: "1998 - 2005",
-    titles: ["الدوري المصري", "دوري أبطال إفريقيا", "كأس مصر", "السوبر الإفريقي"],
-    bio: "مدافع قوي وشرس، كان جزءًا من الجيل الذهبي في أوائل الألفينات.",
+    period: "1997 - 2005",
+    titles: ["الدوري المصري (3)", "دوري أبطال إفريقيا (1)", "كأس مصر (2)", "السوبر الإفريقي (1)"],
+    bio: "صخرة الدفاع الزملكاوية في الجيل الذهبي مطلع الألفية. تميز بقوته البدنية الهائلة وتسديداته الصاروخية بعيدة المدى، وكان أحد الركائز الأساسية في تحقيق خماسية 2002 التاريخية.",
     img: "/Legends/بشير التابعي.webp"
   },
   {
-    name: "مدحت عبد الهادي",
-    position: "قلب دفاع",
-    period: "1995 - 2005",
-    titles: ["الدوري المصري", "كأس مصر", "دوري أبطال إفريقيا", "السوبر الإفريقي"],
-    bio: "مدافع صلب، ساهم بشكل كبير في الإنجازات الإفريقية والمحلية.",
-    img: "/Legends/مدحت عبد الهادي.jpg"
-  },
-  {
-    name: "إبراهيم يوسف",
-    position: "قلب دفاع",
-    period: "1975 - 1988",
-    titles: ["الدوري المصري", "كأس مصر", "دوري أبطال إفريقيا"],
-    bio: "الغزال الأسمر، أحد أفضل المدافعين في تاريخ الكرة المصرية.",
-    img: "/Legends/ابراهيم يوسف.jpg"
-  },
-  {
-    name: "إسماعيل يوسف",
-    position: "لاعب وسط دفاعي",
-    period: "1984 - 1998",
-    titles: ["الدوري المصري", "كأس مصر", "دوري أبطال إفريقيا", "السوبر الإفريقي"],
-    bio: "تيجانا، لاعب وسط ذكي يتميز بقراءة اللعب والتمركز الجيد.",
-    img: "/Legends/اسماعيل يوسف.webp"
-  },
-  {
-    name: "أيمن يونس",
-    position: "مهاجم / جناح",
-    period: "1980 - 1993",
-    titles: ["الدوري المصري", "كأس مصر", "دوري أبطال إفريقيا"],
-    bio: "هداف مهاري وذكي، يعتبر من أبرز نجوم الثمانينات.",
-    img: "/Legends/ايمن يونس.jpg"
-  },
-  {
-    name: "حازم إمام",
+    name: "حازم إمام (إمبراطور المهارة)",
     position: "صانع ألعاب",
-    period: "1996 - 2008",
-    titles: ["الدوري المصري", "كأس مصر", "دوري أبطال إفريقيا", "السوبر الإفريقي"],
-    bio: "الثعلب الصغير، أحد أكثر اللاعبين مهارة وحبًا بين الجماهير البيضاء.",
+    period: "1993 - 2008",
+    titles: ["الدوري المصري (3)", "دوري أبطال إفريقيا (2)", "كأس مصر (2)", "السوبر الإفريقي (2)"],
+    bio: "الثعلب الصغير وأحد أكثر اللاعبين شعبية في تاريخ مصر. امتلك مهارات فنية جعلته يلقب بـ 'فنان الشعب'. خاض تجربة احترافية ناجحة في أودينيزي الإيطالي ودي جرافشاب الهولندي.",
     img: "/Legends/Hazem.png"
   },
   {
-    name: "أحمد الكأس",
-    position: "مهاجم",
-    period: "1997 - 2000",
-    titles: ["كأس مصر"],
-    bio: "هداف مميز، لعب للزمالك في نهاية التسعينات وكان له بصمة تهديفية واضحة.",
-    img: "/Legends/احمد الكاس.webp"
+    name: "إبراهيم يوسف (الغزال)",
+    position: "ليبرو / قلب دفاع",
+    period: "1971 - 1988",
+    titles: ["الدوري المصري (2)", "دوري أبطال إفريقيا (2)", "كأس مصر (2)"],
+    bio: "يعتبر أفضل ليبرو في تاريخ الكرة الإفريقية. نال المركز الثاني في استفتاء أفضل لاعب في إفريقيا مرتين، وتميز بالأناقة الشديدة في الأداء والقدرة على بناء الهجمات من الخلف.",
+    img: "/Legends/ابراهيم يوسف.jpg"
   },
   {
-    name: "علي خليل",
-    position: "مهاجم",
-    period: "1970s",
-    titles: ["الدوري المصري", "كأس مصر"],
-    bio: "من أبرز هدافي الزمالك في السبعينات، لاعب قوي ومهاري.",
-    img: "/Legends/علي خليل.jpg"
+    name: "إسماعيل يوسف (تيجانا)",
+    position: "لاعب وسط دفاعي",
+    period: "1984 - 1997",
+    titles: ["الدوري المصري (4)", "دوري أبطال إفريقيا (4)", "السوبر الإفريقي (1)"],
+    bio: "محرك وسط الميدان الملقب بـ 'تيجانا الكرة المصرية'. كان بمثابة حائط الصد المنيع أمام المدافعين، وساهم بشكل فعال في حصد معظم ألقاب النادي القارية في الثمانينات والتسعينات.",
+    img: "/Legends/اسماعيل يوسف.webp"
   },
   {
-    name: "عبد الواحد السيد",
+    name: "عبد الواحد السيد (وحيد)",
     position: "حارس مرمى",
     period: "1997 - 2014",
-    titles: ["الدوري المصري", "كأس مصر", "دوري أبطال إفريقيا", "السوبر الإفريقي"],
-    bio: "الحارس الأسطوري، الأكثر مشاركة في تاريخ الزمالك، وقائد تاريخي للفريق.",
+    titles: ["الدوري المصري (3)", "دوري أبطال إفريقيا (1)", "كأس مصر (5)", "السوبر الإفريقي (1)"],
+    bio: "الحارس التاريخي والأكثر مشاركة في تاريخ الزمالك. دافع عن عرين الملكي لأكثر من 17 عاماً، محققاً عدداً قياسياً من البطولات، واشتهر بتصدياته الإعجازية في ركلات الجزاء.",
     img: "/Legends/عبد الواحد.jpg"
   },
   {
-    name: "عمرو زكي",
-    position: "مهاجم",
-    period: "2004 - 2006، 2009 - 2010",
-    titles: ["كأس مصر"],
-    bio: "البلدوزر، مهاجم قوي وهداف، تألق مع الزمالك ثم احترف في أوروبا.",
-    img: "/Legends/عمرو ذكي.jpg"
-  },
-  {
-    name: "فاروق جعفر",
+    name: "فاروق جعفر (ملك النص)",
     position: "وسط مهاجم",
     period: "1970 - 1983",
-    titles: ["الدوري المصري", "كأس مصر"],
-    bio: "ملك النص، قائد الزمالك في السبعينات، يتميز بالفنيات والتمريرات الحاسمة.",
+    titles: ["الدوري المصري (2)", "كأس مصر (3)"],
+    bio: "العقل المدبر لخط وسط الزمالك في السبعينات. اشتهر برؤيته الثاقبة للملعب وتمريراته التي كانت تضع المهاجمين في مواجهة مباشرة مع المرمى، وشكل ثنائياً تاريخياً مع حسن شحاتة.",
     img: "/Legends/فاروق جعفر.jpg"
-  },
-  {
-    name: "خالد الغندور",
-    position: "وسط / جناح أيمن",
-    period: "1991 - 2004",
-    titles: ["الدوري المصري", "كأس مصر", "دوري أبطال إفريقيا", "السوبر الإفريقي"],
-    bio: "قائد محنك وصاحب دور كبير في التتويجات الإفريقية في جيل 2000.",
-    img: "/Legends/خالد الغندور.jpg"
-  },
-  {
-    name: "إيمانويل أمونيكي",
-    position: "جناح أيسر / مهاجم",
-    period: "1991 - 1994",
-    titles: ["دوري أبطال إفريقيا", "كأس مصر"],
-    bio: "النجم النيجيري، قدم مستويات رائعة مع الزمالك قبل انتقاله إلى أوروبا.",
-    img: "/Legends/ايمانويل.jpg"
-  },
-  {
-    name: "أشرف قاسم",
-    position: "قلب دفاع",
-    period: "1984 - 1997",
-    titles: ["الدوري المصري", "كأس مصر", "دوري أبطال إفريقيا"],
-    bio: "مدافع أنيق وهادئ، يتميز باللعب النظيف وقراءة اللعب.",
-    img: "/Legends/اشرف قاسم.jpg"
   },
   {
     name: "جمال عبد الحميد",
     position: "مهاجم",
     period: "1983 - 1993",
-    titles: ["الدوري المصري", "كأس مصر", "دوري أبطال إفريقيا"],
-    bio: "أحد أبرز مهاجمي الزمالك في الثمانينات، وهداف المنتخب أيضًا.",
+    titles: ["الدوري المصري (3)", "دوري أبطال إفريقيا (3)"],
+    bio: "القناص الذي لا يخطئ المرمى، خاصة بضربات الرأس. قاد الزمالك لمنصات التتويج الإفريقية عدة مرات، وكان قائداً لمنتخب مصر في كأس العالم 1990 بفضل خبرته وأهدافه الحاسمة.",
     img: "/Legends/جمال عبد الحميد.jpg"
   },
   {
-    name: "طارق يحيى",
-    position: "جناح أيسر",
-    period: "1980 - 1992",
-    titles: ["الدوري المصري", "كأس مصر", "دوري أبطال إفريقيا"],
-    bio: "لاعب جناح سريع ومهاري، ساهم في تتويجات كبيرة للزمالك.",
-    img: "/Legends/طارق يحيي.jpg"
-  },
-  {
-    name: "طارق حامد",
+    name: "طارق حامد (المقاتل)",
     position: "وسط دفاعي",
-    period: "2015 - 2022",
-    titles: ["الدوري المصري", "كأس مصر", "الكونفدرالية الإفريقية", "السوبر المصري"],
-    bio: "مقاتل في وسط الميدان، أحد أبرز عناصر الجيل الحديث.",
+    period: "2014 - 2022",
+    titles: ["الدوري المصري (2)", "كأس مصر (5)", "الكونفدرالية الإفريقية (1)", "السوبر الإفريقي (1)"],
+    bio: "قلب الزمالك النابض في العصر الحديث. اشتهر بروحه القتالية العالية وعدم يأسه، وكان الركيزة الأساسية التي بنيت عليها نجاحات الفريق المحلية والقارية لسنوات طويلة.",
     img: "/Legends/طارق حامد.webp"
   },
   {
-    name: "عبد الحليم علي",
+    name: "عبد الحليم علي (العندليب)",
     position: "مهاجم",
-    period: "1999 - 2008",
-    titles: ["الدوري المصري", "كأس مصر", "دوري أبطال إفريقيا"],
-    bio: "العندليب، الهداف التاريخي السابق للزمالك، مهاجم خطير وهادئ.",
+    period: "1999 - 2009",
+    titles: ["الدوري المصري (3)", "دوري أبطال إفريقيا (1)", "كأس مصر (2)", "السوبر الإفريقي (1)"],
+    bio: "الهداف التاريخي لنادي الزمالك. لقب بالعندليب لهدوئه الشديد أمام المرمى وأخلاقه الرفيعة. تميز بالتحركات الذكية خلف المدافعين والقدرة على إنهاء الهجمات ببراعة فائقة.",
     img: "/Legends/عبد الحليم علي.jpg"
+  },
+  {
+    name: "طه بصري (إيزيبيو الكرة المصرية)",
+    position: "لاعب وسط",
+    period: "1960s - 1970s",
+    titles: ["الدوري المصري (1)", "كأس مصر (2)"],
+    bio: "أحد رموز الرقي والأخلاق في الملاعب المصرية. تميز بتسديداته القوية المتقنة ورؤيته الشاملة للملعب، واعتبر أحد أفضل لاعبي الوسط في تاريخ النادي والمنتخب.",
+    img: "/Legends/taha_basry.jpg"
+  },
+  {
+    name: "جمال حمزة",
+    position: "مهاجم / صانع ألعاب",
+    period: "2000 - 2009",
+    titles: ["الدوري المصري (3)", "دوري أبطال إفريقيا (1)", "كأس مصر (1)", "السوبر الإفريقي (1)"],
+    bio: "موهبة استثنائية وجزء لا يتجزأ من الجيل الذهبي. اشتهر بمهارته الكبيرة في المراوغة وتسجيل الأهداف في مباريات القمة، حيث يعتبر من الهدافين التاريخيين للزمالك أمام الأهلي.",
+    img: "/Legends/gamal_hamza.jpg"
+  },
+  {
+    name: "هشام يكن",
+    position: "مدافع",
+    period: "1982 - 1995",
+    titles: ["الدوري المصري (4)", "دوري أبطال إفريقيا (3)"],
+    bio: "امتداد لعائلة يكن الكروية العريقة. كان مدافعاً صلباً لا يشق له غبار، ساهم في هيمنة الزمالك الإفريقية في الثمانينات والتسعينات، وشارك ببراعة في مونديال 1990.",
+    img: "/Legends/hesham_yakan.jpg"
+  },
+  {
+    name: "أحمد الكأس",
+    position: "مهاجم / صانع ألعاب",
+    period: "1995 - 1997",
+    titles: ["دوري أبطال إفريقيا (1)", "السوبر الإفريقي (1)"],
+    bio: "رغم قصر فترته مع النادي، إلا أنه ترك بصمة لا تنسى بفضل مهاراته العالية وأهدافه الحاسمة. شكل مع حازم إمام ثنائياً مهارياً هو الأمتع في تاريخ النادي.",
+    img: "/Legends/احمد الكاس.webp"
+  },
+  {
+    name: "حسام حسن",
+    position: "مهاجم",
+    period: "2000 - 2004",
+    titles: ["الدوري المصري (3)", "دوري أبطال إفريقيا (1)", "كأس مصر (1)", "السوبر الإفريقي (1)"],
+    bio: "انتقل للزمالك في صفقة القرن وقاده لتحقيق طفرة هائلة من البطولات. تميز بروح انتصارية جارفة وأهداف حاسمة جعلته أحد أهم المهاجمين الذين ارتدوا القميص الأبيض.",
+    img: "/Legends/hossam_hassan.jpg"
+  },
+  {
+    name: "أشرف قاسم (البرنس)",
+    position: "مدافع / وسط",
+    period: "1984 - 1997",
+    titles: ["الدوري المصري (4)", "دوري أبطال إفريقيا (3)", "السوبر الإفريقي (1)"],
+    bio: "لقب بالبرنس لأناقته الشديدة في الدفاع. كان يتمتع بقدرة فائقة على استخلاص الكرة بدون أخطاء، ونجح في تقديم مستويات مبهرة سواء في قلب الدفاع أو كلاعب وسط.",
+    img: "/Legends/اشرف قاسم.jpg"
+  },
+  {
+    name: "إيمانويل أمونيكي",
+    position: "جناح",
+    period: "1991 - 1994",
+    titles: ["الدوري المصري (2)", "دوري أبطال إفريقيا (1)"],
+    bio: "النجم النيجيري الذي سحر الجماهير بسرعته ومهارته. انطلق من الزمالك للعالمية حيث لعب لبرشلونة الإسباني، ويظل أحد أفضل المحترفين الأجانب في تاريخ الدوري المصري.",
+    img: "/Legends/ايمانويل.jpg"
+  },
+  {
+    name: "خالد الغندور (بندق)",
+    position: "جناح أيمن / ظهير",
+    period: "1991 - 2004",
+    titles: ["الدوري المصري (3)", "دوري أبطال إفريقيا (2)", "كأس مصر (3)", "السوبر الإفريقي (3)"],
+    bio: "القائد التاريخي الذي رفع أكبر عدد من الكؤوس الإفريقية. اشتهر بعرضياته المتقنة وروحه العالية داخل الملعب، وكان عنصراً لا غنى عنه في تشكيلة الزمالك لأكثر من عقد.",
+    img: "/Legends/خالد الغندور.jpg"
+  },
+  {
+    name: "علي خليل",
+    position: "مهاجم",
+    period: "1970 - 1980",
+    titles: ["الدوري المصري (1)", "كأس مصر (2)"],
+    bio: "أحد أعظم هدافي الزمالك، اشتهر بأهدافه الرأسية المتقنة وأخلاقه العالية. هو صاحب الواقعة الشهيرة عندما أخبر الحكم أن كرته لم تدخل المرمى رغم احتسابه هدفاً، ضارباً أروع مثال للروح الرياضية.",
+    img: "/Legends/علي خليل.jpg"
   }
 ];
 
@@ -1238,14 +1279,14 @@ export const zamalekTshirt = {
   Seasson: "2025/2026",
   Tshirts: [
     {
-      Title : "Home",
+      Title: "Home",
       img: "/zamalekHomeNike.jpg",
-      Color : "White"
+      Color: "White"
     },
     {
-      Title : "Away",
+      Title: "Away",
       img: "/zamalekAwayNike.jpg",
-      Color : "Blue"
+      Color: "Blue"
     },
   ]
 }
@@ -1253,241 +1294,199 @@ export const zamalekTshirt = {
 
 export const zamalekHistory = [
   {
-    title: "تأسيس نادي الزمالك",
+    title: "الميلاد والتأسيس (قصر النيل)",
     year: "1911",
     description:
-      "تأسس نادي الزمالك في 5 يناير 1911 تحت اسم «نادي قصر النيل» على ضفة نهر النيل في مواجهة نادي الجزيرة. أسسه المستشار القضائي البلجيكي جورج مرزباخ، وكان ملتقى للرياضيين والمثقفين منذ اليوم الأول.",
+      "تأسس نادي الزمالك في 5 يناير 1911 تحت اسم «نادي قصر النيل» على ضفة نهر النيل. أسسه المستشار البلجيكي جورج مرزباخ، الذي كان رئيساً للمحاكم المختلطة في مصر، ليكون نادياً يجمع المصريين والأجانب في بيئة رياضية وثقافية.",
     img: "/history/Zamalek_SC_1940-41.jpg"
   },
   {
-    title: "كأس السلطان حسين",
-    year: "1921-1922",
+    title: "عصر المختلط والتمصير",
+    year: "1913 - 1923",
     description:
-      "حقق الزمالك أول لقب رسمي له بفوزه بكأس السلطان حسين موسم 1921-1922، وكان أول فريق مصري يهزم فرق الجيش البريطاني في هذه البطولة.",
+      "انتقل النادي إلى موقعه الثاني بوسط القاهرة وتغير اسمه إلى «نادي المختلط». شهدت هذه الفترة حركة «التمصير» التاريخية بقيادة الدكتور محمد بدر، ليكون أول رئيس مصري للنادي في عام 1917، مما عزز الهوية الوطنية للقلعة البيضاء.",
     img: "/history/zamalek-1921-0f70c4.jpg"
   },
   {
-    title: "تغيير الاسم إلى المختلط",
-    year: "1913-1941",
+    title: "أول لقب رسمي وكسر الاحتكار",
+    year: "1921",
     description:
-      "في عام 1913 تم نقل النادي إلى تقاطع شارع 26 يوليو ورمسيس، وتغير اسمه إلى «نادي المختلط». شهدت هذه المرحلة توسع النادي في نشاطاته الرياضية والاجتماعية.",
-    img: "/history/Zamalek_SC_1940-41.jpg"
+      "حقق الزمالك أول بطولة رسمية في تاريخه وتاريخ الأندية المصرية بفوزه بكأس السلطان حسين في عام 1921، متفوقاً على فرق الجيش البريطاني، مما جعل الزمالك رمزاً للمقاومة الوطنية عبر الرياضة.",
+    img: "/history/zamalek-1921-0f70c4.jpg"
   },
   {
-    title: "نادي فاروق",
-    year: "1942-1952",
+    title: "نادي فاروق والرعاية الملكية",
+    year: "1941 - 1952",
     description:
-      "في عهد الملك فاروق، تغير اسم النادي إلى «نادي فاروق»، وحظي برعاية ملكية ودعم كبير، قبل أن يعود اسمه إلى الزمالك بعد ثورة 1952.",
+      "بناءً على طلب ملكي، تغير اسم النادي إلى «نادي فاروق الأول»، وحظي برعاية الملك فاروق شخصياً. في هذه الفترة، سيطر الزمالك على البطولات المحلية وحقق نتائج تاريخية، منها الفوز على المنافس التقليدي بنتيجة 6-0 مرتين.",
     img: "/history/Sharif_El-Far_ C Zamalek with Gento Captain Madrid1960.jpg"
   },
   {
-    title: "التمصير وتولي أول رئيس مصري",
-    year: "1920s",
+    title: "الاستقرار في ميت عقبة",
+    year: "1959",
     description:
-      "قبيل عشرينيات القرن الماضي، تولى الدكتور محمد بدر رئاسة النادي، ليكون أول مصري في هذا المنصب، وخلفه وزير الحربية محمد حيدر باشا، حيث تحقق «التمصير» الفعلي للنادي.",
-    img: "/history/Zamalek_football_team_in_1969.jpg"
-  },
-  {
-    title: "المقرات الأربعة عبر التاريخ",
-    year: "1911-1959",
-    description:
-      "انتقل الزمالك بين أربعة مقرات: الأول على ضفة النيل (1911)، الثاني بشارع 26 يوليو (1913)، الثالث بموقع مسرح البالون الحالي (1924)، والرابع وهو الحالي بميت عقبة منذ 30 نوفمبر 1959.",
+      "انتقل النادي إلى مقره الحالي والنهائي في منطقة ميت عقبة بالمهندسين. تم افتتاح المنشآت الجديدة في نوفمبر 1959، لتبدأ مرحلة جديدة من التوسع الإنشائي والرياضي في كافة الألعاب.",
     img: "/history/first.webp"
   },
   {
-    title: "أول بطولة دوري",
+    title: "أول دوري عام في التاريخ",
     year: "1960",
     description:
-      "حقق الزمالك أول بطولة دوري مصري موسم 1959-1960، ليؤكد مكانته كأحد أعمدة الكرة المصرية.",
+      "توج الزمالك بأول لقب للدوري المصري الممتاز في موسم 1959-1960، مؤكداً ريادته الكروية المحلية بفضل جيل ذهبي ضم أسماء لامعة مثل حنفي بسطان ونبيل نصير.",
     img: "/history/Captain_Hanafi_Nassar_in_the_midst_of_his_team_of_young_Zamalek_players_in_1960s..jpg"
   },
   {
-    title: "الإنجازات المحلية",
-    year: "حتى الآن",
-    description:
-      "حقق الزمالك 14 لقب دوري مصري ممتاز، و14 لقب دوري منطقة القاهرة، و29 لقب كأس مصر، و4 ألقاب كأس السوبر المصري، إضافة إلى بطولات محلية أخرى.",
-    img: "/history/zamalek3.jpg"
-  },
-  {
-    title: "الإنجازات العربية",
-    year: "1980s-2000s",
-    description:
-      "فاز الزمالك بكأس الأندية العربية مرة واحدة، وكأس دورة الأردن الدولية مرتين، وكأس السوبر المصري السعودي مرتين، ليضع بصمته في الساحة العربية.",
-    img: "/history/zamalek5.jpeg"
-  },
-  {
-    title: "أول بطولة إفريقية",
+    title: "غزو القارة السمراء",
     year: "1984",
     description:
-      "توج الزمالك بأول بطولة دوري أبطال إفريقيا بعد الفوز على شوتينغ ستارز النيجيري، ليبدأ مسيرة ذهبية في البطولات الإفريقية.",
+      "حقق الزمالك أول لقب له في دوري أبطال إفريقيا في عام 1984 بعد فوزه على شوتينغ ستارز النيجيري. كانت هذه بداية الهيمنة الإفريقية للزمالك، حيث توالت الألقاب حتى وصل لخمس بطولات دوري أبطال.",
     img: "/history/الزمالك_افريقيا_84.jpg"
   },
   {
-    title: "الفترة الذهبية في بداية التسعينات",
-    year: "1990s",
+    title: "نادي القرن الإفريقي (الواقع الرقمي)",
+    year: "2000",
     description:
-      "شهدت فترة التسعينات هيمنة الزمالك على البطولات الإفريقية والمحلية، بفوز دوري أبطال إفريقيا مرتين، والسوبر الإفريقي، وكأس مصر، إضافة لتقديم أجيال ذهبية مثل حازم إمام، أيمن منصور، وأشرف قاسم.",
+      "مع نهاية القرن العشرين، كان الزمالك هو النادي الأكثر تتويجاً بالبطولات الإفريقية (9 ألقاب قارية)، متفوقاً على كافة أندية القارة، مما جعله في نظر جماهيره بطل القرن الإفريقي الحقيقي بالأرقام والنتائج.",
     img: "/history/zamalek5.jpeg"
   },
   {
-    title: "خماسية دوري أبطال إفريقيا",
-    year: "1984-2002",
-    description:
-      "حقق الزمالك البطولة الإفريقية الكبرى في أعوام 1984، 1986، 1993، 1996، و2002، محتفظًا بالكأس عام 1993 بعد فوزه للمرة الثالثة في تاريخه.",
-    img: "/history/زمالك_افريقيا_2002.jpg"
-  },
-  {
-    title: "بطولات إفريقية أخرى",
-    year: "1994-2020",
-    description:
-      "فاز الزمالك بكأس السوبر الإفريقي 5 مرات (1994، 1997، 2003، 2020)، وكأس الكؤوس الإفريقية مرة (2000)، وكأس الكونفدرالية الإفريقية مرتين (2019، 2024)، وكأس الأفروآسيوية مرتين.",
-    img: "/history/كونفدرالية_19.jpg"
-  },
-  {
-    title: "مئوية نادي الزمالك",
+    title: "المئوية التاريخية",
     year: "2011",
     description:
-      "احتفل الزمالك عام 2011 بمرور 100 عام على تأسيسه، وشهد الاحتفال مباراة ودية عالمية أمام أتلتيكو مدريد الإسباني، إضافة لفعاليات تكريم رموز النادي.",
+      "احتفل الزمالك بمرور 100 عام على تأسيسه في احتفالية كبرى شهدت مباراة عالمية أمام أتلتيكو مدريد الإسباني. كانت المئوية فرصة لاستعادة الأمجاد وتكريم الرموز الذين صنعوا تاريخ النادي عبر قرن من الزمان.",
     img: "/history/zamalek_100.jpg"
   },
   {
-    title: "العودة القوية",
-    year: "2014-2020",
+    title: "ثنائية 2015 والعودة للمنصات",
+    year: "2014 - 2015",
     description:
-      "شهدت هذه الفترة عودة الزمالك بقوة لمنصات التتويج، حيث فاز بالدوري المصري 2015، وكأس مصر عدة مرات، والكونفدرالية الإفريقية 2019، وكأس السوبر الإفريقي 2020.",
+      "حقق الزمالك ثنائية الدوري والكأس في موسم تاريخي تحت قيادة البرتغالي جوسفالدو فيريرا، ليعلن العودة القوية للهيمنة المحلية وتقديم كرة قدم هجومية ممتعة نالت إعجاب الجميع.",
     img: "/history/دوري_2015.jpg"
+  },
+  {
+    title: "درع الدوري لموسمين متتاليين",
+    year: "2021 - 2022",
+    description:
+      "في إنجاز تاريخي غاب طويلاً، نجح الزمالك في الحفاظ على لقب الدوري المصري لعامين متتاليين (2020-2021 و2021-2022)، مؤكداً صلابته واستمرارية تفوقه رغم كافة التحديات الإدارية والفنية.",
+    img: "/history/zamalek3.jpg"
+  },
+  {
+    title: "السوبر الإفريقي 2024 (الرياض)",
+    year: "2024",
+    description:
+      "توج الزمالك بلقب السوبر الإفريقي للمرة الخامسة في تاريخه بعد فوز درامي على النادي الأهلي في العاصمة السعودية الرياض، ليؤكد تفوقه القاري مجدداً في واحدة من أكثر المباريات إثارة في تاريخ المواجهات المباشرة.",
+    img: "/history/كونفدرالية_19.jpg"
   }
 ];
 
 export const zamalekStats = {
   topScorersAllTime: [
-    { player: "عبد الحليم علي", goals: 138 },
-    { player: "حسن شحاتة", goals: 102 },
-    { player: "جمال عبد الحميد", goals: 97 },
-    { player: "علي خليل", goals: 94 },
-    { player: "علاء الحامولي", goals: 91 },
+    { player: "عبد الحليم علي", goals: 138, matches: 339 },
+    { player: "حسن شحاتة", goals: 102, matches: 252 },
+    { player: "جمال عبد الحميد", goals: 97, matches: 241 },
+    { player: "علي خليل", goals: 94, matches: 230 },
+    { player: "علاء الحامولي", goals: 91, matches: 210 },
+    { player: "حازم إمام", goals: 84, matches: 285 },
+    { player: "جمال حمزة", goals: 74, matches: 215 },
+    { player: "شيكابالا", goals: 68, matches: 396 },
   ],
   derbyRecord: {
     largestWinVsAhly: "6-0",
-    Years: [1942, 1944]
+    years: [1942, 1944],
+    notableResults: [
+      { score: "4-3", year: 2007, context: "كأس مصر" },
+      { score: "3-1", year: 2020, context: "الدوري المصري" },
+      { score: "1-1 (4-3 P)", year: 2024, context: "السوبر الإفريقي" }
+    ]
   },
-  fastestGoal: { player: "أيمن يونس", time: "13 ثانية ", year: 1990},
-  firstHatrick : { player: "محمد رستم", year: 1948},
-  mostHatrickScore : { player: "علاء الحامولي", num : 5},
+  fastestGoal: { player: "أيمن يونس", time: "11 ثانية", year: 1990, opponent: "السويس" },
+  firstHatrick: { player: "محمد رستم", year: 1948, opponent: "المصري" },
+  mostHatrickScore: { player: "علاء الحامولي", num: 5 },
   mostSuperHatrickScore: { player: "علي خليل", num: 2 },
-  highWin: { team: "اتحاد السويس", score: "11-1" },
-  mostYoungPlayersScore :[ 
-    { name: "شيكابالا", age: "16 سنة", months : "10 شهور", img: "" },
-    { name: "احمد حسام ميدو", age: "17 سنة", months : "3 شهور", img: "" },
-    { name: "عبد الكريم الجوهري", age: "17 سنة", months : "10 شهور", img: "" },
-    { name: "جو اوكري", age: "17 سنة", months : "11 شهور", img: "" },
-    { name: "محمد حلمي", age: "18 سنة", months : "1 شهور", img: "" }
+  highWin: { team: "نسيج حلوان", score: "11-0", competition: "كأس مصر", year: 2001 },
+  mostYoungPlayersScore: [
+    { name: "شيكابالا", age: "16 سنة", months: "10 شهور", img: "/Players/shika_young.jpg" },
+    { name: "أحمد حسام ميدو", age: "17 سنة", months: "3 شهور", img: "/Players/mido_young.jpg" },
+    { name: "عبد الكريم الجوهري", age: "17 سنة", months: "10 شهور", img: "" },
+    { name: "جو أوكري", age: "17 سنة", months: "11 شهور", img: "" },
+    { name: "محمد حلمي", age: "18 سنة", months: "1 شهور", img: "" }
   ],
   mostCountriesPlayInZamalek: [
-    {country : "غانا" , num : "13" , totalGoals : "41"},
-    {country : "المغرب" , num : "10" , totalGoals : "58"},
-    {country : "تونس" , num : "7" , totalGoals : "66"},
-    {country : "نيجيريا" , num : "7" , totalGoals : "38"},
-    {country : "السودان" , num : "5" , totalGoals : "20"}
+    { country: "غانا", num: 13, totalGoals: 41 },
+    { country: "المغرب", num: 10, totalGoals: 58 },
+    { country: "نيجيريا", num: 9, totalGoals: 38 },
+    { country: "تونس", num: 7, totalGoals: 66 },
+    { country: "ساحل العاج", num: 4, totalGoals: 15 }
   ],
   topScorerSeason: [
-    { season: "2003/2004", player: "عبد الحليم علي", goals: 21 },
-    { season: "2001/2002", player: "حسام حسن", goals: 18 },
     { season: "2021/2022", player: "أحمد سيد زيزو", goals: 19 },
-    { season: "1976/1977", player: "حسن شحاته", goals: 17 },
-    { season: "1997/1998", player: "عبد الحميد بسيوني", goals: 15 },
+    { season: "2003/2004", player: "عبد الحليم علي", goals: 21 },
     { season: "2010/2011", player: "شيكابالا", goals: 13 },
     { season: "2000/2001", player: "طارق السعيد", goals: 13 },
+    { season: "1976/1977", player: "حسن شحاتة", goals: 17 },
   ],
-  mostMatchesattendance: [
-    {against : "الرجاء المغربي" , num : "95000" , year : "2002"},
-    {against : "الترجي" , num : "95000", year : "1994"},
-    {against : "الاهلي" , num : "95000", year : "1998"},
-    {against : "انبي" , num : "95000", year : "2008"},
-    {against : "مازيمبي" , num : "95000", year : "2002"},
+  mostMatchesAttendance: [
+    { against: "الرجاء المغربي", num: "100,000", year: 2002, stadium: "ستاد القاهرة" },
+    { against: "الترجي التونسي", num: "95,000", year: 1994, stadium: "ستاد القاهرة" },
+    { against: "الأهلي المصري", num: "95,000", year: 1998, stadium: "ستاد القاهرة" },
   ],
-   topPlayMatches : [
-    {name : "شيكابالا" , num : "396" , img : ""},
-    {name : "عبد الواحد السيد" , num : "365" , img :""  },
-    {name : "حازم محمد امام" , num : "285" , img :""},
-    {name : "طارق حامد" , num : "284" , img :""},
-    {name : "عبد الحليم علي" , num : "275" , img :""}
+  topPlayMatches: [
+    { name: "عبد الواحد السيد", num: 513, img: "/Players/abdelwahed.jpg" },
+    { name: "شيكابالا", num: 396, img: "/Players/shika.jpg" },
+    { name: "حازم إمام", num: 285, img: "/Players/hazem.jpg" },
+    { name: "طارق حامد", num: 284, img: "/Players/tarek.jpg" },
+    { name: "عبد الحليم علي", num: 275, img: "/Players/haleem.jpg" }
   ],
-  topAssistPlayer : [
-    {name : "شيكابالا" , num : "89" , img : ""},
-    {name : "احمد السيد زيزو" , num : "71" , img :""  },
-    {name : "جمال حمزه" , num : "43" , img :""},
-    {name : "خالد الغندور" , num : "40" , img :""},
-    {name : "طارق السيد" , num : "39" , img :""}
+  topAssistPlayer: [
+    { name: "شيكابالا", num: 89, img: "/Players/shika.jpg" },
+    { name: "أحمد سيد زيزو", num: 71, img: "/Players/zizo.jpg" },
+    { name: "جمال حمزة", num: 43, img: "/Players/gamal.jpg" },
+    { name: "خالد الغندور", num: 40, img: "/Players/khalid.jpg" },
+    { name: "حازم إمام", num: 38, img: "/Players/hazem.jpg" }
   ],
-  allTimeGreats: [
+  allTimeGreatGoalkeepers: [
     {
       name: "عبد الواحد السيد",
       matches: 513,
       cleanSheets: 207,
       titles: 20,
-      debut: 1997,
-      img: "",
-      notes: "أكثر حارس خدم الزمالك في التاريخ وأطولهم بقاءً في الفريق."
+      notes: "الحارس الأكثر تتويجاً ومشاركة في تاريخ النادي."
     },
     {
       name: "عادل المأمور",
       matches: 310,
       cleanSheets: 120,
       titles: 10,
-      debut: 1975,
-      img: "",
-      notes: "ساهم في التتويج الإفريقي الأول عام 1984 وأحد رموز الجيل الذهبي."
+      notes: "بطل المسيرة الإفريقية الأولى عام 1984."
     },
     {
-      name: "حسن على",
+      name: "حسن علي",
       matches: 250,
       cleanSheets: 95,
-      debut: 1965,
       titles: 8,
-      img: "",
-      notes: "من أبرز الحراس في الستينيات والسبعينيات ولقب بـ(السد العالي)."
-    },
-    {
-      name: "محمد أبو جبل",
-      matches: 135,
-      cleanSheets: 64,
-      titles: 6,
-      debut: 2019,
-      img: "",
-      notes: "تألق في دوري أبطال إفريقيا 2020 وكان بطل السوبر الإفريقي أمام الترجي."
-    },
-    {
-      name: "محمد عواد",
-      matches: 95,
-      cleanSheets: 42,
-      titles: 5,
-      debut: 2019,
-      img: "",
-      notes: "من أكثر الحراس ثباتًا في الأداء خلال مواسم 2021–2023."
+      notes: "السد المنيع في الستينيات والسبعينيات."
     },
   ],
   mostTrophiesWon: [
-    { name: "حازم إمام", trophies: 22, img: "" },
-    { name: "عبد الواحد السيد", trophies: 20, img: "" },
-    { name: "شيكابالا", trophies: 20, img: "" },
-    { name: "طارق حامد", trophies: 14, img: "" },
-    { name: "زيزو", trophies: 10, img: "" },
+    { name: "عبد الواحد السيد", trophies: 20 },
+    { name: "شيكابالا", trophies: 20 },
+    { name: "خالد الغندور", trophies: 14 },
+    { name: "محمود الونش", trophies: 10 },
   ],
 };
 
 
 export const newsList = [
-    { id: 1, title: "الزمالك يحقق فوزًا مهمًا على الأهلي", image: "/new.jpg" },
-    { id: 2, title: "شيكو بينزا ينضم رسميًا للزمالك", image: "/new.jpg" },
-    { id: 3, title: "الزمالك يستعد لمواجهة بيراميدز", image: "/new.jpg" },
-    { id: 4, title: "اجتماع مجلس الإدارة لبحث الصفقات الجديدة", image: "/new.jpg" },
-    { id: 5, title: "تجديد عقد أحمد سيد زيزو حتى 2027", image: "/new.jpg" },
-    { id: 6, title: "الزمالك يعلن جدول مبارياته القادمة", image: "/new.jpg" },
-    { id: 7, title: "الزمالك يعلن جدول مبارياته القادمة", image: "/new.jpg" },
-    { id: 8, title: "الزمالك يعلن جدول مبارياته القادمة", image: "/new.jpg" },
-    { id: 9, title: "الزمالك يعلن جدول مبارياته القادمة", image: "/new.jpg" },
-    { id: 10, title: "الزمالك يعلن جدول مبارياته القادمة", image: "/new.jpg" }
+  { id: 1, title: "الزمالك يحقق فوزًا مهمًا على الأهلي", image: "/new.jpg" },
+  { id: 2, title: "شيكو بينزا ينضم رسميًا للزمالك", image: "/new.jpg" },
+  { id: 3, title: "الزمالك يستعد لمواجهة بيراميدز", image: "/new.jpg" },
+  { id: 4, title: "اجتماع مجلس الإدارة لبحث الصفقات الجديدة", image: "/new.jpg" },
+  { id: 5, title: "تجديد عقد أحمد سيد زيزو حتى 2027", image: "/new.jpg" },
+  { id: 6, title: "الزمالك يعلن جدول مبارياته القادمة", image: "/new.jpg" },
+  { id: 7, title: "الزمالك يعلن جدول مبارياته القادمة", image: "/new.jpg" },
+  { id: 8, title: "الزمالك يعلن جدول مبارياته القادمة", image: "/new.jpg" },
+  { id: 9, title: "الزمالك يعلن جدول مبارياته القادمة", image: "/new.jpg" },
+  { id: 10, title: "الزمالك يعلن جدول مبارياته القادمة", image: "/new.jpg" }
 ]
 
 export const zamalekTshirts = [
@@ -1518,36 +1517,36 @@ export const zamalekTshirts = [
 ]
 
 export const zamalekTopGoalsLiveSeasson = [
-  {id : 1 ,  name : "ناصر ماهر" , goals : 1 , img:'/no_img.jpg' },
-  {id : 2 ,  name : "محمد شحاته" , goals : 1 , img:'/no_img.jpg'}
+  { id: 1, name: "ناصر ماهر", goals: 1, img: '/no_img.jpg' },
+  { id: 2, name: "محمد شحاته", goals: 1, img: '/no_img.jpg' }
 ]
 export const zamalekAssistsLiveSeasson = [
-  {id : 1 ,  name : "ادم كايد" , assets : 1 , img:'/no_img.jpg'}
+  { id: 1, name: "ادم كايد", assets: 1, img: '/no_img.jpg' }
 ]
 
 export const cleanSheatsLiveSeasson = [
-  {id : 1 ,  name : "محمد صبحي" , cleanSheats : 1 , matches : 1, img:'/no_img.jpg' },
-  {id : 2 ,  name : "محمد عواد" , cleanSheats : 0 ,matches : 0, img:'/no_img.jpg'},
-  {id : 3 ,  name : "مهدي سليمان" , cleanSheats : 0 ,matches : 0, img:'/no_img.jpg'}
+  { id: 1, name: "محمد صبحي", cleanSheats: 1, matches: 1, img: '/no_img.jpg' },
+  { id: 2, name: "محمد عواد", cleanSheats: 0, matches: 0, img: '/no_img.jpg' },
+  { id: 3, name: "مهدي سليمان", cleanSheats: 0, matches: 0, img: '/no_img.jpg' }
 ]
 
 export const mesaumSections = [
-  {name : "خزانه الكوؤس" , link : "/Pages/Champions" , open : true , img : "/mesaum/trophies-min.png" , bio : "مجموعه من اهم الكوؤس والجوائز التي حصل عليها النادي"},
-  {name : "الصور التاريخية" , link : "/Pages/Photos" , open : true , img : "/mesaum/historical-photos.png" , bio : "لحظات خالدة من تاريخ النادي العريق"},
-  {name : "القمصان التاريخية" , link : "/Pages/Archive" , open : true , img : "/mesaum/jerseys.png" , bio : "مجموعة من القمصان الأسطورية عبر العصور"},
-  {name : "قاعة الأساطير" , link : "/Pages/Legends" , open : true , img : "/mesaum/legends-min.png" , bio : "تكريم لأعظم نجوم تاريخ النادي"},
-  {name : "الوثائق التاريخية" , link : "/documents" , open : false , img : "/mesaum/documents.png" , bio : "مستندات ووثائق نادرة من تاريخ النادي"},
-  {name : "الميداليات الذهبية" , link : "/medals" , open : false , img : "/mesaum/medals.png" , bio : "مجموعة من الميداليات والأوسمة المميزة"},
+  { name: "خزانه الكوؤس", link: "/Pages/Champions", open: true, img: "/mesaum/trophies-min.png", bio: "مجموعه من اهم الكوؤس والجوائز التي حصل عليها النادي" },
+  { name: "الصور التاريخية", link: "/Pages/Photos", open: true, img: "/mesaum/historical-photos.png", bio: "لحظات خالدة من تاريخ النادي العريق" },
+  { name: "القمصان التاريخية", link: "/Pages/Archive", open: true, img: "/mesaum/jerseys.png", bio: "مجموعة من القمصان الأسطورية عبر العصور" },
+  { name: "قاعة الأساطير", link: "/Pages/Legends", open: true, img: "/mesaum/legends-min.png", bio: "تكريم لأعظم نجوم تاريخ النادي" },
+  { name: "الوثائق التاريخية", link: "/documents", open: false, img: "/mesaum/documents.png", bio: "مستندات ووثائق نادرة من تاريخ النادي" },
+  { name: "الميداليات الذهبية", link: "/medals", open: false, img: "/mesaum/medals.png", bio: "مجموعة من الميداليات والأوسمة المميزة" },
 ]
 
 export const zscTeams = [
-  {name : "Football Men" , img : "/squads/foot-min.png"  , open : true },
-  { name: "Football Women", img: "/squads/football-min.png" , open : false},
-  { name: "Basketball Men", img: "/squads/basket-min.png" , open : false},
-  { name: "Volleyball Men", img: "/squads/volly-min.png", open : false},
-  { name: "Volleyball Women", img: "/squads/vollyzsc.png", open : false},
-  { name: "Handball Men", img: "/squads/hand-min.png", open : false},
-  { name: "Handball Women", img: "/squads/handball-min.png", open : false },
+  { name: "Football Men", img: "/squads/foot-min.png", open: true },
+  { name: "Football Women", img: "/squads/football-min.png", open: false },
+  { name: "Basketball Men", img: "/squads/basket-min.png", open: false },
+  { name: "Volleyball Men", img: "/squads/volly-min.png", open: false },
+  { name: "Volleyball Women", img: "/squads/vollyzsc.png", open: false },
+  { name: "Handball Men", img: "/squads/hand-min.png", open: false },
+  { name: "Handball Women", img: "/squads/handball-min.png", open: false },
 ]
 
 export const sections = [
@@ -1788,5 +1787,88 @@ export const zamalekHandballFinal2025 = {
       { name: "خالد وليد", status: "Core" }
     ]
   },
+};
 
+export const zamalekTV = {
+  details: {
+    name: "قناة الزمالك",
+    launchDate: "22 يناير 2020",
+    owner: "نادي الزمالك للألعاب الرياضية",
+    operator: "إعلام المصريين (المتحدة للخدمات الإعلامية)",
+    frequency: "11449 أفقي (Nilesat)",
+    slogan: "صوت القلعة البيضاء",
+    description: "قناة الزمالك هي القناة الرسمية لنادي الزمالك المصري، انطلقت في عام 2020 لتكون النافذة الرسمية والوحيدة للنادي، تقدم تغطية حصرية لكافة أخبار الفريق الأول والألعاب الأخرى داخل النادي، بالإضافة إلى برامج تحليلية وتاريخية تجسد عراقة النادي.",
+  },
+  staff: [
+    {
+      name: "خالد الغندور",
+      role: "مقدم برنامج زملكاوي",
+      img: "/TV/ghandour.jpg",
+      bio: "قائد الزمالك التاريخي وأحد أبرز الوجوه الإعلامية في القناة."
+    },
+    {
+      name: "طارق يحيى",
+      role: "مقدم ومدير قطاع الناشئين",
+      img: "/TV/tarek_yehia.jpg",
+      bio: "نجم الزمالك السابق ويعد من الأعمدة الأساسية في التحليل الفني بالقناة."
+    },
+    {
+      name: "محمد أبو العلا",
+      role: "مقدم برامج",
+      img: "/TV/abuela.jpg",
+      bio: "لاعب الوسط الأنيق السابق ومقدم برامج تحليلية متميزة."
+    },
+    {
+      name: "نيرة الأحمر",
+      role: "مقدمة برنامج ملوك الصالات",
+      img: "/TV/naira.jpg",
+      bio: "متخصصة في تغطية ألعاب الصالات (كرة اليد، السلة، الطائرة)."
+    },
+    {
+      name: "أحمد جمال",
+      role: "مقدم برامج",
+      img: "/TV/ahmed_gamal.jpg",
+      bio: "إعلامي متميز شارك في انطلاقة القناة ويقدم البرنامج الرئيسي."
+    },
+    {
+      name: "فرح علي",
+      role: "مقدمة برامج",
+      img: "/TV/farah.jpg",
+      bio: "تتميز بتغطية أخبار السوشيال ميديا ونبض الجماهير 'زمالك أونلاين'."
+    },
+    {
+      name: "مينا ماهر",
+      role: "مقدم برامج",
+      img: "/TV/mina.jpg",
+      bio: "مراسل ومقدم برامج شبابي نشط في تغطية كافة الفعاليات."
+    }
+  ],
+  programs: [
+    {
+      title: "زملكاوي",
+      time: "11:00 مساءً يومياً",
+      description: "البرنامج الرئيسي للقناة، يستضيف نخبة من نجوم ورموز النادي لمناقشة كافة القضايا والمباريات."
+    },
+    {
+      title: "ملوك الصالات",
+      time: "أسبوعي",
+      description: "تغطية شاملة لكل ما يخص ألعاب اليد، السلة، والطائرة داخل القلعة البيضاء."
+    },
+    {
+      title: "نهارك أبيض",
+      time: "صباحاً",
+      description: "برنامج رياضي صباحي يستعرض أهم الأخبار والفقرات المتنوعة."
+    },
+    {
+      title: "فن وهندسة",
+      time: "أسبوعي",
+      description: "برنامج تحليلي فني يغوص في تفاصيل المباريات بأسلوب علمي وحديث."
+    }
+  ],
+  videos: [
+    { id: "vDREgA7C_6Y", title: "أهداف الزمالك في السوبر الإفريقي 2024" },
+    { id: "Lg2eBfM2Lw4", title: "احتفالات جماهير الزمالك التاريخية" },
+    { id: "dQw4w9WgXcQ", title: "نشيد نادي الزمالك الرسمي" },
+    { id: "j57C74b_C_w", title: "أجمل أهداف شيكابالا في القمة" }
+  ]
 };

@@ -31,7 +31,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${barlow.variable} ${lateef.variable}`}>
-      <body className="font-body antialiased pt-24">
+      <body className="font-body antialiased pt-24 w-full">
         <ThemeProvider>
           <AlertContextProvider>
             <AuthContextProvider>

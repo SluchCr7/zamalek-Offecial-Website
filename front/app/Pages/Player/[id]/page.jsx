@@ -8,10 +8,10 @@ import { Calendar, Globe, Award, Target, Zap, Shield, Heart, Share2, Info, Chevr
 import { zamalekPlayers } from '@/utils/data';
 
 export default function PlayerProfilePage() {
-  const { slug } = useParams();
+  const { id } = useParams();
 
   // Find player by slug/name from data
-  const playerFromData = zamalekPlayers.find(p => p.name === decodeURIComponent(slug)) || zamalekPlayers[0];
+  const playerFromData = zamalekPlayers.find(p => p.id === id) || zamalekPlayers[0];
 
   const [activeTab, setActiveTab] = useState('overview');
   const [lightboxIndex, setLightboxIndex] = useState(null);
@@ -24,7 +24,7 @@ export default function PlayerProfilePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground" dir="rtl">
+    <div className="min-h-screen w-full bg-background text-foreground" dir="rtl">
 
       {/* Immersive Header: Player Spotlight */}
       <section className="relative h-[80vh] w-full overflow-hidden">

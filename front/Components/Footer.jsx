@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 
 const Footer = () => {
   return (
-    <footer className="relative bg-secondary text-white pt-32 pb-12 overflow-hidden border-t border-white/5" dir="rtl">
+    <footer className="relative bg-secondary text-white pt-32 pb-12 overflow-hidden border-t border-white/5 w-full" dir="rtl">
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
       <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
@@ -134,9 +134,9 @@ const Footer = () => {
           </div>
 
           <div className="flex gap-8 text-[10px] font-black uppercase tracking-widest">
-            <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
-            <Link href="/cookies" className="hover:text-primary transition-colors">Cookie settings</Link>
+            <Link href="/Pages/Privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+            <Link href="/Pages/Terms" className="hover:text-primary transition-colors">Terms of Service</Link>
+            <Link href="/Pages/Cookies" className="hover:text-primary transition-colors">Cookie settings</Link>
           </div>
 
           <div className="flex items-center gap-3 text-[10px] font-black tracking-tighter italic">

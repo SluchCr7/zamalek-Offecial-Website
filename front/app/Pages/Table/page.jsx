@@ -43,7 +43,7 @@ export default function LeagueTablePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground pb-24" dir="rtl">
+    <div className="min-h-screen bg-background text-foreground pb-24 w-full" dir="rtl">
       {/* Header Section */}
       <section className="relative pt-32 pb-16 px-4 md:px-8 border-b border-border overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />

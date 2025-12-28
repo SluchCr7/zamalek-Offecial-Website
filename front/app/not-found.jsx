@@ -5,8 +5,8 @@ import { motion } from 'framer-motion'
 
 export default function NotFoundPage() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-white via-gray-100 to-gray-200 text-center px-4">
-      
+    <div className="flex flex-col items-center justify-center min-h-screen text-center px-4 w-full">
+      {/* bg-gradient-to-b from-white via-gray-100 to-gray-200 */}
       {/* شعار الزمالك */}
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
@@ -37,11 +37,11 @@ export default function NotFoundPage() {
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.5, duration: 0.5 }}
-        className="mt-8 text-5xl md:text-7xl font-extrabold text-gray-800"
+        className="mt-8 text-5xl md:text-7xl font-extrabold text-red-600"
       >
         404
       </motion.h1>
-      <p className="mt-2 text-lg md:text-xl text-gray-600">
+      <p className="mt-2 text-lg md:text-xl text-gray-500">
         عذرًا، الصفحة التي تبحث عنها غير موجودة
       </p>
 

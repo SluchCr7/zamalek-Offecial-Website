@@ -14,12 +14,12 @@ export default function DirectorsPage() {
   const members = zamalekDirectors.slice(3);
 
   return (
-    <div className="min-h-screen bg-background text-foreground py-24 px-4 overflow-hidden" dir="rtl">
+    <div className="min-h-screen w-full bg-background text-foreground py-24 px-4 overflow-hidden" dir="rtl">
 
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-full h-[100vh] bg-primary/5 pointer-events-none skew-y-12 origin-top-right scale-150" />
 
-      <div className="container max-w-7xl mx-auto space-y-32 relative z-10">
+      <div className="container mx-auto space-y-32 relative z-10">
 
         <header className="text-center space-y-6">
           <motion.div

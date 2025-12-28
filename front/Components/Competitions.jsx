@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import CountUp from 'react-countup';
 import { zamalekTitles } from '@/utils/data';
 import { X, Trophy, History, Calendar, ChevronLeft } from 'lucide-react';
-
+import Link from "next/link"
 export default function ZamalekAchievements() {
   const [selected, setSelected] = useState(null);
 
@@ -83,12 +83,12 @@ export default function ZamalekAchievements() {
         </div>
 
         {/* Global Action */}
-        <div className="mt-20 text-center">
+        <Link href={"/Pages/Champions"} className="mt-20 text-center">
           <button className="inline-flex items-center gap-4 px-10 py-5 rounded-full border border-border font-black text-sm hover:bg-foreground hover:text-background transition-all group">
             <History size={18} />
             <span>استكشف السجل الكامل للبطولات (114 عام)</span>
           </button>
-        </div>
+        </Link>
       </div>
 
       {/* Modal Hall of Fame */}

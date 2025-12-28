@@ -30,7 +30,7 @@ const zamalekBuildings = [
 
 export default function BranchesPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground" dir="rtl">
+    <div className="min-h-screen w-full bg-background text-foreground" dir="rtl">
 
       {/* Hero: Architectural Elegance */}
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">

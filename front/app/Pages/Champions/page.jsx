@@ -81,7 +81,7 @@ export default function ChampionsPage() {
       </section>
 
       {/* Stats Dashboard */}
-      <section className="container mx-auto px-4 -mt-24 relative z-20">
+      <section className="container mx-auto px-4 -mt-16 relative z-20">
         <div className="grid md:grid-cols-4 gap-6">
           <StatCard icon={<Trophy size={20}/>} label="إجمالي الألقاب" value={summary.total} color="primary" />
           <StatCard icon={<Award size={20}/>} label="بطولات محلية" value={summary.local} color="muted" />

@@ -890,6 +890,7 @@ export const sponsers = [
   "/Sponsers/oniro.png",
   "/Sponsers/regina.png",
   "/Sponsers/seven.png"
+  "/Sponsers/travx.png"
 ]
 
 export const zamalekPresidents = [

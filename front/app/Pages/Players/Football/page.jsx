@@ -64,7 +64,7 @@ export default function PlayersPage() {
       </section>
 
       {/* Squad Navigation & Stats */}
-      <section className="container mx-auto px-4 -mt-12 relative z-20">
+      <section className="container mx-auto px-4 -mt-3 relative z-20">
         <div className="bg-card p-4 rounded-[3.5rem] border border-border shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 max-w-7xl mx-auto backdrop-blur-3xl">
           {/* Filter Pills */}
           <div className="flex flex-wrap gap-2">
@@ -144,7 +144,7 @@ function PlayerCard({ item, index, isStaff }) {
 
       <div className="relative bg-card border border-border rounded-[3.5rem] overflow-hidden flex flex-col h-full shadow-[0_32px_128px_rgba(0,0,0,0.2)] transition-all duration-700 hover:rounded-[2.5rem]">
 
-        <Link href={isStaff ? "#" : `/Pages/Player/${encodeURIComponent(item.name)}`} className="relative aspect-[3/4.5] overflow-hidden block">
+        <Link href={isStaff ? "#" : `/Pages/Player/${item.id}}`} className="relative aspect-[3/4.5] overflow-hidden block">
           <Image
             src={item.img || "/no_img.jpg"}
             alt={item.name}

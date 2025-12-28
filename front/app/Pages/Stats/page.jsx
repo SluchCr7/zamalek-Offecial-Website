@@ -14,7 +14,7 @@ export default function ZamalekStatsPage() {
   const topScorersChart = topScorersAllTime.map((p) => ({ name: p.player, goals: p.goals }));
 
   return (
-    <div className="min-h-screen bg-background text-foreground" dir="rtl">
+    <div className="min-h-screen w-full bg-background text-foreground" dir="rtl">
 
       {/* Hero: Data Intelligence Style */}
       <section className="relative pt-32 pb-24 px-4 bg-muted/20 border-b border-border overflow-hidden">

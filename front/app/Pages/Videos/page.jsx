@@ -20,7 +20,7 @@ export default function VideosPage() {
   const categories = [...new Set(allVideos.map(v => v.category))];
 
   return (
-    <div className="min-h-screen bg-background text-foreground" dir="rtl">
+    <div className="min-h-screen w-full bg-background text-foreground" dir="rtl">
 
       {/* Cinematic Spotlight (Hero) */}
       <section className="relative h-[85vh] w-full overflow-hidden">

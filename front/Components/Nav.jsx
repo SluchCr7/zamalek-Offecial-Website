@@ -140,13 +140,15 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
 
             {user ? (
               <div className="flex items-center gap-2 bg-muted p-1 rounded-full border border-border">
-                <Image
-                  src={user?.profilePhoto?.url}
-                  alt='Profile'
-                  width={34}
-                  height={34}
-                  className='rounded-full'
-                />
+                <Link href="/Pages/Profile">
+                  <Image
+                    src={user?.profilePhoto?.url}
+                    alt='Profile'
+                    width={34}
+                    height={34}
+                    className='rounded-full hover:scale-110 transition-transform cursor-pointer'
+                  />
+                </Link>
                 {user?.isAdmin && (
                   <button
                     onClick={() => setOpenModalAll(true)}

@@ -6,7 +6,7 @@ import getData from '@/app/data/getAllDate';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useAlert } from './AlertContext';
 
-axios.defaults.withCredentials = true; // 👈 مهم عشان الكوكيز تتبعت تلقائي
+axios.defaults.withCredentials = true;
 
 export const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
@@ -21,12 +21,11 @@ export const AuthContextProvider = ({ children }) => {
 
   // ------------------- AUTH ACTIONS -------------------
 
-
-  const login = async (Email, Password) => {
+  const login = async (email, password) => {
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_BACK_URL}/api/auth/login`, {
-        Email,
-        Password,
+        email,
+        password,
       });
 
       setUser(res.data.user);
@@ -40,40 +39,18 @@ export const AuthContextProvider = ({ children }) => {
       }, 2000);
     } catch (err) {
       const message = err.response?.data?.message || 'Login failed';
-
-      if (err.response?.status === 401 && err.response?.data?.emailSent) {
-        showAlert(message);
-      } else {
-        showAlert(message);
-      }
+      showAlert(message);
     }
   };
 
   const Logout = () => {
     swal({
-      title: "Are you sure you want to logout?",
-      text: "You will be logged out from your account and need to login again to access your data.",
+      title: "هل أنت متأكد من تسجيل الخروج؟",
+      text: "سيتم تسجيل خروجك من الحساب وستحتاج لتسجيل الدخول مرة أخرى.",
       icon: "warning",
-      buttons: {
-        cancel: {
-          text: "Cancel",
-          value: null,
-          visible: true,
-          className: "swal-btn-cancel",
-          closeModal: true,
-        },
-        confirm: {
-          text: "Logout",
-          value: true,
-          visible: true,
-          className: "swal-btn-confirm",
-          closeModal: true,
-        },
-      },
+      buttons: ["إلغاء", "تسجيل الخروج"],
       dangerMode: true,
-      closeOnClickOutside: false,
-      closeOnEsc: false,
-    }).then(async(willLogout) => {
+    }).then(async (willLogout) => {
       if (willLogout) {
         try {
           await axios.post(`${process.env.NEXT_PUBLIC_BACK_URL}/api/auth/logout`);
@@ -89,14 +66,37 @@ export const AuthContextProvider = ({ children }) => {
     });
   };
 
-
-  const registerNewUser = async (Name, Email, Password) => {
+  const registerNewUser = async (username, name, email, password) => {
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_BACK_URL}/api/auth/register`, { Name, Email, Password });
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_BACK_URL}/api/auth/register`, {
+        username,
+        name,
+        email,
+        password
+      });
       showAlert(res.data.message);
       setTimeout(() => window.location.href = '/Pages/Login', 2000);
     } catch (err) {
-      swal('Oops!', err.response?.data?.message || 'Registration failed', 'error');
+      swal('عذراً!', err.response?.data?.message || 'فشل إنشاء الحساب', 'error');
+    }
+  };
+
+  const updateProfile = async (profileData) => {
+    try {
+      const res = await axios.put(`${process.env.NEXT_PUBLIC_BACK_URL}/api/auth/profile-update`, profileData);
+
+      const updatedUser = {
+        ...user,
+        ...res.data
+      };
+
+      setUser(updatedUser);
+      localStorage.setItem('zscUser', JSON.stringify(updatedUser));
+      showAlert('تم تحديث الملف الشخصي بنجاح');
+      return true;
+    } catch (err) {
+      showAlert(err.response?.data?.message || 'فشل تحديث البيانات');
+      return false;
     }
   };
 
@@ -115,29 +115,23 @@ export const AuthContextProvider = ({ children }) => {
         }
       );
 
-      showAlert('Photo Updated Successfully');
+      showAlert('تم تحديث الصورة بنجاح');
 
       const updatedUser = {
         ...user,
-        profilePhoto: res.data?.profilePhoto || res.data,
+        profilePhoto: res.data,
       };
 
       localStorage.setItem('zscUser', JSON.stringify(updatedUser));
       setUser(updatedUser);
     } catch (err) {
-      console.error(err);
-
-      const message =
-        err?.response?.data?.message ||
-        err?.message ||
-        'Failed to update profile photo. Please try again.';
-
-      showAlert(message);
+      showAlert(err?.response?.data?.message || 'فشل تحديث الصورة');
     }
   };
 
+  // ... rest of methods remain same but updated with camelCase if needed
+
   const ResetPassword = async (id, token, password) => {
-    if (!password) return showAlert('All fields are required');
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_BACK_URL}/api/password/reset-password/${id}/${token}`,
@@ -145,12 +139,11 @@ export const AuthContextProvider = ({ children }) => {
       );
       showAlert(res.data.message);
     } catch (err) {
-      console.error(err);
+      showAlert('فشل إعادة تعيين كلمة المرور');
     }
   };
 
   const ForgetEmail = async (email) => {
-    if (!email) return showAlert('Email field is required');
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_BACK_URL}/api/password/reset`,
@@ -158,7 +151,7 @@ export const AuthContextProvider = ({ children }) => {
       );
       showAlert(res.data.message || res.data);
     } catch (err) {
-      console.error(err);
+      showAlert('فشل إرسال بريد الاستعادة');
     }
   };
 
@@ -168,7 +161,7 @@ export const AuthContextProvider = ({ children }) => {
         `${process.env.NEXT_PUBLIC_BACK_URL}/api/auth/${id}/verify/${token}`
       );
       setVerifyStatus(true);
-      showAlert(res.data.message || 'Account Verified');
+      showAlert(res.data.message || 'تم توثيق الحساب');
     } catch (err) {
       console.error(err);
     }
@@ -181,8 +174,7 @@ export const AuthContextProvider = ({ children }) => {
     const loginState = localStorage.getItem('State');
 
     if (storedUser && loginState === 'true') {
-      const parsedUser = JSON.parse(storedUser);
-      setUser(parsedUser);
+      setUser(JSON.parse(storedUser));
       setIsLogin(true);
     } else {
       setIsLogin(false);
@@ -201,6 +193,7 @@ export const AuthContextProvider = ({ children }) => {
         login,
         Logout,
         registerNewUser,
+        updateProfile,
         updatePhoto,
         ResetPassword,
         ForgetEmail,
@@ -217,3 +210,4 @@ export const AuthContextProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+

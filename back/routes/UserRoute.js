@@ -7,7 +7,8 @@ const {
     deleteUser,
     getUserById,
     getAllUsers,
-    uploadPhoto
+    uploadPhoto,
+    updateUserProfile
 } = require('../Controllers/UserController')
 const photoUpload = require('../Middelwares/uploadPhoto')
 const protect = require('../Middelwares/authMiddelware')
@@ -16,6 +17,9 @@ route.route('/register')
 
 route.route('/login')
     .post(LoginUser)
+
+route.route('/profile-update')
+    .put(protect, updateUserProfile)
 
 route.route('/delete/:id')
     .delete(deleteUser)
@@ -29,6 +33,6 @@ route.route('/logout')
     .post(logoutUser)
 
 route.route('/upload')
-    .post( protect , photoUpload.single("image"), uploadPhoto )
+    .post(protect, photoUpload.single("image"), uploadPhoto)
 
 module.exports = route

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, Star, Users, ArrowRight, Zap, Target, Search, Filter, Activity, Trophy } from 'lucide-react';
-import { zamalekPlayers, zamalekCoachingStaff } from '@/utils/data';
+import { zamalekPlayers, zamalekCoachingStaff, zamalekPlayersWithId } from '@/utils/data';
 
 const positions = ["All", "Goalkeeper", "Defender", "Midfielder", "Forward", "Staff"];
 
@@ -13,10 +13,10 @@ export default function PlayersPage() {
   const [activeFilter, setActiveFilter] = useState("All");
 
   const filteredItems = activeFilter === "All"
-    ? zamalekPlayers
+    ? zamalekPlayersWithId
     : activeFilter === "Staff"
       ? zamalekCoachingStaff
-      : zamalekPlayers.filter(p => p.mainPosition === activeFilter);
+      : zamalekPlayersWithId.filter(p => p.mainPosition === activeFilter);
 
   return (
     <div className="min-h-screen bg-background text-foreground" dir="rtl">
@@ -87,7 +87,7 @@ export default function PlayersPage() {
           {/* Squad Stats Mini */}
           <div className="flex items-center gap-12 px-8 border-r border-border hidden lg:flex">
             <div className="text-center">
-              <div className="text-2xl font-black font-heading italic text-primary">{zamalekPlayers.length}</div>
+              <div className="text-2xl font-black font-heading italic text-primary">{zamalekPlayersWithId.length}</div>
               <div className="text-[8px] font-black uppercase tracking-widest opacity-40">Total Players</div>
             </div>
             <div className="text-center">
@@ -144,7 +144,7 @@ function PlayerCard({ item, index, isStaff }) {
 
       <div className="relative bg-card border border-border rounded-[3.5rem] overflow-hidden flex flex-col h-full shadow-[0_32px_128px_rgba(0,0,0,0.2)] transition-all duration-700 hover:rounded-[2.5rem]">
 
-        <Link href={isStaff ? "#" : `/Pages/Player/${item.id}}`} className="relative aspect-[3/4.5] overflow-hidden block">
+        <Link href={isStaff ? "#" : `/Pages/Player/${item.id}`} className="relative aspect-[3/4.5] overflow-hidden block">
           <Image
             src={item.img || "/no_img.jpg"}
             alt={item.name}

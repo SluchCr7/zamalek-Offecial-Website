@@ -10,7 +10,7 @@ export default function LegendsPage() {
   const [selectedLegend, setSelectedLegend] = useState(null);
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden" dir="rtl">
+    <div className="min-h-screen w-full bg-background text-foreground overflow-hidden" dir="rtl">
 
       {/* Cinematic Hero */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">

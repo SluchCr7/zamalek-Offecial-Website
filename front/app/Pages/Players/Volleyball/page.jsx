@@ -50,7 +50,7 @@ export default function VolleyballPage() {
 
                     <div className="flex flex-wrap justify-center gap-12 pt-12">
                         <div className="text-center">
-                            <div className="text-5xl font-black font-heading text-white italic">28</div>
+                            <div className="text-5xl font-black font-heading text-blue-500 italic">28</div>
                             <div className="text-[10px] font-black uppercase tracking-widest opacity-40">League Crowns</div>
                         </div>
                         <div className="w-px h-12 bg-border hidden md:block" />
@@ -60,7 +60,7 @@ export default function VolleyballPage() {
                         </div>
                         <div className="w-px h-12 bg-border hidden md:block" />
                         <div className="text-center">
-                            <div className="text-5xl font-black font-heading text-white italic">7</div>
+                            <div className="text-5xl font-black font-heading text-blue-500 italic">7</div>
                             <div className="text-[10px] font-black uppercase tracking-widest opacity-40">Cup Victories</div>
                         </div>
                     </div>

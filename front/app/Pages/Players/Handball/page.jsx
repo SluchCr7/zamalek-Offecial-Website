@@ -52,7 +52,7 @@ export default function HandballPage() {
 
                     <div className="flex flex-wrap justify-center gap-12 pt-12">
                         <div className="text-center">
-                            <div className="text-5xl font-black font-heading text-white italic">19</div>
+                            <div className="text-5xl font-black font-heading text-emerald-500 italic">19</div>
                             <div className="text-[10px] font-black uppercase tracking-widest opacity-40">Pro Leagues</div>
                         </div>
                         <div className="w-px h-12 bg-border hidden md:block" />
@@ -62,7 +62,7 @@ export default function HandballPage() {
                         </div>
                         <div className="w-px h-12 bg-border hidden md:block" />
                         <div className="text-center">
-                            <div className="text-5xl font-black font-heading text-white italic">16</div>
+                            <div className="text-5xl font-black font-heading text-emerald-500 italic">16</div>
                             <div className="text-[10px] font-black uppercase tracking-widest opacity-40">Cup Glory</div>
                         </div>
                     </div>

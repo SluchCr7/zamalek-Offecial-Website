@@ -806,7 +806,10 @@ export const zamalekPlayers = [
   }
 ];
 
-
+export const zamalekPlayersWithId = zamalekPlayers.map((player, index) => ({
+  ...player,
+  id: index + 1,
+}));
 
 export const zamalekDirectors = [
   {

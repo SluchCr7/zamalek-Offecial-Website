@@ -21,7 +21,7 @@ export default function KitMuseumPage() {
   );
 
   return (
-    <div className="min-h-screen bg-background text-foreground" dir="rtl">
+    <div className="min-h-screen w-full bg-background text-foreground" dir="rtl">
 
       {/* Hero: Museum Atmosphere */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">

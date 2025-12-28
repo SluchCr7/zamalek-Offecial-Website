@@ -118,8 +118,13 @@ const Footer = () => {
             </div>
             <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-1000">
               {sponsers.map((sponsor, idx) => (
-                <div key={idx} className="relative w-28 h-12 md:w-40 md:h-16 hover:scale-110 transition-transform">
-                  <Image src={sponsor} alt="Sponsor" fill className="object-contain" />
+                <div key={idx} className={`relative w-28 h-12 md:w-40 md:h-16 hover:scale-110 transition-transform`}>
+                  <Image
+                    src={sponsor}
+                    alt="Sponsor"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
               ))}
             </div>

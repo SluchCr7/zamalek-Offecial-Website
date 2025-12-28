@@ -20,7 +20,7 @@ export default function PhotosPage() {
   const categories = ['All', 'Matchday', 'Archive', 'Training', 'Stadium'];
 
   return (
-    <div className="min-h-screen bg-background text-foreground" dir="rtl">
+    <div className="min-h-screen w-full bg-background text-foreground" dir="rtl">
 
       {/* Editorial Hero */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">

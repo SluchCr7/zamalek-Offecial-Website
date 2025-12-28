@@ -30,7 +30,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground" dir="rtl" ref={containerRef}>
+    <div className="min-h-screen w-full bg-background text-foreground" dir="rtl" ref={containerRef}>
 
       {/* Immersive Hero Section */}
       <section className="relative h-[100vh] flex items-center justify-center overflow-hidden">

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, Globe, Award, Target, Zap, Shield, Heart, Share2, Info, ChevronRight, ChevronLeft, MapPin, Activity, Trophy } from 'lucide-react';
+import { Calendar, Globe, Award, Target, Zap, Shield, Heart, Share2, Info, ChevronRight, ChevronLeft, MapPin, Activity, Trophy, Star } from 'lucide-react';
 import { zamalekPlayers } from '@/utils/data';
 
 export default function PlayerProfilePage() {

@@ -22,23 +22,26 @@ export default function NewsPage() {
   const gridNews = filteredNews.slice(1);
 
   return (
-    <div className="min-h-screen bg-background text-foreground" dir="rtl">
+    <div className="min-h-screen w-full bg-background text-foreground" dir="rtl">
 
       {/* Dynamic News Ticker */}
-      <div className="bg-primary overflow-hidden py-3 whitespace-nowrap border-b border-white/10 hidden md:block">
-        <motion.div
-          animate={{ x: ["100%", "-100%"] }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          className="inline-flex gap-20 items-center text-white text-[10px] font-black uppercase tracking-[0.2em]"
-        >
-          {newsList.map((n, i) => (
-            <div key={i} className="flex items-center gap-4">
-              <Flame size={14} className="fill-current" />
-              <span>{n.title}</span>
-            </div>
-          ))}
-        </motion.div>
+      <div className="bg-primary py-3 border-b border-white/10 hidden md:block overflow-hidden">
+        <div className="relative w-full overflow-hidden">
+          <motion.div
+            animate={{ x: ["100%", "-100%"] }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+            className="inline-flex gap-20 items-center text-white text-[10px] font-black uppercase tracking-[0.2em] whitespace-nowrap"
+          >
+            {newsList.map((n, i) => (
+              <div key={i} className="flex items-center gap-4">
+                <Flame size={14} className="fill-current" />
+                <span>{n.title}</span>
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </div>
+
 
       {/* Hero Section: Editorial Focus */}
       <section className="relative py-24 px-4 md:px-8 bg-muted/20">

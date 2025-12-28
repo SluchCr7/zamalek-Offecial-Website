@@ -889,7 +889,7 @@ export const sponsers = [
   "/Sponsers/nile.png",
   "/Sponsers/oniro.png",
   "/Sponsers/regina.png",
-  "/Sponsers/seven.png"
+  "/Sponsers/seven.png",
   "/Sponsers/travx.png"
 ]
 

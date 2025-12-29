@@ -128,18 +128,7 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
                 </span>
               </div>
 
-              {/* Nike Partnership Badge */}
-              <div className="hidden xl:flex items-center gap-2 ml-4 px-3 py-1.5 rounded-full bg-muted/50 border border-border/50 backdrop-blur-sm">
-                <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Powered by</span>
-                <div className="relative w-12 h-4">
-                  <Image
-                    src="/nike.png"
-                    alt="Nike"
-                    fill
-                    className="object-contain opacity-80 group-hover:opacity-100 transition-opacity"
-                  />
-                </div>
-              </div>
+              
             </Link>
 
             {/* Desktop Links - Enhanced */}
@@ -357,6 +346,17 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
                   )}
                 </AnimatePresence>
               </motion.button>
+              {/* Nike Partnership Badge */}
+              <div className="hidden xl:flex items-center gap-2 ml-4 px-3 py-1.5 rounded-full bg-muted/50 border border-border/50 backdrop-blur-sm">
+                <div className="relative w-12 h-4">
+                  <Image
+                    src="/nike.png"
+                    alt="Nike"
+                    fill
+                    className="object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -6,8 +6,10 @@ import Link from 'next/link';
 import {
   Menu, X, ChevronDown, Search, Moon, Sun, User, ShoppingBag,
   Calendar, Trophy, Users, Building2, History, TvMinimal, Award,
-  Dumbbell, Volleyball, Basketball as BasketballIcon, Target, Sparkles
+  Dumbbell, Volleyball, Target, Sparkles
 } from 'lucide-react';
+import { CiBasketball } from "react-icons/ci";
+
 import { AnimatePresence, motion } from 'framer-motion';
 import { MdEdit } from "react-icons/md";
 import { useAuth } from '@/app/Context/AuthContext';
@@ -47,7 +49,7 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
       icon: Users,
       sublinks: [
         { id: 31, title: 'الفريق الأول لكرة القدم', url: '/Pages/Players/Football', icon: Dumbbell },
-        { id: 32, title: 'فريق كرة السلة', url: '/Pages/Players/Basketball', icon: BasketballIcon },
+        { id: 32, title: 'فريق كرة السلة', url: '/Pages/Players/Basketball', icon: CiBasketball },
         { id: 33, title: 'فريق الكرة الطائرة', url: '/Pages/Players/Volleyball', icon: Volleyball },
         { id: 34, title: 'فريق كرة اليد', url: '/Pages/Players/Handball', icon: Target },
         { id: 35, title: 'فرق السيدات', url: '/Pages/Players/Women', icon: Users },

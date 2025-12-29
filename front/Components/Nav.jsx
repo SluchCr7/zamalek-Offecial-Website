@@ -230,6 +230,16 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
 
             {/* Actions Section - Enhanced */}
             <div className="flex items-center gap-2 md:gap-3">
+           
+              {/* Store Button - Enhanced */}
+              <Link
+                href="/Pages/Store"
+                className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-primary to-red-600 text-white text-sm font-bold shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all hover:scale-105 relative overflow-hidden group"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                <ShoppingBag size={18} className="relative z-10" />
+                <span className="relative z-10">المتجر</span>
+              </Link>
               {/* Search Button */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -240,16 +250,6 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
               >
                 <Search size={18} className="group-hover:text-primary transition-colors" />
               </motion.button>
-
-              {/* Store Button - Enhanced */}
-              <Link
-                href="/Pages/Store"
-                className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-primary to-red-600 text-white text-sm font-bold shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all hover:scale-105 relative overflow-hidden group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                <ShoppingBag size={18} className="relative z-10" />
-                <span className="relative z-10">المتجر</span>
-              </Link>
 
               {/* Theme Toggle - Enhanced */}
               <motion.button
@@ -286,7 +286,7 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
 
               {/* User Section - Enhanced */}
               {user ? (
-                <div className="flex items-center gap-2 bg-muted/50 backdrop-blur-sm p-1.5 rounded-2xl border border-border/50 hover:border-primary/50 transition-all">
+                <div className="flex items-center gap-2">
                   <Link href="/Pages/Profile" className="relative group/avatar">
                     <div className="absolute inset-0 bg-gradient-to-r from-primary to-red-600 rounded-full blur-md opacity-0 group-hover/avatar:opacity-50 transition-opacity" />
                     <Image
@@ -347,8 +347,8 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
                 </AnimatePresence>
               </motion.button>
               {/* Nike Partnership Badge */}
-              <div className="hidden xl:flex items-center gap-2 ml-4 px-3 py-1.5 rounded-full bg-muted/50 border border-border/50 backdrop-blur-sm">
-                <div className="relative w-12 h-4">
+              <div className="hidden xl:flex items-center gap-2 ml-4 px-3 py-1.5">
+                <div className="relative w-16 h-5">
                   <Image
                     src="/nike.png"
                     alt="Nike"

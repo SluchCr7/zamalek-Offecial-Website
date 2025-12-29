@@ -87,7 +87,7 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
     <>
       <nav
         dir="rtl"
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 font-heading ${scrolled
+        className={`fixed w-full top-0 left-0 right-0 z-[100] transition-all duration-500 font-heading ${scrolled
             ? 'py-2 bg-background/70 backdrop-blur-2xl border-b border-border/50 shadow-2xl shadow-primary/5'
             : 'py-4 bg-gradient-to-b from-background/80 via-background/40 to-transparent backdrop-blur-md'
           }`}
@@ -101,8 +101,8 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
           />
         )}
 
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="flex items-center justify-between">
+        <div className="px-4 md:px-8 w-full">
+          <div className="flex items-center justify-between w-full">
 
             {/* Logo Section - Enhanced */}
             <Link href="/" className="flex items-center gap-3 group relative">

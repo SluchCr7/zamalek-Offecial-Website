@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { useParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, Globe, Award, Target, Zap, Shield, Heart, Share2, Info, ChevronRight, ChevronLeft, MapPin, Activity, Trophy, Star } from 'lucide-react';
 import { zamalekPlayers, zamalekPlayersWithId } from '@/utils/data';
@@ -11,7 +10,7 @@ export default function PlayerProfilePage({params}) {
   const id = params.id;
 
   // Find player by slug/name from data
-  const playerFromData = zamalekPlayersWithId.find(p => p.id === id) || zamalekPlayers[0];
+  const playerFromData = zamalekPlayersWithId.find(p => p.id === id);
 
   const [activeTab, setActiveTab] = useState('overview');
   const [lightboxIndex, setLightboxIndex] = useState(null);

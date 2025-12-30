@@ -346,23 +346,6 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
                   )}
                 </AnimatePresence>
               </motion.button>
-              {/* Nike Partnership Badge */}
-              <div className="hidden xl:flex items-center gap-2 ml-4 px-3 py-1.5">
-                <div className="relative w-16 h-5">
-                  <Image
-                    src="/nike.png"
-                    alt="Nike"
-                    fill
-                    className="object-contain opacity-80 w-full group-hover:opacity-100 transition-opacity dark:hidden"
-                  />
-                  <Image
-                    src="/nikewhite.png"
-                    alt="Nike"
-                    fill
-                    className="object-contain opacity-80 w-full group-hover:opacity-100 transition-opacity hidden dark:block"
-                  />
-                </div>
-              </div>
             </div>
           </div>
         </div>

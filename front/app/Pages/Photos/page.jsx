@@ -114,12 +114,12 @@ export default function PhotosPage() {
         </div>
 
         {/* Historical Archives Section */}
-        <div className="space-y-16 py-32 bg-muted/20 border-y border-border -mx-full px-full">
+        <div className="space-y-16 py-32 -mx-full px-full">
           <div className="container mx-auto max-w-7xl px-4 space-y-16">
             <header className="flex flex-col md:flex-row justify-between items-end gap-12">
               <div className="space-y-6">
                 <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Vintage Collection</span>
-                <h2 className="text-4xl md:text-6xl font-black font-heading tracking-tighter italic uppercase">أروشـيـف <span className="text-primary italic">الـمـلـوك</span></h2>
+                <h2 className="text-4xl md:text-6xl font-black font-heading tracking-tighter italic uppercase">أرشـيـف <span className="text-primary italic">الـمـلـوك</span></h2>
               </div>
               <div className="flex gap-4">
                 <button className="w-16 h-16 rounded-2xl border border-border flex items-center justify-center hover:bg-primary transition-all"><ChevronRight size={24} /></button>
@@ -127,7 +127,7 @@ export default function PhotosPage() {
               </div>
             </header>
 
-            <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-8">
+            <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8 w-full">
               {zamalekHistory.map((g, idx) => (
                 <PhotoCard key={idx} img={g} index={idx} onClick={() => setSelectedImage(g)} isArchive />
               ))}

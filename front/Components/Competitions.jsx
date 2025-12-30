@@ -98,14 +98,14 @@ export default function ZamalekAchievements() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-xl"
+            className="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-xl overflow-y-auto"
             onClick={() => setSelected(null)}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 40 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 40 }}
-              className="relative w-full max-w-4xl bg-card rounded-[3rem] overflow-hidden border border-border flex flex-col md:flex-row"
+              className="relative w-full max-w-4xl max-h-[90vh] bg-card rounded-[3rem] border border-border flex flex-col md:flex-row overflow-hidden"
               onClick={e => e.stopPropagation()}
             >
               <button
@@ -134,7 +134,10 @@ export default function ZamalekAchievements() {
               </div>
 
               {/* Details Side */}
-              <div className="md:w-3/5 p-8 md:p-16 flex flex-col justify-center items-start text-right" dir="rtl">
+              <div
+                className="md:w-3/5 p-8 md:p-16 flex flex-col items-start text-right scrollbar-thin scrollbar-thumb-primary/30"
+                dir="rtl"
+              >
                 <div className="flex items-center gap-2 text-primary font-black uppercase tracking-[0.2em] text-[10px] mb-6">
                   <History size={14} />
                   <span>تاريخ البطولات</span>

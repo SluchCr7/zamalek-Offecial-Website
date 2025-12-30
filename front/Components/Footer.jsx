@@ -133,13 +133,32 @@ const Footer = () => {
                   "
                 >
                   <div className="relative w-full h-full p-4">
-                    <Image
-                      src={sponsor}
-                      alt="Sponsor logo"
-                      fill
-                      className="object-contain"
-                      sizes="(min-width: 768px) 176px, 144px"
-                    />
+                    {typeof sponsor === 'string' ? (
+                      <Image
+                        src={sponsor}
+                        alt="Sponsor logo"
+                        fill
+                        className="object-contain"
+                        sizes="(min-width: 768px) 176px, 144px"
+                      />
+                    ) : (
+                      <>
+                        <Image
+                          src={sponsor.light}
+                          alt="Sponsor logo"
+                          fill
+                          className="object-contain dark:hidden"
+                          sizes="(min-width: 768px) 176px, 144px"
+                        />
+                        <Image
+                          src={sponsor.dark}
+                          alt="Sponsor logo"
+                          fill
+                          className="object-contain hidden dark:block"
+                          sizes="(min-width: 768px) 176px, 144px"
+                        />
+                      </>
+                    )}
                   </div>
                 </div>
               ))}

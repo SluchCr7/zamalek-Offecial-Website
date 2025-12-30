@@ -935,7 +935,7 @@ export const sponsers = [
   "/Sponsers/regina.png",
   "/Sponsers/seven.png",
   "/Sponsers/travx.png",
-  "/nike.png"
+  { light: "/nike.png", dark: "/nikewhite.png" }
 ]
 
 export const zamalekPresidents = [
@@ -1898,7 +1898,7 @@ export const zamalekVolleyballWomen2025 = {
 export const zamalekChannelData = {
   name: "قناة نادي الزمالك الفضائية",
   commonName: "Zamalek TV",
-  link : "https://www.youtube.com/@ZamalekTV",
+  link: "https://www.youtube.com/@ZamalekTV",
   identity: {
     slogan: "قناة نادي الزمالك.. نادي الوطنية والكرامة",
     owner: "نادي الزمالك للألعاب الرياضية بالتعاون مع المتحدة للخدمات الإعلامية",
@@ -1958,7 +1958,7 @@ export const zamalekChannelData = {
       "خالد الغندور (مقدم تاريخي للقناة)",
       "طارق يحيى (يظهر حالياً كمحلل فني)",
       "كريم أبو حسين",
-      "أحمد جمال", 
+      "أحمد جمال",
     ]
   },
 };

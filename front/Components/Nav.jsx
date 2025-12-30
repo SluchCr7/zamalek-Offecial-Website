@@ -88,8 +88,8 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
       <nav
         dir="rtl"
         className={`fixed w-full top-0 left-0 right-0 z-[100] transition-all duration-500 font-heading ${scrolled
-            ? 'py-2 bg-background/70 backdrop-blur-2xl border-b border-border/50 shadow-2xl shadow-primary/5'
-            : 'py-4 bg-gradient-to-b from-background/80 via-background/40 to-transparent backdrop-blur-md'
+          ? 'py-2 bg-background/70 backdrop-blur-2xl border-b border-border/50 shadow-2xl shadow-primary/5'
+          : 'py-4 bg-gradient-to-b from-background/80 via-background/40 to-transparent backdrop-blur-md'
           }`}
       >
         {/* Premium Top Bar */}
@@ -128,7 +128,7 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
                 </span>
               </div>
 
-              
+
             </Link>
 
             {/* Desktop Links - Enhanced */}
@@ -145,8 +145,8 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
                     <Link
                       href={link.url}
                       className={`px-4 py-2.5 rounded-2xl text-sm font-bold flex items-center gap-2 transition-all duration-300 relative overflow-hidden ${activeDropdown === link.id
-                          ? 'bg-gradient-to-r from-primary to-red-600 text-white shadow-lg shadow-primary/30'
-                          : 'hover:bg-muted/80 hover:text-primary'
+                        ? 'bg-gradient-to-r from-primary to-red-600 text-white shadow-lg shadow-primary/30'
+                        : 'hover:bg-muted/80 hover:text-primary'
                         }`}
                     >
                       {/* Animated Background */}
@@ -230,7 +230,7 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
 
             {/* Actions Section - Enhanced */}
             <div className="flex items-center gap-2 md:gap-3">
-           
+
               {/* Store Button - Enhanced */}
               <Link
                 href="/Pages/Store"
@@ -353,7 +353,13 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
                     src="/nike.png"
                     alt="Nike"
                     fill
-                    className="object-contain opacity-80 w-full group-hover:opacity-100 transition-opacity"
+                    className="object-contain opacity-80 w-full group-hover:opacity-100 transition-opacity dark:hidden"
+                  />
+                  <Image
+                    src="/nikewhite.png"
+                    alt="Nike"
+                    fill
+                    className="object-contain opacity-80 w-full group-hover:opacity-100 transition-opacity hidden dark:block"
                   />
                 </div>
               </div>
@@ -420,7 +426,8 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Official Partner</span>
                     <div className="relative w-16 h-5">
-                      <Image src="/nike.png" alt="Nike" fill className="object-contain opacity-80" />
+                      <Image src="/nike.png" alt="Nike" fill className="object-contain opacity-80 dark:hidden" />
+                      <Image src="/nikewhite.png" alt="Nike" fill className="object-contain opacity-80 hidden dark:block" />
                     </div>
                   </div>
                 </div>

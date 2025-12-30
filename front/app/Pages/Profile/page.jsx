@@ -71,7 +71,7 @@ export default function ProfilePage() {
             {/* Header / Cover Section */}
             <section className="relative h-[300px] md:h-[400px] overflow-hidden">
                 <Image
-                    src={user.coverPhoto?.url || "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"}
+                    src={user.coverPhoto?.url || "/coverProfile.jpg"}
                     alt="Cover"
                     fill
                     className="object-cover brightness-50"
@@ -103,7 +103,7 @@ export default function ProfilePage() {
                                 {user.isVerified && <CheckCircle size={24} className="text-blue-500 fill-blue-500/20" />}
                             </div>
                             <div className="flex flex-wrap items-center gap-4 text-sm font-bold opacity-60 italic">
-                                <span className="flex items-center gap-1.5 uppercase tracking-widest"><AtSign size={14} /> {user.username}</span>
+                                <span className="flex items-center gap-1.5 uppercase tracking-widest"><AtSign size={14} /> {user.name}</span>
                                 <span className="flex items-center gap-1.5 uppercase tracking-widest"><MapPin size={14} /> {user.location?.city || 'Cairo'}, {user.location?.country || 'Egypt'}</span>
                                 <span className="flex items-center gap-1.5 uppercase tracking-widest"><Calendar size={14} /> انضم في {new Date(user.createdAt).getFullYear()}</span>
                             </div>

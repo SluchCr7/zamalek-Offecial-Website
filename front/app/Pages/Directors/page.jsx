@@ -42,7 +42,7 @@ export default function DirectorsPage() {
         </section>
 
         {/* Vice & Treasurer Section */}
-        <section className="grid md:grid-cols-2 gap-12 items-center justify-center">
+        <section className="flex w-full gap-12 items-center justify-center">
           <DirectorCard director={vicePresident} size="lg" />
           <DirectorCard director={treasurer} size="lg" />
         </section>

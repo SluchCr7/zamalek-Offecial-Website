@@ -353,7 +353,7 @@ export default function Nav({ opneModalAll, setOpenModalAll }) {
                     src="/nike.png"
                     alt="Nike"
                     fill
-                    className="object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                    className="object-contain opacity-80 w-full group-hover:opacity-100 transition-opacity"
                   />
                 </div>
               </div>

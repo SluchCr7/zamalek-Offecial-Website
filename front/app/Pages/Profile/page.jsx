@@ -103,7 +103,7 @@ export default function ProfilePage() {
                                 {user.isVerified && <CheckCircle size={24} className="text-blue-500 fill-blue-500/20" />}
                             </div>
                             <div className="flex flex-wrap items-center gap-4 text-sm font-bold opacity-60 italic">
-                                <span className="flex items-center gap-1.5 uppercase tracking-widest"><AtSign size={14} /> {user.name}</span>
+                                <span className="flex items-center gap-1.5 uppercase tracking-widest"><AtSign size={14} /> {user.Name}</span>
                                 <span className="flex items-center gap-1.5 uppercase tracking-widest"><MapPin size={14} /> {user.location?.city || 'Cairo'}, {user.location?.country || 'Egypt'}</span>
                                 <span className="flex items-center gap-1.5 uppercase tracking-widest"><Calendar size={14} /> انضم في {new Date(user.createdAt).getFullYear()}</span>
                             </div>

@@ -77,6 +77,9 @@ const Footer = () => {
               { name: 'مجلس الإدارة', href: '/Pages/Directors' },
               { name: 'الأعضاء', href: '/Pages/Membership' },
               { name: 'تواصل معنا', href: '/Pages/CallUs' },
+              { name: 'منطقة الجماهير', href: '/Pages/FanZone' },
+              { name: 'الفروع', href: '/Pages/Branches'},
+              { name: 'ارقام تاريخية واحصائيات', href: '/Pages/Stats'},
             ]}
           />
           <FooterNavGroup
@@ -177,6 +180,7 @@ const Footer = () => {
             <Link href="/Pages/Privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
             <Link href="/Pages/Terms" className="hover:text-primary transition-colors">Terms of Service</Link>
             <Link href="/Pages/Cookies" className="hover:text-primary transition-colors">Cookie settings</Link>
+            <Link href="/Pages/FAQ" className="hover:text-primary transition-colors">FAQ</Link>
           </div>
 
           <div className="flex items-center gap-3 text-[10px] font-black tracking-tighter italic">

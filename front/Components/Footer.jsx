@@ -104,10 +104,10 @@ const Footer = () => {
           <FooterNavGroup
             title="المتجر"
             links={[
-              { name: 'أطقم الفريق', href: '/Pages/Store/Kits' },
-              { name: 'ملابس التمرين', href: '/Pages/Store/Training' },
-              { name: 'إكسسوارات', href: '/Pages/Store/Accessories' },
-              { name: 'تخفيضات', href: '/Pages/Store/Sale' },
+              { name: 'أطقم الفريق', href: '/Pages/Store' },
+              { name: 'ملابس التمرين', href: '/Pages/Store' },
+              { name: 'إكسسوارات', href: '/Pages/Store' },
+              { name: 'تخفيضات', href: '/Pages/Store' },
             ]}
           />
         </div>

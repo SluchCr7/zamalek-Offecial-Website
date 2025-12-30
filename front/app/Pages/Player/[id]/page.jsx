@@ -2,15 +2,29 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, Globe, Award, Target, Zap, Shield, Heart, Share2, Info, ChevronRight, ChevronLeft, MapPin, Activity, Trophy, Star } from 'lucide-react';
 import { zamalekPlayersWithId } from '@/utils/data';
 
-export default function PlayerProfilePage({ params }) {
-  const id = Number(params.id); // Convert string to number for proper comparison
+export default function PlayerProfilePage() {
+  const params = useParams();
+  const id = params?.id ? Number(params.id) : null;
 
   // Find player by slug/name from data
-  const playerFromData = zamalekPlayersWithId.find(player => player.id === id)
+  const playerFromData = zamalekPlayersWithId.find(player => player.id === id);
+
+  if (!playerFromData) {
+    return (
+      <div className="min-h-screen w-full flex flex-col items-center justify-center bg-background text-foreground gap-6">
+        <div className="text-9xl font-black text-muted opacity-20">404</div>
+        <h2 className="text-3xl font-bold">اللاعب غير موجود</h2>
+        <a href="/Pages/Players/Football" className="px-8 py-3 bg-primary text-white rounded-xl font-bold hover:bg-primary/80 transition-colors">
+          عودة للقائمة
+        </a>
+      </div>
+    );
+  }
 
   const [activeTab, setActiveTab] = useState('overview');
   const [lightboxIndex, setLightboxIndex] = useState(null);

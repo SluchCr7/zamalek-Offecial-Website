@@ -117,15 +117,30 @@ const Footer = () => {
               <span>Official Global Partners</span>
               <div className="h-px w-20 bg-white/10" />
             </div>
-            <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-1000">
+            <div className="flex flex-wrap justify-center items-center gap-10 md:gap-20">
               {sponsers.map((sponsor, idx) => (
-                <div key={idx} className={`relative w-28 h-12 md:w-40 md:h-16 hover:scale-110 transition-transform`}>
-                  <Image
-                    src={sponsor}
-                    alt="Sponsor"
-                    fill
-                    className="object-contain"
-                  />
+                <div
+                  key={idx}
+                  className="
+                    group
+                    flex items-center justify-center
+                    w-36 h-20 md:w-44 md:h-24
+                    rounded-md
+                    bg-transparent
+                    opacity-40 grayscale
+                    transition-all duration-700 ease-in-out
+                    hover:opacity-100 hover:grayscale-0 hover:scale-105
+                  "
+                >
+                  <div className="relative w-full h-full p-4">
+                    <Image
+                      src={sponsor}
+                      alt="Sponsor logo"
+                      fill
+                      className="object-contain"
+                      sizes="(min-width: 768px) 176px, 144px"
+                    />
+                  </div>
                 </div>
               ))}
             </div>

@@ -37,7 +37,7 @@ export default function DirectorsPage() {
         </header>
 
         {/* President Section */}
-        <section className="flex flex-col items-center">
+        <section className="flex w-full items-center justify-center">
           <DirectorCard director={president} size="xl" featured />
         </section>
 

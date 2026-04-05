@@ -9,10 +9,10 @@ export default function Match({ match }) {
   const [timeLeft, setTimeLeft] = useState("")
 
   useEffect(() => {
-    if (match.status !== "Upcoming") return
+    if (match.fixture.status.short !== "NS") return
 
     const updateCountdown = () => {
-      const matchDate = new Date(match.date)
+      const matchDate = new Date(match.fixture.date)
       const now = new Date()
       const diff = matchDate - now
 
@@ -31,13 +31,17 @@ export default function Match({ match }) {
     updateCountdown()
     const timer = setInterval(updateCountdown, 60000)
     return () => clearInterval(timer)
-  }, [match.date, match.status])
+  }, [match.fixture.date, match.fixture.status.short])
 
   const statusColors = {
     Live: "bg-primary animate-pulse text-white shadow-lg shadow-primary/40",
     Finished: "bg-secondary text-secondary-foreground border border-border",
     Upcoming: "bg-muted text-muted-foreground border border-border",
   }
+
+  const isFinished = ['FT', 'AET', 'PEN'].includes(match.fixture.status.short);
+  const isLive = ['1H', '2H', 'HT', 'ET', 'P'].includes(match.fixture.status.short);
+  const isUpcoming = match.fixture.status.short === 'NS';
 
   return (
     <motion.div
@@ -50,11 +54,11 @@ export default function Match({ match }) {
           <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
             <Trophy size={16} />
           </div>
-          <span className="text-sm font-black uppercase tracking-tight opacity-70">{match.competition}</span>
+          <span className="text-sm font-black uppercase tracking-tight opacity-70">{match.league.name}</span>
         </div>
         <div className="flex items-center gap-1.5 text-[11px] font-bold opacity-50">
           <CalendarDays size={14} />
-          <span>{match.date}</span>
+          <span>{new Date(match.fixture.date).toLocaleDateString('ar-EG')}</span>
         </div>
       </div>
 
@@ -63,20 +67,20 @@ export default function Match({ match }) {
         {/* Home Team */}
         <div className="flex flex-col items-center flex-1 gap-3">
           <div className="relative w-16 h-16 md:w-20 md:h-20 transition-transform group-hover:scale-110 duration-500">
-            <Image src="/teams/zamalek.png" alt="Zamalek" fill className="object-contain" />
+            <Image src={match.teams.home.logo} alt={match.teams.home.name} fill className="object-contain" />
           </div>
-          <span className="text-sm font-black text-center leading-none">الزمالك</span>
+          <span className={`text-[12px] font-black text-center leading-none ${match.teams.home.id === 1040 ? 'text-primary' : ''}`}>{match.teams.home.name}</span>
         </div>
 
         {/* Score/Status */}
         <div className="flex flex-col items-center px-4">
           <div className="text-3xl md:text-4xl font-black tracking-tighter mb-2 font-heading">
-            {match.status === "Upcoming" ? "VS" : match.result}
+            {isUpcoming ? "VS" : `${match.goals.home}-${match.goals.away}`}
           </div>
-          <div className={`px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${statusColors[match.status]}`}>
-            {match.status === "Live" ? "مباشر" : match.status === "Finished" ? "انتهت" : "قريباً"}
+          <div className={`px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${isLive ? statusColors.Live : isFinished ? statusColors.Finished : statusColors.Upcoming}`}>
+            {isLive ? "مباشر" : isFinished ? "انتهت" : "قريباً"}
           </div>
-          {match.status === "Upcoming" && (
+          {isUpcoming && (
             <div className="flex items-center gap-1.5 text-[11px] font-bold opacity-60 mt-2">
               <Timer size={12} />
               <span>{timeLeft}</span>
@@ -88,13 +92,13 @@ export default function Match({ match }) {
         <div className="flex flex-col items-center flex-1 gap-3">
           <div className="relative w-16 h-16 md:w-20 md:h-20 transition-transform group-hover:scale-110 duration-500">
             <Image
-              src={`/teams/${match.opponentLogo}`}
-              alt={match.opponent}
+              src={match.teams.away.logo}
+              alt={match.teams.away.name}
               fill
               className="object-contain"
             />
           </div>
-          <span className="text-sm font-black text-center leading-none">{match.opponent}</span>
+          <span className={`text-[12px] font-black text-center leading-none ${match.teams.away.id === 1040 ? 'text-primary' : ''}`}>{match.teams.away.name}</span>
         </div>
       </div>
 
@@ -102,12 +106,12 @@ export default function Match({ match }) {
       <div className="flex items-center justify-between pt-4 border-t border-border mt-auto">
         <div className="flex items-center gap-1.5 opacity-60">
           <MapPin size={12} className="text-primary" />
-          <span className="text-[10px] font-bold">{match.city || "القاهرة"}</span>
+          <span className="text-[10px] font-bold">{match.fixture.venue.name || "القاهرة"}</span>
         </div>
 
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5">
-            {match.matchType === "Home" ? (
+            {match.teams.home.id === 1040 ? (
               <div className="flex items-center gap-1 text-primary">
                 <Home size={12} />
                 <span className="text-[10px] font-black uppercase">أرضنا</span>
@@ -120,7 +124,7 @@ export default function Match({ match }) {
             )}
           </div>
           <div className="w-1 h-1 rounded-full bg-border" />
-          <span className="text-[10px] font-bold opacity-60">{match.referee || "طاقم تحكيم"}</span>
+          <span className="text-[10px] font-bold opacity-60">{match.fixture.status.long}</span>
         </div>
       </div>
     </motion.div>

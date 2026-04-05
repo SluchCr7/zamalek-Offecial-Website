@@ -3,14 +3,12 @@
 import React, { useMemo, useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Trophy, Award, ShieldCheck, ChevronUp, ChevronDown, Sliders, Info, Zap, TrendingUp, ChevronRight } from 'lucide-react';
-import {
-  zamalekTable,
-  zamalekTopGoalsLiveSeasson,
-  zamalekAssistsLiveSeasson,
-  cleanSheatsLiveSeasson,
-} from '@/utils/data';
+import { Trophy, Award, ShieldCheck, ChevronUp, ChevronDown, Sliders, Info, Zap, TrendingUp, ChevronRight, Loader2 } from 'lucide-react';
+import useSWR from 'swr';
+import axios from 'axios';
 import TitleSection from '@/Components/TitleSection';
+
+const fetcher = url => axios.get(url).then(res => res.data);
 
 const ICONS = {
   goals: <Trophy size={18} className="text-yellow-500" />,
@@ -19,15 +17,25 @@ const ICONS = {
 };
 
 export default function LeagueTablePage() {
+  const { data: standings, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_BACK_URL}/api/standings`, fetcher);
   const [sortConfig, setSortConfig] = useState({ key: 'points', direction: 'desc' });
 
   const sortedTable = useMemo(() => {
-    return [...zamalekTable].sort((a, b) => {
-      if (a[sortConfig.key] < b[sortConfig.key]) return sortConfig.direction === 'asc' ? -1 : 1;
-      if (a[sortConfig.key] > b[sortConfig.key]) return sortConfig.direction === 'asc' ? 1 : -1;
+    if (!standings) return [];
+    return [...standings].sort((a, b) => {
+      let valA, valB;
+      if (sortConfig.key === 'points') {
+        valA = a.points;
+        valB = b.points;
+      } else {
+        valA = a[sortConfig.key];
+        valB = b[sortConfig.key];
+      }
+      if (valA < valB) return sortConfig.direction === 'asc' ? -1 : 1;
+      if (valA > valB) return sortConfig.direction === 'asc' ? 1 : -1;
       return 0;
     });
-  }, [sortConfig]);
+  }, [standings, sortConfig]);
 
   const handleSort = (key) => {
     setSortConfig((prev) => ({
@@ -35,6 +43,13 @@ export default function LeagueTablePage() {
       direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc',
     }));
   };
+
+  if (error) return <div className="min-h-screen flex items-center justify-center text-red-500">Failed to load standings</div>;
+  if (isLoading) return (
+    <div className="min-h-screen flex items-center justify-center bg-background">
+      <Loader2 className="w-12 h-12 text-primary animate-spin" />
+    </div>
+  );
 
   const statCards = [
     { title: 'هداف الفريق', icon: ICONS.goals, data: zamalekTopGoalsLiveSeasson, key: 'goals', unit: 'هدف' },
@@ -92,12 +107,12 @@ export default function LeagueTablePage() {
                   </thead>
                   <tbody className="divide-y divide-border">
                     {sortedTable.map((team, idx) => {
-                      const isZamalek = team.team.includes('زمالك');
-                      const position = idx + 1;
+                      const isZamalek = team.team.id === 1040;
+                      const position = team.rank;
 
                       return (
                         <motion.tr
-                          key={team.team}
+                          key={team.team.id}
                           initial={{ opacity: 0, x: 20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
@@ -105,26 +120,26 @@ export default function LeagueTablePage() {
                           className={`group transition-colors ${isZamalek ? 'bg-primary/5 hover:bg-primary/10' : 'hover:bg-muted/50'}`}
                         >
                           <td className="p-6 text-right font-black font-heading">
-                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${position <= 3 ? 'bg-primary/20 text-primary' : 'bg-muted opacity-40'
+                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${position <= 4 ? 'bg-primary/20 text-primary' : 'bg-muted opacity-40'
                               }`}>
-                              {position}
+                               {position}
                             </div>
                           </td>
                           <td className="p-6">
                             <div className="flex items-center gap-4">
                               <div className="relative w-10 h-10 rounded-full border border-border bg-white shadow-sm transition-transform group-hover:scale-110">
-                                <Image src={`/teams/${team.Logo}`} alt={team.team} fill className="object-contain p-2" />
+                                <Image src={team.team.logo} alt={team.team.name} fill className="object-contain p-2" />
                               </div>
-                              <span className={`font-black ${isZamalek ? 'text-primary' : ''}`}>{team.team}</span>
+                              <span className={`font-black ${isZamalek ? 'text-primary' : ''}`}>{team.team.name}</span>
                             </div>
                           </td>
-                          <td className="p-6 text-center font-bold opacity-60">{team.played}</td>
-                          <td className="p-6 text-center font-bold opacity-60">{team.won}</td>
-                          <td className="p-6 text-center font-bold opacity-60">{team.drawn}</td>
-                          <td className="p-6 text-center font-bold opacity-60">{team.lost}</td>
-                          <td className="p-6 text-center font-bold opacity-40">{team.goals_for}</td>
-                          <td className="p-6 text-center font-bold opacity-40">{team.goals_against}</td>
-                          <td className="p-6 text-center font-black">{team.goal_difference}</td>
+                          <td className="p-6 text-center font-bold opacity-60">{team.all.played}</td>
+                          <td className="p-6 text-center font-bold opacity-60">{team.all.win}</td>
+                          <td className="p-6 text-center font-bold opacity-60">{team.all.draw}</td>
+                          <td className="p-6 text-center font-bold opacity-60">{team.all.lose}</td>
+                          <td className="p-6 text-center font-bold opacity-40">{team.all.goals.for}</td>
+                          <td className="p-6 text-center font-bold opacity-40">{team.all.goals.against}</td>
+                          <td className="p-6 text-center font-black">{team.goalsDiff}</td>
                           <td className="p-6 text-center">
                             <div className={`inline-flex items-center justify-center w-12 h-10 rounded-xl font-black font-heading text-lg ${isZamalek ? 'bg-primary text-white shadow-lg shadow-primary/30' : 'bg-card border border-border'
                               }`}>

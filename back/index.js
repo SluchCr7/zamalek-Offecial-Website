@@ -45,6 +45,8 @@ app.use('/api/auth', require("./routes/UserRoute"))
 app.use('/api/news', require("./routes/NewsRoute"))
 app.use('/api/photo', require("./routes/PhotoRoute"))
 app.use('/api/players', require('./routes/PlayersRoute'))
+app.use('/api/fixtures', require('./routes/FixturesRoute'))
+app.use('/api/standings', require('./routes/StandingsRoute'))
 app.use(errorhandler)
 
 // Listen

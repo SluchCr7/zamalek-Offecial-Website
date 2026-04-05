@@ -2,23 +2,38 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { zamalekMatches } from "@/utils/data"
+import useSWR from 'swr'
+import axios from 'axios'
 import Match from "./Match"
-import { ChevronLeft, ChevronRight, Calendar } from "lucide-react"
+import { ChevronLeft, ChevronRight, Calendar, Loader2 } from "lucide-react"
 import Link from 'next/link'
 
+const fetcher = url => axios.get(url).then(res => res.data);
+
 export default function MatchesSlider() {
-  const [current, setCurrent] = useState(1)
+  const { data: fixtures, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_BACK_URL}/api/fixtures`, fetcher);
+  const [current, setCurrent] = useState(0)
 
   const nextSlide = () => {
-    setCurrent((prev) => (prev + 1) % zamalekMatches.length)
+    if (!fixtures || fixtures.length === 0) return;
+    setCurrent((prev) => (prev + 1) % fixtures.length)
   }
 
   const prevSlide = () => {
+    if (!fixtures || fixtures.length === 0) return;
     setCurrent((prev) =>
-      prev === 0 ? zamalekMatches.length - 1 : prev - 1
+      prev === 0 ? fixtures.length - 1 : prev - 1
     )
   }
+
+  if (error) return <div className="py-24 text-center text-red-500 font-bold">Failed to load matches</div>;
+  if (isLoading) return (
+    <div className="py-24 flex items-center justify-center">
+      <Loader2 className="w-10 h-10 text-primary animate-spin" />
+    </div>
+  );
+
+  const displayFixtures = fixtures?.slice(0, 10) || []; // Top 10 matches
 
   return (
     <section className="relative py-24 bg-background overflow-hidden">
@@ -48,15 +63,15 @@ export default function MatchesSlider() {
         {/* Slider Area */}
         <div className="relative flex items-center justify-center h-[550px] overflow-hidden select-none">
           <div className="absolute inset-0 flex items-center justify-center">
-            {zamalekMatches.map((match, index) => {
+            {displayFixtures.map((match, index) => {
               const offset = index - current
               const isActive = offset === 0
-              const isPrev = offset === -1 || (current === 0 && index === zamalekMatches.length - 1)
-              const isNext = offset === 1 || (current === zamalekMatches.length - 1 && index === 0)
+              const isPrev = offset === -1 || (current === 0 && index === displayFixtures.length - 1)
+              const isNext = offset === 1 || (current === displayFixtures.length - 1 && index === 0)
 
               let xPos = offset * 420
-              if (current === 0 && index === zamalekMatches.length - 1) xPos = -420
-              if (current === zamalekMatches.length - 1 && index === 0) xPos = 420
+              if (current === 0 && index === displayFixtures.length - 1) xPos = -420
+              if (current === displayFixtures.length - 1 && index === 0) xPos = 420
 
               return (
                 <motion.div
@@ -104,7 +119,7 @@ export default function MatchesSlider() {
 
         {/* Progress Indicators */}
         <div className="flex justify-center items-center gap-3 mt-12">
-          {zamalekMatches.map((_, i) => (
+          {displayFixtures.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}

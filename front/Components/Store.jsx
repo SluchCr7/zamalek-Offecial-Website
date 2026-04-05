@@ -45,7 +45,7 @@ export default function ZamalekKitShowcase() {
       price: '999 EGP'
     },
     {
-      id: 'GK',
+      id: 'GK2',
       name: 'طقم حامي العرين الاحتياطي',
       img: '/zamalekGK2Nike.jpg',
       desc: 'درع الحارس باللون البنفسجي المميز، مصمم لأقصى درجات المرونة والتحمل.',

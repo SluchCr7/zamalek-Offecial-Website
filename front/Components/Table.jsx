@@ -4,10 +4,15 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { zamalekTable, zamalekAfrica, zamalekTopGoalsLiveSeasson, zamalekAssistsLiveSeasson } from "@/utils/data";
 import Image from "next/image";
-import { ListFilter, Trophy, ArrowUpRight, Zap, Target, Star, Users } from "lucide-react";
+import { ListFilter, Trophy, ArrowUpRight, Zap, Target, Star, Users, Loader2 } from "lucide-react";
 import Link from "next/link";
+import useSWR from 'swr';
+import axios from 'axios';
+
+const fetcher = url => axios.get(url).then(res => res.data);
 
 const Table = () => {
+  const { data: standings, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_BACK_URL}/api/standings`, fetcher);
   const [activeTab, setActiveTab] = useState("league");
 
   const tabs = [
@@ -16,7 +21,9 @@ const Table = () => {
     { id: "stats", label: "أرقام اللاعبين", icon: <Target size={14} /> },
   ];
 
-  const topFiveLeague = [...zamalekTable].sort((a, b) => b.points - a.points).slice(0, 5);
+  if (error) return <div className="py-24 text-center text-red-500">Failed to load standings</div>;
+
+  const topFiveLeague = standings ? [...standings].sort((a, b) => b.points - a.points).slice(0, 5) : [];
 
   return (
     <section className="py-32 relative overflow-hidden bg-background">
@@ -66,22 +73,30 @@ const Table = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
               transition={{ duration: 0.4 }}
-              className="bg-card border border-border rounded-[3.5rem] overflow-hidden shadow-2xl relative"
+              className="bg-card border border-border rounded-[3.5rem] overflow-hidden shadow-2xl relative min-h-[400px] flex flex-col"
             >
-              {activeTab === "league" && (
-                <CompetitionTable data={topFiveLeague} type="league" />
-              )}
-              {activeTab === "africa" && (
-                <CompetitionTable data={zamalekAfrica} type="africa" />
-              )}
-              {activeTab === "stats" && (
-                <PlayerStatsSection goals={zamalekTopGoalsLiveSeasson} assists={zamalekAssistsLiveSeasson} />
+              {isLoading ? (
+                <div className="flex-1 flex items-center justify-center py-24">
+                  <Loader2 size={48} className="text-primary animate-spin" />
+                </div>
+              ) : (
+                <>
+                  {activeTab === "league" && (
+                    <CompetitionTable data={topFiveLeague} type="league" />
+                  )}
+                  {activeTab === "africa" && (
+                    <CompetitionTable data={zamalekAfrica} type="africa" />
+                  )}
+                  {activeTab === "stats" && (
+                    <PlayerStatsSection goals={zamalekTopGoalsLiveSeasson} assists={zamalekAssistsLiveSeasson} />
+                  )}
+                </>
               )}
 
               {/* Dynamic Footer Link */}
               <Link
                 href="/Pages/Table"
-                className="flex items-center justify-center gap-4 p-8 bg-muted/30 hover:bg-primary hover:text-white transition-all group border-t border-border"
+                className="flex items-center justify-center gap-4 p-8 bg-muted/30 hover:bg-primary hover:text-white transition-all group border-t border-border mt-auto"
               >
                 <span className="text-[11px] font-black uppercase tracking-[0.3em]">انتقل إلى المركز الإحصائي الكامل</span>
                 <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -110,34 +125,34 @@ const CompetitionTable = ({ data, type }) => (
       </thead>
       <tbody className="divide-y divide-border/50">
         {data.map((team, idx) => {
-          const isZamalek = team.team.toLowerCase().includes("zamalek");
+          const isZamalek = team.team.id === 1040;
           return (
             <motion.tr
-              key={team.team}
+              key={team.team.id}
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: idx * 0.05 }}
               className={`group transition-all hover:bg-primary/[0.02] ${isZamalek ? "bg-primary/[0.04]" : ""}`}
             >
               <td className="px-10 py-6">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black font-heading ${idx === 0 ? "bg-yellow-500 text-white" : isZamalek ? "bg-primary text-white" : "bg-muted text-foreground/40"}`}>
-                  {idx + 1}
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black font-heading ${team.rank === 1 ? "bg-yellow-500 text-white" : isZamalek ? "bg-primary text-white" : "bg-muted text-foreground/40"}`}>
+                  {team.rank}
                 </div>
               </td>
               <td className="px-6 py-6">
                 <div className="flex items-center gap-4">
                   <div className="relative w-12 h-12 rounded-2xl bg-white border border-border p-2 group-hover:scale-110 transition-transform shadow-sm">
-                    <Image src={team.Logo ? `/teams/${team.Logo}` : "/teams/zamalek.png"} alt={team.team} fill className="object-contain p-1.5" />
+                    <Image src={team.team.logo} alt={team.team.name} fill className="object-contain p-1.5" />
                   </div>
                   <span className={`text-xl font-black font-heading italic ${isZamalek ? "text-primary" : ""}`}>
-                    {team.team === "Zamalek" ? "المـلـكــي" : team.team}
+                    {team.team.name}
                   </span>
                 </div>
               </td>
-              <td className="px-6 py-6 text-center font-bold opacity-60">{team.played}</td>
-              <td className="px-6 py-6 text-center font-bold opacity-60">{team.won}</td>
-              <td className="px-6 py-6 text-center font-bold opacity-60">{team.drawn}</td>
-              <td className="px-6 py-6 text-center font-black">{team.goal_difference > 0 ? `+${team.goal_difference}` : team.goal_difference}</td>
+              <td className="px-6 py-6 text-center font-bold opacity-60">{team.all.played}</td>
+              <td className="px-6 py-6 text-center font-bold opacity-60">{team.all.win}</td>
+              <td className="px-6 py-6 text-center font-bold opacity-60">{team.all.draw}</td>
+              <td className="px-6 py-6 text-center font-black">{team.goalsDiff > 0 ? `+${team.goalsDiff}` : team.goalsDiff}</td>
               <td className="px-10 py-6 text-center">
                 <div className={`inline-flex items-center justify-center w-14 h-12 rounded-2xl font-black font-heading text-xl ${isZamalek ? "bg-primary text-white shadow-xl shadow-primary/20" : "bg-muted border border-border"}`}>
                   {team.points}

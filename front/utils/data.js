@@ -7,7 +7,7 @@ export const zamalekMatches = [
   {
     opponent: "Al Ahly",
     opponentLogo: "al-ahly.png",
-    date: "2025-11-09",
+    date: "2026-03-10",
     time: "20:00",
     stadium: "Mohammed bin Zayed Stadium",
     city: "Abu Dhabi, UAE",
@@ -20,7 +20,7 @@ export const zamalekMatches = [
   {
     opponent: "Pyramids FC",
     opponentLogo: "pyramids.png",
-    date: "2025-11-06",
+    date: "2026-03-18",
     time: "19:00",
     stadium: "Al Nahyan Stadium",
     city: "Abu Dhabi, UAE",
@@ -33,7 +33,7 @@ export const zamalekMatches = [
   {
     opponent: "ZESCO United",
     opponentLogo: "zesco.png",
-    date: "2025-11-23",
+    date: "2026-03-25",
     time: "18:00",
     stadium: "Cairo International Stadium",
     city: "Cairo, Egypt",
@@ -46,7 +46,7 @@ export const zamalekMatches = [
   {
     opponent: "Kaizer Chiefs",
     opponentLogo: "kaizer-chiefs.png",
-    date: "2025-11-29",
+    date: "2026-03-30",
     time: "20:00",
     stadium: "FNB Stadium",
     city: "Johannesburg, South Africa",
@@ -59,7 +59,7 @@ export const zamalekMatches = [
   {
     opponent: "Kahrbaa Ismailia",
     opponentLogo: "ismailia.png",
-    date: "2025-12-09",
+    date: "2026-04-02",
     time: "17:00",
     stadium: "Ismailia Stadium",
     city: "Ismailia, Egypt",
@@ -67,38 +67,36 @@ export const zamalekMatches = [
     status: "Finished",
     matchType: "Away",
     referee: "Ahmed El Ghandour",
-    competition: "Egyptian League Cup"
+    competition: "Egyptian Premier League"
   },
   {
     opponent: "Haras El Hodood",
     opponentLogo: "harras.png",
-    date: "2025-12-20",
+    date: "2026-04-08",
     time: "19:00",
     stadium: "Cairo International Stadium",
     city: "Cairo, Egypt",
-    result: "2 - 1",
-    status: "Finished",
+    status: "Upcoming",
     matchType: "Home",
     referee: "Amin Omar",
-    competition: "Egyptian League Cup"
+    competition: "Egyptian Premier League"
   },
   {
     opponent: "Smouha SC",
     opponentLogo: "smouha.png",
-    date: "2025-12-25",
+    date: "2026-04-15",
     time: "19:30",
     stadium: "Alexandria Stadium",
     city: "Alexandria, Egypt",
-    result: "2 - 1",
-    status: "Finished",
+    status: "Upcoming",
     matchType: "Away",
     referee: "Ibrahim Nour El Din",
-    competition: "Egyptian League Cup"
+    competition: "Egyptian Premier League"
   },
   {
     opponent: "Baladiyyat El Mahalla",
     opponentLogo: "mahalla.png",
-    date: "2025-12-28",
+    date: "2026-04-22",
     time: "18:00",
     stadium: "Cairo International Stadium",
     city: "Cairo, Egypt",
@@ -110,26 +108,26 @@ export const zamalekMatches = [
   {
     opponent: "Al Ittihad Alexandria",
     opponentLogo: "ittihad.png",
-    date: "2026-01-01",
+    date: "2026-04-28",
     time: "19:00",
     stadium: "Borg El Arab Stadium",
     city: "Alexandria, Egypt",
     status: "Upcoming",
     matchType: "Away",
     referee: "Mohamed El Sabahi",
-    competition: "Egyptian League Cup"
+    competition: "Egyptian Premier League"
   },
   {
     opponent: "ZED FC",
     opponentLogo: "zed.png",
-    date: "2026-01-11",
+    date: "2026-05-04",
     time: "19:00",
     stadium: "Cairo International Stadium",
     city: "Cairo, Egypt",
     status: "Upcoming",
     matchType: "Home",
     referee: "Nader Qamar El Dawla",
-    competition: "Egyptian League Cup"
+    competition: "Egyptian Premier League"
   }
 ];
 

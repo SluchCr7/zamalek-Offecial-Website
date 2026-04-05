@@ -10,6 +10,7 @@ import ZamalekKitShowcase from "@/Components/Store";
 import PresidentsHall from "@/Components/PresidentsHall";
 import SocialWall from "@/Components/SocialWall";
 import ArrowTopButton from "@/Components/ArrowTopButton";
+import AdsComponent from "@/Components/AdsComponent";
 
 export default function Home() {
   return (
@@ -20,7 +21,9 @@ export default function Home() {
         <News />
         <Table />
         <ZamalekAchievements />
-        <PresidentsHall />
+
+        <AdsComponent />
+
         <TeamsSlider />
         <FirstTeam />
         <ZamalekKitShowcase />

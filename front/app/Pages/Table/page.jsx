@@ -127,7 +127,7 @@ export default function LeagueTablePage() {
                           </td>
                           <td className="p-6">
                             <div className="flex items-center gap-4">
-                              <div className="relative w-10 h-10 rounded-full border border-border bg-white shadow-sm transition-transform group-hover:scale-110">
+                              <div className="relative w-10 h-10 rounded-full border border-border bg-foreground shadow-sm transition-transform group-hover:scale-110">
                                 <Image src={team.team.logo} alt={team.team.name} fill className="object-contain p-2" />
                               </div>
                               <span className={`font-black ${isZamalek ? 'text-primary' : ''}`}>{team.team.name}</span>
@@ -141,7 +141,7 @@ export default function LeagueTablePage() {
                           <td className="p-6 text-center font-bold opacity-40">{team.all.goals.against}</td>
                           <td className="p-6 text-center font-black">{team.goalsDiff}</td>
                           <td className="p-6 text-center">
-                            <div className={`inline-flex items-center justify-center w-12 h-10 rounded-xl font-black font-heading text-lg ${isZamalek ? 'bg-primary text-white shadow-lg shadow-primary/30' : 'bg-card border border-border'
+                            <div className={`inline-flex items-center justify-center w-12 h-10 rounded-xl font-black font-heading text-lg ${isZamalek ? 'bg-primary text-foreground shadow-lg shadow-primary/30' : 'bg-card border border-border'
                               }`}>
                               {team.points}
                             </div>
@@ -193,7 +193,7 @@ export default function LeagueTablePage() {
                   {card.data.slice(0, 3).map((player, pIdx) => (
                     <div key={pIdx} className="group flex items-center gap-4">
                       <div className="relative">
-                        <div className={`absolute -top-1 -right-1 w-5 h-5 rounded-lg flex items-center justify-center text-[10px] font-black text-white z-10 ${pIdx === 0 ? 'bg-yellow-500' : 'bg-primary'
+                        <div className={`absolute -top-1 -right-1 w-5 h-5 rounded-lg flex items-center justify-center text-[10px] font-black text-foreground z-10 ${pIdx === 0 ? 'bg-yellow-500' : 'bg-primary'
                           }`}>
                           {pIdx + 1}
                         </div>

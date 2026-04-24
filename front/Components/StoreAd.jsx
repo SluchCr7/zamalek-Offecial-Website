@@ -8,7 +8,7 @@ export default function ZamalekStoreBanner() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="w-full bg-gradient-to-r from-red-700 to-red-500 text-white py-6 px-4 flex items-center justify-center md:justify-between gap-4"
+      className="w-full bg-gradient-to-r from-red-700 to-red-500 text-foreground py-6 px-4 flex items-center justify-center md:justify-between gap-4"
     >
       {/* شعار النادي */}
       <div className="flex items-center gap-3">
@@ -36,7 +36,7 @@ export default function ZamalekStoreBanner() {
 
       {/* زر اختياري */}
       <div className="hidden md:block">
-        <button className="bg-white text-red-700 px-4 py-2 rounded-full font-semibold hover:bg-yellow-300 transition">
+        <button className="bg-foreground text-red-700 px-4 py-2 rounded-full font-semibold hover:bg-yellow-300 transition">
           Learn More
         </button>
       </div>

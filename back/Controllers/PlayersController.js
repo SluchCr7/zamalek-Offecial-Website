@@ -19,7 +19,7 @@ const getHeaders = () => {
  * @access  Public
  */
 const getPlayers = asyncHandler(async (req, res) => {
-    const team = req.query.team || '1040'; // Default: 968 (Zamalek)
+    const team = req.query.team || '1040'; // Default: 1040 (Zamalek)
     const season = req.query.season || '2024'; // Default: 2024
 
     const cacheKey = `players_${team}_${season}`;

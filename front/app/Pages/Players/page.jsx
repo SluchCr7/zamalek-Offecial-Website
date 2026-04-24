@@ -136,18 +136,18 @@ export default function SportsSelectionPage() {
 
                                         {/* Mini Stat Badges */}
                                         <div className="absolute top-8 right-8 flex flex-col gap-3">
-                                            <div className="p-4 bg-white/10 backdrop-blur-3xl border border-white/20 rounded-2xl text-white text-center">
+                                            <div className="p-4 bg-foreground/10 backdrop-blur-3xl border border-foreground/20 rounded-2xl text-foreground text-center">
                                                 <div className="text-xl font-black">{sport.stats.titles}</div>
                                                 <div className="text-[7px] font-black uppercase">Titles</div>
                                             </div>
                                         </div>
 
                                         <div className="absolute bottom-8 inset-x-8">
-                                            <div className="w-14 h-14 rounded-2xl bg-primary text-white flex items-center justify-center mb-6 shadow-xl group-hover:scale-110 transition-transform">
+                                            <div className="w-14 h-14 rounded-2xl bg-primary text-foreground flex items-center justify-center mb-6 shadow-xl group-hover:scale-110 transition-transform">
                                                 {sport.icon}
                                             </div>
-                                            <h3 className="text-3xl font-black font-heading text-white italic mb-2">{sport.name}</h3>
-                                            <p className="text-xs font-bold text-white/60 line-clamp-2">{sport.description}</p>
+                                            <h3 className="text-3xl font-black font-heading text-foreground italic mb-2">{sport.name}</h3>
+                                            <p className="text-xs font-bold text-foreground/60 line-clamp-2">{sport.description}</p>
                                         </div>
                                     </div>
 
@@ -156,7 +156,7 @@ export default function SportsSelectionPage() {
                                             <Users size={14} className="text-primary" />
                                             <span>{sport.stats.players} Active Members</span>
                                         </div>
-                                        <div className="w-12 h-12 rounded-2xl bg-muted flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
+                                        <div className="w-12 h-12 rounded-2xl bg-muted flex items-center justify-center group-hover:bg-primary group-hover:text-foreground transition-all">
                                             <ArrowRight size={18} />
                                         </div>
                                     </div>

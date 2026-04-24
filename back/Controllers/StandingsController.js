@@ -19,7 +19,7 @@ const getHeaders = () => {
  * @access  Public
  */
 const getStandings = asyncHandler(async (req, res) => {
-    const league = req.query.league || '233'; // Default: Egyptian Premier League
+    const league = req.query.league || '1040'; // Default: Egyptian Premier League
     const season = req.query.season || '2024';
 
     const cacheKey = `standings_${league}_${season}`;

@@ -52,7 +52,7 @@ export default function RegisterPage() {
           <motion.div
             initial={{ scale: 0.8, rotate: -5 }}
             animate={{ scale: 1, rotate: 0 }}
-            className="w-40 h-40 relative mx-auto p-4 bg-white rounded-[2.5rem] shadow-2xl"
+            className="w-40 h-40 relative mx-auto p-4 bg-foreground rounded-[2.5rem] shadow-2xl"
           >
             <Image src="/zsc.png" alt="Zamalek Logo" fill className="object-contain p-4" />
           </motion.div>
@@ -142,10 +142,10 @@ export default function RegisterPage() {
             <motion.button
               whileTap={{ scale: 0.98 }}
               disabled={loading}
-              className="w-full h-20 bg-primary text-white rounded-3xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-primary/40 flex items-center justify-center gap-4 hover:-translate-y-1 transition-all disabled:opacity-50"
+              className="w-full h-20 bg-primary text-foreground rounded-3xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-primary/40 flex items-center justify-center gap-4 hover:-translate-y-1 transition-all disabled:opacity-50"
             >
               {loading ? (
-                <div className="w-6 h-6 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+                <div className="w-6 h-6 border-2 border-foreground/20 border-t-white rounded-full animate-spin" />
               ) : (
                 <>
                   <span>أنشئ حسابي الآن</span>

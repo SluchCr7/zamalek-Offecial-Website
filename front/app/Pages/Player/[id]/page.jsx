@@ -24,7 +24,7 @@ export default function PlayerProfilePage() {
       <div className="min-h-screen w-full flex flex-col items-center justify-center bg-background text-foreground gap-6">
         <div className="text-9xl font-black text-muted opacity-20">404</div>
         <h2 className="text-3xl font-bold">اللاعب غير موجود</h2>
-        <Link href="/Pages/Players/Football" className="px-8 py-3 bg-primary text-white rounded-xl font-bold hover:bg-primary/80 transition-colors">
+        <Link href="/Pages/Players/Football" className="px-8 py-3 bg-primary text-foreground rounded-xl font-bold hover:bg-primary/80 transition-colors">
           عودة للقائمة
         </Link>
       </div>
@@ -63,7 +63,7 @@ export default function PlayerProfilePage() {
               className="space-y-8"
             >
               <div className="flex items-center gap-6">
-                <div className="w-20 h-20 rounded-3xl bg-primary flex items-center justify-center text-white text-4xl font-black font-heading shadow-2xl">
+                <div className="w-20 h-20 rounded-3xl bg-primary flex items-center justify-center text-foreground text-4xl font-black font-heading shadow-2xl">
                   {playerFromData.number || '99'}
                 </div>
                 <div className="space-y-1">
@@ -87,11 +87,11 @@ export default function PlayerProfilePage() {
             </motion.div>
 
             <div className="flex gap-4">
-              <button className="h-16 px-10 bg-white/10 backdrop-blur-3xl border border-white/20 text-white rounded-2xl font-black text-xs uppercase tracking-widest flex items-center gap-4 hover:bg-white hover:text-black transition-all">
+              <button className="h-16 px-10 bg-foreground/10 backdrop-blur-3xl border border-foreground/20 text-foreground rounded-2xl font-black text-xs uppercase tracking-widest flex items-center gap-4 hover:bg-foreground hover:text-background transition-all">
                 <Heart size={18} />
                 <span>Fan Favorite</span>
               </button>
-              <button className="h-16 w-16 bg-primary text-white rounded-2xl flex items-center justify-center shadow-2xl shadow-primary/40 hover:-translate-y-1 transition-all">
+              <button className="h-16 w-16 bg-primary text-foreground rounded-2xl flex items-center justify-center shadow-2xl shadow-primary/40 hover:-translate-y-1 transition-all">
                 <Share2 size={20} />
               </button>
             </div>
@@ -116,7 +116,7 @@ export default function PlayerProfilePage() {
                   transition={{ delay: i * 0.1 }}
                   className="p-10 bg-card border border-border rounded-[3rem] text-center space-y-4 group hover:border-primary transition-all shadow-2xl"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-muted text-foreground flex items-center justify-center mx-auto group-hover:bg-primary group-hover:text-white transition-all">
+                  <div className="w-12 h-12 rounded-2xl bg-muted text-foreground flex items-center justify-center mx-auto group-hover:bg-primary group-hover:text-foreground transition-all">
                     {stat.icon}
                   </div>
                   <div className="text-4xl font-black font-heading italic">{stat.value}</div>
@@ -169,7 +169,7 @@ export default function PlayerProfilePage() {
                 ].map((item, i) => (
                   <div key={i} className="flex flex-col md:flex-row items-center gap-8 p-10 bg-card border border-border rounded-[3rem] group hover:border-primary transition-all">
                     <div className="text-2xl font-black font-heading text-primary italic w-32 shrink-0">{item.year}</div>
-                    <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
+                    <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-foreground transition-all">
                       <Shield size={24} />
                     </div>
                     <div className="flex-1 space-y-1 text-center md:text-right">
@@ -203,7 +203,7 @@ export default function PlayerProfilePage() {
                 <InfoRow label="تاريخ الانضمام" value="Jul 1, 2023" />
               </div>
 
-              <button className="w-full h-20 bg-primary text-white rounded-3xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-primary/40 flex items-center justify-center gap-4 hover:-translate-y-1 transition-all">
+              <button className="w-full h-20 bg-primary text-foreground rounded-3xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-primary/40 flex items-center justify-center gap-4 hover:-translate-y-1 transition-all">
                 <span>Explore Cards</span>
                 <Zap size={18} />
               </button>

@@ -46,7 +46,7 @@ export default function VideosPage() {
               <Flame size={16} fill="currentColor" />
               <span>Trending Now</span>
               <span className="w-12 h-px bg-primary" />
-              <span className="text-white/60">Season 2024</span>
+              <span className="text-foreground/60">Season 2024</span>
             </div>
 
             <h1 className="text-5xl md:text-8xl font-black font-heading leading-tight italic">
@@ -62,12 +62,12 @@ export default function VideosPage() {
             <div className="flex flex-wrap gap-4 pt-4">
               <button
                 onClick={() => setSelectedVideo(featured)}
-                className="h-16 px-10 bg-primary text-white rounded-2xl font-black text-xs uppercase tracking-widest flex items-center gap-4 shadow-2xl shadow-primary/40 hover:-translate-y-1 transition-all"
+                className="h-16 px-10 bg-primary text-foreground rounded-2xl font-black text-xs uppercase tracking-widest flex items-center gap-4 shadow-2xl shadow-primary/40 hover:-translate-y-1 transition-all"
               >
                 <Play size={20} fill="currentColor" />
                 <span>Watch Now</span>
               </button>
-              <button className="h-16 w-16 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-2xl flex items-center justify-center hover:bg-white hover:text-black transition-all">
+              <button className="h-16 w-16 bg-foreground/10 backdrop-blur-xl border border-foreground/20 text-foreground rounded-2xl flex items-center justify-center hover:bg-foreground hover:text-background transition-all">
                 <Share2 size={20} />
               </button>
             </div>
@@ -79,7 +79,7 @@ export default function VideosPage() {
           <div className="container mx-auto px-4">
             <div className="flex gap-4 overflow-x-auto pb-4 custom-scrollbar no-scrollbar">
               {categories.map((cat, i) => (
-                <button key={i} className="px-8 py-3 bg-white/5 backdrop-blur-3xl border border-white/10 rounded-2xl text-[10px] font-black uppercase tracking-widest text-white/60 hover:text-white hover:bg-primary hover:border-primary transition-all whitespace-nowrap">
+                <button key={i} className="px-8 py-3 bg-foreground/5 backdrop-blur-3xl border border-foreground/10 rounded-2xl text-[10px] font-black uppercase tracking-widest text-foreground/60 hover:text-foreground hover:bg-primary hover:border-primary transition-all whitespace-nowrap">
                   {cat}
                 </button>
               ))}
@@ -98,8 +98,8 @@ export default function VideosPage() {
                 <h2 className="text-4xl font-black font-heading tracking-tight italic">{cat}</h2>
               </div>
               <div className="flex gap-3">
-                <button className="w-12 h-12 rounded-xl border border-border flex items-center justify-center hover:bg-primary hover:border-primary hover:text-white transition-all"><ChevronRight size={20} /></button>
-                <button className="w-12 h-12 rounded-xl border border-border flex items-center justify-center hover:bg-primary hover:border-primary hover:text-white transition-all"><ChevronLeft size={20} /></button>
+                <button className="w-12 h-12 rounded-xl border border-border flex items-center justify-center hover:bg-primary hover:border-primary hover:text-foreground transition-all"><ChevronRight size={20} /></button>
+                <button className="w-12 h-12 rounded-xl border border-border flex items-center justify-center hover:bg-primary hover:border-primary hover:text-foreground transition-all"><ChevronLeft size={20} /></button>
               </div>
             </header>
 
@@ -128,13 +128,13 @@ export default function VideosPage() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-6xl aspect-video rounded-[3rem] overflow-hidden border border-white/10 shadow-[0_32px_128px_rgba(227,27,35,0.2)] bg-black"
+              className="relative w-full max-w-6xl aspect-video rounded-[3rem] overflow-hidden border border-foreground/10 shadow-[0_32px_128px_rgba(227,27,35,0.2)] bg-black"
             >
               <button
                 onClick={() => setSelectedVideo(null)}
-                className="absolute top-8 left-8 w-12 h-12 rounded-full bg-white/10 backdrop-blur-3xl flex items-center justify-center hover:bg-primary transition-all z-50"
+                className="absolute top-8 left-8 w-12 h-12 rounded-full bg-foreground/10 backdrop-blur-3xl flex items-center justify-center hover:bg-primary transition-all z-50"
               >
-                <X size={24} className="text-white" />
+                <X size={24} className="text-foreground" />
               </button>
 
               {/* In a real app use dynamic URL */}
@@ -178,16 +178,16 @@ function VideoThumbnail({ video, onClick }) {
           className="object-cover transition-transform duration-700 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
-          <div className="w-20 h-20 rounded-full bg-primary/90 text-white flex items-center justify-center scale-75 group-hover:scale-100 transition-transform shadow-2xl">
+          <div className="w-20 h-20 rounded-full bg-primary/90 text-foreground flex items-center justify-center scale-75 group-hover:scale-100 transition-transform shadow-2xl">
             <Play size={32} fill="currentColor" className="mr-[-4px]" />
           </div>
         </div>
 
         <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between pointer-events-none">
-          <span className="px-4 py-1.5 bg-black/60 backdrop-blur rounded-lg text-[8px] font-black text-white">{video.duration}</span>
+          <span className="px-4 py-1.5 bg-black/60 backdrop-blur rounded-lg text-[8px] font-black text-foreground">{video.duration}</span>
           <div className="flex gap-2">
-            <div className="w-8 h-8 rounded-lg bg-white/10 backdrop-blur border border-white/20 flex items-center justify-center text-white"><Share2 size={12} /></div>
-            <div className="w-8 h-8 rounded-lg bg-white/10 backdrop-blur border border-white/20 flex items-center justify-center text-white"><Info size={12} /></div>
+            <div className="w-8 h-8 rounded-lg bg-foreground/10 backdrop-blur border border-foreground/20 flex items-center justify-center text-foreground"><Share2 size={12} /></div>
+            <div className="w-8 h-8 rounded-lg bg-foreground/10 backdrop-blur border border-foreground/20 flex items-center justify-center text-foreground"><Info size={12} /></div>
           </div>
         </div>
       </div>

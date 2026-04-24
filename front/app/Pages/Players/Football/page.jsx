@@ -38,7 +38,7 @@ export default function PlayersPage() {
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="w-24 h-24 relative mx-auto p-4 bg-white rounded-3xl shadow-2xl rotate-3"
+            className="w-24 h-24 relative mx-auto p-4 bg-foreground rounded-3xl shadow-2xl rotate-3"
           >
             <Image src="/teams/zamalek.png" alt="Zamalek SC" fill className="object-contain p-2" />
           </motion.div>
@@ -72,7 +72,7 @@ export default function PlayersPage() {
               <button
                 key={pos}
                 onClick={() => setActiveFilter(pos)}
-                className={`px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${activeFilter === pos ? 'bg-primary text-white shadow-xl shadow-primary/20' : 'hover:bg-muted opacity-60'
+                className={`px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${activeFilter === pos ? 'bg-primary text-foreground shadow-xl shadow-primary/20' : 'hover:bg-muted opacity-60'
                   }`}
               >
                 {pos === "All" ? "الكل" :
@@ -155,14 +155,14 @@ function PlayerCard({ item, index, isStaff }) {
 
           {/* Number Overlay */}
           {!isStaff && item.number && (
-            <div className="absolute top-10 left-10 text-white/10 group-hover:text-primary/20 text-9xl font-black font-heading italic transition-all duration-700">
+            <div className="absolute top-10 left-10 text-foreground/10 group-hover:text-primary/20 text-9xl font-black font-heading italic transition-all duration-700">
               {item.number}
             </div>
           )}
 
           {/* Badge Indicator */}
           <div className="absolute top-10 right-10">
-            <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white scale-0 group-hover:scale-100 transition-all duration-500">
+            <div className="w-14 h-14 rounded-2xl bg-foreground/10 backdrop-blur-xl border border-foreground/20 flex items-center justify-center text-foreground scale-0 group-hover:scale-100 transition-all duration-500">
               {isStaff ? <Shield size={24} /> : <Target size={24} />}
             </div>
           </div>
@@ -172,15 +172,15 @@ function PlayerCard({ item, index, isStaff }) {
             <div className="space-y-4 translate-y-8 group-hover:translate-y-0 transition-all duration-500 opacity-0 group-hover:opacity-100">
               <div className="flex gap-4">
                 {isStaff ? (
-                  <div className="px-4 py-1.5 bg-primary rounded-xl text-white text-[8px] font-black uppercase tracking-widest">{item.role}</div>
+                  <div className="px-4 py-1.5 bg-primary rounded-xl text-foreground text-[8px] font-black uppercase tracking-widest">{item.role}</div>
                 ) : (
                   <>
-                    <div className="px-4 py-1.5 bg-primary rounded-xl text-white text-[8px] font-black uppercase tracking-widest">{item.position}</div>
-                    <div className="px-4 py-1.5 bg-white/10 backdrop-blur border border-white/20 rounded-xl text-white text-[8px] font-black uppercase tracking-widest">{item.nationality}</div>
+                    <div className="px-4 py-1.5 bg-primary rounded-xl text-foreground text-[8px] font-black uppercase tracking-widest">{item.position}</div>
+                    <div className="px-4 py-1.5 bg-foreground/10 backdrop-blur border border-foreground/20 rounded-xl text-foreground text-[8px] font-black uppercase tracking-widest">{item.nationality}</div>
                   </>
                 )}
               </div>
-              <div className="flex items-center justify-between text-white/60 text-[9px] font-bold">
+              <div className="flex items-center justify-between text-foreground/60 text-[9px] font-bold">
                 {!isStaff && <span>Market Value: {item.marketValue || "N/A"}</span>}
                 <div className="flex items-center gap-2">
                   <Activity size={12} className="text-primary" />
@@ -204,7 +204,7 @@ function PlayerCard({ item, index, isStaff }) {
 
           <div className="mt-8 pt-6 border-t border-border/50 w-full flex items-center justify-between opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-y-4 group-hover:translate-y-0">
             <span className="text-[9px] font-black uppercase tracking-widest text-primary">View Statistics</span>
-            <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
+            <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center group-hover:bg-primary group-hover:text-foreground transition-all">
               <ArrowRight size={14} />
             </div>
           </div>

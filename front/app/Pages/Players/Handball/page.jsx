@@ -76,7 +76,7 @@ export default function HandballPage() {
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === tab ? 'bg-emerald-600 text-white shadow-xl shadow-emerald-500/20' : 'hover:bg-muted opacity-40 hover:opacity-100'
+                            className={`px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === tab ? 'bg-emerald-600 text-foreground shadow-xl shadow-emerald-500/20' : 'hover:bg-muted opacity-40 hover:opacity-100'
                                 }`}
                         >
                             {tab === 'Roster' ? 'قائمة المحاربين' : tab === 'Coaching' ? 'الجهاز الفني' : 'قاعة البطولات'}
@@ -150,7 +150,7 @@ export default function HandballPage() {
                             <div className="md:col-span-2 p-20 bg-card border border-border rounded-[4rem] text-center space-y-10 shadow-2xl relative overflow-hidden group">
                                 <div className="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-all" />
                                 <div className="w-24 h-24 bg-emerald-600 rounded-[2rem] flex items-center justify-center mx-auto shadow-2xl mb-6 scale-110">
-                                    <Crosshair className="text-white" size={32} />
+                                    <Crosshair className="text-foreground" size={32} />
                                 </div>
                                 <div className="space-y-4">
                                     <div className="text-emerald-500 font-black text-xs uppercase tracking-[0.5em]">Supreme Military Commander</div>
@@ -181,7 +181,7 @@ export default function HandballPage() {
                                             <h3 className="text-4xl font-black font-heading italic leading-tight uppercase">{ach.title}</h3>
                                             <div className="h-2 w-20 bg-emerald-500 rounded-full" />
                                         </div>
-                                        <div className="w-20 h-20 rounded-3xl bg-muted/50 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-all">
+                                        <div className="w-20 h-20 rounded-3xl bg-muted/50 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-foreground transition-all">
                                             <Trophy size={40} />
                                         </div>
                                     </header>
@@ -211,7 +211,7 @@ function InfoCard({ label, value, icon, color }) {
     return (
         <div className="p-12 bg-card border border-border rounded-[3rem] shadow-xl flex items-center gap-8 group hover:border-emerald-600 transition-all overflow-hidden relative">
             <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-all" />
-            <div className={`relative z-10 w-16 h-16 rounded-2xl bg-muted flex items-center justify-center ${color} group-hover:bg-emerald-600 group-hover:text-white transition-all`}>
+            <div className={`relative z-10 w-16 h-16 rounded-2xl bg-muted flex items-center justify-center ${color} group-hover:bg-emerald-600 group-hover:text-foreground transition-all`}>
                 {icon}
             </div>
             <div className="relative z-10">

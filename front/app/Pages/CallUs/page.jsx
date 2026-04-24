@@ -27,7 +27,7 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="w-24 h-24 relative mx-auto p-4 bg-white rounded-3xl shadow-2xl"
+            className="w-24 h-24 relative mx-auto p-4 bg-foreground rounded-3xl shadow-2xl"
           >
             <Image src="/teams/zamalek.png" alt="Zamalek SC" fill className="object-contain p-2" />
           </motion.div>
@@ -82,7 +82,7 @@ export default function ContactPage() {
               <h3 className="text-sm font-black uppercase tracking-[0.2em] opacity-40">تابعنا على المنصات</h3>
               <div className="flex flex-wrap gap-4">
                 {[Instagram, Twitter, Facebook, Youtube].map((Icon, i) => (
-                  <a key={i} href="#" className="w-14 h-14 rounded-2xl bg-muted text-foreground flex items-center justify-center hover:bg-primary hover:text-white transition-all hover:-translate-y-1">
+                  <a key={i} href="#" className="w-14 h-14 rounded-2xl bg-muted text-foreground flex items-center justify-center hover:bg-primary hover:text-foreground transition-all hover:-translate-y-1">
                     <Icon size={24} />
                   </a>
                 ))}
@@ -133,7 +133,7 @@ export default function ContactPage() {
                     <textarea rows="6" placeholder="اكتب استفسارك هنا بالتفصيل..." className="w-full bg-muted/30 border-2 border-border rounded-[2.5rem] p-8 focus:border-primary focus:outline-none focus:bg-card transition-all font-bold" />
                   </div>
 
-                  <button className="w-full h-20 bg-primary text-white rounded-3xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-primary/40 flex items-center justify-center gap-4 hover:-translate-y-1 transition-all group">
+                  <button className="w-full h-20 bg-primary text-foreground rounded-3xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-primary/40 flex items-center justify-center gap-4 hover:-translate-y-1 transition-all group">
                     <span>إرسال الطلب</span>
                     <Send size={18} className="group-hover:translate-x-[-10px] transition-transform" />
                   </button>
@@ -164,7 +164,7 @@ export default function ContactPage() {
 function ContactInfoCard({ icon, title, value, subtitle }) {
   return (
     <div className="p-10 bg-card border border-border rounded-[3.5rem] shadow-2xl group hover:border-primary transition-all flex items-center gap-8">
-      <div className="w-16 h-16 rounded-[2rem] bg-muted text-foreground flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all shadow-inner">
+      <div className="w-16 h-16 rounded-[2rem] bg-muted text-foreground flex items-center justify-center group-hover:bg-primary group-hover:text-foreground transition-all shadow-inner">
         {icon}
       </div>
       <div className="space-y-1 text-right">

@@ -80,7 +80,7 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
             <span className="w-8 h-[2px] bg-primary" />
             <span className="text-primary font-black text-[10px] uppercase tracking-tighter">{category || "فريق"}</span>
           </div>
-          <h3 className="text-2xl md:text-3xl font-black text-white font-heading leading-tight">{title}</h3>
+          <h3 className="text-2xl md:text-3xl font-black text-foreground font-heading leading-tight">{title}</h3>
         </div>
       </div>
     </motion.li>
@@ -139,7 +139,7 @@ export function Carousel({ slides }) {
       <div className="flex items-center justify-center gap-8 mt-16">
         <button
           onClick={() => handleMove('prev')}
-          className="w-14 h-14 rounded-full border border-border bg-card flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-xl"
+          className="w-14 h-14 rounded-full border border-border bg-card flex items-center justify-center hover:bg-primary hover:text-foreground transition-all shadow-xl"
         >
           <ChevronRight size={24} />
         </button>
@@ -156,7 +156,7 @@ export function Carousel({ slides }) {
 
         <button
           onClick={() => handleMove('next')}
-          className="w-14 h-14 rounded-full border border-border bg-card flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-xl"
+          className="w-14 h-14 rounded-full border border-border bg-card flex items-center justify-center hover:bg-primary hover:text-foreground transition-all shadow-xl"
         >
           <ChevronLeft size={24} />
         </button>

@@ -110,7 +110,7 @@ export default function ZamalekAchievements() {
             >
               <button
                 onClick={() => setSelected(null)}
-                className="absolute top-6 left-6 z-10 w-12 h-12 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-primary transition-colors"
+                className="absolute top-6 left-6 z-10 w-12 h-12 rounded-full bg-black/50 text-foreground flex items-center justify-center hover:bg-primary transition-colors"
                 dir="ltr"
               >
                 <X size={24} />

@@ -59,7 +59,7 @@ export default function CookiesPage() {
               </nav>
               <div className="p-6 bg-muted rounded-2xl border border-border space-y-4">
                 <p className="text-[10px] font-bold opacity-40 leading-relaxed text-center">نحن نستخدم ملفات تعريف الارتباط لتحسين تجربتك. باستمرارك في التصفح فأنت توافق على ذلك.</p>
-                <button className="w-full h-12 bg-primary text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all">تخصيص الإعدادات</button>
+                <button className="w-full h-12 bg-primary text-foreground rounded-xl text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all">تخصيص الإعدادات</button>
               </div>
             </div>
           </aside>
@@ -76,7 +76,7 @@ export default function CookiesPage() {
                 className="p-12 md:p-20 bg-card border border-border rounded-[4rem] group shadow-2xl hover:border-primary transition-all relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[4rem] group-hover:bg-primary transition-all translate-x-12 -translate-y-12 group-hover:translate-x-0 group-hover:translate-y-0 flex items-center justify-center p-8">
-                  <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="text-foreground opacity-0 group-hover:opacity-100 transition-opacity">
                     {s.icon}
                   </div>
                 </div>

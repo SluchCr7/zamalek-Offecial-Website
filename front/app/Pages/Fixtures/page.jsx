@@ -75,7 +75,7 @@ export default function FixturesPage() {
           <div className="flex items-center justify-center gap-6 mt-12 bg-card/50 backdrop-blur-xl border border-border p-2 rounded-2xl w-fit mx-auto shadow-2xl">
             <button
               onClick={() => setCurrentMonth(prev => prev.subtract(1, 'month'))}
-              className="w-12 h-12 flex items-center justify-center rounded-xl bg-muted hover:bg-primary hover:text-white transition-all"
+              className="w-12 h-12 flex items-center justify-center rounded-xl bg-muted hover:bg-primary hover:text-foreground transition-all"
             >
               <ChevronRight size={20} />
             </button>
@@ -84,7 +84,7 @@ export default function FixturesPage() {
             </div>
             <button
               onClick={() => setCurrentMonth(prev => prev.add(1, 'month'))}
-              className="w-12 h-12 flex items-center justify-center rounded-xl bg-muted hover:bg-primary hover:text-white transition-all"
+              className="w-12 h-12 flex items-center justify-center rounded-xl bg-muted hover:bg-primary hover:text-foreground transition-all"
             >
               <ChevronLeft size={20} />
             </button>
@@ -118,7 +118,7 @@ export default function FixturesPage() {
                   className={`min-h-[160px] p-4 border-l border-b border-border relative group transition-colors ${!inMonth ? 'bg-muted/5 opacity-30 shadow-inner' : 'hover:bg-primary/[0.02]'
                     } ${idx % 7 === 6 ? 'border-l-0' : ''}`}
                 >
-                  <div className={`text-sm font-black mb-4 flex items-center justify-center w-8 h-8 rounded-full transition-all ${cellIsToday ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'opacity-40'
+                  <div className={`text-sm font-black mb-4 flex items-center justify-center w-8 h-8 rounded-full transition-all ${cellIsToday ? 'bg-primary text-foreground shadow-lg shadow-primary/20' : 'opacity-40'
                     }`}>
                     {d.format('D')}
                   </div>
@@ -197,7 +197,7 @@ export default function FixturesPage() {
               {/* زر الإغلاق - Sticky لسهولة الاستخدام */}
               <button
                 onClick={() => setSelectedMatch(null)}
-                className="sticky md:absolute top-6 left-6 w-12 h-12 rounded-full bg-muted/80 backdrop-blur-sm flex items-center justify-center hover:bg-primary hover:text-white transition-all z-50 shadow-lg"
+                className="sticky md:absolute top-6 left-6 w-12 h-12 rounded-full bg-muted/80 backdrop-blur-sm flex items-center justify-center hover:bg-primary hover:text-foreground transition-all z-50 shadow-lg"
               >
                 <X size={24} />
               </button>
@@ -220,7 +220,7 @@ export default function FixturesPage() {
 
                   {/* الفريق 1 (الزمالك أو الخصم لو الزمالك ضيف) */}
                   <div className="flex flex-row md:flex-col items-center gap-4 md:gap-6 w-full md:w-auto justify-center">
-                    <div className="relative w-20 h-20 md:w-40 md:h-40 p-3 rounded-full bg-white shadow-xl flex-shrink-0">
+                    <div className="relative w-20 h-20 md:w-40 md:h-40 p-3 rounded-full bg-foreground shadow-xl flex-shrink-0">
                       <Image src={selectedMatch.teams.home.logo} alt={selectedMatch.teams.home.name} fill className="object-contain p-4" />
                     </div>
                     <h3 className={`text-xl md:text-3xl font-black font-heading ${selectedMatch.teams.home.id === 1040 ? 'text-primary' : ''}`}>{selectedMatch.teams.home.name}</h3>
@@ -248,8 +248,8 @@ export default function FixturesPage() {
                     )}
 
                     {['1H', '2H', 'HT', 'ET', 'P'].includes(selectedMatch.fixture.status.short) && (
-                      <div className="mt-4 flex items-center gap-2 bg-red-600 px-4 py-1.5 rounded-full text-white text-[10px] font-black animate-pulse">
-                        <div className="w-1.5 h-1.5 rounded-full bg-white" />
+                      <div className="mt-4 flex items-center gap-2 bg-red-600 px-4 py-1.5 rounded-full text-foreground text-[10px] font-black animate-pulse">
+                        <div className="w-1.5 h-1.5 rounded-full bg-foreground" />
                         مباشر الآن
                       </div>
                     )}
@@ -257,7 +257,7 @@ export default function FixturesPage() {
 
                   {/* الفريق 2 (الخصم أو الزمالك) */}
                   <div className="flex flex-row-reverse md:flex-col items-center gap-4 md:gap-6 w-full md:w-auto justify-center">
-                    <div className="relative w-20 h-20 md:w-40 md:h-40 p-3 rounded-full bg-white shadow-xl flex-shrink-0">
+                    <div className="relative w-20 h-20 md:w-40 md:h-40 p-3 rounded-full bg-foreground shadow-xl flex-shrink-0">
                       <Image src={selectedMatch.teams.away.logo} alt={selectedMatch.teams.away.name} fill className="object-contain p-4" />
                     </div>
                     <h3 className={`text-xl md:text-3xl font-black font-heading text-center ${selectedMatch.teams.away.id === 1040 ? 'text-primary' : ''}`}>{selectedMatch.teams.away.name}</h3>

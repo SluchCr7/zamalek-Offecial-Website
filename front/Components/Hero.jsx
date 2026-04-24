@@ -13,11 +13,11 @@ const Hero = () => {
   const yText = useTransform(scrollY, [0, 400], [0, -100]);
 
   return (
-    <section className="relative w-full h-[100vh] min-h-[850px] bg-[#020202] text-white overflow-hidden flex items-center" dir="rtl">
+    <section className="relative w-full h-[100vh] min-h-[850px] bg-background text-foreground overflow-hidden flex items-center" dir="rtl">
 
       {/* Background Texture & Noise */}
       <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 mix-blend-overlay pointer-events-none z-0" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-[#020202]/80 to-[#020202] z-0" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-background/80 to-background z-0" />
 
       {/* Main Container - Asymmetrical Grid */}
       <div className="relative z-10 w-full h-full flex flex-col lg:flex-row items-center justify-between mx-auto">
@@ -45,7 +45,7 @@ const Hero = () => {
             </div>
 
             <h1 className="text-6xl md:text-[6rem] lg:text-[7rem] font-black leading-[0.9] tracking-tighter mb-8 group">
-              <span className="block text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 drop-shadow-lg">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-b from-foreground to-foreground/60 drop-shadow-lg">
                 مدرسة الفن
               </span>
               <span className="block italic text-primary drop-shadow-[0_0_40px_rgba(227,27,35,0.4)] relative inline-block">
@@ -59,7 +59,7 @@ const Hero = () => {
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-white/50 font-bold max-w-xl mb-12 leading-loose border-r-4 border-primary pl-6 py-2 bg-gradient-to-l from-white/5 to-transparent backdrop-blur-sm">
+            <p className="text-lg md:text-xl text-foreground/50 font-bold max-w-xl mb-12 leading-loose border-r-4 border-primary pl-6 py-2 bg-gradient-to-l from-foreground/5 to-transparent backdrop-blur-sm">
               أكثر من مجرد نادي رياضي، هو شغف يتوارثه الملايين وهوية تصنع المجد. الزمالك ليس فقط بطولات، بل هو فن اللعب وروح الفرسان البيضاء.
             </p>
 
@@ -68,7 +68,7 @@ const Hero = () => {
                 href="/Pages/Fixtures"
                 className="group relative flex items-center justify-center gap-4 bg-primary text-white w-full sm:w-auto px-10 py-5 rounded-none skew-x-[-10deg] font-black text-lg transition-all hover:scale-105 active:scale-95 shadow-[0_15px_40px_-10px_rgba(227,27,35,0.6)] overflow-hidden"
               >
-                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-700 ease-in-out skew-x-[10deg]" />
+                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-foreground/20 to-transparent -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-700 ease-in-out skew-x-[10deg]" />
                 <span className="skew-x-[10deg] relative z-10 flex items-center gap-3">
                   اكتشف المباريات
                   <ArrowLeft size={20} className="group-hover:-translate-x-2 transition-transform" />
@@ -77,9 +77,9 @@ const Hero = () => {
 
               <Link
                 href="/Pages/Store"
-                className="group relative flex items-center justify-center gap-4 bg-transparent text-white w-full sm:w-auto px-10 py-5 rounded-none skew-x-[-10deg] font-bold text-lg border border-white/20 backdrop-blur-md transition-all hover:bg-white/10 overflow-hidden"
+                className="group relative flex items-center justify-center gap-4 bg-transparent text-foreground w-full sm:w-auto px-10 py-5 rounded-none skew-x-[-10deg] font-bold text-lg border border-foreground/20 backdrop-blur-md transition-all hover:bg-foreground/10 overflow-hidden"
               >
-                <div className="absolute inset-0 w-full h-full bg-white/5 -translate-x-[200%] group-hover:translate-x-0 transition-transform duration-500 ease-in-out skew-x-[10deg]" />
+                <div className="absolute inset-0 w-full h-full bg-foreground/5 -translate-x-[200%] group-hover:translate-x-0 transition-transform duration-500 ease-in-out skew-x-[10deg]" />
                 <span className="skew-x-[10deg] relative z-10 flex items-center gap-3">
                   <Play size={16} fill="white" />
                   المتجر الرسمي
@@ -108,8 +108,8 @@ const Hero = () => {
                 playsInline
                 className="object-cover opacity-80 w-full h-full pointer-events-none"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/60 via-transparent to-[#020202]/90 mix-blend-multiply pointer-events-none" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent opacity-80 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/60 via-transparent to-background/90 mix-blend-multiply pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80 pointer-events-none" />
             </motion.div>
           </motion.div>
 
@@ -124,11 +124,11 @@ const Hero = () => {
               { title: "سنة التأسيس", value: "1911", desc: "تاريـخ عـريـق" },
               { title: "أبطال أفريقيا", value: "5", desc: "دوري الأبطـال" }
             ].map((stat, i) => (
-              <div key={i} className="bg-black/60 backdrop-blur-2xl border border-white/10 p-5 w-48 md:w-56 shadow-[0_10px_30px_rgba(0,0,0,0.5)] skew-x-[-10deg] hover:scale-105 hover:-translate-y-2 transition-transform duration-500 cursor-default">
+              <div key={i} className="bg-background/80 backdrop-blur-2xl border border-foreground/10 p-5 w-48 md:w-56 shadow-[0_10px_30px_rgba(0,0,0,0.5)] skew-x-[-10deg] hover:scale-105 hover:-translate-y-2 transition-transform duration-500 cursor-default">
                 <div className="skew-x-[10deg]">
                   <h4 className="text-primary text-[10px] uppercase font-black tracking-widest mb-1">{stat.title}</h4>
-                  <div className="text-4xl font-black font-heading text-white">{stat.value}</div>
-                  <div className="text-xs text-white/40 font-bold">{stat.desc}</div>
+                  <div className="text-4xl font-black font-heading text-foreground">{stat.value}</div>
+                  <div className="text-xs text-foreground/40 font-bold">{stat.desc}</div>
                 </div>
               </div>
             ))}

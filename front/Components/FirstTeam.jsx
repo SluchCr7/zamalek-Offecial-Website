@@ -57,7 +57,7 @@ const FirstTeam = () => {
                 viewport={{ once: true }}
                 className="group relative h-[500px] rounded-3xl overflow-hidden bg-muted border border-border"
               >
-                <div className="absolute -right-4 -top-8 text-[12rem] font-black text-black/5 group-hover:text-primary/10 transition-colors duration-500 italic select-none">
+                <div className="absolute -right-4 -top-8 text-[12rem] font-black text-background/5 group-hover:text-primary/10 transition-colors duration-500 italic select-none">
                   {player.number ?? '00'}
                 </div>
 
@@ -69,7 +69,7 @@ const FirstTeam = () => {
                       fill
                       className="object-cover object-top transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 transition-opacity group-hover:opacity-80" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-60 transition-opacity group-hover:opacity-80" />
                   </div>
                 </div>
 
@@ -78,16 +78,16 @@ const FirstTeam = () => {
                     <span className="w-8 h-[2px] bg-primary" />
                     <span className="text-primary font-black text-sm uppercase">{player.position}</span>
                   </div>
-                  <h3 className="text-3xl font-black text-white mb-4 leading-none">{player.name}</h3>
+                  <h3 className="text-3xl font-black text-foreground mb-4 leading-none">{player.name}</h3>
 
                   <div className="grid grid-cols-2 gap-4 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                    <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/10">
-                      <div className="text-[10px] text-white/50 font-bold uppercase">الرقم</div>
-                      <div className="text-lg font-black text-white">#{player.number ?? '--'}</div>
+                    <div className="bg-foreground/10 backdrop-blur-md rounded-xl p-3 border border-foreground/10">
+                      <div className="text-[10px] text-foreground/50 font-bold uppercase">الرقم</div>
+                      <div className="text-lg font-black text-foreground">#{player.number ?? '--'}</div>
                     </div>
-                    <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/10">
-                      <div className="text-[10px] text-white/50 font-bold uppercase">الجنسية</div>
-                      <div className="text-lg font-black text-white">{player.nationality}</div>
+                    <div className="bg-foreground/10 backdrop-blur-md rounded-xl p-3 border border-foreground/10">
+                      <div className="text-[10px] text-foreground/50 font-bold uppercase">الجنسية</div>
+                      <div className="text-lg font-black text-foreground">{player.nationality}</div>
                     </div>
                   </div>
                 </div>

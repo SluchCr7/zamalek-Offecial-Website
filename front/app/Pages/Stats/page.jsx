@@ -171,12 +171,12 @@ export default function ZamalekStatsPage() {
               </section>
 
               {/* Attendance Records */}
-              <section className="bg-primary rounded-[3rem] p-10 text-white shadow-2xl shadow-primary/30 relative overflow-hidden">
+              <section className="bg-primary rounded-[3rem] p-10 text-foreground shadow-2xl shadow-primary/30 relative overflow-hidden">
                 <Users size={150} className="absolute -bottom-10 -left-10 opacity-10" />
                 <h4 className="text-xl font-black font-heading mb-10 relative z-10 italic">أرقام الحضور الجماهيري</h4>
                 <div className="space-y-6 relative z-10">
                   {mostMatchesAttendance.slice(0, 3).map((m, i) => (
-                    <div key={i} className="flex justify-between items-center pb-4 border-b border-white/10 last:border-0">
+                    <div key={i} className="flex justify-between items-center pb-4 border-b border-foreground/10 last:border-0">
                       <div>
                         <div className="font-black italic">vs {m.against}</div>
                         <div className="text-[10px] font-bold opacity-60 uppercase tracking-widest">SEASON {m.year}</div>
@@ -199,7 +199,7 @@ export default function ZamalekStatsPage() {
 function QuickStat({ icon, label, value, sub }) {
   return (
     <div className="p-8 text-center space-y-2 group">
-      <div className="w-12 h-12 rounded-2xl bg-muted text-foreground flex items-center justify-center mx-auto group-hover:bg-primary group-hover:text-white transition-all">
+      <div className="w-12 h-12 rounded-2xl bg-muted text-foreground flex items-center justify-center mx-auto group-hover:bg-primary group-hover:text-foreground transition-all">
         {icon}
       </div>
       <div className="text-[9px] font-black uppercase tracking-widest opacity-40 pt-2">{label}</div>

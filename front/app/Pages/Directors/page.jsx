@@ -94,7 +94,7 @@ function DirectorCard({ director, size = 'md', featured = false, index = 0 }) {
         {/* Social Hover */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 flex gap-4">
           {[Instagram, Twitter, Linkedin].map((Icon, i) => (
-            <a key={i} href="#" className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center hover:scale-110 transition-all">
+            <a key={i} href="#" className="w-10 h-10 rounded-xl bg-primary text-foreground flex items-center justify-center hover:scale-110 transition-all">
               <Icon size={18} />
             </a>
           ))}
@@ -102,7 +102,7 @@ function DirectorCard({ director, size = 'md', featured = false, index = 0 }) {
 
         {/* Badge */}
         {featured && (
-          <div className="absolute top-6 right-6 p-4 rounded-2xl bg-primary/90 text-white shadow-2xl shadow-primary/40">
+          <div className="absolute top-6 right-6 p-4 rounded-2xl bg-primary/90 text-foreground shadow-2xl shadow-primary/40">
             <Award size={24} />
           </div>
         )}

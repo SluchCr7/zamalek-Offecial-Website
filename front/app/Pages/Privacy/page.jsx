@@ -57,7 +57,7 @@ export default function PrivacyPage() {
                   </a>
                 ))}
               </nav>
-              <button onClick={() => window.print()} className="w-full h-16 bg-muted rounded-2xl flex items-center justify-center gap-3 text-xs font-black uppercase tracking-widest hover:bg-primary hover:text-white transition-all">
+              <button onClick={() => window.print()} className="w-full h-16 bg-muted rounded-2xl flex items-center justify-center gap-3 text-xs font-black uppercase tracking-widest hover:bg-primary hover:text-foreground transition-all">
                 <Download size={18} />
                 <span>Print Record</span>
               </button>
@@ -76,7 +76,7 @@ export default function PrivacyPage() {
                 className="p-12 md:p-20 bg-card border border-border rounded-[4rem] group shadow-2xl hover:border-primary transition-all relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[4rem] group-hover:bg-primary transition-all translate-x-12 -translate-y-12 group-hover:translate-x-0 group-hover:translate-y-0 flex items-center justify-center p-8">
-                  <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="text-foreground opacity-0 group-hover:opacity-100 transition-opacity">
                     {s.icon}
                   </div>
                 </div>

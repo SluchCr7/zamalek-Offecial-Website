@@ -44,7 +44,7 @@ export default function AddNewsModal() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 200, damping: 18 }}
-            className="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden"
+            className="relative bg-foreground rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* زر الإغلاق */}
@@ -80,7 +80,7 @@ export default function AddNewsModal() {
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                       <label
                         htmlFor="imageUpload"
-                        className="cursor-pointer bg-white/90 text-gray-800 px-4 py-2 rounded-xl text-sm font-semibold hover:bg-white"
+                        className="cursor-pointer bg-foreground/90 text-gray-800 px-4 py-2 rounded-xl text-sm font-semibold hover:bg-foreground"
                       >
                         تغيير الصورة
                       </label>
@@ -149,7 +149,7 @@ export default function AddNewsModal() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   type="submit"
-                  className="px-6 py-2 rounded-xl bg-red-700 text-white font-semibold shadow-md hover:bg-red-800 transition"
+                  className="px-6 py-2 rounded-xl bg-red-700 text-foreground font-semibold shadow-md hover:bg-red-800 transition"
                 >
                   نشر الخبر
                 </motion.button>

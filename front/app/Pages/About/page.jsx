@@ -53,7 +53,7 @@ export default function AboutPage() {
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="w-32 h-32 md:w-48 md:h-48 relative mx-auto p-6 bg-white rounded-full shadow-[0_32px_128px_rgba(227,27,35,0.2)]"
+            className="w-32 h-32 md:w-48 md:h-48 relative mx-auto p-6 bg-foreground rounded-full shadow-[0_32px_128px_rgba(227,27,35,0.2)]"
           >
             <Image src="/teams/zamalek.png" alt="Zamalek SC" fill className="object-contain p-6" />
           </motion.div>
@@ -108,7 +108,7 @@ export default function AboutPage() {
                 }`}
             >
               {/* Year Bubble */}
-              <div className="absolute right-1/2 translate-x-1/2 w-20 h-20 rounded-full border-4 border-background bg-primary text-white flex items-center justify-center font-black text-xl z-20 shadow-xl shadow-primary/20 hidden md:flex">
+              <div className="absolute right-1/2 translate-x-1/2 w-20 h-20 rounded-full border-4 border-background bg-primary text-foreground flex items-center justify-center font-black text-xl z-20 shadow-xl shadow-primary/20 hidden md:flex">
                 {item.year}
               </div>
 
@@ -165,13 +165,13 @@ export default function AboutPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
 
                 <div className="absolute inset-0 flex flex-col justify-end p-10">
-                  <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-foreground/10 backdrop-blur-xl border border-foreground/20 flex items-center justify-center text-foreground mb-6">
                     <PlayCircle size={24} />
                   </div>
-                  <h3 className="text-2xl font-black font-heading text-white mb-2 leading-tight">
+                  <h3 className="text-2xl font-black font-heading text-foreground mb-2 leading-tight">
                     {moment.title}
                   </h3>
-                  <p className="text-white/60 font-bold text-sm">
+                  <p className="text-foreground/60 font-bold text-sm">
                     {moment.year}
                   </p>
                 </div>
@@ -201,7 +201,7 @@ export default function AboutPage() {
             >
               <button
                 onClick={() => setSelectedHighlight(null)}
-                className="absolute top-8 left-8 w-12 h-12 rounded-full bg-muted/50 flex items-center justify-center hover:bg-primary hover:text-white transition-all z-10"
+                className="absolute top-8 left-8 w-12 h-12 rounded-full bg-muted/50 flex items-center justify-center hover:bg-primary hover:text-foreground transition-all z-10"
               >
                 <X size={24} />
               </button>

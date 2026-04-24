@@ -43,7 +43,7 @@ export default function NewsDetailPage({ params }) {
               animate={{ opacity: 1, x: 0 }}
               className="flex flex-wrap items-center gap-6"
             >
-              <div className="px-5 py-1.5 bg-primary rounded-xl text-white text-[10px] font-black uppercase tracking-widest">
+              <div className="px-5 py-1.5 bg-primary rounded-xl text-foreground text-[10px] font-black uppercase tracking-widest">
                 Hot News
               </div>
               <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest opacity-60">
@@ -88,7 +88,7 @@ export default function NewsDetailPage({ params }) {
               <div className="text-[9px] font-black uppercase tracking-widest rotate-90 origin-left opacity-20 whitespace-nowrap mb-24">Share Article</div>
               <div className="flex flex-col gap-4">
                 {[Share2, Bookmark, MessageSquare].map((Icon, idx) => (
-                  <button key={idx} className="w-16 h-16 rounded-2xl border border-border flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all shadow-xl group">
+                  <button key={idx} className="w-16 h-16 rounded-2xl border border-border flex items-center justify-center hover:bg-primary hover:text-foreground hover:border-primary transition-all shadow-xl group">
                     <Icon size={20} className="opacity-40 group-hover:opacity-100" />
                   </button>
                 ))}
@@ -168,7 +168,7 @@ export default function NewsDetailPage({ params }) {
 
             {/* Newsletter Sidebar */}
             <div className="p-10 bg-primary/2 rounded-[4rem] border border-primary/10 shadow-2xl space-y-8 text-center">
-              <div className="w-16 h-16 bg-primary text-white rounded-[2rem] flex items-center justify-center mx-auto shadow-xl shadow-primary/20">
+              <div className="w-16 h-16 bg-primary text-foreground rounded-[2rem] flex items-center justify-center mx-auto shadow-xl shadow-primary/20">
                 <Newspaper size={24} />
               </div>
               <div className="space-y-2">
@@ -177,7 +177,7 @@ export default function NewsDetailPage({ params }) {
               </div>
               <form className="space-y-3">
                 <input type="email" placeholder="بريدك الإلكتروني" className="w-full h-14 bg-background border border-border rounded-2xl px-6 text-xs font-bold outline-none focus:border-primary transition-all text-center" />
-                <button className="w-full h-14 bg-primary text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all">JOIN THE JOURNEY</button>
+                <button className="w-full h-14 bg-primary text-foreground rounded-2xl font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all">JOIN THE JOURNEY</button>
               </form>
             </div>
 

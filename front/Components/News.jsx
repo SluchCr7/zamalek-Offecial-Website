@@ -48,7 +48,7 @@ const News = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
 
             {/* Category Tag */}
-            <div className="absolute top-6 right-6 px-4 py-1.5 rounded-full bg-primary text-white text-[10px] font-black uppercase tracking-tighter">
+            <div className="absolute top-6 right-6 px-4 py-1.5 rounded-full bg-primary text-foreground text-[10px] font-black uppercase tracking-tighter">
               {latestNews.category}
             </div>
           </div>
@@ -128,7 +128,7 @@ const News = () => {
         <div className="mt-16 text-center">
           <Link
             href="/Pages/News"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-border font-black text-sm hover:bg-primary hover:text-white hover:border-primary transition-all group"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-border font-black text-sm hover:bg-primary hover:text-foreground hover:border-primary transition-all group"
           >
             <span>عرض كافة الأخبار</span>
             <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />

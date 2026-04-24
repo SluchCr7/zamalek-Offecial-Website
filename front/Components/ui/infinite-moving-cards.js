@@ -49,7 +49,7 @@ export const InfiniteMovingCards = ({
                   className="w-full h-100 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/10 flex flex-col justify-end p-4">
-                  <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
                     {team.name}
                     {!team.open && (
                       <Lock size={16} className="text-gray-400" />

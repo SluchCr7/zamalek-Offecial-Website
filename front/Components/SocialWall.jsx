@@ -94,7 +94,7 @@ const SocialWall = () => {
                                     <Image src={post.image} alt="Social Post" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                                     {post.type === "video" && (
                                         <div className="absolute inset-0 flex items-center justify-center">
-                                            <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 flex items-center justify-center text-white">
+                                            <div className="w-16 h-16 rounded-full bg-foreground/20 backdrop-blur-xl border border-foreground/30 flex items-center justify-center text-foreground">
                                                 <Play size={24} fill="currentColor" />
                                             </div>
                                         </div>

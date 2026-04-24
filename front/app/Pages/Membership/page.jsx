@@ -161,7 +161,7 @@ export default function MembershipPage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full h-20 bg-primary text-white rounded-3xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-primary/40 flex items-center justify-center gap-4 hover:-translate-y-1 transition-all disabled:opacity-50"
+                    className="w-full h-20 bg-primary text-foreground rounded-3xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-primary/40 flex items-center justify-center gap-4 hover:-translate-y-1 transition-all disabled:opacity-50"
                   >
                     {submitting ? 'PROCESSING...' : 'SEND APPLICATION'}
                     <Zap size={18} />
@@ -189,7 +189,7 @@ export default function MembershipPage() {
                 <h3 className="text-3xl font-black font-heading">تم استلام طلبك!</h3>
                 <p className="text-lg font-bold opacity-60">سيتواصل معك أحد ممثلي إدارة العضويات لإتمام إجراءات التعاقد واستلام البطاقات.</p>
               </div>
-              <button onClick={() => setSuccessOpen(false)} className="w-full h-16 bg-muted rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all">CLOSE</button>
+              <button onClick={() => setSuccessOpen(false)} className="w-full h-16 bg-muted rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-primary hover:text-foreground transition-all">CLOSE</button>
             </motion.div>
           </div>
         )}
@@ -204,18 +204,18 @@ function PlanCard({ plan, selected, onClick }) {
     <motion.div
       whileHover={{ scale: 1.02 }}
       onClick={onClick}
-      className={`relative p-10 rounded-[3rem] border-2 transition-all cursor-pointer flex flex-col h-full overflow-hidden ${selected ? 'bg-primary border-primary text-white shadow-2xl shadow-primary/30' : 'bg-card border-border hover:border-primary/40'
+      className={`relative p-10 rounded-[3rem] border-2 transition-all cursor-pointer flex flex-col h-full overflow-hidden ${selected ? 'bg-primary border-primary text-foreground shadow-2xl shadow-primary/30' : 'bg-card border-border hover:border-primary/40'
         }`}
     >
       <div className="relative z-10 space-y-8">
         <div className="space-y-2">
-          <div className={`text-[10px] font-black uppercase tracking-widest ${selected ? 'text-white/60' : 'text-primary'}`}>{plan.short}</div>
+          <div className={`text-[10px] font-black uppercase tracking-widest ${selected ? 'text-foreground/60' : 'text-primary'}`}>{plan.short}</div>
           <h4 className="text-3xl font-black font-heading italic">{plan.name}</h4>
         </div>
 
         <div className="space-y-1">
           <div className="text-4xl font-black font-heading">{plan.price}</div>
-          <div className={`text-[10px] font-black uppercase tracking-widest ${selected ? 'text-white/40' : 'opacity-20'}`}>EGP / ANNUAL FEE</div>
+          <div className={`text-[10px] font-black uppercase tracking-widest ${selected ? 'text-foreground/40' : 'opacity-20'}`}>EGP / ANNUAL FEE</div>
         </div>
 
         <div className="w-full h-px bg-current opacity-10" />
@@ -223,8 +223,8 @@ function PlanCard({ plan, selected, onClick }) {
         <ul className="space-y-4">
           {plan.perks.map((perk, i) => (
             <li key={i} className="flex items-center gap-3 text-xs font-bold">
-              <CheckCircle size={14} className={selected ? 'text-white' : 'text-primary'} />
-              <span className={selected ? 'text-white/80' : 'opacity-60'}>{perk}</span>
+              <CheckCircle size={14} className={selected ? 'text-foreground' : 'text-primary'} />
+              <span className={selected ? 'text-foreground/80' : 'opacity-60'}>{perk}</span>
             </li>
           ))}
         </ul>
@@ -232,11 +232,11 @@ function PlanCard({ plan, selected, onClick }) {
 
       {plan.popular && (
         <div className="absolute top-8 left-8 rotate-[-90deg] origin-top-left -translate-x-full">
-          <span className={`px-4 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest ${selected ? 'bg-white text-primary' : 'bg-primary text-white'}`}>MOST POPULAR</span>
+          <span className={`px-4 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest ${selected ? 'bg-foreground text-primary' : 'bg-primary text-foreground'}`}>MOST POPULAR</span>
         </div>
       )}
 
-      {selected && <Shield size={150} className="absolute bottom-[-50px] left-[-50px] text-white/5 -rotate-12" />}
+      {selected && <Shield size={150} className="absolute bottom-[-50px] left-[-50px] text-foreground/5 -rotate-12" />}
     </motion.div>
   );
 }
@@ -244,7 +244,7 @@ function PlanCard({ plan, selected, onClick }) {
 function BenefitItem({ icon, title, desc }) {
   return (
     <div className="p-10 bg-card border border-border rounded-[3rem] group hover:border-primary transition-all flex items-start gap-8">
-      <div className="w-16 h-16 rounded-2xl bg-muted text-foreground flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all shrink-0">
+      <div className="w-16 h-16 rounded-2xl bg-muted text-foreground flex items-center justify-center group-hover:bg-primary group-hover:text-foreground transition-all shrink-0">
         {icon}
       </div>
       <div className="space-y-3">

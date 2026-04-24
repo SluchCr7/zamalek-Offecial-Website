@@ -87,7 +87,7 @@ export default function StoreComingSoon() {
                   />
                 </div>
               ))}
-              <div className="w-16 h-16 rounded-full border-4 border-background bg-primary text-white flex items-center justify-center font-black text-xs z-10 shadow-lg">
+              <div className="w-16 h-16 rounded-full border-4 border-background bg-primary text-foreground flex items-center justify-center font-black text-xs z-10 shadow-lg">
                 +15K
               </div>
             </div>
@@ -141,7 +141,7 @@ export default function StoreComingSoon() {
                   />
                   <button
                     type="submit"
-                    className="h-16 px-12 bg-primary text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-2xl shadow-primary/40 hover:-translate-y-1 transition-all flex items-center justify-center gap-4"
+                    className="h-16 px-12 bg-primary text-foreground rounded-2xl font-black text-xs uppercase tracking-widest shadow-2xl shadow-primary/40 hover:-translate-y-1 transition-all flex items-center justify-center gap-4"
                   >
                     <span>تفعيل الاشتراك</span>
                     <ArrowRight size={18} />
@@ -192,7 +192,7 @@ function ProductCard({ product, index }) {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
           <div className="absolute top-10 right-10 flex gap-2">
-            <div className="px-6 py-2 bg-black/40 backdrop-blur-3xl border border-white/20 rounded-xl text-white text-[8px] font-black uppercase tracking-widest">
+            <div className="px-6 py-2 bg-black/40 backdrop-blur-3xl border border-foreground/20 rounded-xl text-foreground text-[8px] font-black uppercase tracking-widest">
               COMING SOON
             </div>
           </div>

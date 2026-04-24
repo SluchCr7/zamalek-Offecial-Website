@@ -28,8 +28,8 @@ const PartnershipAd = () => {
             </motion.div>
 
             {/* Decorative Brand Lines */}
-            <div className="absolute top-20 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-            <div className="absolute bottom-20 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            <div className="absolute top-20 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent" />
+            <div className="absolute bottom-20 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent" />
 
             {/* Main Content Container */}
             <div className="container mx-auto px-4 relative z-10">
@@ -40,7 +40,7 @@ const PartnershipAd = () => {
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-4 px-8 py-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl text-white text-[10px] font-black uppercase tracking-[0.5em] shadow-2xl"
+                        className="inline-flex items-center gap-4 px-8 py-3 rounded-full border border-foreground/10 bg-foreground/5 backdrop-blur-xl text-foreground text-[10px] font-black uppercase tracking-[0.5em] shadow-2xl"
                     >
                         <ShieldCheck size={16} className="text-secondary" />
                         <span>The Official 2025 Era</span>
@@ -55,7 +55,7 @@ const PartnershipAd = () => {
                             viewport={{ once: true }}
                             className="flex items-center justify-center gap-6"
                         >
-                            <h2 className="text-5xl md:text-9xl font-black font-heading tracking-tighter leading-none italic uppercase text-white">
+                            <h2 className="text-5xl md:text-9xl font-black font-heading tracking-tighter leading-none italic uppercase text-foreground">
                                 ZAMALEK <span className="text-primary italic">X</span> NIKE
                             </h2>
                         </motion.div>
@@ -64,7 +64,7 @@ const PartnershipAd = () => {
                             whileInView={{ opacity: 1 }}
                             transition={{ delay: 0.3 }}
                             viewport={{ once: true }}
-                            className="text-lg md:text-3xl font-bold text-white/40 tracking-[0.3em] uppercase italic"
+                            className="text-lg md:text-3xl font-bold text-foreground/40 tracking-[0.3em] uppercase italic"
                         >
                             Unity • Strength • Heritage
                         </motion.p>
@@ -81,7 +81,7 @@ const PartnershipAd = () => {
                         <div className="relative w-24 h-24 md:w-32 md:h-32 group-hover:scale-110 transition-transform duration-700">
                             <Image src="/zsc.png" alt="Zamalek" fill className="object-contain" />
                         </div>
-                        <div className="h-20 w-px bg-white/10 rotate-[20deg]" />
+                        <div className="h-20 w-px bg-foreground/10 rotate-[20deg]" />
                         <div className="relative w-32 h-16 md:w-48 md:h-24 group-hover:scale-110 transition-transform duration-700">
                             <Image src="/nike.png" alt="Nike" fill className="object-contain brightness-0 invert" />
                         </div>
@@ -96,22 +96,22 @@ const PartnershipAd = () => {
                         className="flex flex-col md:flex-row items-center gap-12 pt-12"
                     >
                         <div className="flex flex-col items-center gap-4 text-center">
-                            <div className="w-16 h-16 rounded-3xl bg-primary text-white flex items-center justify-center shadow-2xl shadow-primary/20 hover:scale-110 transition-transform cursor-pointer">
+                            <div className="w-16 h-16 rounded-3xl bg-primary text-foreground flex items-center justify-center shadow-2xl shadow-primary/20 hover:scale-110 transition-transform cursor-pointer">
                                 <ShoppingBag size={24} />
                             </div>
                             <div className="space-y-1">
-                                <div className="text-[10px] font-black uppercase tracking-widest text-white italic">Shop the Collection</div>
-                                <div className="text-[8px] font-bold text-white/40 uppercase tracking-widest leading-none">Official 2025 Kits Available</div>
+                                <div className="text-[10px] font-black uppercase tracking-widest text-foreground italic">Shop the Collection</div>
+                                <div className="text-[8px] font-bold text-foreground/40 uppercase tracking-widest leading-none">Official 2025 Kits Available</div>
                             </div>
                         </div>
 
                         <div className="flex flex-col items-center gap-4 text-center">
-                            <div className="w-16 h-16 rounded-3xl bg-secondary text-white flex items-center justify-center shadow-2xl shadow-secondary/20 hover:scale-110 transition-transform cursor-pointer">
+                            <div className="w-16 h-16 rounded-3xl bg-secondary text-foreground flex items-center justify-center shadow-2xl shadow-secondary/20 hover:scale-110 transition-transform cursor-pointer">
                                 <Zap size={24} />
                             </div>
                             <div className="space-y-1">
-                                <div className="text-[10px] font-black uppercase tracking-widest text-white italic">Athletic Tech</div>
-                                <div className="text-[8px] font-bold text-white/40 uppercase tracking-widest leading-none">Engineered for Flight</div>
+                                <div className="text-[10px] font-black uppercase tracking-widest text-foreground italic">Athletic Tech</div>
+                                <div className="text-[8px] font-bold text-foreground/40 uppercase tracking-widest leading-none">Engineered for Flight</div>
                             </div>
                         </div>
                     </motion.div>
@@ -122,7 +122,7 @@ const PartnershipAd = () => {
                         whileInView={{ opacity: 1 }}
                         transition={{ delay: 0.8 }}
                         viewport={{ once: true }}
-                        className="pt-24 opacity-20 flex items-center gap-4 text-[9px] font-black uppercase tracking-[0.5em] text-white"
+                        className="pt-24 opacity-20 flex items-center gap-4 text-[9px] font-black uppercase tracking-[0.5em] text-foreground"
                     >
                         <Star size={12} fill="currentColor" />
                         <span>Zamalek Sporting Club Official Global Partner</span>

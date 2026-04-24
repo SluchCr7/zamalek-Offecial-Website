@@ -32,7 +32,7 @@ const ArrowTopButton = () => {
           whileHover={{ scale: 1.1, y: -5 }}
           whileTap={{ scale: 0.9 }}
           onClick={handleScroll}
-          className="fixed bottom-10 left-10 z-[100] w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center shadow-2xl shadow-primary/30 group"
+          className="fixed bottom-10 left-10 z-[100] w-14 h-14 rounded-full bg-primary text-foreground flex items-center justify-center shadow-2xl shadow-primary/30 group"
           aria-label="Back to Top"
         >
           {/* Animated Background Pulse */}

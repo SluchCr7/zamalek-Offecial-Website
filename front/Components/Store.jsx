@@ -142,7 +142,7 @@ export default function ZamalekKitShowcase() {
 
                 {/* Hover Action */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
-                  <div className="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center shadow-2xl">
+                  <div className="w-16 h-16 rounded-full bg-foreground text-background flex items-center justify-center shadow-2xl">
                     <Eye size={24} />
                   </div>
                 </div>
@@ -150,7 +150,7 @@ export default function ZamalekKitShowcase() {
                 {/* Info Overlay */}
                 <div className="absolute inset-x-0 bottom-0 p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform">
                   <span className="text-[10px] font-black uppercase tracking-widest text-primary mb-1 block">{kit.year}</span>
-                  <h3 className="text-xl font-black text-white leading-tight">{kit.name}</h3>
+                  <h3 className="text-xl font-black text-foreground leading-tight">{kit.name}</h3>
                 </div>
               </div>
             </motion.div>
@@ -188,7 +188,7 @@ export default function ZamalekKitShowcase() {
             >
               <button
                 onClick={() => setSelected(null)}
-                className="absolute top-6 left-6 z-10 w-12 h-12 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-primary transition-colors"
+                className="absolute top-6 left-6 z-10 w-12 h-12 rounded-full bg-black/50 text-foreground flex items-center justify-center hover:bg-primary transition-colors"
                 dir="ltr"
               >
                 <X size={24} />
@@ -228,7 +228,7 @@ export default function ZamalekKitShowcase() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 w-full">
-                  <button className="flex-1 py-5 rounded-2xl bg-primary text-white font-black hover:bg-primary-hover transition-all shadow-xl shadow-primary/20">
+                  <button className="flex-1 py-5 rounded-2xl bg-primary text-foreground font-black hover:bg-primary-hover transition-all shadow-xl shadow-primary/20">
                     أضف إلى السلة
                   </button>
                   <button className="flex-1 py-5 rounded-2xl bg-muted border border-border font-black hover:bg-border transition-all">

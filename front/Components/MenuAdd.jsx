@@ -28,7 +28,7 @@ export default function AddMenuModalAll({ open, onClose }) {
             exit={{ scale: 0.8, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 200, damping: 18 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative bg-gradient-to-br from-white via-gray-50 to-gray-100 rounded-3xl shadow-2xl w-full max-w-md overflow-hidden"
+            className="relative bg-gradient-to-br from-foreground via-gray-50 to-gray-100 rounded-3xl shadow-2xl w-full max-w-md overflow-hidden"
           >
             {/* زر الإغلاق */}
             <button
@@ -59,10 +59,10 @@ export default function AddMenuModalAll({ open, onClose }) {
                   }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 14 }}
-                  className="flex items-center gap-4 bg-white/90 backdrop-blur-md border border-gray-200 rounded-2xl shadow-sm hover:shadow-md p-4 text-gray-800 text-lg font-semibold"
+                  className="flex items-center gap-4 bg-foreground/90 backdrop-blur-md border border-gray-200 rounded-2xl shadow-sm hover:shadow-md p-4 text-gray-800 text-lg font-semibold"
                   onClick={item.onClick}
                 >
-                  <div className="bg-red-700 text-white p-3 rounded-xl shadow-md">
+                  <div className="bg-red-700 text-foreground p-3 rounded-xl shadow-md">
                     {item.icon}
                   </div>
                   <span>{item.label}</span>

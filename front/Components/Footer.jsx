@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 
 const Footer = () => {
   return (
-    <footer className="relative bg-[#050505] text-white overflow-hidden w-full" dir="rtl">
+    <footer className="relative bg-background text-foreground overflow-hidden w-full" dir="rtl">
       {/* Structural Decor & Top Borders */}
       <div className="absolute top-0 left-0 w-full h-3 flex flex-col gap-[3px] z-20">
         <div className="h-[4px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-90 shadow-[0_0_15px_rgba(227,27,35,0.8)] w-full" />
@@ -23,7 +23,7 @@ const Footer = () => {
 
       {/* Hero-Style Newsletter Banner */}
       <div className="relative z-10 container mx-auto px-6 md:px-12 pt-24 pb-16">
-        <div className="bg-gradient-to-tr from-[#0a0a0a] to-[#111] border border-white/5 rounded-[3rem] p-10 md:p-16 relative overflow-hidden group shadow-[0_30px_60px_-15px_rgba(0,0,0,1)]">
+        <div className="bg-gradient-to-tr from-card to-background border border-foreground/5 rounded-[3rem] p-10 md:p-16 relative overflow-hidden group shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_30px_60px_-15px_rgba(0,0,0,1)]">
           <div className="absolute top-0 right-0 w-64 h-full bg-gradient-to-l from-primary/10 to-transparent pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 blur-[80px] rounded-full pointer-events-none group-hover:bg-primary/20 transition-all duration-700" />
           
@@ -42,13 +42,13 @@ const Footer = () => {
             </div>
             
             <div className="w-full lg:w-[450px]">
-              <div className="relative group/input flex bg-black/60 border border-white/10 p-2 rounded-[2rem] backdrop-blur-xl transition-all focus-within:border-primary/50 focus-within:shadow-[0_0_30px_rgba(227,27,35,0.2)]">
+              <div className="relative group/input flex bg-foreground/5 border border-foreground/10 p-2 rounded-[2rem] backdrop-blur-xl transition-all focus-within:border-primary/50 focus-within:shadow-[0_0_30px_rgba(227,27,35,0.2)]">
                 <input
                   type="email"
                   placeholder="أدخل بريدك الإلكتروني"
-                  className="flex-1 bg-transparent border-none py-5 px-6 outline-none text-white font-bold placeholder:text-white/30"
+                  className="flex-1 bg-transparent border-none py-5 px-6 outline-none text-foreground font-bold placeholder:text-foreground/30"
                 />
-                <button className="px-8 bg-primary rounded-3xl text-white font-black text-xs uppercase tracking-widest hover:scale-105 active:scale-95 transition-all flex items-center gap-3 shadow-lg shadow-primary/30">
+                <button className="px-8 bg-primary rounded-3xl text-foreground font-black text-xs uppercase tracking-widest hover:scale-105 active:scale-95 transition-all flex items-center gap-3 shadow-lg shadow-primary/30">
                   <span>اشترك</span>
                   <Send size={16} />
                 </button>
@@ -59,18 +59,18 @@ const Footer = () => {
       </div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 py-16 border-t border-white/5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 py-16 border-t border-foreground/5">
           
           {/* Brand Column */}
           <div className="lg:col-span-4 space-y-8">
             <Link href="/" className="inline-flex items-end gap-6 group relative">
-              <div className="relative w-24 h-24 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-md rounded-3xl p-4 border border-white/10 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.5)] transition-all duration-500 group-hover:-rotate-6 group-hover:scale-110">
+              <div className="relative w-24 h-24 bg-gradient-to-br from-foreground/10 to-transparent backdrop-blur-md rounded-3xl p-4 border border-foreground/10 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.5)] transition-all duration-500 group-hover:-rotate-6 group-hover:scale-110">
                 <Image src="/zsc.png" alt="Zamalek SC" fill className="object-contain p-2 relative z-10" />
                 <div className="absolute inset-0 bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
               <div className="pb-1">
                 <h3 className="text-3xl lg:text-4xl font-black font-heading tracking-tighter leading-none italic drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]">ZAMALEK <span className="text-primary italic">SC</span></h3>
-                <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/30 mt-2">White Knights • 1911</p>
+                <p className="text-[10px] font-black uppercase tracking-[0.5em] text-foreground/30 mt-2">White Knights • 1911</p>
               </div>
             </Link>
             
@@ -84,7 +84,7 @@ const Footer = () => {
                   key={idx}
                   href={social.link}
                   target="_blank"
-                  className="w-12 h-12 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center text-white/50 hover:bg-primary hover:border-primary hover:text-white hover:scale-110 hover:-translate-y-2 transition-all duration-500 shadow-lg"
+                  className="w-12 h-12 rounded-2xl bg-foreground/5 border border-foreground/5 flex items-center justify-center text-foreground/50 hover:bg-primary hover:border-primary hover:text-foreground hover:scale-110 hover:-translate-y-2 transition-all duration-500 shadow-lg"
                 >
                   <span className="scale-125">{social.icon}</span>
                 </Link>
@@ -137,11 +137,11 @@ const Footer = () => {
         </div>
 
         {/* Global Partners */}
-        <div className="py-16 mt-8 border-y border-white/5 relative">
+        <div className="py-16 mt-8 border-y border-foreground/5 relative">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 h-full w-[2px] bg-gradient-to-b from-transparent via-primary/20 to-transparent pointer-events-none hidden md:block" />
           
           <div className="flex flex-col items-center gap-10">
-            <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[1em] text-white/30 bg-black px-6 py-2 rounded-full border border-white/5">
+            <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[1em] text-foreground/40 bg-foreground/5 px-6 py-2 rounded-full border border-foreground/10 backdrop-blur-sm shadow-inner">
               <Hexagon size={12} className="text-primary" />
               <span>Official Global Partners</span>
               <Hexagon size={12} className="text-primary" />
@@ -151,15 +151,15 @@ const Footer = () => {
               {sponsers.map((sponsor, idx) => (
                 <div
                   key={idx}
-                  className="group flex flex-col items-center justify-center w-36 h-20 md:w-48 md:h-24 opacity-30 grayscale hover:opacity-100 hover:grayscale-0 hover:scale-110 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                  className="group flex flex-col items-center justify-center w-36 h-20 md:w-48 md:h-24 opacity-40 grayscale hover:opacity-100 hover:grayscale-0 hover:scale-110 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                 >
                   <div className="relative w-full h-full p-2">
                      {typeof sponsor === 'string' ? (
-                        <Image src={sponsor} alt="Sponsor" fill className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]" sizes="192px" />
+                        <Image src={sponsor} alt="Sponsor" fill className="object-contain drop-shadow-md dark:drop-shadow-[0_0_12px_rgba(255,255,255,0.3)] dark:brightness-110" sizes="192px" />
                       ) : (
                         <>
-                          <Image src={sponsor.light} alt="Sponsor" fill className="object-contain dark:hidden" sizes="192px" />
-                          <Image src={sponsor.dark} alt="Sponsor" fill className="object-contain hidden dark:block drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]" sizes="192px" />
+                          <Image src={sponsor.light} alt="Sponsor" fill className="object-contain dark:hidden drop-shadow-sm" sizes="192px" />
+                          <Image src={sponsor.dark} alt="Sponsor" fill className="object-contain hidden dark:block drop-shadow-[0_0_12px_rgba(255,255,255,0.3)] brightness-110" sizes="192px" />
                         </>
                       )}
                   </div>
@@ -171,7 +171,7 @@ const Footer = () => {
 
         {/* Absolute Bottom Signature Bar */}
         <div className="py-10 flex flex-col md:flex-row items-center justify-between gap-8 opacity-60">
-          <div className="flex items-center gap-3 text-xs font-bold text-white/80">
+          <div className="flex items-center gap-3 text-xs font-bold text-foreground/80">
             <Copyright size={14} className="text-primary" />
             <span>{new Date().getFullYear()} نادي الزمالك المصري. جميع الحقوق محفوظة.</span>
           </div>
@@ -184,9 +184,9 @@ const Footer = () => {
 
           <div className="flex items-center gap-3 text-[10px] font-black tracking-widest italic">
             <span className="opacity-40 uppercase">Developed by</span>
-            <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-xl group hover:bg-white/10 transition-colors">
+            <div className="flex items-center gap-2 bg-foreground/5 border border-foreground/10 px-4 py-2 rounded-xl group hover:bg-foreground/10 transition-colors">
               <Star size={12} className="text-primary group-hover:animate-spin-slow" />
-              <span className="text-white">PRO DESIGN HUB</span>
+              <span className="text-foreground">PRO DESIGN HUB</span>
             </div>
           </div>
         </div>
@@ -206,7 +206,7 @@ const FooterNavGroup = ({ title, links }) => (
         <Link
           key={idx}
           href={link.href}
-          className="text-[15px] font-bold text-white/40 hover:text-white transition-all hover:translate-x-[-10px] flex items-center justify-between group"
+          className="text-[15px] font-bold text-foreground/40 hover:text-foreground transition-all hover:translate-x-[-10px] flex items-center justify-between group"
         >
           <span>{link.name}</span>
           <ChevronLeft size={16} className="opacity-0 group-hover:opacity-100 group-hover:text-primary transition-all -translate-x-4 group-hover:translate-x-0" />

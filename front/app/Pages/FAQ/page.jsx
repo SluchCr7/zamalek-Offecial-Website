@@ -67,7 +67,7 @@ export default function FAQPage() {
                 <button
                   key={idx}
                   onClick={() => setActive({ section: idx, question: null })}
-                  className={`w-full text-right px-8 py-4 rounded-2xl font-black text-sm transition-all flex items-center justify-between group ${active.section === idx ? 'bg-primary text-white shadow-xl shadow-primary/20' : 'hover:bg-card border border-transparent hover:border-border'
+                  className={`w-full text-right px-8 py-4 rounded-2xl font-black text-sm transition-all flex items-center justify-between group ${active.section === idx ? 'bg-primary text-foreground shadow-xl shadow-primary/20' : 'hover:bg-card border border-transparent hover:border-border'
                     }`}
                 >
                   <span>{section.title}</span>
@@ -82,7 +82,7 @@ export default function FAQPage() {
               </div>
               <h4 className="font-black">لم تجد إجابتك؟</h4>
               <p className="text-xs font-bold opacity-60 leading-relaxed">فريق الدعم الفني متاح دائماً لمساعدتك في أي استفسار.</p>
-              <button className="w-full py-4 bg-primary text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all">تواصل معنا</button>
+              <button className="w-full py-4 bg-primary text-foreground rounded-xl text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all">تواصل معنا</button>
             </div>
           </aside>
 
@@ -109,7 +109,7 @@ export default function FAQPage() {
                       <span className={`text-lg font-black font-heading transition-colors ${isOpen ? 'text-primary' : 'group-hover:text-primary'}`}>
                         {item.q}
                       </span>
-                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${isOpen ? 'bg-primary text-white rotate-180' : 'bg-muted text-foreground opacity-40'
+                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${isOpen ? 'bg-primary text-foreground rotate-180' : 'bg-muted text-foreground opacity-40'
                         }`}>
                         <ChevronDown size={20} />
                       </div>
@@ -160,7 +160,7 @@ export default function FAQPage() {
 function ContactMethod({ icon, title, value }) {
   return (
     <div className="p-10 bg-card border border-border rounded-[3rem] group hover:border-primary transition-all text-center space-y-4">
-      <div className="w-14 h-14 rounded-2xl bg-muted text-foreground flex items-center justify-center mx-auto group-hover:bg-primary group-hover:text-white transition-all">
+      <div className="w-14 h-14 rounded-2xl bg-muted text-foreground flex items-center justify-center mx-auto group-hover:bg-primary group-hover:text-foreground transition-all">
         {icon}
       </div>
       <div className="text-[10px] font-black uppercase tracking-widest opacity-40">{title}</div>

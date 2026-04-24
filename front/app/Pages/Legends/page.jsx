@@ -89,7 +89,7 @@ export default function LegendsPage() {
             >
               <button
                 onClick={() => setSelectedLegend(null)}
-                className="absolute top-8 left-8 w-14 h-14 rounded-full bg-white/10 backdrop-blur-3xl flex items-center justify-center hover:bg-primary hover:text-white transition-all z-50 text-white"
+                className="absolute top-8 left-8 w-14 h-14 rounded-full bg-foreground/10 backdrop-blur-3xl flex items-center justify-center hover:bg-primary hover:text-foreground transition-all z-50 text-foreground"
               >
                 <X size={28} />
               </button>
@@ -104,15 +104,15 @@ export default function LegendsPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
 
-                <div className="absolute bottom-12 right-12 text-white">
+                <div className="absolute bottom-12 right-12 text-foreground">
                   <h2 className="text-5xl md:text-7xl font-black font-heading leading-tight uppercase tracking-tighter shadow-text mb-4">
                     {selectedLegend.name.split(' ').map((n, i) => (
                       <span key={i} className={i === 1 ? 'text-primary' : ''}>{n} </span>
                     ))}
                   </h2>
                   <div className="flex items-center gap-4 text-xs font-black uppercase tracking-widest opacity-80">
-                    <span className="px-4 py-2 bg-primary rounded-xl text-white">#{selectedLegend.period}</span>
-                    <span className="px-4 py-2 bg-white/10 backdrop-blur rounded-xl">{selectedLegend.position}</span>
+                    <span className="px-4 py-2 bg-primary rounded-xl text-foreground">#{selectedLegend.period}</span>
+                    <span className="px-4 py-2 bg-foreground/10 backdrop-blur rounded-xl">{selectedLegend.position}</span>
                   </div>
                 </div>
               </div>
@@ -215,17 +215,17 @@ function LegendCard({ legend, index, onClick }) {
             <div className="space-y-2">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-1 bg-primary rounded-full" />
-                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/60">{legend.position}</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/60">{legend.position}</span>
               </div>
-              <h3 className="text-3xl font-black font-heading text-white leading-tight">
+              <h3 className="text-3xl font-black font-heading text-foreground leading-tight">
                 {legend.name}
               </h3>
               <div className="pt-4 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-700">
                 <div className="flex gap-2">
-                  <div className="w-8 h-8 rounded-xl bg-white/10 backdrop-blur flex items-center justify-center text-white">
+                  <div className="w-8 h-8 rounded-xl bg-foreground/10 backdrop-blur flex items-center justify-center text-foreground">
                     <Zap size={14} fill="currentColor" />
                   </div>
-                  <div className="text-[8px] font-black uppercase tracking-widest flex items-center text-white/40">
+                  <div className="text-[8px] font-black uppercase tracking-widest flex items-center text-foreground/40">
                     View Profile
                   </div>
                 </div>

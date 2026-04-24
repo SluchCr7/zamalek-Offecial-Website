@@ -25,12 +25,12 @@ export default function NewsPage() {
     <div className="min-h-screen w-full bg-background text-foreground" dir="rtl">
 
       {/* Dynamic News Ticker */}
-      <div className="bg-primary py-3 border-b border-white/10 hidden md:block overflow-hidden">
+      <div className="bg-primary py-3 border-b border-foreground/10 hidden md:block overflow-hidden">
         <div className="relative w-full overflow-hidden">
           <motion.div
             animate={{ x: ["100%", "-100%"] }}
             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            className="inline-flex gap-20 items-center text-white text-[10px] font-black uppercase tracking-[0.2em] whitespace-nowrap"
+            className="inline-flex gap-20 items-center text-foreground text-[10px] font-black uppercase tracking-[0.2em] whitespace-nowrap"
           >
             {newsList.map((n, i) => (
               <div key={i} className="flex items-center gap-4">
@@ -68,7 +68,7 @@ export default function NewsPage() {
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${activeCategory === cat ? 'bg-primary text-white shadow-lg' : 'hover:bg-muted opacity-60'
+                  className={`px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${activeCategory === cat ? 'bg-primary text-foreground shadow-lg' : 'hover:bg-muted opacity-60'
                     }`}
                 >
                   {cat}
@@ -94,18 +94,18 @@ export default function NewsPage() {
                       <Image src={featuredNews.image} alt={featuredNews.title} fill className="object-cover transition-transform duration-1000 group-hover:scale-105" priority />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                       <div className="absolute top-10 right-10 flex gap-3">
-                        <div className="px-6 py-2 bg-primary rounded-full text-white text-[10px] font-black uppercase tracking-widest shadow-xl">مانشيت اليوم</div>
-                        <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all cursor-pointer">
+                        <div className="px-6 py-2 bg-primary rounded-full text-foreground text-[10px] font-black uppercase tracking-widest shadow-xl">مانشيت اليوم</div>
+                        <div className="w-12 h-12 rounded-full bg-foreground/10 backdrop-blur-xl border border-foreground/20 text-foreground flex items-center justify-center hover:bg-foreground hover:text-background transition-all cursor-pointer">
                           <Share2 size={18} />
                         </div>
                       </div>
 
                       <div className="absolute bottom-12 right-12 left-12">
-                        <div className="flex items-center gap-6 text-[10px] font-black uppercase tracking-widest text-white/60 mb-6">
+                        <div className="flex items-center gap-6 text-[10px] font-black uppercase tracking-widest text-foreground/60 mb-6">
                           <div className="flex items-center gap-2"><Clock size={14} /> <span>منذ ساعتين</span></div>
                           <div className="flex items-center gap-2 text-primary font-black"><Filter size={14} /> <span>{featuredNews.category}</span></div>
                         </div>
-                        <h2 className="text-4xl md:text-6xl font-black font-heading leading-tight text-white line-clamp-2">
+                        <h2 className="text-4xl md:text-6xl font-black font-heading leading-tight text-foreground line-clamp-2">
                           {featuredNews.title}
                         </h2>
                       </div>
@@ -115,7 +115,7 @@ export default function NewsPage() {
                       <p className="text-lg font-bold opacity-60 leading-relaxed max-w-xl line-clamp-2">
                         {featuredNews.summary || "تغطية شاملة وحصرية لآخر المستجدات داخل جدران القلعة البيضاء، والقرارات المصيرية التي تم اتخاذها للجهاز الفني واللاعبين."}
                       </p>
-                      <Link href={`/Pages/New/${featuredNews.id}`} className="w-20 h-20 rounded-full border-2 border-primary text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all overflow-hidden relative">
+                      <Link href={`/Pages/New/${featuredNews.id}`} className="w-20 h-20 rounded-full border-2 border-primary text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-foreground transition-all overflow-hidden relative">
                         <ArrowRight size={32} className="relative z-10" />
                       </Link>
                     </div>
@@ -150,13 +150,13 @@ export default function NewsPage() {
               </div>
 
               {/* Newsletter Mini */}
-              <div className="bg-primary rounded-[3rem] p-10 text-white shadow-2xl shadow-primary/30 relative group overflow-hidden">
+              <div className="bg-primary rounded-[3rem] p-10 text-foreground shadow-2xl shadow-primary/30 relative group overflow-hidden">
                 <div className="relative z-10 space-y-6">
                   <h3 className="text-2xl font-black font-heading uppercase tracking-tighter italic">Official Newsletter</h3>
                   <p className="text-sm font-bold opacity-80 leading-relaxed">اشترك لتصلك كواليس البيت الأبيض وأخبار الصفقات الجديدة حصرياً.</p>
                   <div className="relative">
-                    <input type="email" placeholder="بريدك الإلكتروني" className="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-4 placeholder:text-white/40 focus:outline-none focus:bg-white/20 transition-all text-sm font-bold" />
-                    <button className="absolute left-2 top-2 bottom-2 px-6 bg-white text-primary rounded-xl font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all">OK</button>
+                    <input type="email" placeholder="بريدك الإلكتروني" className="w-full bg-foreground/10 border border-foreground/20 rounded-2xl px-6 py-4 placeholder:text-foreground/40 focus:outline-none focus:bg-foreground/20 transition-all text-sm font-bold" />
+                    <button className="absolute left-2 top-2 bottom-2 px-6 bg-foreground text-primary rounded-xl font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all">OK</button>
                   </div>
                 </div>
                 <Newspaper size={120} className="absolute -bottom-10 -left-10 opacity-10 group-hover:rotate-12 transition-transform duration-700" />
@@ -190,7 +190,7 @@ export default function NewsPage() {
                 <Image src={news.image} alt={news.title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="absolute bottom-6 right-6">
-                  <div className="px-4 py-1.5 bg-white/10 backdrop-blur-xl border border-white/20 text-white text-[8px] font-black uppercase tracking-widest rounded-lg">
+                  <div className="px-4 py-1.5 bg-foreground/10 backdrop-blur-xl border border-foreground/20 text-foreground text-[8px] font-black uppercase tracking-widest rounded-lg">
                     {news.category || "أخبار النادي"}
                   </div>
                 </div>
@@ -230,7 +230,7 @@ export default function NewsPage() {
         <div className="mt-24 flex justify-center gap-4">
           <button className="w-14 h-14 rounded-2xl border border-border flex items-center justify-center opacity-40 cursor-not-allowed"><ArrowRight className="rotate-180" size={20} /></button>
           <div className="flex gap-2">
-            <button className="w-14 h-14 rounded-2xl bg-primary text-white font-black">1</button>
+            <button className="w-14 h-14 rounded-2xl bg-primary text-foreground font-black">1</button>
             <button className="w-14 h-14 rounded-2xl border border-border font-black hover:bg-muted transition-all">2</button>
             <button className="w-14 h-14 rounded-2xl border border-border font-black hover:bg-muted transition-all">3</button>
           </div>

@@ -117,9 +117,9 @@ export default function ZamalekTVPage() {
                                 <motion.button
                                     whileHover={{ scale: 1.05, boxShadow: "0 0 50px rgba(227,27,35,0.3)" }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="px-12 py-5 rounded-3xl bg-gradient-to-r from-primary to-red-600 text-white font-black flex items-center gap-4 shadow-2xl shadow-primary/30 transition-all group overflow-hidden relative"
+                                    className="px-12 py-5 rounded-3xl bg-gradient-to-r from-primary to-red-600 text-foreground font-black flex items-center gap-4 shadow-2xl shadow-primary/30 transition-all group overflow-hidden relative"
                                 >
-                                    <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                                    <div className="absolute inset-0 bg-gradient-to-r from-foreground/0 via-foreground/20 to-foreground/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                                     <Youtube className="w-6 h-6 relative z-10" />
                                     <span className="text-xl relative z-10">مشاهدة القناة</span>
                                 </motion.button>
@@ -136,8 +136,8 @@ export default function ZamalekTVPage() {
                     </div>
 
                     {/* Broadcast Info Ticker */}
-                    <div className="absolute bottom-0 left-0 w-full bg-primary/95 backdrop-blur-xl py-6 overflow-hidden border-t border-white/10 shadow-2xl">
-                        <div className="flex whitespace-nowrap animate-scroll items-center gap-20 text-white font-black text-xs uppercase tracking-[0.2em]">
+                    <div className="absolute bottom-0 left-0 w-full bg-primary/95 backdrop-blur-xl py-6 overflow-hidden border-t border-foreground/10 shadow-2xl">
+                        <div className="flex whitespace-nowrap animate-scroll items-center gap-20 text-foreground font-black text-xs uppercase tracking-[0.2em]">
                             {[...Array(10)].map((_, i) => (
                                 <React.Fragment key={i}>
                                     <span className="flex items-center gap-3"><Satellite size={16} /> {zamalekChannelData.broadcastDetails.satellite}</span>
@@ -240,7 +240,7 @@ export default function ZamalekTVPage() {
                                 </h2>
                                 <p className="text-2xl text-muted-foreground font-medium opacity-60">من القناة الرسمية على يوتيوب</p>
                             </div>
-                            <Link href={zamalekChannelData.link} target="_blank" className="px-10 py-4 rounded-2xl bg-primary text-white font-black text-sm uppercase tracking-widest hover:shadow-2xl hover:shadow-primary/30 transition-all">
+                            <Link href={zamalekChannelData.link} target="_blank" className="px-10 py-4 rounded-2xl bg-primary text-foreground font-black text-sm uppercase tracking-widest hover:shadow-2xl hover:shadow-primary/30 transition-all">
                                 مشاهدة المزيد
                             </Link>
                         </div>
@@ -313,7 +313,7 @@ export default function ZamalekTVPage() {
                 {/* Programs Section - Updated */}
                 <section className="py-32 max-w-7xl mx-auto px-6">
                     <div className="flex items-center gap-6 mb-20">
-                        <div className="w-20 h-20 rounded-3xl bg-primary text-white flex items-center justify-center shadow-2xl shadow-primary/30">
+                        <div className="w-20 h-20 rounded-3xl bg-primary text-foreground flex items-center justify-center shadow-2xl shadow-primary/30">
                             <TvMinimal className="w-10 h-10" />
                         </div>
                         <h2 className="text-5xl md:text-7xl font-black tracking-tighter">
@@ -384,10 +384,10 @@ export default function ZamalekTVPage() {
                         initial={{ y: 50, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
                         viewport={{ once: true }}
-                        className="max-w-6xl w-full p-20 md:p-32 rounded-[6rem] bg-gradient-to-br from-primary to-red-600 text-white text-center relative overflow-hidden shadow-[0_60px_120px_rgba(227,27,35,0.3)]"
+                        className="max-w-6xl w-full p-20 md:p-32 rounded-[6rem] bg-gradient-to-br from-primary to-red-600 text-foreground text-center relative overflow-hidden shadow-[0_60px_120px_rgba(227,27,35,0.3)]"
                     >
                         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.05]" />
-                        <div className="absolute top-[-30%] left-[-20%] w-[70%] h-[70%] bg-white/10 rounded-full blur-[180px]" />
+                        <div className="absolute top-[-30%] left-[-20%] w-[70%] h-[70%] bg-foreground/10 rounded-full blur-[180px]" />
 
                         <div className="relative z-10 space-y-12">
                             <Youtube className="w-24 h-24 mx-auto mb-10 animate-pulse" />
@@ -400,7 +400,7 @@ export default function ZamalekTVPage() {
                             <Link
                                 href={zamalekChannelData.link}
                                 target="_blank"
-                                className="inline-flex items-center gap-6 px-16 py-8 rounded-[3rem] bg-white text-primary font-black text-2xl hover:shadow-[0_0_80px_rgba(255,255,255,0.3)] transition-all hover:-translate-y-2 active:scale-95 shadow-2xl"
+                                className="inline-flex items-center gap-6 px-16 py-8 rounded-[3rem] bg-foreground text-primary font-black text-2xl hover:shadow-[0_0_80px_rgba(255,255,255,0.3)] transition-all hover:-translate-y-2 active:scale-95 shadow-2xl"
                             >
                                 اشترك الآن في القناة
                                 <ExternalLink size={28} />

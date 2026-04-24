@@ -101,7 +101,7 @@ export default function MatchesSlider() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={prevSlide}
-              className="w-14 h-14 rounded-full bg-card border border-border flex items-center justify-center text-foreground shadow-2xl pointer-events-auto hover:bg-primary hover:text-white transition-colors"
+              className="w-14 h-14 rounded-full bg-card border border-border flex items-center justify-center text-foreground shadow-2xl pointer-events-auto hover:bg-primary hover:text-foreground transition-colors"
             >
               <ChevronRight size={24} />
             </motion.button>
@@ -110,7 +110,7 @@ export default function MatchesSlider() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={nextSlide}
-              className="w-14 h-14 rounded-full bg-card border border-border flex items-center justify-center text-foreground shadow-2xl pointer-events-auto hover:bg-primary hover:text-white transition-colors"
+              className="w-14 h-14 rounded-full bg-card border border-border flex items-center justify-center text-foreground shadow-2xl pointer-events-auto hover:bg-primary hover:text-foreground transition-colors"
             >
               <ChevronLeft size={24} />
             </motion.button>

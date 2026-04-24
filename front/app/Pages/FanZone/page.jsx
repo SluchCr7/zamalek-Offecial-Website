@@ -54,7 +54,7 @@ export default function FanZonePage() {
         <motion.div
           animate={{ y: [0, -20, 0] }}
           transition={{ duration: 4, repeat: Infinity }}
-          className="absolute top-1/4 left-10 w-24 h-24 bg-white/5 rounded-3xl backdrop-blur-3xl hidden xl:flex items-center justify-center border border-white/10"
+          className="absolute top-1/4 left-10 w-24 h-24 bg-foreground/5 rounded-3xl backdrop-blur-3xl hidden xl:flex items-center justify-center border border-foreground/10"
         >
           <Smile size={40} className="text-primary opacity-40" />
         </motion.div>
@@ -70,7 +70,7 @@ export default function FanZonePage() {
               <h2 className="text-5xl font-black font-heading tracking-tight italic">خلفيات <span className="text-primary">الـمـلوك</span></h2>
               <p className="text-xl font-bold opacity-40 max-w-xl">زين هاتفك وجهازك بأجمل تصاميم وخلفيات نادي الزمالك الحصرية بجودة عالية.</p>
             </div>
-            <button className="h-16 px-10 border-2 border-primary text-primary rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all flex items-center gap-4">
+            <button className="h-16 px-10 border-2 border-primary text-primary rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-primary hover:text-foreground transition-all flex items-center gap-4">
               <span>View Full Gallery</span>
               <Camera size={18} />
             </button>
@@ -155,8 +155,8 @@ function WallpaperCard({ src, title }) {
       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60 group-hover:opacity-100" />
 
       <div className="absolute bottom-8 right-8 left-8 space-y-4">
-        <h4 className="text-xl font-black font-heading text-white">{title}</h4>
-        <button className="w-full h-14 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl flex items-center justify-center text-white hover:bg-primary hover:border-primary transition-all">
+        <h4 className="text-xl font-black font-heading text-foreground">{title}</h4>
+        <button className="w-full h-14 bg-foreground/10 backdrop-blur-xl border border-foreground/20 rounded-2xl flex items-center justify-center text-foreground hover:bg-primary hover:border-primary transition-all">
           <Download size={18} />
         </button>
       </div>
@@ -168,15 +168,15 @@ function ChantItem({ title, duration }) {
   return (
     <div className="flex items-center justify-between p-6 bg-muted/50 rounded-3xl border border-border group hover:bg-primary hover:border-primary transition-all cursor-pointer">
       <div className="flex items-center gap-6">
-        <div className="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-white/20 group-hover:text-white">
+        <div className="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-foreground/20 group-hover:text-foreground">
           <Music size={20} />
         </div>
         <div className="space-y-1">
-          <div className="font-black group-hover:text-white transition-colors">{title}</div>
-          <div className="text-[10px] font-bold opacity-40 group-hover:text-white/40 tracking-widest uppercase mb-1">{duration}</div>
+          <div className="font-black group-hover:text-foreground transition-colors">{title}</div>
+          <div className="text-[10px] font-bold opacity-40 group-hover:text-foreground/40 tracking-widest uppercase mb-1">{duration}</div>
         </div>
       </div>
-      <div className="w-10 h-10 rounded-full border border-current flex items-center justify-center group-hover:text-white opacity-20 group-hover:opacity-100 transition-all">
+      <div className="w-10 h-10 rounded-full border border-current flex items-center justify-center group-hover:text-foreground opacity-20 group-hover:opacity-100 transition-all">
         <Play size={14} fill="currentColor" />
       </div>
     </div>
@@ -188,12 +188,12 @@ function InteractiveFeature({ icon, title, desc, action }) {
     <div className="p-12 bg-card border border-border rounded-[4rem] group hover:border-primary transition-all flex flex-col h-full shadow-2xl overflow-hidden relative">
       <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full group-hover:bg-primary transition-all translate-x-12 -translate-y-12 group-hover:translate-x-0 group-hover:translate-y-0" />
       <div className="relative z-10 flex flex-col h-full">
-        <div className="w-20 h-20 rounded-3xl bg-muted text-foreground flex items-center justify-center mb-10 group-hover:bg-white group-hover:text-primary transition-all">
+        <div className="w-20 h-20 rounded-3xl bg-muted text-foreground flex items-center justify-center mb-10 group-hover:bg-foreground group-hover:text-primary transition-all">
           {icon}
         </div>
         <h3 className="text-3xl font-black font-heading mb-6 italic">{title}</h3>
         <p className="text-lg font-bold opacity-40 mb-12 flex-1">{desc}</p>
-        <button className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.2em] text-primary group-hover:text-white transition-colors font-body mt-auto">
+        <button className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.2em] text-primary group-hover:text-foreground transition-colors font-body mt-auto">
           <span>{action}</span>
           <Zap size={16} />
         </button>

@@ -90,7 +90,7 @@ export default function ProfilePage() {
                                     className="object-cover"
                                 />
                             </div>
-                            <label className="absolute bottom-2 right-2 p-3 bg-primary text-white rounded-2xl cursor-pointer shadow-xl hover:scale-110 transition-transform">
+                            <label className="absolute bottom-2 right-2 p-3 bg-primary text-foreground rounded-2xl cursor-pointer shadow-xl hover:scale-110 transition-transform">
                                 <Camera size={20} />
                                 <input type="file" className="hidden" onChange={handlePhotoChange} accept="image/*" />
                             </label>
@@ -120,7 +120,7 @@ export default function ProfilePage() {
                             </button>
                             <button
                                 onClick={Logout}
-                                className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-lg shadow-primary/5"
+                                className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center hover:bg-primary hover:text-foreground transition-all shadow-lg shadow-primary/5"
                             >
                                 <LogOut size={20} />
                             </button>
@@ -201,7 +201,7 @@ export default function ProfilePage() {
                                         className="object-cover group-hover:scale-110 transition-transform duration-700"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-transparent" />
-                                    <div className="relative h-full flex flex-col justify-center p-12 text-white">
+                                    <div className="relative h-full flex flex-col justify-center p-12 text-foreground">
                                         <span className="text-[10px] font-black uppercase tracking-[0.2em] opacity-80">اللاعب المفضل</span>
                                         <h2 className="text-5xl font-black font-heading italic tracking-tighter mt-2">{user.favoritePlayer || 'لم يتم التحديد'}</h2>
                                         <button className="mt-6 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest group">
@@ -245,7 +245,7 @@ export default function ProfilePage() {
                                     </div>
 
                                     <div className="md:col-span-2 pt-8">
-                                        <button className="w-full h-20 bg-primary text-white rounded-3xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-primary/40 hover:-translate-y-1 transition-all">
+                                        <button className="w-full h-20 bg-primary text-foreground rounded-3xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-primary/40 hover:-translate-y-1 transition-all">
                                             حفظ التغييرات
                                         </button>
                                     </div>
@@ -264,7 +264,7 @@ function TabButton({ active, onClick, label, icon }) {
     return (
         <button
             onClick={onClick}
-            className={`px-8 py-4 rounded-2xl flex items-center gap-3 text-[10px] font-black uppercase tracking-widest transition-all ${active ? 'bg-primary text-white shadow-xl shadow-primary/20' : 'hover:bg-muted opacity-40'
+            className={`px-8 py-4 rounded-2xl flex items-center gap-3 text-[10px] font-black uppercase tracking-widest transition-all ${active ? 'bg-primary text-foreground shadow-xl shadow-primary/20' : 'hover:bg-muted opacity-40'
                 }`}
         >
             {icon}

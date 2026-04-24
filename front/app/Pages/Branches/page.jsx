@@ -110,16 +110,16 @@ function BranchRow({ branch, index }) {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
           <div className="absolute bottom-10 right-10 flex gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white cursor-pointer hover:bg-primary transition-all">
+            <div className="w-14 h-14 rounded-2xl bg-foreground/10 backdrop-blur-xl border border-foreground/20 flex items-center justify-center text-foreground cursor-pointer hover:bg-primary transition-all">
               <Navigation size={24} />
             </div>
-            <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white cursor-pointer hover:bg-primary transition-all">
+            <div className="w-14 h-14 rounded-2xl bg-foreground/10 backdrop-blur-xl border border-foreground/20 flex items-center justify-center text-foreground cursor-pointer hover:bg-primary transition-all">
               <Globe size={24} />
             </div>
           </div>
 
           {branch.status && (
-            <div className="absolute top-10 right-10 flex items-center gap-3 px-6 py-2 bg-primary/90 text-white rounded-full text-[10px] font-black uppercase tracking-widest shadow-2xl">
+            <div className="absolute top-10 right-10 flex items-center gap-3 px-6 py-2 bg-primary/90 text-foreground rounded-full text-[10px] font-black uppercase tracking-widest shadow-2xl">
               <Construction size={14} className="animate-pulse" />
               <span>{branch.status}</span>
             </div>

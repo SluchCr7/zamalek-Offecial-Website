@@ -28,7 +28,7 @@ export default function PresidentsPage() {
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="w-24 h-24 md:w-32 md:h-32 relative mx-auto p-4 bg-white rounded-3xl shadow-2xl rotate-3"
+            className="w-24 h-24 md:w-32 md:h-32 relative mx-auto p-4 bg-foreground rounded-3xl shadow-2xl rotate-3"
           >
             <Image src="/teams/zamalek.png" alt="Zamalek SC" fill className="object-contain p-4" />
           </motion.div>
@@ -92,12 +92,12 @@ function PresidentCard({ president, index }) {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 group-hover:opacity-100" />
 
           {/* Term Badge */}
-          <div className="absolute top-8 right-8 px-6 py-2 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 text-white text-[10px] font-black uppercase tracking-widest">
+          <div className="absolute top-8 right-8 px-6 py-2 rounded-2xl bg-foreground/10 backdrop-blur-xl border border-foreground/20 text-foreground text-[10px] font-black uppercase tracking-widest">
             {president.term}
           </div>
 
           {/* Floating Index */}
-          <div className="absolute bottom-8 left-8 text-white/20 text-6xl font-black font-heading italic">
+          <div className="absolute bottom-8 left-8 text-foreground/20 text-6xl font-black font-heading italic">
             #{index + 1}
           </div>
         </div>
@@ -116,7 +116,7 @@ function PresidentCard({ president, index }) {
 
           <div className="mt-auto pt-8 flex items-center justify-between border-t border-border/50">
             <span className="text-[10px] font-black uppercase tracking-widest opacity-40">رئيس مجلس الإدارة</span>
-            <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
+            <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center group-hover:bg-primary group-hover:text-foreground transition-all">
               <History size={14} />
             </div>
           </div>

@@ -53,7 +53,7 @@ const Table = () => {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all duration-500 ${activeTab === tab.id
-                  ? "bg-primary text-white shadow-xl shadow-primary/20"
+                  ? "bg-primary text-foreground shadow-xl shadow-primary/20"
                   : "hover:bg-muted opacity-40 hover:opacity-100"
                   }`}
               >
@@ -96,7 +96,7 @@ const Table = () => {
               {/* Dynamic Footer Link */}
               <Link
                 href="/Pages/Table"
-                className="flex items-center justify-center gap-4 p-8 bg-muted/30 hover:bg-primary hover:text-white transition-all group border-t border-border mt-auto"
+                className="flex items-center justify-center gap-4 p-8 bg-muted/30 hover:bg-primary hover:text-foreground transition-all group border-t border-border mt-auto"
               >
                 <span className="text-[11px] font-black uppercase tracking-[0.3em]">انتقل إلى المركز الإحصائي الكامل</span>
                 <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -135,13 +135,13 @@ const CompetitionTable = ({ data, type }) => (
               className={`group transition-all hover:bg-primary/[0.02] ${isZamalek ? "bg-primary/[0.04]" : ""}`}
             >
               <td className="px-10 py-6">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black font-heading ${team.rank === 1 ? "bg-yellow-500 text-white" : isZamalek ? "bg-primary text-white" : "bg-muted text-foreground/40"}`}>
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black font-heading ${team.rank === 1 ? "bg-yellow-500 text-foreground" : isZamalek ? "bg-primary text-foreground" : "bg-muted text-foreground/40"}`}>
                   {team.rank}
                 </div>
               </td>
               <td className="px-6 py-6">
                 <div className="flex items-center gap-4">
-                  <div className="relative w-12 h-12 rounded-2xl bg-white border border-border p-2 group-hover:scale-110 transition-transform shadow-sm">
+                  <div className="relative w-12 h-12 rounded-2xl bg-foreground border border-border p-2 group-hover:scale-110 transition-transform shadow-sm">
                     <Image src={team.team.logo} alt={team.team.name} fill className="object-contain p-1.5" />
                   </div>
                   <span className={`text-xl font-black font-heading italic ${isZamalek ? "text-primary" : ""}`}>
@@ -154,7 +154,7 @@ const CompetitionTable = ({ data, type }) => (
               <td className="px-6 py-6 text-center font-bold opacity-60">{team.all.draw}</td>
               <td className="px-6 py-6 text-center font-black">{team.goalsDiff > 0 ? `+${team.goalsDiff}` : team.goalsDiff}</td>
               <td className="px-10 py-6 text-center">
-                <div className={`inline-flex items-center justify-center w-14 h-12 rounded-2xl font-black font-heading text-xl ${isZamalek ? "bg-primary text-white shadow-xl shadow-primary/20" : "bg-muted border border-border"}`}>
+                <div className={`inline-flex items-center justify-center w-14 h-12 rounded-2xl font-black font-heading text-xl ${isZamalek ? "bg-primary text-foreground shadow-xl shadow-primary/20" : "bg-muted border border-border"}`}>
                   {team.points}
                 </div>
               </td>
@@ -203,7 +203,7 @@ const PlayerStatsSection = ({ goals, assists }) => (
 const PlayerStatRow = ({ player, statKey, unit, index }) => (
   <div className="flex items-center gap-6 group">
     <div className="relative">
-      <div className={`absolute -top-1 -right-1 w-6 h-6 rounded-lg flex items-center justify-center text-[10px] font-black text-white z-10 shadow-lg ${index === 0 ? "bg-yellow-500" : "bg-primary"}`}>
+      <div className={`absolute -top-1 -right-1 w-6 h-6 rounded-lg flex items-center justify-center text-[10px] font-black text-foreground z-10 shadow-lg ${index === 0 ? "bg-yellow-500" : "bg-primary"}`}>
         {index + 1}
       </div>
       <div className="relative w-16 h-16 rounded-2xl overflow-hidden border border-border bg-muted group-hover:scale-105 transition-transform">

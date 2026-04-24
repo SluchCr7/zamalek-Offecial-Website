@@ -75,7 +75,7 @@ export default function WomenVolleyballPage() {
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === tab ? 'bg-purple-500 text-white shadow-xl shadow-purple-500/20' : 'hover:bg-muted opacity-40 hover:opacity-100'
+                            className={`px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === tab ? 'bg-purple-500 text-foreground shadow-xl shadow-purple-500/20' : 'hover:bg-muted opacity-40 hover:opacity-100'
                                 }`}
                         >
                             {tab === 'Roster' ? 'قائمة الفتيات' : tab === 'Coaching' ? 'الجهاز الفني' : 'سجل الألقاب'}
@@ -157,7 +157,7 @@ export default function WomenVolleyballPage() {
                             <div className="md:col-span-2 p-16 bg-card border border-border rounded-[4rem] text-center space-y-8 shadow-2xl relative overflow-hidden group">
                                 <div className="absolute inset-0 bg-purple-500/10 opacity-0 group-hover:opacity-100 transition-all" />
                                 <div className="w-24 h-24 bg-purple-500 rounded-[2rem] flex items-center justify-center mx-auto shadow-2xl mb-6">
-                                    <Shield className="text-white" size={32} />
+                                    <Shield className="text-foreground" size={32} />
                                 </div>
                                 <div className="space-y-3">
                                     <div className="text-purple-500 font-black text-xs uppercase tracking-[0.4em]">Head Technical Director</div>
@@ -214,7 +214,7 @@ export default function WomenVolleyballPage() {
 function InfoCard({ label, value, icon, color }) {
     return (
         <div className="p-12 bg-card border border-border rounded-[3rem] shadow-xl flex items-center gap-8 group hover:border-purple-500 transition-all">
-            <div className={`w-16 h-16 rounded-2xl bg-muted flex items-center justify-center ${color} group-hover:bg-purple-500 group-hover:text-white transition-all`}>
+            <div className={`w-16 h-16 rounded-2xl bg-muted flex items-center justify-center ${color} group-hover:bg-purple-500 group-hover:text-foreground transition-all`}>
                 {icon}
             </div>
             <div>

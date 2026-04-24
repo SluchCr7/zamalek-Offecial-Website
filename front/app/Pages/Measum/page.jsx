@@ -49,7 +49,7 @@ export default function MuseumPage() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-white dark:bg-white/5 border border-primary/20 shadow-xl shadow-primary/5 text-primary mb-8"
+            className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-foreground dark:bg-foreground/5 border border-primary/20 shadow-xl shadow-primary/5 text-primary mb-8"
           >
             <Sparkles className="w-4 h-4 animate-spin-slow" />
             <span className="text-xs font-black tracking-[0.2em] uppercase">The Royal Digital Archive</span>
@@ -94,7 +94,7 @@ export default function MuseumPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="relative p-10 rounded-[3rem] bg-white dark:bg-[#121212] border border-border flex flex-col items-center justify-center text-center group hover:border-primary/40 transition-all duration-500 shadow-2xl shadow-black/5"
+              className="relative p-10 rounded-[3rem] bg-foreground dark:bg-[#121212] border border-border flex flex-col items-center justify-center text-center group hover:border-primary/40 transition-all duration-500 shadow-2xl shadow-black/5"
             >
               <div className={`w-16 h-16 rounded-2xl bg-muted/50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${stat.color}`}>
                 {React.cloneElement(stat.icon, { size: 32 })}
@@ -122,7 +122,7 @@ export default function MuseumPage() {
               className="relative group aspect-[4/5]"
             >
               <Link href={section.open ? section.link : "#"} className={!section.open ? "cursor-not-allowed" : "block h-full"}>
-                <div className="relative h-full rounded-[3.5rem] overflow-hidden border border-border bg-white dark:bg-[#121212] shadow-2xl transition-all duration-700">
+                <div className="relative h-full rounded-[3.5rem] overflow-hidden border border-border bg-foreground dark:bg-[#121212] shadow-2xl transition-all duration-700">
 
                   {/* Image Background with Pro Overlays */}
                   <div className="absolute inset-0 z-0">
@@ -139,11 +139,11 @@ export default function MuseumPage() {
                   <div className="absolute inset-0 z-10 flex flex-col justify-end p-10">
                     <div className="space-y-6">
                       <div className="flex items-center justify-between">
-                        <div className="w-14 h-14 rounded-2xl bg-primary/20 backdrop-blur-2xl flex items-center justify-center text-white border border-white/20 group-hover:bg-primary transition-colors duration-500">
+                        <div className="w-14 h-14 rounded-2xl bg-primary/20 backdrop-blur-2xl flex items-center justify-center text-foreground border border-foreground/20 group-hover:bg-primary transition-colors duration-500">
                           {iconMap[section.name] || <Sparkles />}
                         </div>
                         {!section.open && (
-                          <div className="px-4 py-2 rounded-xl bg-black/60 backdrop-blur-xl border border-white/10 text-white/50 text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
+                          <div className="px-4 py-2 rounded-xl bg-black/60 backdrop-blur-xl border border-foreground/10 text-foreground/50 text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
                             <Lock size={12} />
                             قريباً
                           </div>
@@ -151,16 +151,16 @@ export default function MuseumPage() {
                       </div>
 
                       <div className="space-y-2">
-                        <h2 className="text-3xl font-black text-white italic tracking-tight">
+                        <h2 className="text-3xl font-black text-foreground italic tracking-tight">
                           {section.name}
                         </h2>
-                        <p className="text-white/50 text-xs font-medium leading-relaxed line-clamp-2 italic">
+                        <p className="text-foreground/50 text-xs font-medium leading-relaxed line-clamp-2 italic">
                           {section.bio}
                         </p>
                       </div>
 
                       {section.open && (
-                        <div className="flex items-center gap-3 text-white font-black text-[10px] tracking-widest uppercase py-4 border-t border-white/10 mt-4 group-hover:text-primary transition-colors">
+                        <div className="flex items-center gap-3 text-foreground font-black text-[10px] tracking-widest uppercase py-4 border-t border-foreground/10 mt-4 group-hover:text-primary transition-colors">
                           <span>دخول المعرض</span>
                           <ArrowRight className="w-4 h-4 group-hover:translate-x-[-5px] transition-transform" />
                         </div>
@@ -169,7 +169,7 @@ export default function MuseumPage() {
                   </div>
 
                   {/* Elegant Hover Frame */}
-                  <div className="absolute inset-4 border border-white/0 group-hover:border-white/10 transition-all duration-700 rounded-[2.5rem] pointer-events-none" />
+                  <div className="absolute inset-4 border border-foreground/0 group-hover:border-foreground/10 transition-all duration-700 rounded-[2.5rem] pointer-events-none" />
                 </div>
               </Link>
             </motion.div>
@@ -178,7 +178,7 @@ export default function MuseumPage() {
 
         {/* Featured Exhibit Section - Re-styled for Pro look */}
         <section className="mb-40">
-          <div className="flex flex-col lg:flex-row items-center gap-20 p-12 md:p-24 rounded-[4rem] bg-white dark:bg-[#121212] border border-border relative overflow-hidden shadow-2xl shadow-primary/5">
+          <div className="flex flex-col lg:flex-row items-center gap-20 p-12 md:p-24 rounded-[4rem] bg-foreground dark:bg-[#121212] border border-border relative overflow-hidden shadow-2xl shadow-primary/5">
             <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-[120px]" />
             <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-[120px]" />
 
@@ -200,7 +200,7 @@ export default function MuseumPage() {
               </p>
 
               <Link href="/Pages/Photos">
-                <button className="px-12 py-6 rounded-[2rem] bg-foreground text-background font-black text-lg hover:bg-primary hover:text-white transition-all duration-500 flex items-center gap-4 group shadow-2xl">
+                <button className="px-12 py-6 rounded-[2rem] bg-foreground text-background font-black text-lg hover:bg-primary hover:text-foreground transition-all duration-500 flex items-center gap-4 group shadow-2xl">
                   استكشف الأرشيف
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-[-8px] transition-transform" />
                 </button>
@@ -209,7 +209,7 @@ export default function MuseumPage() {
 
             <div className="flex-1 w-full relative">
               <div className="absolute inset-0 bg-primary/20 rounded-[3rem] blur-3xl opacity-20 animate-pulse" />
-              <div className="relative aspect-video rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white dark:border-white/5 rotate-3 transform transition-transform hover:rotate-0 duration-700 group hover:scale-[1.02]">
+              <div className="relative aspect-video rounded-[3rem] overflow-hidden shadow-2xl border-4 border-foreground dark:border-foreground/5 rotate-3 transform transition-transform hover:rotate-0 duration-700 group hover:scale-[1.02]">
                 <Image
                   src="/history/Captain_Hanafi_Nassar_in_the_midst_of_his_team_of_young_Zamalek_players_in_1960s..jpg"
                   alt="Highlight Exhibit"
@@ -217,7 +217,7 @@ export default function MuseumPage() {
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-8 right-8 text-white">
+                <div className="absolute bottom-8 right-8 text-foreground">
                   <div className="text-[10px] font-black uppercase tracking-widest opacity-60 mb-1">Archive ID: ZSC-1960</div>
                   <div className="text-xl font-bold italic">أبطال ميت عقبة التاريخيين</div>
                 </div>
@@ -243,7 +243,7 @@ export default function MuseumPage() {
               تراث الزمالك ملك لجماهيره. إذا كنت تمتلك أي مقتنى تاريخي ترغب في تخليده رقمياً، بادر بالاتصال بخبراء الأرشيف لدينا.
             </p>
             <Link href="/Pages/CallUs">
-              <button className="px-14 py-7 rounded-[2.5rem] bg-primary text-white font-black text-xl hover:shadow-[0_0_50px_rgba(227,27,35,0.4)] transition-all hover:-translate-y-2 active:scale-95">
+              <button className="px-14 py-7 rounded-[2.5rem] bg-primary text-foreground font-black text-xl hover:shadow-[0_0_50px_rgba(227,27,35,0.4)] transition-all hover:-translate-y-2 active:scale-95">
                 تواصل مع لجنة التوثيق
               </button>
             </Link>

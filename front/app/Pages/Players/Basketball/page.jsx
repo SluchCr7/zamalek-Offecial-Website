@@ -73,7 +73,7 @@ export default function BasketballPage() {
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === tab ? 'bg-orange-500 text-white shadow-xl shadow-orange-500/20' : 'hover:bg-muted opacity-40 hover:opacity-100'
+                            className={`px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === tab ? 'bg-orange-500 text-foreground shadow-xl shadow-orange-500/20' : 'hover:bg-muted opacity-40 hover:opacity-100'
                                 }`}
                         >
                             {tab === 'Roster' ? 'قائمة الفريق' : tab === 'Coaching' ? 'الجهاز الفني' : 'سجل البطولات'}
@@ -113,7 +113,7 @@ export default function BasketballPage() {
                                                 <div className="absolute inset-0 bg-orange-500/10 rounded-[3rem] blur-[30px] opacity-0 group-hover:opacity-100 transition-all" />
                                                 <div className="relative bg-card border border-border rounded-[3rem] p-10 shadow-2xl space-y-8 hover:border-orange-500 transition-all overflow-hidden group">
                                                     <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 rounded-bl-[3rem] group-hover:bg-orange-500 transition-all flex items-center justify-center translate-x-12 -translate-y-12 group-hover:translate-x-0 group-hover:translate-y-0">
-                                                        <div className="text-white opacity-0 group-hover:opacity-100 scale-150"><Zap size={24} fill="currentColor" /></div>
+                                                        <div className="text-foreground opacity-0 group-hover:opacity-100 scale-150"><Zap size={24} fill="currentColor" /></div>
                                                     </div>
                                                     <div className="space-y-4">
                                                         <div className="text-orange-500 font-black text-xs uppercase tracking-widest">{player.type}</div>
@@ -149,7 +149,7 @@ export default function BasketballPage() {
                             <div className="p-20 bg-card border border-border rounded-[4rem] text-center space-y-8 shadow-2xl relative overflow-hidden group">
                                 <div className="absolute inset-0 bg-orange-500/5 opacity-0 group-hover:opacity-100 transition-all" />
                                 <div className="w-32 h-32 bg-orange-500 rounded-[2.5rem] flex items-center justify-center mx-auto shadow-2xl shadow-orange-500/20 mb-8">
-                                    <Users size={48} className="text-white" />
+                                    <Users size={48} className="text-foreground" />
                                 </div>
                                 <div className="space-y-3">
                                     <div className="text-orange-500 font-black text-xs uppercase tracking-[0.4em]">Head Coach</div>

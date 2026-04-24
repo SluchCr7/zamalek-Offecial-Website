@@ -104,7 +104,7 @@ export default function ChampionsPage() {
                   key={key}
                   onClick={() => setTab(key)}
                   className={`px-6 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all ${
-                    tab === key ? 'bg-primary text-white shadow-lg' : 'hover:bg-muted opacity-60'
+                    tab === key ? 'bg-primary text-foreground shadow-lg' : 'hover:bg-muted opacity-60'
                   }`}
                 >
                   {key === 'all' ? 'الكل' : key === 'local' ? 'محلية' : key === 'continental' ? 'قارية' : 'إقليمية'}
@@ -244,7 +244,7 @@ export default function ChampionsPage() {
               {/* زر الإغلاق - جعلته ثابت (sticky) ليبقى ظاهراً أثناء التمرير */}
               <button
                 onClick={() => setSelected(null)}
-                className="sticky md:absolute top-4 left-4 md:top-8 md:left-8 w-10 h-10 md:w-12 md:h-12 rounded-full bg-muted/80 backdrop-blur flex items-center justify-center hover:bg-primary hover:text-white transition-all z-20 shadow-lg"
+                className="sticky md:absolute top-4 left-4 md:top-8 md:left-8 w-10 h-10 md:w-12 md:h-12 rounded-full bg-muted/80 backdrop-blur flex items-center justify-center hover:bg-primary hover:text-foreground transition-all z-20 shadow-lg"
               >
                 <X size={20} />
               </button>
@@ -294,7 +294,7 @@ function StatCard({ icon, label, value, color }) {
       animate={{ opacity: 1, y: 0 }}
       className={`bg-card border border-border rounded-[2rem] p-8 flex items-center gap-6 shadow-2xl group overflow-hidden relative`}
     >
-      <div className={`w-14 h-14 rounded-2xl ${color === 'primary' ? 'bg-primary text-white' : 'bg-muted'} flex items-center justify-center group-hover:scale-110 transition-transform`}>
+      <div className={`w-14 h-14 rounded-2xl ${color === 'primary' ? 'bg-primary text-foreground' : 'bg-muted'} flex items-center justify-center group-hover:scale-110 transition-transform`}>
         {icon}
       </div>
       <div>

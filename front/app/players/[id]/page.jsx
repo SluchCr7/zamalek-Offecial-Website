@@ -29,7 +29,7 @@ export default function PlayerDetailsPage() {
         return (
             <div className="min-h-screen bg-neutral-950 flex flex-col items-center justify-center p-4">
                 <h2 className="text-3xl font-bold text-red-500 mb-4">Player Not Found</h2>
-                <Link href="/players" className="text-white bg-red-600 px-6 py-2 rounded-xl hover:bg-red-700 transition">
+                <Link href="/players" className="text-foreground bg-red-600 px-6 py-2 rounded-xl hover:bg-red-700 transition">
                     Back to Squad
                 </Link>
             </div>
@@ -40,10 +40,10 @@ export default function PlayerDetailsPage() {
     const stats = statistics?.[0] || {};
 
     return (
-        <div className="min-h-screen w-full bg-neutral-950 text-white font-sans selection:bg-red-600 selection:text-white pb-20">
+        <div className="min-h-screen w-full bg-neutral-950 text-foreground font-sans selection:bg-red-600 selection:text-foreground pb-20">
             {/* Header/Nav */}
             <div className="pt-8 px-4 max-w-7xl mx-auto">
-                <Link href="/players" className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition group bg-neutral-900 px-4 py-2 rounded-full border border-neutral-800">
+                <Link href="/players" className="inline-flex items-center gap-2 text-gray-400 hover:text-foreground transition group bg-neutral-900 px-4 py-2 rounded-full border border-neutral-800">
                     <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
                     Back to Squad
                 </Link>
@@ -71,7 +71,7 @@ export default function PlayerDetailsPage() {
                             />
 
                             <div className="absolute top-6 left-6 z-20">
-                                <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500 opacity-50">
+                                <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-foreground to-gray-500 opacity-50">
                                     {stats.games?.number || ''}
                                 </div>
                             </div>
@@ -79,7 +79,7 @@ export default function PlayerDetailsPage() {
 
                         {/* Personal Info Card */}
                         <div className="bg-neutral-900 rounded-3xl p-6 border border-neutral-800">
-                            <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-white border-b border-neutral-800 pb-4">
+                            <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-foreground border-b border-neutral-800 pb-4">
                                 <User className="text-red-500" size={20} /> Personal Data
                             </h3>
                             <div className="space-y-4">
@@ -148,7 +148,7 @@ export default function PlayerDetailsPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {/* Attacking Metrics */}
                             <div className="bg-neutral-900 rounded-3xl p-6 border border-neutral-800">
-                                <h3 className="text-xl font-bold mb-6 text-white border-b border-neutral-800 pb-4">Attacking Influence</h3>
+                                <h3 className="text-xl font-bold mb-6 text-foreground border-b border-neutral-800 pb-4">Attacking Influence</h3>
                                 <div className="space-y-5">
                                     <div>
                                         <div className="flex justify-between mb-1 text-sm">
@@ -174,7 +174,7 @@ export default function PlayerDetailsPage() {
 
                             {/* Discipline & Defense */}
                             <div className="bg-neutral-900 rounded-3xl p-6 border border-neutral-800">
-                                <h3 className="text-xl font-bold mb-6 text-white border-b border-neutral-800 pb-4">Discipline & Defense</h3>
+                                <h3 className="text-xl font-bold mb-6 text-foreground border-b border-neutral-800 pb-4">Discipline & Defense</h3>
                                 <div className="grid grid-cols-2 gap-4 mb-4">
                                     <div className="flex items-center gap-3 bg-neutral-950 p-4 rounded-xl">
                                         <div className="w-4 h-6 bg-yellow-400 rounded-sm"></div>

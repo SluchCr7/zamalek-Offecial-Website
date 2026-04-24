@@ -73,7 +73,7 @@ export default function KitMuseumPage() {
             <button
               key={p}
               onClick={() => setFilter(p)}
-              className={`px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${filter === p ? 'bg-primary text-white shadow-xl shadow-primary/20' : 'hover:bg-muted opacity-60'
+              className={`px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${filter === p ? 'bg-primary text-foreground shadow-xl shadow-primary/20' : 'hover:bg-muted opacity-60'
                 }`}
             >
               {p}
@@ -116,7 +116,7 @@ export default function KitMuseumPage() {
               {/* زر الإغلاق - جعلته Sticky ليبقى متاحاً دائماً أثناء التمرير */}
               <button
                 onClick={() => setSelectedKit(null)}
-                className="sticky lg:absolute top-6 left-6 w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-primary transition-all z-[60] shadow-xl backdrop-blur-md"
+                className="sticky lg:absolute top-6 left-6 w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-foreground/10 text-foreground flex items-center justify-center hover:bg-primary transition-all z-[60] shadow-xl backdrop-blur-md"
               >
                 <X size={24} />
               </button>
@@ -209,7 +209,7 @@ function KitCard({ kit, index, onClick }) {
           <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-2">{kit.Provider}</div>
           <h3 className="text-2xl font-black font-heading leading-tight whitespace-nowrap">{kit.sesson}</h3>
           <div className="mt-4 flex gap-2">
-            <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-primary text-foreground flex items-center justify-center">
               <Maximize2 size={16} />
             </div>
           </div>

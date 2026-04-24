@@ -43,7 +43,7 @@ export default function LoginPage() {
           <motion.div
             initial={{ scale: 0.8, rotate: -10 }}
             animate={{ scale: 1, rotate: 0 }}
-            className="w-24 h-24 relative p-4 bg-white rounded-3xl shadow-2xl"
+            className="w-24 h-24 relative p-4 bg-foreground rounded-3xl shadow-2xl"
           >
             <Image src="/zsc.png" alt="Zamalek SC" fill className="object-contain p-2" />
           </motion.div>
@@ -115,7 +115,7 @@ export default function LoginPage() {
 
             <button
               type="submit"
-              className="w-full h-20 bg-primary text-white rounded-3xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-primary/20 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-4"
+              className="w-full h-20 bg-primary text-foreground rounded-3xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-primary/20 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-4"
             >
               <span>تسجيل الدخول</span>
               <ShieldCheck size={18} />

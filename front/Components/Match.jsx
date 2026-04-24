@@ -34,7 +34,7 @@ export default function Match({ match }) {
   }, [match.fixture.date, match.fixture.status.short])
 
   const statusColors = {
-    Live: "bg-primary animate-pulse text-white shadow-lg shadow-primary/40",
+    Live: "bg-primary animate-pulse text-foreground shadow-lg shadow-primary/40",
     Finished: "bg-secondary text-secondary-foreground border border-border",
     Upcoming: "bg-muted text-muted-foreground border border-border",
   }

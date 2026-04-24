@@ -86,7 +86,7 @@ export default function TeamsSlider() {
   const [hovered, setHovered] = useState(teams[0].id);
 
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden bg-[#050505]" dir="rtl">
+    <section className="py-24 md:py-32 relative overflow-hidden bg-background" dir="rtl">
       {/* Premium Dark Background */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 mix-blend-overlay pointer-events-none" />
       <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/4 pointer-events-none" />
@@ -113,21 +113,21 @@ export default function TeamsSlider() {
               <span>القطاع الرياضي</span>
               <div className="h-px w-12 bg-primary/50" />
             </div>
-            <h2 className="text-5xl md:text-7xl font-black font-heading tracking-tighter italic leading-[1.1] text-white">
+            <h2 className="text-5xl md:text-7xl font-black font-heading tracking-tighter italic leading-[1.1] text-foreground">
               أبطـال <span className="text-transparent bg-clip-text bg-gradient-to-l from-primary to-red-500">الـتـاريـخ</span>
             </h2>
-            <p className="text-lg text-white/50 font-bold max-w-xl border-r-4 border-primary pl-6 py-2 bg-gradient-to-l from-white/5 to-transparent">
+            <p className="text-lg text-foreground/50 font-bold max-w-xl border-r-4 border-primary pl-6 py-2 bg-gradient-to-l from-foreground/5 to-transparent">
               استكشف فرق النادي الملكي العريقة. أبطال يسطرون التاريخ في كل لعبة، وجمهور لا يقبل إلا بالمركز الأول ليكون الذهب هو خيارنا الوحيد.
             </p>
           </motion.div>
 
           {/* Decorative Stats */}
-          <div className="hidden lg:flex items-center gap-12 text-white/30">
+          <div className="hidden lg:flex items-center gap-12 text-foreground/30">
             <div className="text-center group hover:text-primary transition-colors">
               <div className="text-5xl font-black font-heading">7+</div>
               <div className="text-[10px] uppercase tracking-[0.3em] font-bold mt-1">Teams</div>
             </div>
-            <div className="w-px h-16 bg-white/10" />
+            <div className="w-px h-16 bg-foreground/10" />
             <div className="text-center group hover:text-primary transition-colors">
               <div className="text-5xl font-black font-heading">150+</div>
               <div className="text-[10px] uppercase tracking-[0.3em] font-bold mt-1">Trophies</div>
@@ -163,7 +163,7 @@ function TeamAccordionCard({ team, isHovered, setHovered }) {
         flex: isHovered ? 5 : 1,
       }}
       transition={{ type: "spring", bounce: 0.1, duration: 0.8 }}
-      className={`relative h-full rounded-3xl overflow-hidden cursor-pointer group bg-black border ${isHovered ? 'border-primary/50 shadow-[0_0_30px_rgba(227,27,35,0.2)]' : 'border-white/10'}`}
+      className={`relative h-full rounded-3xl overflow-hidden cursor-pointer group bg-black border ${isHovered ? 'border-primary/50 shadow-[0_0_30px_rgba(227,27,35,0.2)]' : 'border-foreground/10'}`}
     >
       <Link href={team.link} className="block w-full h-full">
         {/* Background Image Layer */}
@@ -176,7 +176,7 @@ function TeamAccordionCard({ team, isHovered, setHovered }) {
           />
           {/* Gradient Overlay based on Team Color */}
           <div className={`absolute inset-0 bg-gradient-to-t ${team.color} mix-blend-multiply transition-opacity duration-1000 ${isHovered ? 'opacity-80' : 'opacity-20'}`} />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
         </div>
 
         {/* Content Container */}
@@ -193,7 +193,7 @@ function TeamAccordionCard({ team, isHovered, setHovered }) {
                   transition={{ duration: 0.4 }}
                   className="absolute top-0 right-0"
                 >
-                  <div className="px-4 py-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl text-white text-[11px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
+                  <div className="px-4 py-2 bg-foreground/10 backdrop-blur-xl border border-foreground/20 rounded-xl text-foreground text-[11px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
                     <Icon size={14} className="text-primary" />
                     <span>{team.category}</span>
                   </div>
@@ -205,11 +205,11 @@ function TeamAccordionCard({ team, isHovered, setHovered }) {
               {/* Titles - Vertical when collapsed, Horizontal/Normal when expanded */}
               <div className={`h-full flex ${isHovered ? 'flex-col justify-end whitespace-normal' : 'flex-col justify-end items-center whitespace-nowrap'}`}>
                 {/* Collapsed Vertical Title */}
-                <span className={`block md:hidden sm:hidden absolute bottom-8 right-1/2 translate-x-1/2 text-2xl font-black text-white/50 -rotate-90 origin-bottom transition-all duration-500 ${isHovered ? 'opacity-0 scale-0' : 'opacity-100 scale-100'}`}>
+                <span className={`block md:hidden sm:hidden absolute bottom-8 right-1/2 translate-x-1/2 text-2xl font-black text-foreground/50 -rotate-90 origin-bottom transition-all duration-500 ${isHovered ? 'opacity-0 scale-0' : 'opacity-100 scale-100'}`}>
                    {team.title}
                 </span>
                 
-                <span className={`hidden md:block absolute bottom-12 right-1/2 translate-x-1/2 text-3xl font-black text-white/50 -rotate-90 origin-center tracking-widest transition-all duration-500 ${isHovered ? 'opacity-0 scale-0' : 'opacity-100 scale-100'}`}>
+                <span className={`hidden md:block absolute bottom-12 right-1/2 translate-x-1/2 text-3xl font-black text-foreground/50 -rotate-90 origin-center tracking-widest transition-all duration-500 ${isHovered ? 'opacity-0 scale-0' : 'opacity-100 scale-100'}`}>
                    {team.title}
                 </span>
 
@@ -219,10 +219,10 @@ function TeamAccordionCard({ team, isHovered, setHovered }) {
                   transition={{ duration: 0.4 }}
                   className={`${isHovered ? 'block' : 'hidden'}`}
                 >
-                  <h3 className="text-4xl md:text-5xl font-black font-heading text-white italic tracking-tight leading-none mb-3 drop-shadow-xl w-[300px]">
+                  <h3 className="text-4xl md:text-5xl font-black font-heading text-foreground italic tracking-tight leading-none mb-3 drop-shadow-xl w-[300px]">
                     {team.title}
                   </h3>
-                  <p className="text-base text-white/70 font-bold border-r-2 border-primary pr-3">
+                  <p className="text-base text-foreground/70 font-bold border-r-2 border-primary pr-3">
                     {team.subtitle}
                   </p>
                 </motion.div>
@@ -232,7 +232,7 @@ function TeamAccordionCard({ team, isHovered, setHovered }) {
               <motion.div
                 animate={{ opacity: isHovered ? 1 : 0, scale: isHovered ? 1 : 0 }}
                 transition={{ duration: 0.4, delay: 0.2 }}
-                className={`w-14 h-14 rounded-full bg-primary flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform ${isHovered ? 'block' : 'hidden md:hidden'}`}
+                className={`w-14 h-14 rounded-full bg-primary flex items-center justify-center text-foreground shrink-0 group-hover:scale-110 transition-transform ${isHovered ? 'block' : 'hidden md:hidden'}`}
               >
                 <ArrowUpRight size={24} />
               </motion.div>

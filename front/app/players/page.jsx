@@ -22,7 +22,7 @@ export default function PlayersPage() {
     const positions = ['All', ...new Set(players?.map(p => p.position) || [])];
 
     return (
-        <div className="min-h-screen w-full bg-neutral-950 text-white overflow-hidden pb-20">
+        <div className="min-h-screen w-full bg-neutral-950 text-foreground overflow-hidden pb-20">
             {/* Hero Section */}
             <div className="relative pt-32 w-full pb-20 px-4 flex flex-col items-center justify-center bg-gradient-to-br from-red-900/40 to-neutral-950">
                 <div className="absolute inset-0 bg-[url('https://www.zamalek.tv/images/pattern.png')] opacity-10 mix-blend-overlay"></div>
@@ -32,7 +32,7 @@ export default function PlayersPage() {
                     transition={{ duration: 0.6 }}
                     className="z-10 text-center"
                 >
-                    <h1 className="text-5xl md:text-7xl font-black mb-4 tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-white to-red-500 uppercase">
+                    <h1 className="text-5xl md:text-7xl font-black mb-4 tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-foreground to-red-500 uppercase">
                         First Team Squad
                     </h1>
                     <p className="text-gray-400 text-lg md:text-xl font-medium max-w-2xl mx-auto">
@@ -55,7 +55,7 @@ export default function PlayersPage() {
                             placeholder="Search players..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full bg-neutral-800 text-white border border-neutral-700 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-red-600 transition-all"
+                            className="w-full bg-neutral-800 text-foreground border border-neutral-700 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-red-600 transition-all"
                         />
                     </div>
                     <div className="w-full md:w-auto flex gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
@@ -63,7 +63,7 @@ export default function PlayersPage() {
                             <button
                                 key={pos}
                                 onClick={() => setFilterPosition(pos)}
-                                className={`whitespace-nowrap px-6 py-2 rounded-xl text-sm font-semibold transition-all ${filterPosition === pos ? 'bg-red-600 text-white shadow-lg shadow-red-600/30' : 'bg-neutral-800 text-gray-400 hover:bg-neutral-700 hover:text-white'}`}
+                                className={`whitespace-nowrap px-6 py-2 rounded-xl text-sm font-semibold transition-all ${filterPosition === pos ? 'bg-red-600 text-foreground shadow-lg shadow-red-600/30' : 'bg-neutral-800 text-gray-400 hover:bg-neutral-700 hover:text-foreground'}`}
                             >
                                 {pos}
                             </button>
@@ -137,10 +137,10 @@ export default function PlayersPage() {
 
                                         {/* Player Info */}
                                         <div className="p-6 relative z-20 bg-neutral-900">
-                                            <div className="absolute top-0 right-6 -translate-y-1/2 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                                            <div className="absolute top-0 right-6 -translate-y-1/2 bg-red-600 text-foreground text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                                                 {player.position}
                                             </div>
-                                            <h3 className="text-xl font-bold mb-1 truncate text-white group-hover:text-red-500 transition-colors">{player.name}</h3>
+                                            <h3 className="text-xl font-bold mb-1 truncate text-foreground group-hover:text-red-500 transition-colors">{player.name}</h3>
                                             <p className="text-sm text-gray-400 mb-4 flex items-center gap-2">
                                                 <span className="w-4 h-4 inline-block rounded-full bg-neutral-700 overflow-hidden relative">
                                                     {/* Ideally add country flag based on nationality */}

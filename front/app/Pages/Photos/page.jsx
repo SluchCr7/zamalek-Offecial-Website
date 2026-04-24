@@ -73,7 +73,7 @@ export default function PhotosPage() {
               <button
                 key={cat}
                 onClick={() => setActiveFilter(cat)}
-                className={`px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${activeFilter === cat ? 'bg-primary text-white shadow-xl shadow-primary/20' : 'hover:bg-muted opacity-60'
+                className={`px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${activeFilter === cat ? 'bg-primary text-foreground shadow-xl shadow-primary/20' : 'hover:bg-muted opacity-60'
                   }`}
               >
                 {cat}
@@ -175,15 +175,15 @@ export default function PhotosPage() {
                 </div>
 
                 <div className="flex gap-4">
-                  <button className="h-16 w-16 bg-white/10 backdrop-blur-3xl border border-white/20 text-white rounded-2xl flex items-center justify-center hover:bg-primary transition-all shadow-xl">
+                  <button className="h-16 w-16 bg-foreground/10 backdrop-blur-3xl border border-foreground/20 text-foreground rounded-2xl flex items-center justify-center hover:bg-primary transition-all shadow-xl">
                     <Download size={20} />
                   </button>
-                  <button className="h-16 w-16 bg-white/10 backdrop-blur-3xl border border-white/20 text-white rounded-2xl flex items-center justify-center hover:bg-primary transition-all shadow-xl">
+                  <button className="h-16 w-16 bg-foreground/10 backdrop-blur-3xl border border-foreground/20 text-foreground rounded-2xl flex items-center justify-center hover:bg-primary transition-all shadow-xl">
                     <Share2 size={20} />
                   </button>
                   <button
                     onClick={() => setSelectedImage(null)}
-                    className="h-16 px-10 bg-white text-black rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all shadow-xl"
+                    className="h-16 px-10 bg-foreground text-background rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-primary hover:text-foreground transition-all shadow-xl"
                   >
                     CLOSE ARCHIVE
                   </button>
@@ -217,17 +217,17 @@ function PhotoCard({ img, index, onClick, isArchive }) {
 
       <div className="absolute bottom-10 inset-x-10 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
         <div className="space-y-1">
-          <div className="text-white font-black font-heading text-lg uppercase tracking-tight italic">{img.title}</div>
-          <div className="text-[8px] font-black uppercase text-white/60 tracking-widest">{img.year || img.category}</div>
+          <div className="text-foreground font-black font-heading text-lg uppercase tracking-tight italic">{img.title}</div>
+          <div className="text-[8px] font-black uppercase text-foreground/60 tracking-widest">{img.year || img.category}</div>
         </div>
-        <div className="w-12 h-12 rounded-2xl bg-primary text-white flex items-center justify-center shadow-lg">
+        <div className="w-12 h-12 rounded-2xl bg-primary text-foreground flex items-center justify-center shadow-lg">
           <Maximize2 size={18} />
         </div>
       </div>
 
       <div className="absolute top-10 right-10">
-        <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-3xl border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 hover:bg-primary">
-          <Info size={16} className="text-white" />
+        <div className="w-10 h-10 rounded-xl bg-foreground/10 backdrop-blur-3xl border border-foreground/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 hover:bg-primary">
+          <Info size={16} className="text-foreground" />
         </div>
       </div>
     </motion.div>

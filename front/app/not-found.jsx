@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 export default function NotFoundPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen text-center px-4 w-full">
-      {/* bg-gradient-to-b from-white via-gray-100 to-gray-200 */}
+      {/* bg-gradient-to-b from-foreground via-gray-100 to-gray-200 */}
       {/* شعار الزمالك */}
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
@@ -53,7 +53,7 @@ export default function NotFoundPage() {
       >
         <Link
           href="/"
-          className="mt-6 inline-block bg-red-700 text-white px-6 py-3 rounded-full text-lg shadow-md hover:bg-red-800 transition duration-300"
+          className="mt-6 inline-block bg-red-700 text-foreground px-6 py-3 rounded-full text-lg shadow-md hover:bg-red-800 transition duration-300"
         >
           العودة للصفحة الرئيسية
         </Link>

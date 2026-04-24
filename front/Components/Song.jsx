@@ -37,7 +37,7 @@ export default function ZamalekSongButton() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         className={`relative w-14 h-14 flex items-center justify-center rounded-full shadow-2xl transition-all duration-500 ${isPlaying
-            ? 'bg-primary text-white shadow-primary/40'
+            ? 'bg-primary text-foreground shadow-primary/40'
             : 'bg-card text-foreground border border-border shadow-black/10'
           }`}
       >
@@ -58,7 +58,7 @@ export default function ZamalekSongButton() {
                     key={i}
                     animate={{ height: [4, 12, 4] }}
                     transition={{ duration: 0.5, repeat: Infinity, delay: i * 0.1 }}
-                    className="w-0.5 bg-white rounded-full"
+                    className="w-0.5 bg-foreground rounded-full"
                   />
                 ))}
               </div>

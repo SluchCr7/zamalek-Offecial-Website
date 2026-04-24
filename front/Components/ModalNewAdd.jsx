@@ -2,31 +2,38 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { X, ImagePlus } from 'lucide-react'
+import { X, ImagePlus, Loader2 } from 'lucide-react'
 import { useNews } from '@/app/Context/NewsContext'
 
 export default function AddNewsModal() {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
-  const [image, setImage] = useState(null)
-    const {addNews , openModal , setOpenModal}= useNews()
+  const [imageFile, setImageFile] = useState(null)
+  const [imagePreview, setImagePreview] = useState(null)
+  const { addNews, openModal, setOpenModal, loading } = useNews()
+
   const handleImageChange = (e) => {
     const file = e.target.files[0]
     if (file) {
+      setImageFile(file)
       const url = URL.createObjectURL(file)
-      setImage(url)
+      setImagePreview(url)
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // هنا يمكنك إضافة لوجيك الحفظ أو النشر
-    console.log({ title, content, image })
-    addNews(title , content , image)
-    setTitle('')
-    setContent('')
-    setImage(null)
-    setOpenModal(false)
+    if (!imageFile) return alert('الرجاء اختيار صورة للخبر')
+    
+    await addNews(title, content, imageFile)
+    
+    // Reset form on success (handled in context but good to have here too)
+    if (!loading) {
+      setTitle('')
+      setContent('')
+      setImageFile(null)
+      setImagePreview(null)
+    }
   }
 
   return (
@@ -36,51 +43,53 @@ export default function AddNewsModal() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
-          onClick={onClose}
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[999] flex items-center justify-center p-4"
+          onClick={() => setOpenModal(false)}
         >
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 18 }}
-            className="relative bg-foreground rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden"
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+            className="relative bg-card border border-border rounded-[2.5rem] shadow-2xl w-full max-w-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
+            dir="rtl"
           >
-            {/* زر الإغلاق */}
+            {/* Close Button */}
             <button
-              onClick={()=> setOpenModal(false)}
-              className="absolute top-4 left-4 text-gray-500 hover:text-red-600 transition"
+              onClick={() => setOpenModal(false)}
+              className="absolute top-6 left-6 text-gray-500 hover:text-primary transition-colors z-10 p-2 bg-muted rounded-full"
             >
-              <X size={26} />
+              <X size={20} />
             </button>
 
-            {/* العنوان */}
-            <div className="text-center py-6 border-b border-gray-100">
-              <h2 className="text-2xl font-bold text-gray-900">
-                📰 إضافة خبر جديد
+            {/* Header */}
+            <div className="text-center py-8 border-b border-border bg-muted/30">
+              <h2 className="text-2xl font-black text-foreground flex items-center justify-center gap-3">
+                <span className="text-primary text-3xl">🏹</span>
+                إضافة خبر جديد
               </h2>
-              <p className="text-gray-500 mt-1 text-sm">
-                شارك آخر أخبار النادي معنا بطريقة احترافية
+              <p className="text-gray-500 mt-2 text-sm font-bold opacity-60">
+                شارك آخر أخبار الملكي مع الجماهير
               </p>
             </div>
 
-            {/* النموذج */}
-            <form onSubmit={handleSubmit} className="p-6 space-y-6">
-              {/* رفع الصورة */}
-              <div className="w-full h-60 border-2 border-dashed border-gray-300 rounded-2xl flex items-center justify-center relative group overflow-hidden">
-                {image ? (
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="p-8 space-y-6 max-h-[70vh] overflow-y-auto custom-scrollbar">
+              {/* Image Upload */}
+              <div className="w-full h-64 border-2 border-dashed border-border rounded-3xl flex items-center justify-center relative group overflow-hidden bg-muted/20 hover:border-primary/50 transition-colors">
+                {imagePreview ? (
                   <>
                     <Image
-                      src={image}
+                      src={imagePreview}
                       alt="Selected"
                       fill
-                      className="object-cover rounded-2xl"
+                      className="object-cover rounded-3xl"
                     />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
                       <label
                         htmlFor="imageUpload"
-                        className="cursor-pointer bg-foreground/90 text-gray-800 px-4 py-2 rounded-xl text-sm font-semibold hover:bg-foreground"
+                        className="cursor-pointer bg-primary text-foreground px-6 py-3 rounded-2xl text-sm font-black hover:scale-105 transition-transform"
                       >
                         تغيير الصورة
                       </label>
@@ -89,12 +98,14 @@ export default function AddNewsModal() {
                 ) : (
                   <label
                     htmlFor="imageUpload"
-                    className="flex flex-col items-center justify-center cursor-pointer text-gray-400 hover:text-red-700 transition"
+                    className="flex flex-col items-center justify-center cursor-pointer text-gray-400 hover:text-primary transition-colors w-full h-full"
                   >
-                    <ImagePlus size={42} />
-                    <span className="mt-2 font-medium">اختر صورة الخبر</span>
-                    <span className="text-xs text-gray-400 mt-1">
-                      (PNG, JPG, JPEG)
+                    <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      <ImagePlus size={32} />
+                    </div>
+                    <span className="font-black text-lg">اختر صورة الخبر</span>
+                    <span className="text-xs opacity-50 mt-2 font-bold">
+                      PNG, JPG, JPEG (يفضل جودة عالية)
                     </span>
                   </label>
                 )}
@@ -104,55 +115,63 @@ export default function AddNewsModal() {
                   accept="image/*"
                   onChange={handleImageChange}
                   className="hidden"
+                  required={!imagePreview}
                 />
               </div>
 
-              {/* العنوان */}
+              {/* Title */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1">
-                  العنوان
+                <label className="block text-sm font-black text-foreground/70 mb-2 mr-2">
+                  عنوان الخبر
                 </label>
                 <input
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  placeholder="أدخل عنوان الخبر..."
-                  className="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-red-600 transition"
+                  placeholder="مثال: الزمالك يختتم تدريباته لمواجهة الأهلي..."
+                  className="w-full bg-muted/50 border border-border rounded-2xl p-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all font-bold"
                   required
                 />
               </div>
 
-              {/* المحتوى */}
+              {/* Content */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1">
-                  المحتوى
+                <label className="block text-sm font-black text-foreground/70 mb-2 mr-2">
+                  محتوى الخبر
                 </label>
                 <textarea
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
-                  rows="5"
-                  placeholder="اكتب تفاصيل الخبر هنا..."
-                  className="w-full border border-gray-300 rounded-xl p-3 resize-none focus:outline-none focus:ring-2 focus:ring-red-600 transition"
+                  rows="6"
+                  placeholder="اكتب تفاصيل الخبر هنا بكل التفاصيل..."
+                  className="w-full bg-muted/50 border border-border rounded-2xl p-4 resize-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all font-bold leading-relaxed"
                   required
                 />
               </div>
 
-              {/* الأزرار */}
-              <div className="flex justify-end gap-4 pt-2">
+              {/* Action Buttons */}
+              <div className="flex justify-end gap-4 pt-4 sticky bottom-0 bg-card py-4 border-t border-border mt-8">
                 <button
                   type="button"
-                  onClick={()=> setOpenModal(false)}
-                  className="px-5 py-2 rounded-xl border border-gray-300 text-gray-600 hover:bg-gray-100 transition"
+                  onClick={() => setOpenModal(false)}
+                  className="px-8 py-3 rounded-2xl border border-border font-black text-sm hover:bg-muted transition-all"
                 >
                   إلغاء
                 </button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
+                <button
+                  disabled={loading}
                   type="submit"
-                  className="px-6 py-2 rounded-xl bg-red-700 text-foreground font-semibold shadow-md hover:bg-red-800 transition"
+                  className="px-10 py-3 rounded-2xl bg-primary text-foreground font-black shadow-lg shadow-primary/20 hover:scale-105 transition-all flex items-center gap-2 disabled:opacity-50 disabled:scale-100"
                 >
-                  نشر الخبر
-                </motion.button>
+                  {loading ? (
+                    <>
+                      <Loader2 className="animate-spin" size={18} />
+                      جاري النشر...
+                    </>
+                  ) : (
+                    'نشر الخبر'
+                  )}
+                </button>
               </div>
             </form>
           </motion.div>

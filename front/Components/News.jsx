@@ -1,20 +1,28 @@
 'use client';
 
 import React from 'react';
-import { newsList } from '@/utils/data';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Calendar, ArrowLeft, ArrowRight, Share2, Newspaper } from 'lucide-react';
+import { Calendar, ArrowLeft, Share2, Newspaper, Trash2, Edit2 } from 'lucide-react';
 import Link from 'next/link';
+import { useNews } from '@/app/Context/NewsContext';
+import { useAuth } from '@/app/Context/AuthContext';
 
 const News = () => {
-  const latestNews = {
-    title: "الزمالك يواصل استعداداته لمواجهة الإسماعيلي في الدوري",
-    description: "خاض الفريق الأول لكرة القدم بنادي الزمالك تدريباته الجماعية اليوم على ملعب النادي بميت عقبة، ضمن الاستعدادات لمواجهة الإسماعيلي المقبلة في مسابقة الدوري المصري الممتاز.",
-    image: "/new.jpg",
-    category: "أخبار الفريق",
-    date: "27 ديسمبر 2025"
-  };
+  const { news, deleteNews, loading } = useNews();
+  const { user } = useAuth();
+
+  const featuredNews = news.length > 0 ? news[0] : null;
+  const regularNews = news.length > 1 ? news.slice(1, 4) : [];
+
+  if (loading && news.length === 0) {
+    return (
+      <div className="py-24 text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary mx-auto"></div>
+        <p className="mt-4 text-gray-500 font-bold">جاري تحميل الأخبار...</p>
+      </div>
+    );
+  }
 
   return (
     <section className="py-24 bg-background overflow-hidden">
@@ -30,81 +38,109 @@ const News = () => {
         </div>
 
         {/* Featured News */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative grid grid-cols-1 lg:grid-cols-2 rounded-[2.5rem] overflow-hidden bg-card border border-border shadow-2xl shadow-black/5 mb-12"
-          dir="rtl"
-        >
-          {/* Image Side */}
-          <div className="relative aspect-video lg:aspect-auto group overflow-hidden">
-            <Image
-              src={latestNews.image}
-              alt={latestNews.title}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
+        {featuredNews && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative grid grid-cols-1 lg:grid-cols-2 rounded-[2.5rem] overflow-hidden bg-card border border-border shadow-2xl shadow-black/5 mb-12"
+            dir="rtl"
+          >
+            {/* Image Side */}
+            <div className="relative aspect-video lg:aspect-auto group overflow-hidden">
+              <Image
+                src={featuredNews.Photo?.url || "/new.jpg"}
+                alt={featuredNews.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
 
-            {/* Category Tag */}
-            <div className="absolute top-6 right-6 px-4 py-1.5 rounded-full bg-primary text-foreground text-[10px] font-black uppercase tracking-tighter">
-              {latestNews.category}
-            </div>
-          </div>
-
-          {/* Content Side */}
-          <div className="p-8 md:p-12 flex flex-col justify-center items-start">
-            <div className="flex items-center gap-2 text-primary font-black text-xs mb-4 uppercase tracking-[0.2em]">آخر خبر</div>
-            <h3 className="text-3xl md:text-4xl font-black font-heading mb-6 tracking-tight leading-tight group-hover:text-primary transition-colors">
-              {latestNews.title}
-            </h3>
-            <p className="text-lg font-bold opacity-60 leading-relaxed mb-8">
-              {latestNews.description}
-            </p>
-
-            <div className="flex items-center justify-between w-full mt-auto pt-8 border-t border-border">
-              <div className="flex items-center gap-3 opacity-60">
-                <Calendar size={16} className="text-primary" />
-                <span className="text-xs font-black">{latestNews.date}</span>
+              {/* Category Tag */}
+              <div className="absolute top-6 right-6 px-4 py-1.5 rounded-full bg-primary text-foreground text-[10px] font-black uppercase tracking-tighter">
+                {featuredNews.category || "أخبار الفريق"}
               </div>
-
-              <Link
-                href="/Pages/News/Featured"
-                className="flex items-center gap-2 text-sm font-black text-primary hover:gap-4 transition-all"
-              >
-                اقرأ الخبر كاملاً
-                <ArrowLeft size={18} />
-              </Link>
+              
+              {/* Admin Actions */}
+              {user?.isAdmin && (
+                <div className="absolute top-6 left-6 flex gap-2">
+                  <button 
+                    onClick={() => deleteNews(featuredNews._id)}
+                    className="p-2 bg-red-600/80 backdrop-blur-md rounded-full text-white hover:bg-red-700 transition-colors shadow-lg"
+                  >
+                    <Trash2 size={16} />
+                  </button>
+                </div>
+              )}
             </div>
-          </div>
-        </motion.div>
+
+            {/* Content Side */}
+            <div className="p-8 md:p-12 flex flex-col justify-center items-start">
+              <div className="flex items-center gap-2 text-primary font-black text-xs mb-4 uppercase tracking-[0.2em]">آخر خبر</div>
+              <h3 className="text-3xl md:text-4xl font-black font-heading mb-6 tracking-tight leading-tight group-hover:text-primary transition-colors">
+                {featuredNews.title}
+              </h3>
+              <p className="text-lg font-bold opacity-60 leading-relaxed mb-8 line-clamp-3">
+                {featuredNews.content}
+              </p>
+
+              <div className="flex items-center justify-between w-full mt-auto pt-8 border-t border-border">
+                <div className="flex items-center gap-3 opacity-60">
+                  <Calendar size={16} className="text-primary" />
+                  <span className="text-xs font-black">
+                    {new Date(featuredNews.createdAt).toLocaleDateString('ar-EG', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  </span>
+                </div>
+
+                <Link
+                  href={`/Pages/News/${featuredNews._id}`}
+                  className="flex items-center gap-2 text-sm font-black text-primary hover:gap-4 transition-all"
+                >
+                  اقرأ الخبر كاملاً
+                  <ArrowLeft size={18} />
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
 
         {/* News Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" dir="rtl">
-          {newsList.slice(0, 3).map((news, index) => (
+          {regularNews.map((news, index) => (
             <motion.div
-              key={news.id}
+              key={news._id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group bg-card rounded-[2rem] border border-border overflow-hidden hover:shadow-2xl transition-all duration-500"
+              className="group bg-card rounded-[2rem] border border-border overflow-hidden hover:shadow-2xl transition-all duration-500 relative"
             >
               <div className="relative h-64 overflow-hidden">
                 <Image
-                  src="/new.jpg"
+                  src={news.Photo?.url || "/new.jpg"}
                   alt={news.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
+                
+                {/* Admin Actions */}
+                {user?.isAdmin && (
+                  <div className="absolute top-4 left-4 z-10">
+                    <button 
+                      onClick={() => deleteNews(news._id)}
+                      className="p-2 bg-red-600/80 backdrop-blur-md rounded-full text-white hover:bg-red-700 transition-colors shadow-lg"
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
+                )}
               </div>
 
               <div className="p-8">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="w-8 h-[2px] bg-primary" />
-                  <span className="text-[10px] font-black uppercase tracking-tighter text-primary">الزمالك</span>
+                  <span className="text-[10px] font-black uppercase tracking-tighter text-primary">{news.category || "الزمالك"}</span>
                 </div>
                 <h4 className="text-xl font-black font-heading mb-6 line-clamp-2 min-h-[3.5rem] leading-tight group-hover:text-primary transition-colors">
                   {news.title}
@@ -113,11 +149,13 @@ const News = () => {
                 <div className="flex items-center justify-between opacity-40 group-hover:opacity-100 transition-opacity">
                   <div className="flex items-center gap-2">
                     <Calendar size={14} />
-                    <span className="text-[10px] font-bold">{news.date || "اليوم"}</span>
+                    <span className="text-[10px] font-bold">
+                      {new Date(news.createdAt).toLocaleDateString('ar-EG', { day: 'numeric', month: 'long' })}
+                    </span>
                   </div>
-                  <button className="p-2 rounded-full hover:bg-muted transition-colors">
-                    <Share2 size={14} />
-                  </button>
+                  <Link href={`/Pages/News/${news._id}`} className="p-2 rounded-full hover:bg-muted transition-colors">
+                    <ArrowLeft size={16} className="text-primary" />
+                  </Link>
                 </div>
               </div>
             </motion.div>

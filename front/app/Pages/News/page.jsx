@@ -1,25 +1,37 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, ArrowRight, Newspaper, TrendingUp, Clock, Filter, Share2, Bookmark, Flame, User } from 'lucide-react';
-import { newsList } from '@/utils/data';
+import { Calendar, ArrowRight, Newspaper, TrendingUp, Clock, Filter, Share2, Bookmark, Flame, User, Loader2 } from 'lucide-react';
+import { useNews } from '@/app/Context/NewsContext';
 import TitleSection from '@/Components/TitleSection';
 
 const categories = ["الكل", "أخبار الفريق", "النادي", "انتقالات", "ألعاب أخرى", "الناشئين"];
 
 export default function NewsPage() {
+  const { news, loading } = useNews();
   const [activeCategory, setActiveCategory] = useState("الكل");
 
   const filteredNews = activeCategory === "الكل"
-    ? newsList
-    : newsList.filter(news => news.category === activeCategory);
+    ? news
+    : news.filter(item => item.category === activeCategory);
 
-  const featuredNews = filteredNews[0];
-  const sidebarNews = newsList.slice(1, 4);
-  const gridNews = filteredNews.slice(1);
+  const featuredNews = filteredNews.length > 0 ? filteredNews[0] : null;
+  const gridNews = filteredNews.length > 1 ? filteredNews.slice(1) : [];
+  const sidebarNews = news.slice(0, 4); // Just for trending section
+
+  if (loading && news.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="text-center space-y-4">
+          <Loader2 className="w-12 h-12 text-primary animate-spin mx-auto" />
+          <p className="text-gray-500 font-black">جاري جلب آخر الأخبار...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen w-full bg-background text-foreground" dir="rtl">
@@ -29,19 +41,19 @@ export default function NewsPage() {
         <div className="relative w-full overflow-hidden">
           <motion.div
             animate={{ x: ["100%", "-100%"] }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
             className="inline-flex gap-20 items-center text-foreground text-[10px] font-black uppercase tracking-[0.2em] whitespace-nowrap"
           >
-            {newsList.map((n, i) => (
+            {news.slice(0, 5).map((n, i) => (
               <div key={i} className="flex items-center gap-4">
                 <Flame size={14} className="fill-current" />
                 <span>{n.title}</span>
               </div>
             ))}
+            {news.length === 0 && <span>لا توجد أخبار عاجلة حالياً</span>}
           </motion.div>
         </div>
       </div>
-
 
       {/* Hero Section: Editorial Focus */}
       <section className="relative py-24 px-4 md:px-8 bg-muted/20">
@@ -82,16 +94,22 @@ export default function NewsPage() {
             {/* Main Headline */}
             <div className="lg:col-span-2">
               <AnimatePresence mode="wait">
-                {featuredNews && (
+                {featuredNews ? (
                   <motion.div
-                    key={featuredNews.id}
+                    key={featuredNews._id}
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -30 }}
                     className="group relative bg-card rounded-[3.5rem] border border-border overflow-hidden shadow-2xl"
                   >
                     <div className="relative aspect-[16/9] overflow-hidden">
-                      <Image src={featuredNews.image} alt={featuredNews.title} fill className="object-cover transition-transform duration-1000 group-hover:scale-105" priority />
+                      <Image 
+                        src={featuredNews.Photo?.url || "/new.jpg"} 
+                        alt={featuredNews.title} 
+                        fill 
+                        className="object-cover transition-transform duration-1000 group-hover:scale-105" 
+                        priority 
+                      />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                       <div className="absolute top-10 right-10 flex gap-3">
                         <div className="px-6 py-2 bg-primary rounded-full text-foreground text-[10px] font-black uppercase tracking-widest shadow-xl">مانشيت اليوم</div>
@@ -102,10 +120,16 @@ export default function NewsPage() {
 
                       <div className="absolute bottom-12 right-12 left-12">
                         <div className="flex items-center gap-6 text-[10px] font-black uppercase tracking-widest text-foreground/60 mb-6">
-                          <div className="flex items-center gap-2"><Clock size={14} /> <span>منذ ساعتين</span></div>
-                          <div className="flex items-center gap-2 text-primary font-black"><Filter size={14} /> <span>{featuredNews.category}</span></div>
+                          <div className="flex items-center gap-2">
+                            <Clock size={14} /> 
+                            <span>{new Date(featuredNews.createdAt).toLocaleDateString('ar-EG')}</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-primary font-black">
+                            <Filter size={14} /> 
+                            <span>{featuredNews.category || "أخبار الفريق"}</span>
+                          </div>
                         </div>
-                        <h2 className="text-4xl md:text-6xl font-black font-heading leading-tight text-foreground line-clamp-2">
+                        <h2 className="text-4xl md:text-5xl font-black font-heading leading-tight text-foreground line-clamp-2">
                           {featuredNews.title}
                         </h2>
                       </div>
@@ -113,13 +137,17 @@ export default function NewsPage() {
 
                     <div className="p-12 pb-16 flex justify-between items-center">
                       <p className="text-lg font-bold opacity-60 leading-relaxed max-w-xl line-clamp-2">
-                        {featuredNews.summary || "تغطية شاملة وحصرية لآخر المستجدات داخل جدران القلعة البيضاء، والقرارات المصيرية التي تم اتخاذها للجهاز الفني واللاعبين."}
+                        {featuredNews.content}
                       </p>
-                      <Link href={`/Pages/New/${featuredNews.id}`} className="w-20 h-20 rounded-full border-2 border-primary text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-foreground transition-all overflow-hidden relative">
+                      <Link href={`/Pages/News/${featuredNews._id}`} className="w-20 h-20 rounded-full border-2 border-primary text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-foreground transition-all overflow-hidden relative">
                         <ArrowRight size={32} className="relative z-10" />
                       </Link>
                     </div>
                   </motion.div>
+                ) : (
+                  <div className="h-[500px] bg-card rounded-[3.5rem] border border-border border-dashed flex items-center justify-center">
+                    <p className="text-gray-500 font-bold">لا توجد أخبار في هذا التصنيف حالياً</p>
+                  </div>
                 )}
               </AnimatePresence>
             </div>
@@ -135,17 +163,18 @@ export default function NewsPage() {
 
                 <div className="space-y-10">
                   {sidebarNews.map((news, idx) => (
-                    <Link key={news.id} href={`/Pages/New/${news.id}`} className="group flex gap-6 items-start">
+                    <Link key={news._id} href={`/Pages/News/${news._id}`} className="group flex gap-6 items-start">
                       <span className="text-4xl font-black font-heading text-border group-hover:text-primary transition-colors">0{idx + 1}</span>
                       <div className="space-y-2">
                         <h4 className="font-black leading-snug group-hover:text-primary transition-colors line-clamp-2">{news.title}</h4>
                         <div className="flex items-center gap-4 text-[8px] font-black uppercase tracking-widest opacity-40">
-                          <div className="flex items-center gap-1"><Clock size={10} /> <span>منذ ساعة</span></div>
+                          <div className="flex items-center gap-1"><Clock size={10} /> <span>{new Date(news.createdAt).toLocaleDateString('ar-EG')}</span></div>
                           <span>#خبر_عاجل</span>
                         </div>
                       </div>
                     </Link>
                   ))}
+                  {sidebarNews.length === 0 && <p className="text-center text-gray-500">لا توجد أخبار شائعة</p>}
                 </div>
               </div>
 
@@ -173,13 +202,13 @@ export default function NewsPage() {
             <h2 className="text-4xl font-black font-heading tracking-tight">آخر الأخبار</h2>
             <div className="h-px w-32 bg-border hidden md:block" />
           </div>
-          <span className="text-[10px] font-black uppercase tracking-widest opacity-40">عرض {gridNews.length} مقال</span>
+          <span className="text-[10px] font-black uppercase tracking-widest opacity-40">عرض {filteredNews.length} مقال</span>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           {gridNews.map((news, idx) => (
             <motion.div
-              key={news.id}
+              key={news._id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -187,7 +216,7 @@ export default function NewsPage() {
               className="group relative flex flex-col h-full bg-card rounded-[2.5rem] border border-border overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
             >
               <div className="relative aspect-[4/3] overflow-hidden">
-                <Image src={news.image} alt={news.title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                <Image src={news.Photo?.url || "/new.jpg"} alt={news.title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="absolute bottom-6 right-6">
                   <div className="px-4 py-1.5 bg-foreground/10 backdrop-blur-xl border border-foreground/20 text-foreground text-[8px] font-black uppercase tracking-widest rounded-lg">
@@ -200,7 +229,7 @@ export default function NewsPage() {
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest opacity-40">
                     <Calendar size={12} />
-                    <span>24 ديسمبر 2023</span>
+                    <span>{new Date(news.createdAt).toLocaleDateString('ar-EG')}</span>
                   </div>
                   <Bookmark size={16} className="opacity-20 hover:text-primary hover:opacity-100 transition-all cursor-pointer" />
                 </div>
@@ -210,31 +239,23 @@ export default function NewsPage() {
                 </h3>
 
                 <div className="mt-auto flex items-center justify-between pt-8 border-t border-border/50">
-                  <Link href={`/Pages/New/${news.id}`} className="text-[10px] font-black uppercase tracking-widest text-primary flex items-center gap-3">
+                  <Link href={`/Pages/News/${news._id}`} className="text-[10px] font-black uppercase tracking-widest text-primary flex items-center gap-3">
                     اقرأ المزيد <ArrowRight size={14} />
                   </Link>
                   <div className="flex -space-x-2 rtl:space-x-reverse">
-                    {[1, 2].map(i => (
-                      <div key={i} className="w-8 h-8 rounded-full border-2 border-card bg-muted flex items-center justify-center overflow-hidden">
-                        <User size={14} className="opacity-40" />
-                      </div>
-                    ))}
+                    <div className="w-8 h-8 rounded-full border-2 border-card bg-muted flex items-center justify-center overflow-hidden">
+                      <Image 
+                        src={news.author?.profilePhoto?.url || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
+                        alt="author"
+                        width={32}
+                        height={32}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
             </motion.div>
           ))}
-        </div>
-
-        {/* Pagination Placeholder */}
-        <div className="mt-24 flex justify-center gap-4">
-          <button className="w-14 h-14 rounded-2xl border border-border flex items-center justify-center opacity-40 cursor-not-allowed"><ArrowRight className="rotate-180" size={20} /></button>
-          <div className="flex gap-2">
-            <button className="w-14 h-14 rounded-2xl bg-primary text-foreground font-black">1</button>
-            <button className="w-14 h-14 rounded-2xl border border-border font-black hover:bg-muted transition-all">2</button>
-            <button className="w-14 h-14 rounded-2xl border border-border font-black hover:bg-muted transition-all">3</button>
-          </div>
-          <button className="w-14 h-14 rounded-2xl border border-border flex items-center justify-center hover:bg-muted transition-all"><ArrowRight size={20} /></button>
         </div>
       </section>
 

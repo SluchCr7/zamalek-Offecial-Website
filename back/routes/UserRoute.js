@@ -11,7 +11,7 @@ const {
     updateUserProfile
 } = require('../Controllers/UserController')
 const photoUpload = require('../Middelwares/uploadPhoto')
-const protect = require('../Middelwares/authMiddelware')
+const { protect } = require('../Middelwares/authMiddelware')
 route.route('/register')
     .post(RegisterNewUser)
 
